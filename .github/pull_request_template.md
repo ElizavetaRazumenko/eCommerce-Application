@@ -5,7 +5,8 @@
    2.1. Create -\
    2.2. Add -\
    2.3. Remove -\
-   2.4. Fix -
+   2.4. Fix -\
+3. Date: 01.08.2023
    
 
    
