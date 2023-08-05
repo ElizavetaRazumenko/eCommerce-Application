@@ -18,10 +18,6 @@ About Us page:
 The application is powered by CommerceTools, a leading provider of commerce solutions for B2C and B2B enterprises. CommerceTools offers a cloud-native, microservices-based commerce platform that enables brands to create unique and engaging digital commerce experiences.
 
 
-## Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Available Scripts
 
 In the project directory, you can run:
@@ -79,7 +75,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 5. Start the project on the developer server `npm start`.
 
 
-## The eCommerce-Application project is based on Create React App (CRA) using the following key technologies:
+## The eCommerce-Application project is based on [Create React App](https://github.com/facebook/create-react-app) using the following key technologies:
 
 - React: A library for creating interfaces.
 - React Router: Controls routing in the application.
