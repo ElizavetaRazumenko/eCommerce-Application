@@ -9,7 +9,7 @@ export function Init() {
     <div>
       <Header />
       <Main />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

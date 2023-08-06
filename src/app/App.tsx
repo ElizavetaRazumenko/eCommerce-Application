@@ -2,7 +2,7 @@ import React from 'react';
 
 import logo from '../logo.svg';
 
-import { Init } from '../pages/2. main page/index';
+import { Init } from '../pages/2. MainPage/index';
 
 import './App.scss';
 

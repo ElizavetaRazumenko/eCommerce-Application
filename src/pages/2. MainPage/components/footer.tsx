@@ -1,11 +1,11 @@
 // import { LogoWrapper } from '../pages/2. main page/index';
-import { LogoWrapper } from '../components/header';
+import { Logo } from '../components/header';
 
-export function Footer() {
+export const Footer = ({ footer }: { footer: string }) => {
   return (
-    <footer>
-      <LogoWrapper />
+    <footer className={footer}>
+      <Logo />
       <div></div>
     </footer>
   );
-}
+};
