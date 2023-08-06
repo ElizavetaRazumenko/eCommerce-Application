@@ -1,9 +1,9 @@
 :root {
-  --main-grey: #5C5C5C;
-  --main-light: #D9D9D9;
-  --main-dark-color: #211F20;
-  --main-dark-background: linear-gradient(to right, rgba(33, 31, 32, 0.9) 0%, #211F20 100%);
-  --color-parsley: #adff2f;
+  --main-grey: $main-grey;
+  --main-light: $main-light;
+  --main-dark-color: $main-dark-color;
+  --main-dark-background: $main-dark-background;
+  --color-parsley: $color-parsley;
 }
 
 body {

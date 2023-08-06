@@ -1,15 +1,16 @@
-import pepperoni from '../../../assets/pizzas/pepperoni.png';
-import rustic from '../../../assets/pizzas/rustic.png';
-import salami from '../../../assets/pizzas/salami.png';
-import cart from '../../../assets/png/cart.png';
-import barbecue from '../../../assets/sauces/barbecue.png';
-import carry from '../../../assets/sauces/carry.png';
-import garlic from '../../../assets/sauces/garlic.png';
-import ketchup from '../../../assets/sauces/ketchup.png';
-import onion from '../../../assets/sauces/onion.png';
-import sourcream from '../../../assets/sauces/sourcream.png';
-import sweet from '../../../assets/sauces/sweet.png';
-import tomato from '../../../assets/sauces/tomato.png';
+// import React from 'react';
+import pepperoniUrl from '../../../assets/pizzas/pepperoni.png';
+import rusticUrl from '../../../assets/pizzas/rustic.png';
+import salamiUrl from '../../../assets/pizzas/salami.png';
+import cartUrl from '../../../assets/png/cart.png';
+import barbecueUrl from '../../../assets/sauces/barbecue.png';
+import carryUrl from '../../../assets/sauces/carry.png';
+import garlicUrl from '../../../assets/sauces/garlic.png';
+import ketchupUrl from '../../../assets/sauces/ketchup.png';
+import onionUrl from '../../../assets/sauces/onion.png';
+import sourcreamUrl from '../../../assets/sauces/sourcream.png';
+import sweetUrl from '../../../assets/sauces/sweet.png';
+import tomatoUrl from '../../../assets/sauces/tomato.png';
 
 export function SectionWelcome() {
   return (
@@ -30,7 +31,7 @@ export function SectionOffer() {
       <h3 className='title-section title-center'>We offer a collection of our best pizzas</h3>
       <div className='pizza-collection'>
         <div className='pizza-item'>
-          <img src={pepperoni} className='pizza-img img-peperoni' alt='pizza' />
+          <img src={pepperoniUrl} className='pizza-img img-peperoni' alt='pizza' />
           <h3 className='item-title'>Pepperoni</h3>
           <div className='select-wrapper'>
             <div className='item-line line-l'>
@@ -40,7 +41,7 @@ export function SectionOffer() {
               </div>
               <div className='price-wrapper'>
                 <span className='span-price price-l'>32.00 $</span>
-                <img src={cart} className='shopping-cart' alt='shopping cart' />
+                <img src={cartUrl} className='shopping-cart' alt='shopping cart' />
               </div>
             </div>
 
@@ -51,7 +52,7 @@ export function SectionOffer() {
               </div>
               <div className='price-wrapper'>
                 <span className='span-price price-l'>25.00 $</span>
-                <img src={cart} className='shopping-cart' alt='shopping cart' />
+                <img src={cartUrl} className='shopping-cart' alt='shopping cart' />
               </div>
             </div>
             <div className='item-line line-l'>
@@ -61,13 +62,13 @@ export function SectionOffer() {
               </div>
               <div className='price-wrapper'>
                 <span className='span-price price-l'>18.00 $</span>
-                <img src={cart} className='shopping-cart' alt='shopping cart' />
+                <img src={cartUrl} className='shopping-cart' alt='shopping cart' />
               </div>
             </div>
           </div>
         </div>
         <div className='pizza-item'>
-          <img src={salami} className='pizza-img img-salami' alt='pizza' />
+          <img src={salamiUrl} className='pizza-img img-salami' alt='pizza' />
           <h3 className='item-title'>Salami</h3>
           <div className='select-wrapper'>
             <div className='item-line line-l'>
@@ -77,7 +78,7 @@ export function SectionOffer() {
               </div>
               <div className='price-wrapper'>
                 <span className='span-price price-l'>25.00 $</span>
-                <img src={cart} className='shopping-cart' alt='shopping cart' />
+                <img src={cartUrl} className='shopping-cart' alt='shopping cart' />
               </div>
             </div>
 
@@ -88,7 +89,7 @@ export function SectionOffer() {
               </div>
               <div className='price-wrapper'>
                 <span className='span-price price-l'>20.00 $</span>
-                <img src={cart} className='shopping-cart' alt='shopping cart' />
+                <img src={cartUrl} className='shopping-cart' alt='shopping cart' />
               </div>
             </div>
             <div className='item-line line-l'>
@@ -98,13 +99,13 @@ export function SectionOffer() {
               </div>
               <div className='price-wrapper'>
                 <span className='span-price price-l'>15.00 $</span>
-                <img src={cart} className='shopping-cart' alt='shopping cart' />
+                <img src={cartUrl} className='shopping-cart' alt='shopping cart' />
               </div>
             </div>
           </div>
         </div>
         <div className='pizza-item'>
-          <img src={rustic} className='pizza-img img-rustic' alt='pizza' />
+          <img src={rusticUrl} className='pizza-img img-rustic' alt='pizza' />
           <h3 className='item-title'>Rustic</h3>
           <div className='select-wrapper'>
             <div className='item-line line-l'>
@@ -114,7 +115,7 @@ export function SectionOffer() {
               </div>
               <div className='price-wrapper'>
                 <span className='span-price price-l'>20.00 $</span>
-                <img src={cart} className='shopping-cart' alt='shopping cart' />
+                <img src={cartUrl} className='shopping-cart' alt='shopping cart' />
               </div>
             </div>
 
@@ -125,7 +126,7 @@ export function SectionOffer() {
               </div>
               <div className='price-wrapper'>
                 <span className='span-price price-l'>15.00 $</span>
-                <img src={cart} className='shopping-cart' alt='shopping cart' />
+                <img src={cartUrl} className='shopping-cart' alt='shopping cart' />
               </div>
             </div>
             <div className='item-line line-l'>
@@ -135,7 +136,7 @@ export function SectionOffer() {
               </div>
               <div className='price-wrapper'>
                 <span className='span-price price-l'>10.00 $</span>
-                <img src={cart} className='shopping-cart' alt='shopping cart' />
+                <img src={cartUrl} className='shopping-cart' alt='shopping cart' />
               </div>
             </div>
           </div>
@@ -150,13 +151,13 @@ export function SectionOffer() {
   );
 }
 
-export function TakeSouce() {
+export function TakeSauce() {
   return (
     <section className='section section-souce'>
       <h2 className='title-section title-left'>Take the sauce to feel all the splendor of taste</h2>
       <div className='select-souce'>
         <div className='item-souce'>
-          <img src={carry} className='souce-img souce-carry' alt='souce-carry' />
+          <img src={carryUrl} className='souce-img souce-carry' alt='souce-carry' />
           <div className='sauce-info'>
             <h4 className='sauce-title'>Carry</h4>
             <div className='sauce-price'>0,60$</div>
@@ -164,7 +165,7 @@ export function TakeSouce() {
           </div>
         </div>
         <div className='item-souce'>
-          <img src={ketchup} className='souce-img souce-ketchup' alt='souce-ketchup' />
+          <img src={ketchupUrl} className='souce-img souce-ketchup' alt='souce-ketchup' />
           <div className='sauce-info'>
             <h4 className='sauce-title'>Ketchup</h4>
             <div className='sauce-price'>0,60$</div>
@@ -172,7 +173,7 @@ export function TakeSouce() {
           </div>
         </div>
         <div className='item-souce'>
-          <img src={sweet} className='souce-img souce-sweet' alt='souce-sweet' />
+          <img src={sweetUrl} className='souce-img souce-sweet' alt='souce-sweet' />
           <div className='sauce-info'>
             <h4 className='sauce-title'>Sweet</h4>
             <div className='sauce-price'>0,60$</div>
@@ -180,7 +181,7 @@ export function TakeSouce() {
           </div>
         </div>
         <div className='item-souce'>
-          <img src={garlic} className='souce-img souce-sweet' alt='souce-garlic' />
+          <img src={garlicUrl} className='souce-img souce-sweet' alt='souce-garlic' />
           <div className='sauce-info'>
             <h4 className='sauce-title'>Garlic</h4>
             <div className='sauce-price'>0,60$</div>
@@ -188,7 +189,7 @@ export function TakeSouce() {
           </div>
         </div>
         <div className='item-souce'>
-          <img src={tomato} className='souce-img souce-tomato' alt='souce-tomato' />
+          <img src={tomatoUrl} className='souce-img souce-tomato' alt='souce-tomato' />
           <div className='sauce-info'>
             <h4 className='sauce-title'>Tomato</h4>
             <div className='sauce-price'>0,60$</div>
@@ -196,7 +197,7 @@ export function TakeSouce() {
           </div>
         </div>
         <div className='item-souce'>
-          <img src={onion} className='souce-img souce-onion' alt='souce-onion' />
+          <img src={onionUrl} className='souce-img souce-onion' alt='souce-onion' />
           <div className='sauce-info'>
             <h4 className='sauce-title'>Onion</h4>
             <div className='sauce-price'>0,60$</div>
@@ -204,7 +205,7 @@ export function TakeSouce() {
           </div>
         </div>
         <div className='item-souce'>
-          <img src={sourcream} className='souce-img souce-sourcream' alt='souce-sourcream' />
+          <img src={sourcreamUrl} className='souce-img souce-sourcream' alt='souce-sourcream' />
           <div className='sauce-info'>
             <h4 className='sauce-title'>Sour cream</h4>
             <div className='sauce-price'>0,60$</div>
@@ -212,7 +213,7 @@ export function TakeSouce() {
           </div>
         </div>
         <div className='item-souce'>
-          <img src={barbecue} className='souce-img souce-barbecue' alt='souce-barbecue' />
+          <img src={barbecueUrl} className='souce-img souce-barbecue' alt='souce-barbecue' />
           <div className='sauce-info'>
             <h4 className='sauce-title'>Barbecue</h4>
             <div className='sauce-price'>0,60$</div>
@@ -230,7 +231,7 @@ export function Main() {
       <div className='container'>
         <SectionWelcome />
         <SectionOffer />
-        <TakeSouce />
+        <TakeSauce />
         {/* <section className='section sectio-offer'>
           <h3 className='title-section title-center'>We offer a collection of our best pizzas</h3>
           <div className='pizza-collection'>
