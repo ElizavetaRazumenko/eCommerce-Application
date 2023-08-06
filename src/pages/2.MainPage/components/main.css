@@ -1,18 +1,7 @@
-.section-welcome {
-  height: 600px;
-  padding-left: 40px;
-}
-
-.title-welcome {
-  letter-spacing: 1.8px;
-  font-size: 48px;
-  margin-top: 130px;
-}
-
 .title-section {
   font-size: 38px;
   letter-spacing: 1.8px;
-  color: var(--main-light);
+  color: #D9D9D9;
 }
 
 .title-left {
@@ -20,25 +9,20 @@
 }
 
 .title-center {
-  margin-top: 60px;
+  margin: 0 auto;
   text-align: center;
 }
 
-.welcome-contemt {
-  margin-top: 60px;
-  font-size: 22px;
-  left: 0;
-  text-align: left;
-  color: var(--main-light);
-}
-
 .section-offer {
-  padding-top: 100px;
-  padding-left: 40px;
+  padding: 220px 0 100px;
+  margin-top: -60px;
+  background: no-repeat url("../../../assets/png/smoke.png");
+  background-size: 119%;
+  background-position: right 40px top 0;
 }
 
 .pizza-collection {
-  margin: 80px auto 0;
+  margin: 90px auto 0;
   justify-content: space-between;
   display: flex;
   flex-direction: row;
@@ -48,8 +32,8 @@
 
 .pizza-item {
   border-radius: 15px;
-  color: var(--main-grey);
-  background: var(--main-light);
+  color: #5C5C5C;
+  background: #D9D9D9;
   width: 303px;
 }
 
@@ -77,7 +61,7 @@
   justify-content: space-between;
   height: 30px;
   padding: 0 5px;
-  border-bottom: 1px solid var(--main-grey);
+  border-bottom: 1px solid #5C5C5C;
 }
 
 .span-line {
@@ -90,7 +74,7 @@
 .span-size {
   height: 30px;
   font-size: 18px;
-  color: var(--main-grey);
+  color: #5C5C5C;
   line-height: 30px;
   height: 30px;
   width: 30px;
@@ -112,6 +96,29 @@
   height: 25px;
 }
 
+.arrows {
+  max-width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: -200px auto 200px;
+}
+
+.arrow-right,
+.arrow-left {
+  width: 50px;
+  height: 50px;
+  background-repeat: no-repeat;
+}
+
+.arrow-left {
+  background-image: url("../../../assets/svg/arrow-left.svg");
+}
+
+.arrow-right {
+  background-image: url("../../../assets/svg/arrow-right.svg");
+}
+
 .btn-seeall {
   text-align: center;
   display: block;
@@ -127,9 +134,11 @@
 }
 
 .section-souce {
-  padding-top: 50px;
-  padding-left: 20px;
-  padding-right: 70px;
+  padding: 0px 60px 750px 30px;
+  margin-top: -60px;
+  background: no-repeat url("../../../assets/png/pepper1.png");
+  background-size: 42%;
+  background-position: left 30px center;
 }
 
 .select-souce {
@@ -144,7 +153,7 @@
 }
 
 .item-souce {
-  background: var(--main-light);
+  background: #D9D9D9;
   width: 230px;
   height: 110px;
   border-radius: 15px;
@@ -165,7 +174,7 @@
 .sauce-title {
   text-align: center;
   margin: 5px auto 0;
-  color: var(--main-grey);
+  color: #5C5C5C;
 }
 
 .sauce-title {
@@ -173,8 +182,8 @@
 }
 
 .btn-addsauce {
-  background: var(--main-grey);
-  color: var(--main-light);
+  background: #5C5C5C;
+  color: #D9D9D9;
   height: 30px;
   width: 90px;
   border-radius: 30px;

@@ -10,18 +10,28 @@
 //     }
 //   }
 
+@use 'variables' as *;
+
 header {
-   margin-top: 20px;
+  max-width: 1280px;
+  //  position: relative;
+   margin: 20px auto 0;
+   background:  no-repeat url('../../../assets/png/slice.png');
+   background-size: 38%;
+   background-position: right 3% top 80px;
 }
 
 
-.header-container{
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    margin: 0;
+.header-container {
+  max-width: 100%;
+  width: inherit;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  margin: 0 auto;
 }
+
+
 
 .logo-wrapper {
   width: 300px;
@@ -31,7 +41,7 @@ header {
     display: flex;
     flex-direction: row;
     margin-bottom: 0;
-    color: var(--main-light);
+    color: $main-light;
   }
 
   h1 {
@@ -46,24 +56,20 @@ header {
 
     font-size: 10px;
     // margin-top: -50px;
-    color: var(--main-light);
+    color: $main-light;
   }
 
   .parsley{
-    color: var(--color-parsley)
+    color: $color-parsley;
   }
 
-// .nav {
-//     right: 20px
-//     // flex-direction: ;
-// }
-
   .navigation-list {
+    left: 10px;
     margin: 0;
     height: 75px;
     display: flex;
     flex-direction: row;
-    color: var(--main-light);
+    color: $main-light;
     // line-height: 24px;
     max-width: 400px;
     gap: 30px;
@@ -84,13 +90,46 @@ header {
     list-style: none;
     &:active {
     
-        border-bottom: 3px solid var(--color-parsley);
+      color: $color-parsley;
     }
 
   }
 
   .no-active-link {
     // color: var(--main-color);
-    border-bottom: 3px solid var(--color-parsley);
+    border-bottom: 3px solid $color-parsley;
     pointer-events: none;
   }
+
+
+  .section-welcome {
+    height: 500px;
+    padding-left: 40px;
+    // background:  no-repeat url('../../../assets/png/slice.png');
+    // background-size: 40%;
+    // background-position: right -30px;
+}
+
+.title-welcome{
+        margin-top: 130px;
+    letter-spacing: 3.2px;
+    font-size: 48px;
+    // margin-top: 130px;
+}
+.title-left {
+  text-align: left;
+}
+
+.welcome-contemt{
+
+  margin-top: 20px;
+  font-size: 22px;
+  letter-spacing: 1.8px;
+line-height: 1.5;
+  // left: 0;
+  text-align: left;
+  color: $main-light;
+  float: left;
+  max-width: 720px;
+  font-weight: 600;
+}

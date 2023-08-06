@@ -1,13 +1,13 @@
 import React from 'react';
 
-import logo from '../../../assets/logo/parsley.png';
+import logoUrl from '../../../assets/logo/parsley.png';
 
 export function Logo() {
   return (
     <div className='logo-wrapper'>
       <div className='logo-title'>
         <h1>ITALIC PIZZA</h1>
-        <img src={logo} className='App-logo' alt='logo' />
+        <img src={logoUrl} className='App-logo' alt='logo' />
       </div>
       <span className='subtitle'>
         the <span className='parsley'>best</span> for you
@@ -30,6 +30,19 @@ export function Nav() {
   );
 }
 
+export function SectionWelcome() {
+  return (
+    <section className='section section-welcome'>
+      <h2 className='title-welcome title-left'>Welcome to the Italian pizzeria!</h2>
+      <p className='welcome-contemt'>
+        We have been preparing the best pizza for you for many years. Our chefs use the finest
+        ingredients and the freshest vegetables for cooking. But the most important ingredient is
+        that we make pizza with love!
+      </p>
+    </section>
+  );
+}
+
 export function Header() {
   return (
     <header>
@@ -38,6 +51,7 @@ export function Header() {
           <Logo />
           <Nav />
         </div>
+        <SectionWelcome />
       </div>
     </header>
   );
