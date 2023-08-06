@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import './index.scss';
-import './pages/2.MainPage/components/header.scss';
+import './pages/globalComponents/header/header.scss';
 import './pages/2.MainPage/components/main.scss';
 
 import App from './app/App';

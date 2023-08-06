@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { Footer } from './components/footer';
-import { Header } from './components/header';
 import { Main } from './components/main';
+
+import { Footer } from '../globalComponents/footer/footer';
+import { Header } from '../globalComponents/header/header';
 
 export function Init() {
   return (
