@@ -1,0 +1,15 @@
+@import '../../../variables.scss';
+
+.location_wrapper {
+    color: $main-light;
+
+    .adress {
+        text-decoration: none;
+        margin: 0;
+        line-height: 40px;
+        padding-left: 35px;
+        background: no-repeat url('../../../../../assets/svg/location1.svg');
+        background-size: 7%;
+        background-position: left center;
+    }
+}

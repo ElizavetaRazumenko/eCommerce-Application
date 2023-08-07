@@ -1,17 +1,19 @@
 import React from 'react';
 
-import Logo from './components/Logo';
-import Nav from './components/Nav';
+import Logo from './components/logo/Logo';
+import Nav from './components/nav/Nav';
 
-export function Header() {
+import s from './header.module.css';
+
+const Header = () => {
   return (
     <header>
-      <div className='container'>
-        <div className='header-container'>
-          <Logo />
-          <Nav />
-        </div>
+      <div className={s.header_container}>
+        <Logo />
+        <Nav />
       </div>
     </header>
   );
-}
+};
+
+export default Header;

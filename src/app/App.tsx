@@ -1,30 +1,18 @@
 import React from 'react';
 
-import logo from '../logo.svg';
-
 import { Init } from '../pages/2.MainPage/index';
+import Footer from '../pages/globalComponents/footer/footer';
+import Header from '../pages/globalComponents/header/header';
 
 import './App.scss';
 
 function App() {
   return (
-    <Init />
-    // <div className='App'>
-    //   <header className='App-header'>
-    //     <img src={logo} className='App-logo' alt='logo' />
-    //     <p>
-    //       Edit <code>src/App.tsx</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className='App-link'
-    //       href='https://reactjs.org'
-    //       target='_blank'
-    //       rel='noopener noreferrer'
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
+    <>
+      <Header />
+      <Init />
+      <Footer />
+    </>
   );
 }
 

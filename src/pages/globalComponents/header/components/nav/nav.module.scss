@@ -1,0 +1,36 @@
+@import '../../../variables.scss';
+
+.navigation_list {
+    left: 10px;
+    margin: 0;
+    height: 75px;
+    display: flex;
+    flex-direction: row;
+    color: $main-light;
+    max-width: 400px;
+    gap: 30px;
+    justify-content: space-between;
+
+}
+
+.nav_item {
+    height: 26px;
+    line-height: 26px;
+    margin-top: 10px;
+    border-bottom: 3px solid rgba(255, 255, 128, 0);
+    align-self: center;
+    transition: .5s;
+    cursor: pointer;
+    list-style: none;
+
+    &:active {
+
+        color: $color-parsley;
+    }
+
+}
+
+.no_active_link {
+    border-bottom: 3px solid $color-parsley;
+    pointer-events: none;
+}

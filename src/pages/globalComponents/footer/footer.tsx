@@ -1,21 +1,21 @@
 import React from 'react';
 
-import Location from './components/Location';
-import Question from './components/Questions';
+import Location from './components/location/location';
+import Question from './components/questions/questions';
 
-import Logo from '../../globalComponents/header/components/Logo';
+import s from './footer.module.css';
 
-interface FooterProps {
-  className?: string;
-  style?: React.CSSProperties;
-}
+import { IFooterProps } from '../../../types/types';
+import Logo from '../header/components/logo/Logo';
 
-export const Footer: React.FC<FooterProps> = ({ className, style }) => {
+const Footer: React.FC<IFooterProps> = ({ style }) => {
   return (
-    <footer className='footer' style={style}>
+    <footer className={s.footer} style={style}>
       <Logo />
       <Location />
       <Question />
     </footer>
   );
 };
+
+export default Footer;
