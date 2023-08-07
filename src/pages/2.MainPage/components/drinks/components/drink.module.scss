@@ -1,0 +1,26 @@
+.item_drink {
+    width: 100px;
+    height: 285px;
+}
+
+.drink_img {
+    height: 190px;
+    width: 100px;
+}
+
+.btn_add_drink {
+    font-weight: 700;
+    width: 80px;
+    height: 30px;
+    border-radius: 12px;
+    background: $main-grey;
+    color: $main-light;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.drink_price {
+    color: $main-light;
+    text-align: center;
+}

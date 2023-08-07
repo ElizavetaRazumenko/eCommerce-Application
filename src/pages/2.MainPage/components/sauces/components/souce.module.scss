@@ -1,0 +1,43 @@
+@import '../../../../globalComponents//variables.scss';
+
+.item_sauce{
+    background: $main-light;
+    width: 230px;
+    height: 110px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+}
+
+.sauce_img {
+    height: 90px;
+    margin: 10px 0 10px 5px;
+}
+
+.sauce_info{
+    padding: 5px 0 5px 15px;
+}
+
+.sauce_price,
+.sauce_title {
+    text-align: center;
+    margin: 5px auto 0;
+    color: $main-grey;
+}
+
+.sauce_title{
+    font-size: 20px;
+}
+
+.btn_add_sauce{
+    font-weight: 700;
+    background: $main-grey;
+    color: $main-light;
+    height: 30px;
+    width: 90px;
+    border-radius: 30px;
+    margin: 10px auto;
+    border: none;
+    cursor: pointer;
+    transition: .5s;
+}

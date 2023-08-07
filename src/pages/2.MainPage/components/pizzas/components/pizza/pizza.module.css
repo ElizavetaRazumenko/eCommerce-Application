@@ -1,1 +1,20 @@
-/*# sourceMappingURL=pizza.module.css.map */
+.pizza_item {
+  border-radius: 15px;
+  color: #5C5C5C;
+  background: #D9D9D9;
+  width: 303px;
+}
+
+.pizza_img {
+  cursor: pointer;
+  margin: 14px;
+  width: 275px;
+  height: 275px;
+  transition: 0.5s;
+}
+
+.pizza_name {
+  margin-top: 10px;
+  font-size: 28px;
+  text-align: center;
+}/*# sourceMappingURL=pizza.module.css.map */

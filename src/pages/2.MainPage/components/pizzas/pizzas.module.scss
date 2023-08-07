@@ -1,0 +1,43 @@
+@import '../../../globalComponents/variables.scss';
+
+.section_offer {
+    padding: 160px 0 100px;
+    margin: 0 -100px;
+    background: no-repeat url('../../../../assets/png/smoke.png');
+    background-size: 120%;
+    background-position: center top 0;
+}
+
+.title_section {
+    font-size: 38px;
+    letter-spacing: 1.8px;
+    color: $main-light;
+}
+
+.title_center {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.pizza_collection {
+    margin: 90px auto 0;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 1026px;
+}
+
+.btn_see_all {
+    cursor: pointer;
+    text-align: center;
+    display: block;
+    height: 60px;
+    width: 200px;
+    font-weight: 700;
+    font-size: 20px;
+    border-radius: 35px;
+    margin: 70px auto;
+    transition: .5s;
+    border: none;
+}

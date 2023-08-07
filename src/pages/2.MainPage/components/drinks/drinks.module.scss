@@ -1,0 +1,27 @@
+@import '../../../globalComponents/variables.scss';
+
+.section_drinks {
+    width: 100%;
+   background:  no-repeat url('../../../../assets/png/water.png');
+   background-size: 53%;
+   background-position: right -10% top 26%;
+   padding-bottom: 600px;
+}
+
+.title_right{
+    margin-top: 50px;
+    text-align: right;
+    margin-right: 7%;
+}
+
+.drinks_container{
+    margin-left: 150px;
+    margin-top: 100px;
+    max-width: 600px;
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 100px;
+    row-gap: 45px;
+}

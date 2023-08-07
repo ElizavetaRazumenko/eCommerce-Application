@@ -1,0 +1,25 @@
+.section_souce {
+    padding: 30px 90px 750px 0px;
+    margin-top: -60px;
+    background: no-repeat url('../../../../assets/png/pepper1.png');
+    background-size: 42%;
+    background-position: left  center;
+}
+
+.title_section {
+    font-size: 38px;
+    letter-spacing: 1.8px;
+    text-align: left;
+    color: $main-light;
+}
+
+.select_souce {
+    margin-top: 35px;
+    margin-right: 0px;
+    float: right;
+    width: 510px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 50px;
+}

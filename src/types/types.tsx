@@ -14,3 +14,13 @@ export type PizzaType = {
   name: string;
   cost: string[];
 };
+
+export type SauceType = {
+  link: string;
+  name: string;
+};
+
+export type DrinkType = {
+  link: string;
+  price: string;
+};

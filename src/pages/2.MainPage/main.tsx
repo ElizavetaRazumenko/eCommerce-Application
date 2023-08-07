@@ -1,6 +1,8 @@
 import React from 'react';
 
+import SectionDrinks from './components/drinks/drinks';
 import SectionPizzas from './components/pizzas/pizzas';
+import SectionSauces from './components/sauces/sauces';
 import SectionWelcome from './components/welcome/welcome';
 
 const Main = () => {
@@ -8,6 +10,8 @@ const Main = () => {
     <main>
       <SectionWelcome />
       <SectionPizzas />
+      <SectionSauces />
+      <SectionDrinks />
     </main>
   );
 };

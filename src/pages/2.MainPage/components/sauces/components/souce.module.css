@@ -1,0 +1,41 @@
+.item_sauce {
+  background: #D9D9D9;
+  width: 230px;
+  height: 110px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+}
+
+.sauce_img {
+  height: 90px;
+  margin: 10px 0 10px 5px;
+}
+
+.sauce_info {
+  padding: 5px 0 5px 15px;
+}
+
+.sauce_price,
+.sauce_title {
+  text-align: center;
+  margin: 5px auto 0;
+  color: #5C5C5C;
+}
+
+.sauce_title {
+  font-size: 20px;
+}
+
+.btn_add_sauce {
+  font-weight: 700;
+  background: #5C5C5C;
+  color: #D9D9D9;
+  height: 30px;
+  width: 90px;
+  border-radius: 30px;
+  margin: 10px auto;
+  border: none;
+  cursor: pointer;
+  transition: 0.5s;
+}/*# sourceMappingURL=souce.module.css.map */

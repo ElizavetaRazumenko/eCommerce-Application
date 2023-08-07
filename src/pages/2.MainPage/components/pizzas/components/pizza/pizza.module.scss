@@ -1,0 +1,22 @@
+@import '../../../../../globalComponents//variables.scss';
+
+.pizza_item {
+    border-radius: 15px;
+    color: $main-grey;
+    background: $main-light;
+    width: 303px;
+}
+
+.pizza_img {
+    cursor: pointer;
+    margin: 14px;
+    width: 275px;
+    height: 275px;
+    transition: .5s;
+}
+
+.pizza_name {
+    margin-top: 10px;
+    font-size: 28px;
+    text-align: center;
+}
