@@ -1,9 +1,9 @@
 .logo_wrapper {
-  width: 400px;
-  height: 100px;
+  cursor: pointer;
+  width: auto;
+  height: auto;
 }
-
-.logo_title {
+.logo_wrapper .logo_title {
   margin: 0;
   color: #D9D9D9;
   font-size: 1.4rem;

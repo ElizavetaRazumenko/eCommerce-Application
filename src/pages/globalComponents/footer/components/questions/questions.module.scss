@@ -1,27 +1,29 @@
 @import '../../../variables.scss';
 
 .question_wrapper {
-    color:$main-light;
-    .email {
-        text-decoration: none;
-        margin: 0;
-        line-height: 40px;
-        padding-left: 35px;
-        background: no-repeat url('../../../../../assets/svg/email.svg');
-        background-size: 9%;
-        background-position: left  center;
-    }
+    color: $main-light;
 
-    .contact {
-        text-decoration: none;
-        margin: 0;
-        line-height: 40px;
-        padding-left: 35px;
-        background: no-repeat url('../../../../../assets/svg/mob.svg');
-        background-size: 9%;
-        background-position: left  center;
+    .links_wrapper {
+        display: flex;
+        flex-direction: column;
+
+        .email {
+            background: no-repeat url('../../../../../assets/svg/email.svg');
+        }
+
+        .contact {
+            background: no-repeat url('../../../../../assets/svg/mob.svg');
+        }
+
+        .contact,
+        .email {
+            color: $main-light;
+            text-decoration: none;
+            margin: 0;
+            line-height: 40px;
+            padding-left: 35px;
+            background-size: 9%;
+            background-position: left center;
+        }
     }
 }
-
-
-

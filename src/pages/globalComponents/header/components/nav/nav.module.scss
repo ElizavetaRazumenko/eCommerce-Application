@@ -14,18 +14,22 @@
 }
 
 .nav_item {
+    cursor: pointer;
     height: 26px;
     line-height: 26px;
     margin-top: 10px;
     border-bottom: 3px solid rgba(255, 255, 128, 0);
     align-self: center;
     transition: .5s;
-    cursor: pointer;
     list-style: none;
+    transition: color .5s;
 
     &:active {
-
         color: $color-parsley;
+    }
+
+    &:hover {
+        color: $white;
     }
 
 }

@@ -1,7 +1,12 @@
 .location_wrapper {
   color: #D9D9D9;
 }
-.location_wrapper .adress {
+.location_wrapper .links_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.location_wrapper .links_wrapper .adress {
+  color: #D9D9D9;
   text-decoration: none;
   margin: 0;
   line-height: 40px;

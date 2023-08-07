@@ -1,21 +1,23 @@
 .question_wrapper {
   color: #D9D9D9;
 }
-.question_wrapper .email {
-  text-decoration: none;
-  margin: 0;
-  line-height: 40px;
-  padding-left: 35px;
-  background: no-repeat url("../../../../../assets/svg/email.svg");
-  background-size: 9%;
-  background-position: left center;
+.question_wrapper .links_wrapper {
+  display: flex;
+  flex-direction: column;
 }
-.question_wrapper .contact {
+.question_wrapper .links_wrapper .email {
+  background: no-repeat url("../../../../../assets/svg/email.svg");
+}
+.question_wrapper .links_wrapper .contact {
+  background: no-repeat url("../../../../../assets/svg/mob.svg");
+}
+.question_wrapper .links_wrapper .contact,
+.question_wrapper .links_wrapper .email {
+  color: #D9D9D9;
   text-decoration: none;
   margin: 0;
   line-height: 40px;
   padding-left: 35px;
-  background: no-repeat url("../../../../../assets/svg/mob.svg");
   background-size: 9%;
   background-position: left center;
 }/*# sourceMappingURL=questions.module.css.map */

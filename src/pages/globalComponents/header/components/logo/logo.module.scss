@@ -1,16 +1,18 @@
 @import '../../../variables.scss';
 
 .logo_wrapper {
-  width: 400px;
-  height: 100px;
+  cursor: pointer;
+  width: auto;
+  height: auto;
+
+  .logo_title {
+    margin: 0;
+    color: $main-light;
+    font-size: 1.4rem;
+    padding-top: 1.4rem;
+  }
 }
 
-.logo_title {
-  margin: 0;
-  color: $main-light;
-  font-size: 1.4rem;
-  padding-top: 1.4rem;
-}
 
 .app_logo {
   position: absolute;
@@ -37,5 +39,3 @@
 .parsley {
   color: $color-parsley;
 }
-
-
