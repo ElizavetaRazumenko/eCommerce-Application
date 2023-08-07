@@ -2,11 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import './index.scss';
-import './pages/globalComponents/main/main.scss';
-import './pages/globalComponents/style.scss';
-
-import './pages/globalComponents/main/components//drinks/chooseDrinks.scss';
-
 import App from './app/App';
 import reportWebVitals from './reportWebVitals';
 

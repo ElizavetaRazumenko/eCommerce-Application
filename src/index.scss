@@ -1,34 +1,35 @@
-// body {
-//   margin: 0;
-//   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-//     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-//     sans-serif;
-//   -webkit-font-smoothing: antialiased;
-//   -moz-osx-font-smoothing: grayscale;
-//   box-sizing: border-box;
-//   display: flex;
-//   justify-content: space-between;
-// }
+@import './globalVariables.scss';
 
-// code {
-//   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-//     monospace;
-// }
+html {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
 
-// #root{
-//   margin: 0 auto;
-// }
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    background: url(./assets/svg/bg/noise_transparent@2x.png),
+        linear-gradient(to top right, $background_to, $background_from);
+    
+}
 
-// .container {
-//   max-width: 1200px;
-//   margin: 0 auto;
-// }
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
 
-
-// h2{
-//   color: $main-light;
-// }
-
-// main {
-//   position: relative;
-// }
+#root {
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+}

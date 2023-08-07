@@ -1,0 +1,17 @@
+.section_welcome {
+  max-width: 1280px;
+  background: no-repeat url('../../../../assets/png/slice.png');
+  background-size: 42%;
+  background-position: right -10px top 0px;
+  padding-bottom: 230px;
+}
+.section_welcome .title_welcome {
+  padding-top: 140px;
+  max-width: 800px;
+  margin: 0;
+  letter-spacing: 3.5px;
+  font-size: 2.7rem;
+}
+.section_welcome .title_left {
+  text-align: left;
+}/*# sourceMappingURL=welcome.module.css.map */

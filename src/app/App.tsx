@@ -1,19 +1,19 @@
 import React from 'react';
 
-import { Init } from '../pages/2.MainPage/index';
+import s from './App.module.css';
+
+import Main from '../pages/2.MainPage/main';
 import Footer from '../pages/globalComponents/footer/footer';
 import Header from '../pages/globalComponents/header/header';
 
-import './App.scss';
-
-function App() {
+const App = () => {
   return (
-    <>
+    <div className={s.container}>
       <Header />
-      <Init />
+      <Main />
       <Footer />
-    </>
+    </div>
   );
-}
+};
 
 export default App;

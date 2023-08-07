@@ -1,0 +1,30 @@
+.section_welcome {
+    max-width: 1280px;
+    background: no-repeat url('../../../assets/png/slice.png');
+    background-size: 42%;
+    background-position: right -10px top 0px;
+    padding-bottom: 230px;
+
+    .title_welcome {
+        padding-top: 140px;
+        max-width: 800px;
+        margin: 0;
+        letter-spacing: 3.5px;
+        font-size: 2.7rem;
+    }
+
+    .title_left {
+        text-align: left;
+    }
+
+    .welcome_content {
+        margin-top: 50px;
+        font-size: 1.3rem;
+        letter-spacing: 1.8px;
+        line-height: 1.7;
+        text-align: left;
+        color: $main-light;
+        max-width: 650px;
+        font-weight: 600;
+    }
+}
