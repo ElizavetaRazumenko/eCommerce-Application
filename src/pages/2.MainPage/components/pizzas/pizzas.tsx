@@ -8,6 +8,7 @@ import salamiUrl from '../../../../assets/pizzas/salami.png';
 const SectionPizzas = () => {
   return (
     <>
+      <div className={s.smoke_b}></div>
       <section className={s.section_offer}>
         <h3 className={s.title_section + ' ' + s.title_center}>
           We offer a collection of our best pizzas

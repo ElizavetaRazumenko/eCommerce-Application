@@ -1,4 +1,5 @@
-@import '../../../../globalComponents//variables.scss';
+@import '../../../../../globalVariables.scss';
+
 
 .item_sauce{
     background: $main-light;
@@ -12,10 +13,15 @@
 .sauce_img {
     height: 90px;
     margin: 10px 0 10px 5px;
+    cursor: pointer;
+    transition: .5s;
+    &:hover {
+        margin: 15px 0 5px 5px;
+    }
 }
 
 .sauce_info{
-    padding: 5px 0 5px 15px;
+    // padding: 5px auto;
 }
 
 .sauce_price,
@@ -26,7 +32,7 @@
 }
 
 .sauce_title{
-    font-size: 20px;
+    font-size: 1.3rem;
 }
 
 .btn_add_sauce{
@@ -36,8 +42,13 @@
     height: 30px;
     width: 90px;
     border-radius: 30px;
-    margin: 10px auto;
+    margin: 15px 10px 0;
     border: none;
     cursor: pointer;
     transition: .5s;
+    &:hover {
+        background: $main-light;
+        color: $main-grey ;
+        border: .1px solid $main-grey;
+    }
 }

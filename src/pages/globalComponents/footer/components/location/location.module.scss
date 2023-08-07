@@ -1,4 +1,5 @@
-@import '../../../variables.scss';
+@import '../../../../../globalVariables.scss';
+
 
 .location_wrapper {
     color: $main-light;
@@ -16,6 +17,10 @@
             background: no-repeat url('../../../../../assets/svg/location1.svg');
             background-size: 7%;
             background-position: left center;
+            cursor: pointer;
+            &:hover{
+                color:$white;
+            }
         }
     }
 }

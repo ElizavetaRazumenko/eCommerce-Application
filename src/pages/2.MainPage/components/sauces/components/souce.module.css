@@ -10,10 +10,11 @@
 .sauce_img {
   height: 90px;
   margin: 10px 0 10px 5px;
+  cursor: pointer;
+  transition: 0.5s;
 }
-
-.sauce_info {
-  padding: 5px 0 5px 15px;
+.sauce_img:hover {
+  margin: 15px 0 5px 5px;
 }
 
 .sauce_price,
@@ -24,7 +25,7 @@
 }
 
 .sauce_title {
-  font-size: 20px;
+  font-size: 1.3rem;
 }
 
 .btn_add_sauce {
@@ -34,8 +35,13 @@
   height: 30px;
   width: 90px;
   border-radius: 30px;
-  margin: 10px auto;
+  margin: 15px 10px 0;
   border: none;
   cursor: pointer;
   transition: 0.5s;
+}
+.btn_add_sauce:hover {
+  background: #D9D9D9;
+  color: #5C5C5C;
+  border: 0.1px solid #5C5C5C;
 }/*# sourceMappingURL=souce.module.css.map */

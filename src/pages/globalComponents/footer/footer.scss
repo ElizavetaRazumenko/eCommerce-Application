@@ -1,0 +1,39 @@
+@use './../variables' as *;
+
+footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.Question-wrapper,
+.location-wrapper{
+    color:$main-light;
+}
+.adress{
+    margin: 0;
+    line-height: 40px;
+    padding-left: 35px;
+    background: no-repeat url('../../../assets/svg/location1.svg');
+    background-size: 7%;
+    background-position: left  center;
+}
+
+.email{
+    margin: 0;
+    line-height: 40px;
+    padding-left: 35px;
+    background: no-repeat url('../../../assets/svg/email.svg');
+    background-size: 9%;
+    background-position: left  center;
+
+}
+
+.contact{
+    margin: 0;
+    line-height: 40px;
+    padding-left: 35px;
+    background: no-repeat url('../../../assets/svg/mob.svg');
+    background-size: 9%;
+    background-position: left  center;
+}
+

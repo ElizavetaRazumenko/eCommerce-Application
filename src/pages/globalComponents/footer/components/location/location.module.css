@@ -14,4 +14,8 @@
   background: no-repeat url("../../../../../assets/svg/location1.svg");
   background-size: 7%;
   background-position: left center;
+  cursor: pointer;
+}
+.location_wrapper .links_wrapper .adress:hover {
+  color: #ffffff;
 }/*# sourceMappingURL=location.module.css.map */

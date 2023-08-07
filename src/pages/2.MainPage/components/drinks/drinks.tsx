@@ -21,7 +21,7 @@ const SectionDrinks = () => {
           <Drink link={bonaquaUrl} price='0.8$' />
           <Drink link={juiceryUrl} price='3.5$' />
         </div>
-        <button className='btn-catalog'>To catalog</button>
+        <button className={s.btn_catalog}>To catalog</button>
       </section>
     </div>
   );

@@ -26,6 +26,7 @@
 }
 .nav_item:hover {
   color: #ffffff;
+  border-bottom: 3px solid #adff2f;
 }
 
 .no_active_link {

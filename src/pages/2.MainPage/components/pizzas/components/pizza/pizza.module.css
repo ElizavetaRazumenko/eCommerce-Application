@@ -12,6 +12,9 @@
   height: 275px;
   transition: 0.5s;
 }
+.pizza_img:hover {
+  scale: 1.02;
+}
 
 .pizza_name {
   margin-top: 10px;

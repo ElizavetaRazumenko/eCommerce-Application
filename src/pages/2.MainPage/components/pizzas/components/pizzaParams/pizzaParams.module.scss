@@ -1,4 +1,5 @@
-@import '../../../../../globalComponents/variables.scss';
+@import '../../../../../../globalVariables.scss';
+
 
 .pizza_title {
     display: flex;
@@ -18,7 +19,7 @@
 .span_price,
 .span_size {
     height: 30px;
-    font-size: 18px;
+    font-size: 1.2rem;
     color: $main-grey;
     line-height: 30px;
     height: 30px;

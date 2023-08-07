@@ -1,6 +1,6 @@
 import Sauce from './components/souce';
 
-import s from './sauces.module.css';
+import s from './sauces.module.scss';
 
 import barbecueUrl from '../../../../assets/sauces/barbecue.png';
 import carryUrl from '../../../../assets/sauces/carry.png';
