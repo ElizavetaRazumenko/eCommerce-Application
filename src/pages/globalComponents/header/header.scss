@@ -1,26 +1,10 @@
-// .App-logo {
-//     // height: 40vmin;
-//     margin: 25px 10px 0;
-//     pointer-events: none;
-//     height: 30px;
-//   }
-//   @media (prefers-reduced-motion: no-preference) {
-//     .App-logo {
-//       animation: App-logo-spin infinite 20s linear;
-//     }
-//   }
 
-@use 'variables' as *;
+@use '../variables' as *;
 
 header {
-  max-width: 1280px;
-  //  position: relative;
+   max-width: 1280px;
    margin: 20px auto 0;
-   background:  no-repeat url('../../../assets/png/slice.png');
-   background-size: 38%;
-   background-position: right 3% top 80px;
 }
-
 
 .header-container {
   max-width: 100%;
@@ -31,32 +15,47 @@ header {
   margin: 0 auto;
 }
 
-
-
 .logo-wrapper {
-  width: 300px;
+  width: 400px;
 }
 
   .logo-title{
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 0;
+    margin: 0;
     color: $main-light;
+    font-size: 1.4rem;
+    padding-top: 1.4rem;
   }
 
-  h1 {
-    letter-spacing: 1.8px;
-    // font-family: Inter;
-    // font-size: 32px;
-    margin-bottom: 0;
+
+  .app-logo {
+    position: absolute;
+    margin-left: 60px ;
+    margin-top: -5px;
+    pointer-events: none;
+    height: 35px;
+    z-index: -1;
   }
-  
+
+  .app-logo2{
+    margin: 15px 0 0 -40px;
+    height: 15px;
+    z-index: 1;
+  }
+
   span{
-    letter-spacing: 1.5px;
-
-    font-size: 10px;
-    // margin-top: -50px;
+    letter-spacing: 1.07px;
+    font-size: .7rem;
     color: $main-light;
+  }
+
+  .parsley-title{
+    color: $color-parsley;
+    font-size: 28px;
+  }
+
+  .red-title{
+    color: $color-red;
+    font-size: 28px;
   }
 
   .parsley{
@@ -70,13 +69,10 @@ header {
     display: flex;
     flex-direction: row;
     color: $main-light;
-    // line-height: 24px;
     max-width: 400px;
     gap: 30px;
-    // height: 37px;
     justify-content: space-between;
-    // margin-top: 20px;
-    // transition: .5s;
+
   }
 
   .nav-item {
@@ -102,34 +98,34 @@ header {
   }
 
 
-  .section-welcome {
-    height: 500px;
-    padding-left: 40px;
-    // background:  no-repeat url('../../../assets/png/slice.png');
-    // background-size: 40%;
-    // background-position: right -30px;
-}
+//   .section-welcome {
+//     height: 500px;
+//     padding-left: 40px;
+//     background:  no-repeat url('../../../assets/png/slice.png');
+//     background-size: 40%;
+//     background-position: right -30px;
+// }
 
-.title-welcome{
-        margin-top: 130px;
-    letter-spacing: 3.2px;
-    font-size: 48px;
-    // margin-top: 130px;
-}
-.title-left {
-  text-align: left;
-}
+// .title-welcome{
+//         margin-top: 130px;
+//     letter-spacing: 3.2px;
+//     font-size: 48px;
+//     // margin-top: 130px;
+// }
+// .title-left {
+//   text-align: left;
+// }
 
-.welcome-contemt{
+// .welcome-contemt{
 
-  margin-top: 20px;
-  font-size: 22px;
-  letter-spacing: 1.8px;
-line-height: 1.5;
-  // left: 0;
-  text-align: left;
-  color: $main-light;
-  float: left;
-  max-width: 720px;
-  font-weight: 600;
-}
+//   margin-top: 20px;
+//   font-size: 22px;
+//   letter-spacing: 1.8px;
+// line-height: 1.5;
+//   // left: 0;
+//   text-align: left;
+//   color: $main-light;
+//   float: left;
+//   max-width: 720px;
+//   font-weight: 600;
+// }

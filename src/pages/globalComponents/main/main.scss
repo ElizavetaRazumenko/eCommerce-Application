@@ -1,18 +1,39 @@
-@use 'variables' as *;
+@use '../variables' as *;
 
-// .section-welcome {
-//     height: 600px;
-//     padding-left: 40px;
-//     background:  no-repeat url('../../../assets/png/slice.png');
-//     background-size: 40%;
-//     background-position: right -30px;
-// }
 
-// .title-welcome{
-//     letter-spacing: 1.8px;
-//     font-size: 48px;
-//     // margin-top: 130px;
-// }
+.section-welcome {
+    max-width: 1280px;
+    background:  no-repeat url('../../../assets/png/slice.png');
+    background-size: 42%;
+    background-position: right -10px top 0px;
+    padding-bottom: 230px;
+}
+
+.title-welcome {
+    padding-top: 140px;
+    max-width: 800px;
+    margin: 0 ;
+    letter-spacing: 3.5px;
+    font-size: 2.7rem;
+}
+
+.title-left {
+  text-align: left;
+}
+
+.welcome-contemt{
+  margin-top: 50px;
+  font-size: 1.3rem;
+  letter-spacing: 1.8px;
+  line-height: 1.7;
+  // left: 0;
+  text-align: left;
+  color: $main-light;
+//   float: left;
+  max-width: 650px;
+  font-weight: 600;
+}
+
 
 .title-section{
     font-size: 38px;
@@ -32,35 +53,20 @@
     text-align: center;
 }
 
-// .welcome-contemt{
-//     margin-top: 60px;
-//     font-size: 22px;
-//     left: 0;
-//     text-align: left;
-//     color: $main-light;
-//     float: right;
-// }
 
-// O F F E R
+//  Section O F F E R
 
 .section-offer {
-    padding: 220px 0 100px;
-    margin-top: -60px;
+    // max-width: 1280px;
+    padding: 160px 0 100px;
+    // margin-top: -60px;
+    margin: 0 -100px;
+    // margin: 0 -200px;
     background: no-repeat url('../../../assets/png/smoke.png');
-    background-size: 119%;
-    background-position: right 40px top 0;
+    background-size: 120%;
+    background-position: center top 0;
 }
 
-
-// .section-offer {
-//     padding: 400x 40px 300px;
-//     // height: 600px;
-//     // margin: 0 auto;
-//     // padding-left: 40px;
-//     background-image: url('../../../assets/png/smoke.png');
-//     background-size: 100%;
-//     background-position: right;
-// }
 
 .pizza-collection{
     margin: 90px auto 0;
@@ -166,7 +172,7 @@ transition: .5s;
 .btn-seeall{
     text-align: center;
     display: block;
-    height: 70px;
+    height: 60px;
     width: 200px;
     font-weight: 400;
     font-size: 20px;
@@ -177,16 +183,14 @@ transition: .5s;
     border: none;
 }
 
+
 //select-souce
 .section-souce{
-    // padding-top: 40px;
-    // padding-left: 30px;
-    // padding-right: 60px;
-    padding: 0px 60px 750px 30px;
-margin-top: -60px;
+    padding: 30px 90px 750px 0px;
+    margin-top: -60px;
     background: no-repeat url('../../../assets/png/pepper1.png');
     background-size: 42%;
-    background-position: left 30px center;
+    background-position: left  center;
 
 }
 

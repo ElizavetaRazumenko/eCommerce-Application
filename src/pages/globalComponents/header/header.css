@@ -1,9 +1,6 @@
 header {
   max-width: 1280px;
   margin: 20px auto 0;
-  background: no-repeat url("../../../assets/png/slice.png");
-  background-size: 38%;
-  background-position: right 3% top 80px;
 }
 
 .header-container {
@@ -16,25 +13,45 @@ header {
 }
 
 .logo-wrapper {
-  width: 300px;
+  width: 400px;
 }
 
 .logo-title {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 0;
+  margin: 0;
   color: #D9D9D9;
+  font-size: 1.4rem;
+  padding-top: 1.4rem;
 }
 
-h1 {
-  letter-spacing: 1.8px;
-  margin-bottom: 0;
+.app-logo {
+  position: absolute;
+  margin-left: 60px;
+  margin-top: -5px;
+  pointer-events: none;
+  height: 35px;
+  z-index: -1;
+}
+
+.app-logo2 {
+  margin: 15px 0 0 -40px;
+  height: 15px;
+  z-index: 1;
 }
 
 span {
-  letter-spacing: 1.5px;
-  font-size: 10px;
+  letter-spacing: 1.07px;
+  font-size: 0.7rem;
   color: #D9D9D9;
+}
+
+.parsley-title {
+  color: #adff2f;
+  font-size: 28px;
+}
+
+.red-title {
+  color: red;
+  font-size: 28px;
 }
 
 .parsley {
@@ -70,31 +87,4 @@ span {
 .no-active-link {
   border-bottom: 3px solid #adff2f;
   pointer-events: none;
-}
-
-.section-welcome {
-  height: 500px;
-  padding-left: 40px;
-}
-
-.title-welcome {
-  margin-top: 130px;
-  letter-spacing: 3.2px;
-  font-size: 48px;
-}
-
-.title-left {
-  text-align: left;
-}
-
-.welcome-contemt {
-  margin-top: 20px;
-  font-size: 22px;
-  letter-spacing: 1.8px;
-  line-height: 1.5;
-  text-align: left;
-  color: #D9D9D9;
-  float: left;
-  max-width: 720px;
-  font-weight: 600;
 }/*# sourceMappingURL=header.css.map */

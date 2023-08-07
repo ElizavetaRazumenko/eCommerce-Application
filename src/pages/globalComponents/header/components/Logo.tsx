@@ -1,14 +1,16 @@
 import logoUrl from '../../../../assets/logo/parsley.png';
+import logo2Url from '../../../../assets/logo/souse.png';
 
 const Logo = () => {
   return (
     <div className='logo-wrapper'>
-      <div className='logo-title'>
-        <h1>ITALIC PIZZA</h1>
-        <img src={logoUrl} className='App-logo' alt='logo' />
-      </div>
+      <h1 className='logo-title'>
+        <img src={logoUrl} className='app-logo' alt='logo' />
+        PIZZA ITALIANO
+        <img src={logo2Url} className='app-logo app-logo2' alt='logo' />
+      </h1>
       <span className='subtitle'>
-        the <span className='parsley'>best</span> for you
+        the best for <span className='parsley'>you</span>
       </span>
     </div>
   );

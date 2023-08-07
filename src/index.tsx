@@ -2,8 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import './index.scss';
+import './pages/globalComponents/footer/footer.scss';
 import './pages/globalComponents/header/header.scss';
-import './pages/2.MainPage/components/main.scss';
+import './pages/globalComponents/main/main.scss';
+import './pages/globalComponents/style.scss';
+
+import './pages/globalComponents/main/components//drinks/chooseDrinks.scss';
+
+// import './pages/2.MainPage/components/main.scss';
 
 import App from './app/App';
 import reportWebVitals from './reportWebVitals';
