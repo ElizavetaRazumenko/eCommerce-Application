@@ -6,7 +6,7 @@
     flex-direction: row;
     justify-content: space-between;
     height: 30px;
-    padding: 0 5px;
+    padding: 0 25px;
     border-bottom: 1px solid $main-grey; 
 }
 
@@ -24,6 +24,10 @@
     line-height: 30px;
     height: 30px;
     width: 30px;
+}
+
+.span_price {
+    padding-right: 20px;
 }
 
 .span_price,
