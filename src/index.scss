@@ -1,69 +1,49 @@
 @import './globalVariables.scss';
 
 html {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    // overflow-x: hidden;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  overflow-x: hidden;
 }
 
 body {
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-        sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-    background: url(./assets/svg/bg/noise_transparent@2x.png),
-        linear-gradient(to top right, $background_to, $background_from);
-        // background-repeat: no-repeat;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  background: url(./assets/svg/bg/noise_transparent@2x.png),
+    linear-gradient(to top right, $background_to, $background_from);
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-h2{
-    color: $main-light;
-  }
-  
-  main {
-    position: relative;
-    margin: 0 auto;
-  }
+h2 {
+  color: $main-light;
+}
 
-#root{
-    width: 100%;
-    margin: 0 auto;
-    height: 100%;
-    // background: no-repeat url('./assets/png/smoke.png');
-    // background-size: 20%;
-    // background-position: center top 0;
-    // background-repeat: no-repeat;
+main {
+  position: relative;
+  margin: 0 auto;
+}
 
-  }
+#root {
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+}
 
-     .container {
-    max-width: 1280px;
-    margin: 0 auto;
-    
-  }
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
 
-//     .App {
-//     text-align: center;
-//   }
-  
-//   .App-header {
-//     min-height: 100vh;
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     justify-content: center;
-//     font-size: calc(10px + 2vmin);
-//     color: white;
-//   }
+}

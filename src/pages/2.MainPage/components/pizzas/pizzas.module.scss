@@ -4,24 +4,9 @@
 .section_offer {
     padding: 160px 0 100px;
     margin: 0 ;
-    // background: no-repeat url('../../../../assets/png/smoke.png');
-    // background-size: 120%;
-    // background-position: center top 0;
-}
-
-.smoke_b{
-    overflow: visible;
-    position: absolute;
-    // width: 300%;
-    // margin: 0 auto;
-    top: 450px;
-   width:150%;
-    height: 35%;
-    right: -24%;
-    background: no-repeat url('../../../../assets/png/smoke.png');
-    background-size: 100%;
-    background-position: center top 0;
+    background-image: url('../../../../assets/png/smoke.png');
     background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .title_section {
@@ -56,10 +41,10 @@
     margin: 70px auto;
     transition: .5s;
     border: none;
-    &:hover{
-        background-color: $main-grey;
-        border: .1px solid  $main-light;
-        color: $main-light;
+    transition: .5s;
+    &:hover {
+        background-color: $main-light;
+        color: $main-grey;
     }
 }
 

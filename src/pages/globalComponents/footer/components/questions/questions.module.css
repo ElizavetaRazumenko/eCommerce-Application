@@ -21,6 +21,7 @@
   background-size: 9%;
   background-position: left center;
   cursor: pointer;
+  transition: color 0.5s;
 }
 .question_wrapper .links_wrapper .contact:hover,
 .question_wrapper .links_wrapper .email:hover {

@@ -1,11 +1,10 @@
 header {
   max-width: 1280px;
-  margin: 20px auto 0;
+  margin: 20px;
 }
 
 .header_container {
-  max-width: 100%;
-  width: inherit;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   flex-direction: row;

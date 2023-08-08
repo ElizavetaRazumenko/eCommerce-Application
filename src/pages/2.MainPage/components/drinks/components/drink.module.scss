@@ -3,7 +3,6 @@
 
 
 .item_drink {
-    // width: 100px;
     height: 285px;
     padding: 0 auto;
 }
@@ -32,6 +31,7 @@
     border: none;
     cursor: pointer;
     margin: 20px auto;
+    transition: .5s;
     &:hover{
      background: $main-light;
      color: $main-grey; 

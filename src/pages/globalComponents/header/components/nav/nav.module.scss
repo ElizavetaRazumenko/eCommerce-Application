@@ -23,6 +23,7 @@
     transition: .5s;
     list-style: none;
     transition: color .5s;
+    transition: border-bottom .3s;
 
     &:active {
         color: $color-parsley;

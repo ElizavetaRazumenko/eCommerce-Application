@@ -15,6 +15,7 @@
   background-size: 7%;
   background-position: left center;
   cursor: pointer;
+  transition: color 0.5s;
 }
 .location_wrapper .links_wrapper .adress:hover {
   color: #ffffff;

@@ -20,6 +20,7 @@
   transition: 0.5s;
   list-style: none;
   transition: color 0.5s;
+  transition: border-bottom 0.3s;
 }
 .nav_item:active {
   color: #adff2f;
