@@ -11,21 +11,24 @@
 }
 
 .nav_item {
-  cursor: pointer;
   height: 26px;
   line-height: 26px;
   margin-top: 10px;
   border-bottom: 3px solid rgba(255, 255, 128, 0);
   align-self: center;
-  transition: 0.5s;
   list-style: none;
-  transition: color 0.5s;
-  transition: border-bottom 0.3s;
 }
-.nav_item:active {
+.nav_item .link {
+  text-decoration: none;
+  color: #D9D9D9;
+  padding-bottom: 5px;
+  transition: color 0.5s;
+  transition: border-bottom 0.2s;
+}
+.nav_item .link:active {
   color: #adff2f;
 }
-.nav_item:hover {
+.nav_item .link:hover {
   color: #ffffff;
   border-bottom: 3px solid #adff2f;
 }
