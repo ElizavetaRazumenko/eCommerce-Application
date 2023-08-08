@@ -24,3 +24,13 @@ export type DrinkType = {
   link: string;
   price: string;
 };
+
+export type InputLoginType = {
+  plshldr: string;
+  classname: string;
+  type: string;
+};
+
+export type ButtonLoginType = {
+  content: string;
+};

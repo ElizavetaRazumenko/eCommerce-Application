@@ -1,9 +1,45 @@
 @import '../../../../globalVariables.scss';
 
 .toggler {
+    box-sizing: border-box;
     width: 100%;
     border-top-left-radius: 50px;
     border-top-right-radius: 50px;
     height: 80px;
-    border-bottom: 2px solid $main-light;
+    display: flex;
+    justify-content: space-around;
+    align-items: end;
+
+    .login_a,
+    .register_a {
+        text-align: center;
+        flex-grow: 1;
+        text-decoration: none;
+        font-size: 1.7rem;
+        font-weight: 700;
+        margin-bottom: 5px;
+        transition: .5s;
+        padding-bottom: 10px;
+        
+    }
+
+    .login_a {
+        color: $main-light;
+    }
+
+    .register_a {
+        color: $unactive-register-grey;
+    }
+
+    .active_link {
+        border-bottom: 2px solid $main-light;
+
+        &:hover {
+            color:$main-light;
+        }
+    }
+
+    .unactive_link {
+        border-bottom: 5px solid $main-light;
+    }
 }
