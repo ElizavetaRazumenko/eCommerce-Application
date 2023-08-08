@@ -14,12 +14,12 @@ const SectionDrinks = () => {
       <section className={s.section_drinks}>
         <h2 className={s.title_right}>Don't forget to choose some drinks</h2>
         <div className={s.drinks_container}>
-          <Drink link={colaUrl} price='1.6$' />
-          <Drink link={fantaUrl} price='1.6$' />
-          <Drink link={spriteUrl} price='1.6$' />
-          <Drink link={pepsiUrl} price='1.6$' />
-          <Drink link={bonaquaUrl} price='0.8$' />
-          <Drink link={juiceryUrl} price='3.5$' />
+          <Drink link={colaUrl} price='1.60$' />
+          <Drink link={fantaUrl} price='1.60$' />
+          <Drink link={spriteUrl} price='1.60$' />
+          <Drink link={pepsiUrl} price='1.60$' />
+          <Drink link={bonaquaUrl} price='0.80$' />
+          <Drink link={juiceryUrl} price='3.50$' />
         </div>
         <button className={s.btn_catalog}>To catalog</button>
       </section>
