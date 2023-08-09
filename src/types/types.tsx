@@ -1,3 +1,5 @@
+import { To } from 'react-router-dom';
+
 export interface IFooterProps {
   className?: string;
   style?: React.CSSProperties;
@@ -34,4 +36,9 @@ export type InputLoginType = {
 
 export type ButtonLoginType = {
   content: string;
+};
+
+export type ButtonRedirectType = {
+  content: string;
+  to: To;
 };
