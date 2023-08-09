@@ -1,0 +1,14 @@
+@import '../../globalVariables.scss';
+
+.basket_wrapper {
+    width: 100%;
+    height: 100%;
+    padding: 50px;
+
+    .welcome {
+        text-align: center;
+        color: $main-light;
+        font-size: 3rem;
+        font-weight: 700;
+    }
+}

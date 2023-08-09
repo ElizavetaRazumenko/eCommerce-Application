@@ -7,6 +7,9 @@ import s from './App.module.css';
 import LoginPage from '../pages/1.LoginPage/login/login';
 import RegisterPage from '../pages/1.LoginPage/register/register';
 import Main from '../pages/2.MainPage/main';
+import CatalogPage from '../pages/3.CatalogPage/catalog';
+import ProfilePage from '../pages/5.UserProfile/profile';
+import BasketPage from '../pages/6.BasketPage/basket';
 import Footer from '../pages/globalComponents/footer/footer';
 import Header from '../pages/globalComponents/header/header';
 
@@ -19,6 +22,9 @@ const App = () => {
           <Route path='/login' Component={LoginPage} />
           <Route path='/register' Component={RegisterPage} />
           <Route path='/' Component={Main} />
+          <Route path='/catalog' Component={CatalogPage} />
+          <Route path='/profile' Component={ProfilePage} />
+          <Route path='/cart' Component={BasketPage} />
         </Routes>
         <Footer />
       </div>
