@@ -18,12 +18,39 @@
 }
 
 .pizza_collection {
-  margin: 90px auto 0;
-  justify-content: space-between;
+  position: relative;
+  left: -32%;
+  margin: 90px auto 0 80px;
+  gap: 105px;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  max-width: 1026px;
+  transition: 1s;
+}
+
+@keyframes right {
+  from {
+    transform: translate(0%);
+  }
+  to {
+    transform: translateX(33%);
+  }
+}
+.transition_right {
+  animation-name: right;
+  animation-duration: 1s;
+}
+
+@keyframes left {
+  from {
+    transform: translate(0%);
+  }
+  to {
+    transform: translate(-33%);
+  }
+}
+.transition_left {
+  animation-name: left;
+  animation-duration: 1s;
 }
 
 .btn_see_all {
@@ -48,4 +75,32 @@
 .img-pizza:hover {
   top: 5px;
   left: 5px;
+}
+
+.arrows {
+  position: relative;
+  max-width: 1280px;
+  height: 40px;
+  bottom: 250px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.arrow_left,
+.arrow_right {
+  height: 110px;
+  width: 50px;
+  background-size: 100%;
+  background-position: center;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.arrow_left {
+  background: no-repeat url("../../../../assets/svg/arrow-left.svg");
+}
+
+.arrow_right {
+  background: no-repeat url("../../../../assets/svg/arrow-right.svg");
 }/*# sourceMappingURL=pizzas.module.css.map */

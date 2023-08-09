@@ -11,7 +11,7 @@ const PizzaParams = (props: PizzaParamsType) => {
         <span className={s.span_size}>{props.length}</span>
       </div>
       <div className={s.price_wrapper}>
-        <span className={s.span_price}>{props.price}</span>
+        <div className={s.span_price}>{props.price}</div>
         <img src={cartUrl} className={s.shopping_cart} alt='shopping cart' />
       </div>
     </div>

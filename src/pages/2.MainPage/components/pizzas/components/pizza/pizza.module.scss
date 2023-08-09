@@ -4,8 +4,12 @@
 .pizza_item {
     border-radius: 15px;
     color: $main-grey;
-    background: $main-light;
-    width: 303px;
+    background: url('../../../../../../assets/png/plank2.png');
+    background-size: 200%;
+    background-repeat: no-repeat;
+    max-width: 303px;
+    background-position: center;
+    padding-bottom: 20px;
 }
 
 .pizza_img {
@@ -20,7 +24,7 @@
 }
 
 .pizza_name {
-    margin-top: 10px;
-    font-size: 28px;
+    margin: 10px 0 30px;
+    font-size: 1.8rem;
     text-align: center;
 }
