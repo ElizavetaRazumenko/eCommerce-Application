@@ -2,7 +2,7 @@ import React from 'react';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import s from './App.module.css';
+import s from './App.module.scss';
 
 import LoginPage from '../pages/1.LoginPage/login/login';
 import RegisterPage from '../pages/1.LoginPage/register/register';

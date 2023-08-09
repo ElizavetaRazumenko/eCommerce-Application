@@ -1,4 +1,4 @@
-import s from './questions.module.css';
+import s from './questions.module.scss';
 
 const Question = () => {
   return (

@@ -1,4 +1,4 @@
-import s from './location.module.css';
+import s from './location.module.scss';
 
 const Location = () => {
   return (

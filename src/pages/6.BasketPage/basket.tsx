@@ -1,4 +1,4 @@
-import s from './basket.module.css';
+import s from './basket.module.scss';
 
 const BasketPage = () => {
   return (

@@ -3,7 +3,7 @@ import React from 'react';
 import Logo from './components/logo/Logo';
 import Nav from './components/nav/Nav';
 
-import s from './header.module.css';
+import s from './header.module.scss';
 
 const Header = () => {
   return (

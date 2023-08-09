@@ -3,7 +3,7 @@ import React from 'react';
 import Location from './components/location/location';
 import Question from './components/questions/questions';
 
-import s from './footer.module.css';
+import s from './footer.module.scss';
 
 import { IFooterProps } from '../../../types/types';
 import Logo from '../header/components/logo/Logo';

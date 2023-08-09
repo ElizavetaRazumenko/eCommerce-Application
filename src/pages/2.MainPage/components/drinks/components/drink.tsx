@@ -1,4 +1,4 @@
-import s from './drink.module.css';
+import s from './drink.module.scss';
 
 import { DrinkType } from '../../../../../types/types';
 

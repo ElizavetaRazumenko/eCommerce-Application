@@ -1,4 +1,4 @@
-import s from './welcome.module.css';
+import s from './welcome.module.scss';
 
 const SectionWelcome = () => {
   return (

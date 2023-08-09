@@ -1,4 +1,4 @@
-import s from './field.module.css';
+import s from './field.module.scss';
 
 import { InputLoginType } from '../../../../types/types';
 

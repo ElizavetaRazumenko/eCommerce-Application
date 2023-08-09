@@ -1,4 +1,4 @@
-import './register.module.css';
+import './register.module.scss';
 
 const RegisterPage = () => {
   return <p>Hello</p>;

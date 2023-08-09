@@ -1,5 +1,5 @@
 import LoginWindow from './components/loginWindow/loginwindow';
-import s from './login.module.css';
+import s from './login.module.scss';
 
 const LoginPage = () => {
   return (

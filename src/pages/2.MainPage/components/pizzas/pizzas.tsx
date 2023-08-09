@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 
 import Pizza from './components/pizza/pizza';
-import s from './pizzas.module.css';
+import s from './pizzas.module.scss';
 
 import baconUrl from '../../../../assets/pizzas/bacon.png';
 import broccoliUrl from '../../../../assets/pizzas/broccoli.png';

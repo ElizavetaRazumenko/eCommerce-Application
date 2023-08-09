@@ -1,4 +1,4 @@
-import s from './pizza.module.css';
+import s from './pizza.module.scss';
 
 import { PizzaType } from '../../../../../../types/types';
 

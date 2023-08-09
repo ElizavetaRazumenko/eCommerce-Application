@@ -1,5 +1,5 @@
 import Drink from './components/drink';
-import s from './drinks.module.css';
+import s from './drinks.module.scss';
 
 import bonaquaUrl from '../../../../assets/drinks/bonaqua.png';
 import colaUrl from '../../../../assets/drinks/cola.png';

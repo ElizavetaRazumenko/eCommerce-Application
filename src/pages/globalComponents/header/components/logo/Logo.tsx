@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
-import s from './logo.module.css';
+import s from './logo.module.scss';
 
 import logoUrl from '../../../../../assets/logo/parsley.png';
 import logo2Url from '../../../../../assets/logo/souse.png';

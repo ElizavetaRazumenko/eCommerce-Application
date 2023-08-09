@@ -1,4 +1,4 @@
-import s from './loginWindow.module.css';
+import s from './loginWindow.module.scss';
 
 import Button from '../../../components/button/button';
 import Field from '../../../components/field/field';

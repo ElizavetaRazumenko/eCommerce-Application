@@ -1,4 +1,4 @@
-import s from './profile.module.css';
+import s from './profile.module.scss';
 
 const ProfilePage = () => {
   return (

@@ -1,4 +1,4 @@
-import s from './catalog.module.css';
+import s from './catalog.module.scss';
 
 const CatalogPage = () => {
   return (

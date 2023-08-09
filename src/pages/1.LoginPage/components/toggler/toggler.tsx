@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
-import s from './toggler.module.css';
+import s from './toggler.module.scss';
 
 const Toggler = () => {
   return (

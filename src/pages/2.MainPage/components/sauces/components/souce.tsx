@@ -1,4 +1,4 @@
-import s from './souce.module.css';
+import s from './souce.module.scss';
 
 import { SauceType } from '../../../../../types/types';
 
