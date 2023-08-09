@@ -3,7 +3,7 @@
 .register_window {
     box-sizing: border-box;
     width: 350px;
-    height: 600px;
+    height: auto;
     background-color: $main-dark-color;
     background-image: url('../../../../../assets/png/smoke.png');
     background-size: cover;
@@ -21,4 +21,24 @@
     flex-direction: column;
     justify-content: center;
     padding: 35px 35px 10px 35px;
+}
+
+.control {
+    width: 100%;
+    text-align: end;
+    margin: 0;
+    font-size: .8rem;
+    letter-spacing: .7px;
+}
+
+.invalide {
+    color: $color-red;
+}
+
+.valide {
+    color: $color-green;
+}
+
+.hidden {
+    visibility: hidden;
 }

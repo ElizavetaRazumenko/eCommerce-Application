@@ -8,7 +8,10 @@ const Location = () => {
       className={s.location_selector}
       onClick={(event) => {
         const trgt = event.target as HTMLElement;
-        trgt.classList.toggle(s.active);
+        const element = trgt.closest(`.${s.location_selector}`);
+        if (element) {
+          element.classList.toggle(s.active);
+        }
       }}
     >
       <p className={s.content}>Select address</p>

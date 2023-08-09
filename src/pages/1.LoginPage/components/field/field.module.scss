@@ -31,14 +31,16 @@
 
 .field_register {
     height: 40px;
-    margin-bottom: 15px;
+    margin-bottom: 17px;
 }
 
-.user {
+.user,
+.user_no_magrin {
     background-image: url('../../../../assets/png/user.png');
 }
 
-.password {
+.password,
+.password_no_magrin {
     background-image: url('../../../../assets/png/secure-link.png');
 }
 
@@ -49,4 +51,10 @@
 .email {
     background-image: url('../../../../assets/png/emailLog.png');
     background-size: 20px 15px;
+}
+
+.user_no_magrin,
+.password_no_magrin,
+.email {
+    margin-bottom: 0;
 }

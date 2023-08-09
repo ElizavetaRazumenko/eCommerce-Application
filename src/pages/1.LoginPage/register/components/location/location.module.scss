@@ -1,6 +1,7 @@
 @import '../../../../../globalVariables.scss';
 
 .location_selector {
+    cursor: pointer;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
@@ -9,7 +10,7 @@
     background-color: $input-grey;
     color: $main-light;
     border-radius: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 17px;
     font-size: 1.2rem;
     padding: 0 15px 0 45px;
     background-image: url('../../../../../assets/png/locationLog.png');
@@ -19,18 +20,25 @@
     transition: box-shadow .3s;
 
     .content {
+        user-select: none;
         color: $input-placeholder;
         margin: 7px 0px;
     }
 
     .arrow {
-        cursor: pointer;
         width: 20px;
         height: 15px;
     }
 }
 
 .location_selector.active {
-    height: 500px;
     background-color: $main-light;
+
+    .content{
+        color: $main-dark-color;
+    }
+
+    .arrow {
+        transform: rotate(180deg);
+    }
 }
