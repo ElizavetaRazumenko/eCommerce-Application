@@ -43,7 +43,7 @@ const Nav = () => {
             to='/login'
             className={({ isActive }) => (isActive ? s.link + ' ' + s.no_active_link : s.link)}
           >
-            Login page
+            Login
           </NavLink>
         </li>
       </ul>
