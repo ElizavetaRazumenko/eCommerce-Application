@@ -29,10 +29,24 @@
     margin-bottom: 30px;
 }
 
+.field_register {
+    height: 40px;
+    margin-bottom: 15px;
+}
+
 .user {
     background-image: url('../../../../assets/png/user.png');
 }
 
 .password {
     background-image: url('../../../../assets/png/secure-link.png');
+}
+
+.location {
+    background-image: url('../../../../assets/png/locationLog.png');
+}
+
+.email {
+    background-image: url('../../../../assets/png/emailLog.png');
+    background-size: 20px 15px;
 }

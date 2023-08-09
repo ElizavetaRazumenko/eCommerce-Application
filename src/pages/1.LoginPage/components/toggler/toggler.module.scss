@@ -1,4 +1,5 @@
 @import '../../../../globalVariables.scss';
+@import '../../../globalComponents/header/components/nav/nav.module.scss';
 
 .toggler {
     box-sizing: border-box;
@@ -10,8 +11,7 @@
     justify-content: space-around;
     align-items: end;
 
-    .login_a,
-    .register_a {
+    .link {
         text-align: center;
         flex-grow: 1;
         text-decoration: none;
@@ -20,18 +20,7 @@
         margin-bottom: 5px;
         transition: .5s;
         padding-bottom: 10px;
-        
-    }
-
-    .login_a {
-        color: $main-light;
-    }
-
-    .register_a {
         color: $unactive-register-grey;
-    }
-
-    .active_link {
         border-bottom: 2px solid $main-light;
 
         &:hover {
@@ -39,7 +28,8 @@
         }
     }
 
-    .unactive_link {
+    .active_link {
+        color: $main-light;
         border-bottom: 5px solid $main-light;
     }
 }

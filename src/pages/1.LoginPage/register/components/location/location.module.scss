@@ -1,0 +1,36 @@
+@import '../../../../../globalVariables.scss';
+
+.location_selector {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: $input-grey;
+    color: $main-light;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    padding: 0 15px 0 45px;
+    background-image: url('../../../../../assets/png/locationLog.png');
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    background-position: 4% center;
+    transition: box-shadow .3s;
+
+    .content {
+        color: $input-placeholder;
+        margin: 7px 0px;
+    }
+
+    .arrow {
+        cursor: pointer;
+        width: 20px;
+        height: 15px;
+    }
+}
+
+.location_selector.active {
+    height: 500px;
+    background-color: $main-light;
+}

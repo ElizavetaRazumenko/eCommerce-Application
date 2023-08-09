@@ -5,10 +5,16 @@ import s from './toggler.module.scss';
 const Toggler = () => {
   return (
     <div className={s.toggler}>
-      <NavLink className={s.login_a + ' ' + s.unactive_link} to='/login'>
+      <NavLink
+        className={({ isActive }) => (isActive ? s.link + ' ' + s.active_link : s.link)}
+        to='/login'
+      >
         Login
       </NavLink>
-      <NavLink className={s.register_a + ' ' + s.active_link} to='/register'>
+      <NavLink
+        className={({ isActive }) => (isActive ? s.link + ' ' + s.active_link : s.link)}
+        to='/register'
+      >
         Register
       </NavLink>
     </div>

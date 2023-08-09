@@ -28,6 +28,7 @@ export type DrinkType = {
 export type InputLoginType = {
   plshldr: string;
   classname: string;
+  page: string;
   type: string;
 };
 

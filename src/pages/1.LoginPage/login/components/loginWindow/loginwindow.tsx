@@ -9,8 +9,8 @@ const LoginWindow = () => {
     <div className={s.login_window}>
       <Toggler />
       <div className={s.field_wrapper}>
-        <Field plshldr='Username' classname='user' type='field_login' />
-        <Field plshldr='Passwors' classname='password' type='field_login' />
+        <Field plshldr='Username' classname='user' page='field_login' type='text' />
+        <Field plshldr='Password' classname='password' page='field_login' type='password' />
       </div>
       <Button content='Login' />
     </div>
