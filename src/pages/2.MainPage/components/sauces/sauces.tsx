@@ -11,20 +11,50 @@ import sourcreamUrl from '../../../../assets/sauces/sourcream.png';
 import sweetUrl from '../../../../assets/sauces/sweet.png';
 import tomatoUrl from '../../../../assets/sauces/tomato.png';
 
+const arraySauceInfo = [
+  {
+    link: carryUrl,
+    name: 'Carry',
+  },
+  {
+    link: ketchupUrl,
+    name: 'Ketchup',
+  },
+  {
+    link: sweetUrl,
+    name: 'Sweet',
+  },
+  {
+    link: garlicUrl,
+    name: 'Garlic',
+  },
+  {
+    link: tomatoUrl,
+    name: 'Tomato',
+  },
+  {
+    link: onionUrl,
+    name: 'Onion',
+  },
+  {
+    link: sourcreamUrl,
+    name: 'Sour cream',
+  },
+  {
+    link: barbecueUrl,
+    name: 'Barbecue',
+  },
+];
+
 const SectionSauces = () => {
   return (
     <div>
       <section className={s.section_souce}>
         <h2 className={s.title_section}>Take the sauce to feel all the splendor of taste</h2>
         <div className={s.select_souce}>
-          <Sauce link={carryUrl} name='Carry' />
-          <Sauce link={ketchupUrl} name='Ketchup' />
-          <Sauce link={sweetUrl} name='Sweet' />
-          <Sauce link={garlicUrl} name='Garlic' />
-          <Sauce link={tomatoUrl} name='Tomato' />
-          <Sauce link={onionUrl} name='Onion' />
-          <Sauce link={sourcreamUrl} name='Sour cream' />
-          <Sauce link={barbecueUrl} name='Barbecue' />
+          {arraySauceInfo.map((souce, index) => (
+            <Sauce link={souce.link} name={souce.name} key={index} />
+          ))}
         </div>
       </section>
     </div>
