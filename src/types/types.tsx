@@ -32,6 +32,7 @@ export type InputLoginType = {
   classname: string;
   page: string;
   type: string;
+  addInputValue: (value: string, inputType: string) => void;
 };
 
 export type ButtonLoginType = {
@@ -61,6 +62,16 @@ export type stateTypeApp = {
       }[];
     };
   };
+
+  addInputValue: (value: string, inputType: string) => void;
+};
+
+export type loginPageType = {
+  addInputValue: (value: string, inputType: string) => void;
+};
+
+export type registerPageType = {
+  addInputValue: (value: string, inputType: string) => void;
 };
 
 export type stateTypeMain = {

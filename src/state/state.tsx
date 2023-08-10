@@ -110,4 +110,10 @@ const state = {
   },
 };
 
+const inputValues: string[][] = [];
+
+export const addInputValue = (value: string, inputType: string) => {
+  inputValues.push([value, inputType]);
+};
+
 export default state;

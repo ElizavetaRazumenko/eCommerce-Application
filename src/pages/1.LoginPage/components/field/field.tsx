@@ -1,16 +1,19 @@
 import { useState } from 'react';
 
+import React from 'react';
+
 import s from './field.module.scss';
 
 import { InputLoginType } from '../../../../types/types';
 
 const Field = (props: InputLoginType) => {
+  const inputRef = React.useRef<HTMLInputElement>(null);
   const [inputType, setInputType] = useState<string>(props.type);
   const changeInputType = () => {
     setInputType(inputType === 'password' ? 'text' : 'password');
   };
   const changeWatch = () => {
-    console.log('здарова');
+    props.addInputValue(inputRef.current!.value, props.plshldr.toLowerCase());
   };
   return (
     <div className={s.input_wrapper}>
@@ -19,10 +22,9 @@ const Field = (props: InputLoginType) => {
         placeholder={props.plshldr}
         className={s[props.classname] + ' ' + s.field_input + ' ' + s[props.page]}
         onBlur={() => changeWatch()}
+        ref={inputRef}
       />
-      <div className={s.watch} onClick={changeInputType}>
-        s
-      </div>
+      <div className={s.watch} onClick={changeInputType}></div>
     </div>
   );
 };

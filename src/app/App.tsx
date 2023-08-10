@@ -21,8 +21,14 @@ const App = (props: stateTypeApp) => {
       <div className={s.container}>
         <Header />
         <Routes>
-          <Route path='/login' Component={LoginPage} />
-          <Route path='/register' Component={RegisterPage} />
+          <Route
+            path='/login'
+            Component={() => <LoginPage addInputValue={props.addInputValue} />}
+          />
+          <Route
+            path='/register'
+            Component={() => <RegisterPage addInputValue={props.addInputValue} />}
+          />
           <Route path='/' Component={() => <Main stateMain={props.state.mainPage} />} />
           <Route path='/catalog' Component={CatalogPage} />
           <Route path='/profile' Component={ProfilePage} />
