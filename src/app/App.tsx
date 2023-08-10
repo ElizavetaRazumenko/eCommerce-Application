@@ -13,8 +13,9 @@ import BasketPage from '../pages/6.BasketPage/basket';
 import ErrorPage from '../pages/7.ErrorPage/error';
 import Footer from '../pages/globalComponents/footer/footer';
 import Header from '../pages/globalComponents/header/header';
+import { stateTypeApp } from '../types/types';
 
-const App = () => {
+const App = (props: stateTypeApp) => {
   return (
     <BrowserRouter>
       <div className={s.container}>
@@ -22,7 +23,7 @@ const App = () => {
         <Routes>
           <Route path='/login' Component={LoginPage} />
           <Route path='/register' Component={RegisterPage} />
-          <Route path='/' Component={Main} />
+          <Route path='/' Component={() => <Main stateMain={props.state.mainPage} />} />
           <Route path='/catalog' Component={CatalogPage} />
           <Route path='/profile' Component={ProfilePage} />
           <Route path='/cart' Component={BasketPage} />

@@ -42,3 +42,30 @@ export type ButtonRedirectType = {
   content: string;
   to: To;
 };
+
+export type stateTypeApp = {
+  state: {
+    mainPage: {
+      drinks: {
+        link: string;
+        price: string;
+      }[];
+    };
+  };
+};
+
+export type stateTypeMain = {
+  stateMain: {
+    drinks: {
+      link: string;
+      price: string;
+    }[];
+  };
+};
+
+export type stateTypeDrinks = {
+  drinksType: {
+    link: string;
+    price: string;
+  }[];
+};
