@@ -20,6 +20,9 @@ const Location = () => {
         <img src={imageurl} alt='arrow' className={s.arrow} />
       </div>
       <div className={s.location_wrapper + ' ' + s.hidden} ref={locationWrapperRef}>
+        <p className={s.address_name}>Billing address</p>
+        <AddressField />
+        <p className={s.address_name}>Shipping address</p>
         <AddressField />
       </div>
     </>

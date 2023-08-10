@@ -1,11 +1,81 @@
 @import '../../../../../globalVariables.scss';
 
 .address_wrapper {
-    padding-top: 15px 20px;
+    box-sizing: border-box;
     width: 100%;
+    padding: 0 20px;
+    margin-bottom: 10px;
 }
 
-.unactive {
+.country {
+    cursor: pointer;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: rgba($color: $main-grey, $alpha: .4);
+    border-radius: 10px;
+    font-size: 1rem;
+    padding: 0 15px 0 35px;
+    transition: 1s;
+
+    .content {
+        margin: 7px 0;
+        color: $main-grey;
+    }
+
+    .arrow {
+        width: 20px;
+        height: 15px;
+        transition: 1s;
+    }
+}
+
+.country.active {
+    background-color: $main-grey;
+    margin-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+
+    .content{
+        color: $main-light;
+    }
+
+    .arrow {
+        transform: rotate(180deg);
+    }
+}
+
+.country_fields {
+    height: 45px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: $main-grey;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: 1s;
+
+    .country_name {
+        cursor: pointer;
+        color: $main-light;
+        padding-bottom: 5px;
+        margin: 0;
+        transition: .8s;
+
+        &:hover {
+            color: $white;
+        }
+    }
+}
+
+.country_fields.hidden {
     height: 0;
     overflow: hidden;
+    background-color: $main-light;
+}
+.label_input {
+    font-size: .8rem;
 }
