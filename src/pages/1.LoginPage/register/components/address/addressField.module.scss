@@ -1,0 +1,11 @@
+@import '../../../../../globalVariables.scss';
+
+.address_wrapper {
+    padding-top: 15px 20px;
+    width: 100%;
+}
+
+.unactive {
+    height: 0;
+    overflow: hidden;
+}
