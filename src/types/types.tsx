@@ -50,6 +50,15 @@ export type stateTypeApp = {
         link: string;
         price: string;
       }[];
+      pizzas: {
+        link: string;
+        name: string;
+        cost: string[];
+      }[];
+      souces: {
+        link: string;
+        name: string;
+      }[];
     };
   };
 };
@@ -60,6 +69,15 @@ export type stateTypeMain = {
       link: string;
       price: string;
     }[];
+    pizzas: {
+      link: string;
+      name: string;
+      cost: string[];
+    }[];
+    souces: {
+      link: string;
+      name: string;
+    }[];
   };
 };
 
@@ -67,5 +85,26 @@ export type stateTypeDrinks = {
   drinksType: {
     link: string;
     price: string;
+  }[];
+};
+
+export type stateTypePizzas = {
+  pizzasType: {
+    link: string;
+    name: string;
+    cost: string[];
+  }[];
+};
+
+export type stateTypeVisiblePizzas = {
+  link: string;
+  name: string;
+  cost: string[];
+}[];
+
+export type stateTypeSouces = {
+  saucesType: {
+    link: string;
+    name: string;
   }[];
 };

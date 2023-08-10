@@ -12,8 +12,8 @@ const Main = (props: stateTypeMain) => {
   return (
     <main className={s.main}>
       <SectionWelcome />
-      <SectionPizzas />
-      <SectionSauces />
+      <SectionPizzas pizzasType={props.stateMain.pizzas} />
+      <SectionSauces saucesType={props.stateMain.souces} />
       <SectionDrinks drinksType={props.stateMain.drinks} />
     </main>
   );
