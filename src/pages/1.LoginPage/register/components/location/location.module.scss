@@ -1,12 +1,29 @@
 @import '../../../../../globalVariables.scss';
 
-.location_selector {
+.location_wrapper {
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    height: 500px;
+    justify-content: space-between;
+    background-color: rgba($color: #5C5C5C, $alpha: .4);
+    border-radius: 15px;
+    margin-bottom: 15px;
+    transition: height 1s;
+}
+
+.location_wrapper.hidden {
+    height: 40px;
+}
+
+.location_select {
     cursor: pointer;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    height: 40px;
     background-color: $input-grey;
     color: $main-light;
     border-radius: 15px;
@@ -31,7 +48,7 @@
     }
 }
 
-.location_selector.active {
+.location_select.active {
     background-color: $main-light;
 
     .content{
@@ -42,3 +59,4 @@
         transform: rotate(180deg);
     }
 }
+
