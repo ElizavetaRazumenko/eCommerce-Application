@@ -14,7 +14,7 @@ const Location = () => {
     locationWrapperRef.current?.classList.toggle(s.hidden);
   };
   return (
-    <>
+    <div className={s.wrapper}>
       <div className={s.location_select} ref={locationRef} onClick={toggleLocation}>
         <p className={s.content}>Select address</p>
         <img src={imageurl} alt='arrow' className={s.arrow} />
@@ -25,7 +25,7 @@ const Location = () => {
         <p className={s.address_name}>Shipping address</p>
         <AddressField />
       </div>
-    </>
+    </div>
   );
 };
 

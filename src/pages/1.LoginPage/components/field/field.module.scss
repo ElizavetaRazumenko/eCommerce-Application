@@ -1,12 +1,22 @@
 @import '../../../../globalVariables.scss';
 
+.input_wrapper {
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.watch {
+    display: none;
+}
+
 .field_input {
     box-sizing: border-box;
     width: 100%;
     background-color: $input-grey;
     color: $main-light;
     border-radius: 15px;
-    margin-bottom: 20px;
+    margin: 0 30px 20px 30px;
     font-size: 1.2rem;
     padding: 0 15px 0 45px;
     background-repeat: no-repeat;
@@ -41,7 +51,23 @@
 
 .password,
 .password_no_magrin {
+    margin-right: 0;
     background-image: url('../../../../assets/png/secure-link.png');
+}
+
+.password ~ .watch,
+.password_no_magrin ~ .watch {
+    display: block;
+    text-align: center;
+    font-size: .8rem;
+    font-weight: 700;
+    padding-bottom: 1px;
+    cursor: pointer;
+    margin: 12px 10px 0 5px;
+    width: 20px;
+    height: 20px;
+    background-color: $white;
+    border-radius: 50%;
 }
 
 .location {
