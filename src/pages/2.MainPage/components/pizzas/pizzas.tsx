@@ -1,4 +1,5 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 import Pizza from './components/pizza/pizza';
 import s from './pizzas.module.scss';
@@ -22,9 +23,7 @@ import vegetarianUrl from '../../../../assets/pizzas/vegetarian.png';
 const SectionPizzas = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [startIndex, setStartIndex] = useState(0);
-  // console.log(useState(0));
   const itemsPerPage = 3;
-  // const [isAnimating, setIsAnimating] = useState(true);
   const [isAnimating, setIsAnimating] = useState(false);
   const [animateLeft, setAnimateLeft] = useState(false);
 
@@ -80,8 +79,6 @@ const SectionPizzas = () => {
 
   for (let i = startIndex - 1; i <= startIndex + itemsPerPage; i += 1) {
     const pizzaIndex = (i + pizzaData.length) % pizzaData.length;
-    // циклическое индексирование
-    console.log(pizzaIndex);
     visiblePizzas.push(pizzaData[pizzaIndex]);
   }
 
@@ -109,7 +106,9 @@ const SectionPizzas = () => {
           <div className={s.arrow_left} onClick={clickLeft}></div>
           <div className={s.arrow_right} onClick={clickRight}></div>
         </div>
-        <button className={s.btn_see_all}>See all</button>
+        <NavLink to='/catalog' className={s.link}>
+          <button className={s.btn_see_all}>See all</button>
+        </NavLink>
       </section>
     </>
   );

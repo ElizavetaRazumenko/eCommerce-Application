@@ -70,25 +70,24 @@
     transition: .5s;
     border: none;
     transition: 1s;
+
     &:hover {
-        // background-color: $main-light;
-        //  color: $main-dark-color;
           background:$white url('../../../../assets/png/smoke.png');
           background-size: 100%;
-          background-repeat:no-repeat;
+          background-repeat: no-repeat;
           background-position: left;
     }
 }
 
 
-.img-pizza{
+.img-pizza {
     &:hover{
         top: 5px;
         left: 5px;
     }
 }
 
-.arrows{
+.arrows {
     position: relative;
     max-width: 1280px;
     height: 40px;
@@ -108,9 +107,14 @@
     transition: .5s;
 }
 
-.arrow_left{
+.arrow_left {
     background: no-repeat url('../../../../assets/svg/arrow-left.svg');
 }
-.arrow_right{
+
+.arrow_right {
     background: no-repeat url('../../../../assets/svg/arrow-right.svg');
+}
+
+.link {
+  text-decoration: none;
 }
