@@ -19,7 +19,7 @@
     height: 275px;
     transition: .5s;
     &:hover{
-        scale: 1.02;
+        transform: scale(1.02) rotate(30deg);
        }
 }
 
@@ -27,4 +27,7 @@
     margin: 10px 0 30px;
     font-size: 1.8rem;
     text-align: center;
+    cursor: pointer;
 }
+
+

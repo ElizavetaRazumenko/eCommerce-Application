@@ -1,21 +1,16 @@
-@import '../../../../../globalVariables.scss';
-
 .logo_wrapper {
   cursor: pointer;
   width: auto;
   height: auto;
   text-decoration: none;
-
-
-  .logo_title {
-    margin: 0;
-    color: $main-light;
-    font-size: 1.4rem;
-    padding-top: 1.4rem;
-    text-shadow: -1px -1px 0 $main-dark-color, 1px -1px 0 $main-dark-color, -1px 1px 0 $main-dark-color, 1px 1px 0 $main-dark-color;
-  }
 }
-
+.logo_wrapper .logo_title {
+  margin: 0;
+  color: #D9D9D9;
+  font-size: 1.4rem;
+  padding-top: 1.4rem;
+  text-shadow: -1px -1px 0 #211F20, 1px -1px 0 #211F20, -1px 1px 0 #211F20, 1px 1px 0 #211F20;
+}
 
 .app_logo {
   position: absolute;
@@ -26,8 +21,6 @@
   z-index: -1;
 }
 
-
-
 .app_logo2 {
   margin: 15px 0 0 -40px;
   height: 15px;
@@ -37,14 +30,14 @@
 .subtitle,
 .parsley {
   letter-spacing: 1.07px;
-  font-size: .7rem;
-  color: $main-light;
+  font-size: 0.7rem;
+  color: #D9D9D9;
 }
 
 .parsley {
-  color: $color-parsley;
+  color: #adff2f;
 }
 
-.space{
+.space {
   width: 20px;
-}
+}/*# sourceMappingURL=logo.module.css.map */

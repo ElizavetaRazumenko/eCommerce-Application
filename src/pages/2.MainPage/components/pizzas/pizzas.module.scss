@@ -1,12 +1,13 @@
 @import '../../../../globalVariables.scss';
 
-
 .section_offer {
     padding: 160px 0 100px;
     margin: 0 ;
     background-image: url('../../../../assets/png/smoke.png');
     background-repeat: no-repeat;
     background-size: contain;
+    overflow: hidden;
+
 }
 
 .title_section {
@@ -22,16 +23,12 @@
 
 .pizza_collection {
     position: relative;
-    left: -32%;
-    margin: 90px auto 0 80px;
-    // justify-content: space-between;
+    left: 0%;
+    margin: 90px -326px 0;
     gap: 105px;
     display: flex;
     flex-direction: row;
-    // max-width:3100px;
     transition: 1s;
-    // max-height: 485px;
-    // overflow: hidden;
 }
 
 @keyframes right {
@@ -39,7 +36,7 @@
       transform: translate(0%);
     }
     to {
-      transform: translateX(33%);
+      transform: translateX(21%);
     }
   }
   .transition_right {
@@ -52,7 +49,7 @@
       transform: translate(0%);
     }
     to {
-      transform: translate(-33%);
+      transform: translate(-21%);
     }
   }
   .transition_left {
@@ -72,10 +69,14 @@
     margin: 70px auto;
     transition: .5s;
     border: none;
-    transition: .5s;
+    transition: 1s;
     &:hover {
-        background-color: $main-light;
-        color: $main-grey;
+        // background-color: $main-light;
+        //  color: $main-dark-color;
+          background:$white url('../../../../assets/png/smoke.png');
+          background-size: 100%;
+          background-repeat:no-repeat;
+          background-position: left;
     }
 }
 
@@ -105,7 +106,6 @@
     background-position: center;
     cursor: pointer;
     transition: .5s;
-
 }
 
 .arrow_left{

@@ -22,31 +22,40 @@ import vegetarianUrl from '../../../../assets/pizzas/vegetarian.png';
 const SectionPizzas = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [startIndex, setStartIndex] = useState(0);
-
-  console.log(useState(0));
+  // console.log(useState(0));
   const itemsPerPage = 3;
+  // const [isAnimating, setIsAnimating] = useState(true);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [animateLeft, setAnimateLeft] = useState(false);
 
   const clickRight = (): void => {
     setIsAnimating(true);
-    setStartIndex((prevIndex) => {
-      const newIndex = prevIndex + 1;
-      if (newIndex >= pizzaData.length) {
-        return 0;
-      }
-      return newIndex;
-    });
+    setAnimateLeft(true);
+    setTimeout(() => {
+      setStartIndex((prevIndex) => {
+        const newIndex = prevIndex + 1;
+        if (newIndex >= pizzaData.length) {
+          return 0;
+        }
+        return newIndex;
+      });
+      setIsAnimating(false);
+    }, 1000);
   };
 
   const clickLeft = (): void => {
     setIsAnimating(true);
-    setStartIndex((prevIndex) => {
-      const newIndex = prevIndex - 1;
-      if (newIndex < 0) {
-        return pizzaData.length;
-      }
-      return newIndex;
-    });
+    setAnimateLeft(false);
+    setTimeout(() => {
+      setStartIndex((prevIndex) => {
+        const newIndex = prevIndex - 1;
+        if (newIndex < 0) {
+          return pizzaData.length - 1;
+        }
+        return newIndex;
+      });
+      setIsAnimating(false);
+    }, 1000);
   };
 
   const pizzaData = [
@@ -68,6 +77,7 @@ const SectionPizzas = () => {
   ];
 
   const visiblePizzas = [];
+
   for (let i = startIndex - 1; i <= startIndex + itemsPerPage; i += 1) {
     const pizzaIndex = (i + pizzaData.length) % pizzaData.length;
     // циклическое индексирование
@@ -88,7 +98,9 @@ const SectionPizzas = () => {
         </h3>
         <div
           ref={sliderRef}
-          className={`${s.pizza_collection} ${isAnimating ? s.transition_left : ''}`}
+          className={`${s.pizza_collection} ${
+            isAnimating ? (animateLeft ? s.transition_left : s.transition_right) : ''
+          }`}
           onTransitionEnd={() => setIsAnimating(false)}
         >
           {pizzas}
