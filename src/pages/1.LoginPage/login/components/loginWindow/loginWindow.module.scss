@@ -26,9 +26,11 @@
 .control {
     box-sizing: border-box;
     width: 100%;
+    min-height: 17px;
     text-align: end;
-    margin: 0;
+    padding-bottom: 3px;
     padding-right: 30px;
+    margin: 0;
     font-size: .8rem;
     letter-spacing: .7px;
     color: $color-red;

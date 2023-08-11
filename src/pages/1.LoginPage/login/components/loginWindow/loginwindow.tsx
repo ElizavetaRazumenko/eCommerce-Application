@@ -10,23 +10,22 @@ const LoginWindow = (props: loginPageType) => {
     <div className={s.login_window}>
       <Toggler />
       <div className={s.field_wrapper}>
-        <Field
-          plshldr='Username'
-          classname='user'
-          page='field_login'
-          type='text'
-          addInputValue={props.addInputValue}
-        />
-        <p className={s.control}>text field must be filled</p>
-        <Field
-          plshldr='Password'
-          classname='password'
-          page='field_login'
-          type='password'
-          addInputValue={props.addInputValue}
-        />
+        {props.stateLoginPage.fieldData.map((data, index) => {
+          return (
+            <>
+              <Field
+                plshldr={data.plshldr}
+                classname={data.classname}
+                page={data.page}
+                type={data.type}
+                addInputValue={props.addInputValue}
+                key={index}
+              />
+              <p className={s.control}>{data.errorMessage}</p>
+            </>
+          );
+        })}
       </div>
-      <p className={s.control}>password must contain special characters</p>
       <Button content='Login' />
     </div>
   );

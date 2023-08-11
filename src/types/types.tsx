@@ -61,16 +61,57 @@ export type stateTypeApp = {
         name: string;
       }[];
     };
+    loginPage: {
+      fieldData: {
+        id: number;
+        plshldr: string;
+        classname: string;
+        page: string;
+        type: string;
+        errorMessage: string;
+      }[];
+    };
+    registerPage: {
+      fieldData: {
+        id: number;
+        plshldr: string;
+        classname: string;
+        page: string;
+        type: string;
+        errorMessage: string;
+      }[];
+    };
   };
 
   addInputValue: (value: string, inputType: string) => void;
 };
 
 export type loginPageType = {
+  stateLoginPage: {
+    fieldData: {
+      id: number;
+      plshldr: string;
+      classname: string;
+      page: string;
+      type: string;
+      errorMessage: string;
+    }[];
+  };
+
   addInputValue: (value: string, inputType: string) => void;
 };
 
 export type registerPageType = {
+  stateRegisterPage: {
+    fieldData: {
+      id: number;
+      plshldr: string;
+      classname: string;
+      page: string;
+      type: string;
+      errorMessage: string;
+    }[];
+  };
   addInputValue: (value: string, inputType: string) => void;
 };
 

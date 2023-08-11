@@ -5,7 +5,10 @@ import { registerPageType } from '../../../types/types';
 const RegisterPage = (props: registerPageType) => {
   return (
     <div className={s.register_wrapper}>
-      <RegisterWindow addInputValue={props.addInputValue} />
+      <RegisterWindow
+        stateRegisterPage={props.stateRegisterPage}
+        addInputValue={props.addInputValue}
+      />
     </div>
   );
 };

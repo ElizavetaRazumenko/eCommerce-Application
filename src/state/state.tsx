@@ -108,6 +108,78 @@ const state = {
       },
     ],
   },
+  loginPage: {
+    fieldData: [
+      {
+        id: 1,
+        plshldr: 'Username',
+        classname: 'user',
+        page: 'field_login',
+        type: 'text',
+        errorMessage: '',
+      },
+      {
+        id: 2,
+        plshldr: 'Password',
+        classname: 'password',
+        page: 'field_login',
+        type: 'password',
+        errorMessage: '',
+      },
+    ],
+  },
+  registerPage: {
+    fieldData: [
+      {
+        id: 1,
+        plshldr: 'Username',
+        classname: 'user',
+        page: 'field_register',
+        type: 'text',
+        errorMessage: '',
+      },
+      {
+        id: 2,
+        plshldr: 'First name',
+        classname: 'user',
+        page: 'field_register',
+        type: 'text',
+        errorMessage: '',
+      },
+      {
+        id: 3,
+        plshldr: 'Last name',
+        classname: 'user',
+        page: 'field_register',
+        type: 'text',
+        errorMessage: '',
+      },
+      {
+        id: 4,
+        plshldr: 'Date of birth: dd.mm.yy',
+        classname: 'user',
+        page: 'field_register',
+        type: 'text',
+        errorMessage: '',
+      },
+      {
+        id: 5,
+        plshldr: 'Email',
+        classname: 'email',
+        page: 'field_register',
+        type: 'email',
+        errorMessage: '',
+      },
+      {
+        id: 6,
+        plshldr: 'Password',
+        classname: 'password',
+        page: 'field_register',
+        type: 'password',
+        errorMessage: '',
+      },
+    ],
+  },
 };
 
 const inputValues: string[][] = [];

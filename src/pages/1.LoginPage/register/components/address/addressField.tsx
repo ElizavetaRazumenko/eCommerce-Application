@@ -34,10 +34,6 @@ const AddressField = () => {
       <AddressInput plshldr='City' />
       <AddressInput plshldr='Street' />
       <AddressInput plshldr='Postal code' />
-      <label className={s.label_input}>
-        Make this address as the default?
-        <input type='checkbox' name='address' />
-      </label>
     </div>
   );
 };

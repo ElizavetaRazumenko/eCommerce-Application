@@ -22,8 +22,15 @@ const Location = () => {
       <div className={s.location_wrapper + ' ' + s.hidden} ref={locationWrapperRef}>
         <p className={s.address_name}>Billing address</p>
         <AddressField />
+        <label className={s.label_input}>
+          Make this address as the default?
+          <input type='checkbox' name='address' />
+        </label>
         <p className={s.address_name}>Shipping address</p>
         <AddressField />
+        <div className={s.button_done}>
+          <p className={s.content}>Done</p>
+        </div>
       </div>
     </div>
   );

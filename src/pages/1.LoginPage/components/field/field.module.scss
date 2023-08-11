@@ -55,7 +55,7 @@
     position: absolute;
     display: block;
     top: 14px;
-    right: 40px;
+    right: 45px;
     color: $white;
     border-radius: 20%;
 }
@@ -67,4 +67,8 @@
 .email {
     background-image: url('../../../../assets/png/emailLog.png');
     background-size: 20px 15px;
+}
+
+.invalid {
+    box-shadow: 0 0 10px red;
 }

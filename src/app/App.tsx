@@ -23,11 +23,21 @@ const App = (props: stateTypeApp) => {
         <Routes>
           <Route
             path='/login'
-            Component={() => <LoginPage addInputValue={props.addInputValue} />}
+            Component={() => (
+              <LoginPage
+                stateLoginPage={props.state.loginPage}
+                addInputValue={props.addInputValue}
+              />
+            )}
           />
           <Route
             path='/register'
-            Component={() => <RegisterPage addInputValue={props.addInputValue} />}
+            Component={() => (
+              <RegisterPage
+                stateRegisterPage={props.state.registerPage}
+                addInputValue={props.addInputValue}
+              />
+            )}
           />
           <Route path='/' Component={() => <Main stateMain={props.state.mainPage} />} />
           <Route path='/catalog' Component={CatalogPage} />
