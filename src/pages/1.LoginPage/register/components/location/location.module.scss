@@ -13,8 +13,7 @@
     width: 100%;
     height: 460px;
     background-color: $main-light;
-    margin-bottom: 17px;
-    transition: 1s;
+    transition: .5s;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
 
@@ -46,8 +45,9 @@
     background-repeat: no-repeat;
     background-size: 20px 20px;
     background-position: 4% center;
-    transition: box-shadow .3s;
-    transition: 1s;
+    transition: box-shadow .5s;
+    transition: background-color .3s;
+    transition: margin-bottom .3s;
 
     .content {
         user-select: none;
@@ -58,7 +58,7 @@
     .arrow {
         width: 20px;
         height: 15px;
-        transition: 1s;
+        transition: .5s;
     }
 }
 

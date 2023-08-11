@@ -24,19 +24,14 @@
 }
 
 .control {
+    box-sizing: border-box;
     width: 100%;
     text-align: end;
     margin: 0;
+    padding-right: 30px;
     font-size: .8rem;
     letter-spacing: .7px;
-}
-
-.invalide {
     color: $color-red;
-}
-
-.valide {
-    color: $color-green;
 }
 
 .hidden {

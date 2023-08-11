@@ -17,6 +17,7 @@ const LoginWindow = (props: loginPageType) => {
           type='text'
           addInputValue={props.addInputValue}
         />
+        <p className={s.control}>text field must be filled</p>
         <Field
           plshldr='Password'
           classname='password'
@@ -25,6 +26,7 @@ const LoginWindow = (props: loginPageType) => {
           addInputValue={props.addInputValue}
         />
       </div>
+      <p className={s.control}>password must contain special characters</p>
       <Button content='Login' />
     </div>
   );

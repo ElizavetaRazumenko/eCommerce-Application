@@ -18,6 +18,7 @@ const RegisterWindow = (props: registerPageType) => {
           type='text'
           addInputValue={props.addInputValue}
         />
+        <p className={s.control}>text field must be filled</p>
         <Field
           plshldr='First name'
           classname='user'
@@ -25,15 +26,17 @@ const RegisterWindow = (props: registerPageType) => {
           type='text'
           addInputValue={props.addInputValue}
         />
+        <p className={s.control}>text field must be filled</p>
         <Field
           plshldr='Date of birth: dd.mm.yy'
-          classname='user_no_magrin'
+          classname='user'
           page='field_register'
           type='text'
           addInputValue={props.addInputValue}
         />
-        <p className={s.invalide + ' ' + s.control}>enter the date in the required format</p>
+        <p className={s.control}>enter the date in the required format</p>
         <Location />
+        <p className={s.control}>must be chosen location</p>
         <Field
           plshldr='Email'
           classname='email'
@@ -41,15 +44,15 @@ const RegisterWindow = (props: registerPageType) => {
           type='email'
           addInputValue={props.addInputValue}
         />
-        <p className={s.invalide + ' ' + s.control}>invalid email address</p>
+        <p className={s.control}>invalid email address</p>
         <Field
           plshldr='Password'
-          classname='password_no_magrin'
+          classname='password'
           page='field_register'
           type='password'
           addInputValue={props.addInputValue}
         />
-        <p className={s.invalide + ' ' + s.control}>password must contain special characters</p>
+        <p className={s.control}>password must contain special characters</p>
       </div>
       <Button content='Register' />
     </div>
