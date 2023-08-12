@@ -13,7 +13,7 @@ const Field = (props: InputLoginType) => {
     setInputType(inputType === 'password' ? 'text' : 'password');
   };
   const changeWatch = () => {
-    props.addInputValue(inputRef.current!.value, props.plshldr.toLowerCase());
+    props.addInputValue(props.id, inputRef.current!.value, props.plshldr.toLowerCase(), props.page);
   };
   return (
     <div className={s.input_wrapper}>

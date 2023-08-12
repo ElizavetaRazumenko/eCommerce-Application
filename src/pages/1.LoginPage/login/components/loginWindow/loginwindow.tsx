@@ -14,6 +14,7 @@ const LoginWindow = (props: loginPageType) => {
           return (
             <>
               <Field
+                id={data.id}
                 plshldr={data.plshldr}
                 classname={data.classname}
                 page={data.page}

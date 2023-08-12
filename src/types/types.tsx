@@ -28,11 +28,12 @@ export type DrinkType = {
 };
 
 export type InputLoginType = {
+  id: number;
   plshldr: string;
   classname: string;
   page: string;
   type: string;
-  addInputValue: (value: string, inputType: string) => void;
+  addInputValue: (id: number, value: string, inputType: string, page: string) => void;
 };
 
 export type ButtonLoginType = {
@@ -43,6 +44,51 @@ export type ButtonRedirectType = {
   content: string;
   to: To;
 };
+
+export type typeState = {
+  mainPage: {
+    drinks: {
+      link: string;
+      price: string;
+    }[];
+    pizzas: {
+      link: string;
+      name: string;
+      cost: string[];
+    }[];
+    souces: {
+      link: string;
+      name: string;
+    }[];
+  };
+  loginPage: {
+    fieldData: {
+      id: number;
+      plshldr: string;
+      classname: string;
+      page: string;
+      type: string;
+      errorMessage: string;
+    }[];
+  };
+  registerPage: {
+    fieldData: {
+      id: number;
+      plshldr: string;
+      classname: string;
+      page: string;
+      type: string;
+      errorMessage: string;
+    }[];
+  };
+};
+
+export type addInputValueType = (
+  id: number,
+  value: string,
+  inputType: string,
+  page: string,
+) => void;
 
 export type stateTypeApp = {
   state: {
@@ -83,7 +129,7 @@ export type stateTypeApp = {
     };
   };
 
-  addInputValue: (value: string, inputType: string) => void;
+  addInputValue: (id: number, value: string, inputType: string, page: string) => void;
 };
 
 export type loginPageType = {
@@ -98,7 +144,7 @@ export type loginPageType = {
     }[];
   };
 
-  addInputValue: (value: string, inputType: string) => void;
+  addInputValue: (id: number, value: string, inputType: string, page: string) => void;
 };
 
 export type registerPageType = {
@@ -112,7 +158,16 @@ export type registerPageType = {
       errorMessage: string;
     }[];
   };
-  addInputValue: (value: string, inputType: string) => void;
+  addInputValue: (id: number, value: string, inputType: string, page: string) => void;
+};
+
+export type fieldType = {
+  id: number;
+  plshldr: string;
+  classname: string;
+  page: string;
+  type: string;
+  errorMessage: string;
 };
 
 export type stateTypeMain = {

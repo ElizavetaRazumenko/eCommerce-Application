@@ -15,6 +15,7 @@ const RegisterWindow = (props: registerPageType) => {
           return (
             <>
               <Field
+                id={data.id}
                 plshldr={data.plshldr}
                 classname={data.classname}
                 page={data.page}

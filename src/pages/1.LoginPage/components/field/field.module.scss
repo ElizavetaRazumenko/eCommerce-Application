@@ -44,8 +44,7 @@
     background-image: url('../../../../assets/png/secure-link.png');
 }
 
-.password ~ .watch,
-.password_no_magrin ~ .watch {
+.password ~ .watch {
     cursor: pointer;
     width: 20px;
     height: 15px;

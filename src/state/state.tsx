@@ -1,3 +1,7 @@
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+import App from '../app/App';
 import bonaquaUrl from '../assets/drinks/bonaqua.png';
 import colaUrl from '../assets/drinks/cola.png';
 import fantaUrl from '../assets/drinks/fanta.png';
@@ -27,6 +31,7 @@ import onionUrl from '../assets/sauces/onion.png';
 import sourcreamUrl from '../assets/sauces/sourcream.png';
 import sweetUrl from '../assets/sauces/sweet.png';
 import tomatoUrl from '../assets/sauces/tomato.png';
+import { fieldType } from '../types/types';
 
 const state = {
   mainPage: {
@@ -114,7 +119,7 @@ const state = {
         id: 1,
         plshldr: 'Username',
         classname: 'user',
-        page: 'field_login',
+        page: 'login',
         type: 'text',
         errorMessage: '',
       },
@@ -122,7 +127,7 @@ const state = {
         id: 2,
         plshldr: 'Password',
         classname: 'password',
-        page: 'field_login',
+        page: 'login',
         type: 'password',
         errorMessage: '',
       },
@@ -134,7 +139,7 @@ const state = {
         id: 1,
         plshldr: 'Username',
         classname: 'user',
-        page: 'field_register',
+        page: 'register',
         type: 'text',
         errorMessage: '',
       },
@@ -142,7 +147,7 @@ const state = {
         id: 2,
         plshldr: 'First name',
         classname: 'user',
-        page: 'field_register',
+        page: 'register',
         type: 'text',
         errorMessage: '',
       },
@@ -150,7 +155,7 @@ const state = {
         id: 3,
         plshldr: 'Last name',
         classname: 'user',
-        page: 'field_register',
+        page: 'register',
         type: 'text',
         errorMessage: '',
       },
@@ -158,7 +163,7 @@ const state = {
         id: 4,
         plshldr: 'Date of birth: dd.mm.yy',
         classname: 'user',
-        page: 'field_register',
+        page: 'register',
         type: 'text',
         errorMessage: '',
       },
@@ -166,7 +171,7 @@ const state = {
         id: 5,
         plshldr: 'Email',
         classname: 'email',
-        page: 'field_register',
+        page: 'register',
         type: 'email',
         errorMessage: '',
       },
@@ -174,7 +179,7 @@ const state = {
         id: 6,
         plshldr: 'Password',
         classname: 'password',
-        page: 'field_register',
+        page: 'register',
         type: 'password',
         errorMessage: '',
       },
@@ -182,10 +187,36 @@ const state = {
   },
 };
 
+export const addInputValue = (id: number, value: string, inputType: string, page: string) => {
+  if (inputType === `username`) {
+    checkTextField(id, value, page);
+  }
+};
+
+export const pageRedraw = () => {
+  const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+  root.render(
+    <React.StrictMode>
+      <App state={state} addInputValue={addInputValue} />
+    </React.StrictMode>,
+  );
+};
+
 export const inputValues: string[][] = [];
 
-export const addInputValue = (value: string, inputType: string) => {
-  console.log(value, inputType);
+const checkTextField = (id: number, value: string, page: string) => {
+  if (value.length === 0) {
+    let field: fieldType;
+    if (page === 'login') {
+      field = state.loginPage.fieldData.find((item) => item.id === id) as fieldType;
+    } else {
+      field = state.registerPage.fieldData.find((item) => item.id === id) as fieldType;
+    }
+    if (field) {
+      field.errorMessage = 'Field must be filled';
+      pageRedraw();
+    }
+  }
 };
 
 export default state;
