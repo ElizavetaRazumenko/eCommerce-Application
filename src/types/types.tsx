@@ -1,4 +1,6 @@
 import { To } from 'react-router-dom';
+
+import initialState from '../state/state';
 export interface IFooterProps {
   className?: string;
   style?: React.CSSProperties;
@@ -105,11 +107,11 @@ export type stateTypeApp = {
   addInputValue: addInputValueType;
 };
 
-export type loginPageType = {
+export type LoginPageType = {
   stateLoginPage: {
     fieldData: fieldType[];
   };
-  addInputValue: addInputValueType;
+  addInputValue: (values: typeof initialState) => void;
 };
 
 export type registerPageType = {

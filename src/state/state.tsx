@@ -33,7 +33,7 @@ import sweetUrl from '../assets/sauces/sweet.png';
 import tomatoUrl from '../assets/sauces/tomato.png';
 import { fieldType } from '../types/types';
 
-const state = {
+export const state = {
   mainPage: {
     drinks: [
       {
@@ -205,15 +205,6 @@ const state = {
 
 export const inputValues: string[][] = [];
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-export const pageRedraw = () => {
-  root.render(
-    <React.StrictMode>
-      <App state={state} addInputValue={addInputValue} />
-    </React.StrictMode>,
-  );
-};
-
 const findField = (id: number, page: string) => {
   let field: fieldType;
   if (page === 'login') {
@@ -284,7 +275,6 @@ export const addInputValue = (id: number, value: string, inputType: string, page
       console.log('ghbdtn');
     }
   }
-  pageRedraw();
 };
 
 export default state;
