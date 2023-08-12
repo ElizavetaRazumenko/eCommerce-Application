@@ -123,6 +123,7 @@ const state = {
         type: 'text',
         errorMessage: '',
         value: '',
+        isValid: false,
       },
       {
         id: 2,
@@ -132,6 +133,7 @@ const state = {
         type: 'password',
         errorMessage: '',
         value: '',
+        isValid: false,
       },
     ],
   },
@@ -145,6 +147,7 @@ const state = {
         type: 'text',
         errorMessage: '',
         value: '',
+        isValid: false,
       },
       {
         id: 2,
@@ -154,6 +157,7 @@ const state = {
         type: 'text',
         errorMessage: '',
         value: '',
+        isValid: false,
       },
       {
         id: 3,
@@ -163,6 +167,7 @@ const state = {
         type: 'text',
         errorMessage: '',
         value: '',
+        isValid: false,
       },
       {
         id: 4,
@@ -172,6 +177,7 @@ const state = {
         type: 'text',
         errorMessage: '',
         value: '',
+        isValid: false,
       },
       {
         id: 5,
@@ -181,6 +187,7 @@ const state = {
         type: 'email',
         errorMessage: '',
         value: '',
+        isValid: false,
       },
       {
         id: 6,
@@ -190,6 +197,7 @@ const state = {
         type: 'password',
         errorMessage: '',
         value: '',
+        isValid: false,
       },
     ],
   },
@@ -216,13 +224,49 @@ const findField = (id: number, page: string) => {
   return field;
 };
 
-const checkTextField = (id: number, value: string, page: string) => {
-  const field = findField(id, page) as fieldType;
-  if (value.length === 0) {
-    field.errorMessage = 'Field must be filled';
+const checkTextField = (field: fieldType) => {
+  if (field.value.length === 0) {
+    field.errorMessage = 'must be filled';
+    field.isValid = false;
+  } else field.isValid = true;
+};
+
+const checkEmail = (field: fieldType) => {
+  const re = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
+  if (field.value.match(/\s/)) {
+    field.errorMessage = 'must not contain spaces';
+    field.isValid = false;
+  } else if (!field.value.includes('@')) {
+    field.errorMessage = 'must contain @';
+    field.isValid = false;
+  } else if (!field.value.includes('.')) {
+    field.errorMessage = 'must contain a domain name';
+    field.isValid = false;
+  } else if (!re.test(field.value)) {
+    field.errorMessage = 'incorrect email form';
+    field.isValid = false;
   }
-  if (value === '333') {
-    field.errorMessage = 'Not 333';
+};
+
+const checkPassword = (field: fieldType) => {
+  if (field.value.length < 8) {
+    field.errorMessage = 'must be at least 8 characters long';
+    field.isValid = false;
+  } else if (field.value.toLowerCase() === field.value) {
+    field.errorMessage = 'must contain at least one capital letter';
+    field.isValid = false;
+  } else if (field.value.toUpperCase() === field.value) {
+    field.errorMessage = 'must contain at least one lowercase letter';
+    field.isValid = false;
+  } else if (!field.value.match(/\d/)) {
+    field.errorMessage = 'must contain at least one number';
+    field.isValid = false;
+  } else if (!field.value.match(/[!@#$&*]/)) {
+    field.errorMessage = 'must contain at least one special character';
+    field.isValid = false;
+  } else if (field.value.trim() !== field.value) {
+    field.errorMessage = 'must not contain leading or trailing spaces';
+    field.isValid = false;
   }
 };
 
@@ -230,8 +274,13 @@ export const addInputValue = (id: number, value: string, inputType: string, page
   const field = findField(id, page);
   field.value = value;
   field.errorMessage = '';
-  if (inputType === `username`) {
-    checkTextField(id, value, page);
+  checkTextField(field);
+  if (field.isValid) {
+    if (inputType === 'email') {
+      checkEmail(field);
+    } else if (inputType === 'password') {
+      checkPassword(field);
+    }
   }
   pageRedraw();
 };

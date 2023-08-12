@@ -71,6 +71,7 @@ export type fieldType = {
   type: string;
   errorMessage: string;
   value: string;
+  isValid: boolean;
 };
 
 export type InputLoginType = {
@@ -81,6 +82,7 @@ export type InputLoginType = {
   type: string;
   errorMessage: string;
   value: string;
+  isValid: boolean;
   addInputValue: addInputValueType;
 };
 

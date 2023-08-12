@@ -43,7 +43,13 @@ const Field = (props: InputLoginType) => {
         }}
         ref={inputRef}
       />
-      <div className={s.watch} onClick={changeInputType}></div>
+      <div
+        className={s.watch}
+        onClick={() => {
+          changeInputType();
+          inputRef.current!.focus();
+        }}
+      ></div>
     </div>
   );
 };

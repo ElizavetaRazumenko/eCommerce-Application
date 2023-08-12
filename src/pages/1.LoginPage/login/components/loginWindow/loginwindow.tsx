@@ -21,6 +21,7 @@ const LoginWindow = (props: loginPageType) => {
                 type={data.type}
                 errorMessage={data.errorMessage}
                 value={data.value}
+                isValid={data.isValid}
                 addInputValue={props.addInputValue}
                 key={index}
               />
