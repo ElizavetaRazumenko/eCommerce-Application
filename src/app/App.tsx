@@ -11,8 +11,6 @@ import CatalogPage from '../pages/3.CatalogPage/catalog';
 import ProfilePage from '../pages/5.UserProfile/profile';
 import BasketPage from '../pages/6.BasketPage/basket';
 import ErrorPage from '../pages/7.ErrorPage/error';
-import Footer from '../pages/globalComponents/footer/footer';
-import Header from '../pages/globalComponents/header/header';
 import Layout from '../pages/globalComponents/layout/layout';
 import { stateTypeApp } from '../types/types';
 
