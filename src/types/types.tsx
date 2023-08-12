@@ -63,17 +63,6 @@ export type addInputValueType = (
   page: string,
 ) => void;
 
-export type inputClearErrorMessage = (id: number, page: string) => void;
-
-export type inputFieldsType = {
-  id: number;
-  plshldr: string;
-  classname: string;
-  page: string;
-  type: string;
-  errorMessage: string;
-};
-
 export type fieldType = {
   id: number;
   plshldr: string;
@@ -91,8 +80,8 @@ export type InputLoginType = {
   page: string;
   type: string;
   errorMessage: string;
+  value: string;
   addInputValue: addInputValueType;
-  inputClearErrorMessage: inputClearErrorMessage;
 };
 
 export type typeState = {
@@ -110,67 +99,22 @@ export type typeState = {
 };
 
 export type stateTypeApp = {
-  state: {
-    mainPage: {
-      drinks: DrinkType[];
-      pizzas: PizzaType[];
-      souces: SauceType[];
-    };
-    loginPage: {
-      fieldData: {
-        id: number;
-        plshldr: string;
-        classname: string;
-        page: string;
-        type: string;
-        errorMessage: string;
-      }[];
-    };
-    registerPage: {
-      fieldData: {
-        id: number;
-        plshldr: string;
-        classname: string;
-        page: string;
-        type: string;
-        errorMessage: string;
-      }[];
-    };
-  };
-
+  state: typeState;
   addInputValue: addInputValueType;
-  inputClearErrorMessage: inputClearErrorMessage;
 };
 
 export type loginPageType = {
   stateLoginPage: {
-    fieldData: {
-      id: number;
-      plshldr: string;
-      classname: string;
-      page: string;
-      type: string;
-      errorMessage: string;
-    }[];
+    fieldData: fieldType[];
   };
-
   addInputValue: addInputValueType;
-  inputClearErrorMessage: inputClearErrorMessage;
 };
 
 export type registerPageType = {
   stateRegisterPage: {
-    fieldData: {
-      id: number;
-      plshldr: string;
-      classname: string;
-      page: string;
-      type: string;
-      errorMessage: string;
-    }[];
+    fieldData: fieldType[];
   };
   addInputValue: addInputValueType;
-  inputClearErrorMessage: inputClearErrorMessage;
 };
 
 //                                                                    ERROR PAGE

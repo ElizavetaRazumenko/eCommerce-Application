@@ -27,7 +27,6 @@ const App = (props: stateTypeApp) => {
               <LoginPage
                 stateLoginPage={props.state.loginPage}
                 addInputValue={props.addInputValue}
-                inputClearErrorMessage={props.inputClearErrorMessage}
               />
             )}
           />
@@ -37,7 +36,6 @@ const App = (props: stateTypeApp) => {
               <RegisterPage
                 stateRegisterPage={props.state.registerPage}
                 addInputValue={props.addInputValue}
-                inputClearErrorMessage={props.inputClearErrorMessage}
               />
             )}
           />

@@ -122,6 +122,7 @@ const state = {
         page: 'login',
         type: 'text',
         errorMessage: '',
+        value: '',
       },
       {
         id: 2,
@@ -130,6 +131,7 @@ const state = {
         page: 'login',
         type: 'password',
         errorMessage: '',
+        value: '',
       },
     ],
   },
@@ -195,10 +197,13 @@ const state = {
 
 export const inputValues: string[][] = [];
 
-export const addInputValue = (id: number, value: string, inputType: string, page: string) => {
-  if (inputType === `username`) {
-    checkTextField(id, value, page);
-  }
+export const pageRedraw = () => {
+  const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+  root.render(
+    <React.StrictMode>
+      <App state={state} addInputValue={addInputValue} />
+    </React.StrictMode>,
+  );
 };
 
 const findField = (id: number, page: string) => {
@@ -211,35 +216,23 @@ const findField = (id: number, page: string) => {
   return field;
 };
 
-export const inputClearErrorMessage = (id: number, page: string) => {
-  const field = findField(id, page);
-  if (field) {
-    field.errorMessage = '';
-  }
-};
-
-export const pageRedraw = () => {
-  const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-  root.render(
-    <React.StrictMode>
-      <App
-        state={state}
-        addInputValue={addInputValue}
-        inputClearErrorMessage={inputClearErrorMessage}
-      />
-    </React.StrictMode>,
-  );
-};
-
 const checkTextField = (id: number, value: string, page: string) => {
+  const field = findField(id, page) as fieldType;
   if (value.length === 0) {
-    const field = findField(id, page);
-    if (field) {
-      field.errorMessage = 'Field must be filled';
-      field.value = value;
-    }
+    field.errorMessage = 'Field must be filled';
   }
+  if (value === '333') {
+    field.errorMessage = 'Not 333';
+  }
+};
 
+export const addInputValue = (id: number, value: string, inputType: string, page: string) => {
+  const field = findField(id, page);
+  field.value = value;
+  field.errorMessage = '';
+  if (inputType === `username`) {
+    checkTextField(id, value, page);
+  }
   pageRedraw();
 };
 

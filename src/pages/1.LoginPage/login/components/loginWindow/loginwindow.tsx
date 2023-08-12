@@ -20,8 +20,8 @@ const LoginWindow = (props: loginPageType) => {
                 page={data.page}
                 type={data.type}
                 errorMessage={data.errorMessage}
+                value={data.value}
                 addInputValue={props.addInputValue}
-                inputClearErrorMessage={props.inputClearErrorMessage}
                 key={index}
               />
               <p className={s.control}>{data.errorMessage}</p>

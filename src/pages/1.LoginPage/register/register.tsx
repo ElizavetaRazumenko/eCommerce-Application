@@ -8,7 +8,6 @@ const RegisterPage = (props: registerPageType) => {
       <RegisterWindow
         stateRegisterPage={props.stateRegisterPage}
         addInputValue={props.addInputValue}
-        inputClearErrorMessage={props.inputClearErrorMessage}
       />
     </div>
   );
