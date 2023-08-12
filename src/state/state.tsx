@@ -142,6 +142,7 @@ const state = {
         page: 'register',
         type: 'text',
         errorMessage: '',
+        value: '',
       },
       {
         id: 2,
@@ -150,6 +151,7 @@ const state = {
         page: 'register',
         type: 'text',
         errorMessage: '',
+        value: '',
       },
       {
         id: 3,
@@ -158,6 +160,7 @@ const state = {
         page: 'register',
         type: 'text',
         errorMessage: '',
+        value: '',
       },
       {
         id: 4,
@@ -166,6 +169,7 @@ const state = {
         page: 'register',
         type: 'text',
         errorMessage: '',
+        value: '',
       },
       {
         id: 5,
@@ -174,6 +178,7 @@ const state = {
         page: 'register',
         type: 'email',
         errorMessage: '',
+        value: '',
       },
       {
         id: 6,
@@ -182,10 +187,13 @@ const state = {
         page: 'register',
         type: 'password',
         errorMessage: '',
+        value: '',
       },
     ],
   },
 };
+
+export const inputValues: string[][] = [];
 
 export const addInputValue = (id: number, value: string, inputType: string, page: string) => {
   if (inputType === `username`) {
@@ -193,30 +201,46 @@ export const addInputValue = (id: number, value: string, inputType: string, page
   }
 };
 
+const findField = (id: number, page: string) => {
+  let field: fieldType;
+  if (page === 'login') {
+    field = state.loginPage.fieldData.find((item) => item.id === id) as fieldType;
+  } else {
+    field = state.registerPage.fieldData.find((item) => item.id === id) as fieldType;
+  }
+  return field;
+};
+
+export const inputClearErrorMessage = (id: number, page: string) => {
+  const field = findField(id, page);
+  if (field) {
+    field.errorMessage = '';
+  }
+};
+
 export const pageRedraw = () => {
   const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
   root.render(
     <React.StrictMode>
-      <App state={state} addInputValue={addInputValue} />
+      <App
+        state={state}
+        addInputValue={addInputValue}
+        inputClearErrorMessage={inputClearErrorMessage}
+      />
     </React.StrictMode>,
   );
 };
 
-export const inputValues: string[][] = [];
-
 const checkTextField = (id: number, value: string, page: string) => {
   if (value.length === 0) {
-    let field: fieldType;
-    if (page === 'login') {
-      field = state.loginPage.fieldData.find((item) => item.id === id) as fieldType;
-    } else {
-      field = state.registerPage.fieldData.find((item) => item.id === id) as fieldType;
-    }
+    const field = findField(id, page);
     if (field) {
       field.errorMessage = 'Field must be filled';
-      pageRedraw();
+      field.value = value;
     }
   }
+
+  pageRedraw();
 };
 
 export default state;

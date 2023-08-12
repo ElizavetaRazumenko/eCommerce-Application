@@ -15,13 +15,21 @@ const Field = (props: InputLoginType) => {
   const changeWatch = () => {
     props.addInputValue(props.id, inputRef.current!.value, props.plshldr.toLowerCase(), props.page);
   };
+  const focusInput = () => {
+    props.inputClearErrorMessage(props.id, props.page);
+  };
   return (
     <div className={s.input_wrapper}>
       <input
         type={inputType}
         placeholder={props.plshldr}
-        className={s[props.classname] + ' ' + s.field_input + ' ' + s[props.page]}
-        onBlur={() => changeWatch()}
+        className={
+          props.errorMessage === ''
+            ? s[props.classname] + ' ' + s.field_input
+            : s[props.classname] + ' ' + s.field_input + ' ' + s.invalid
+        }
+        onBlur={changeWatch}
+        onFocus={focusInput}
         ref={inputRef}
       />
       <div className={s.watch} onClick={changeInputType}></div>

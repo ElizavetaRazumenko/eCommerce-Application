@@ -20,7 +20,9 @@ const RegisterWindow = (props: registerPageType) => {
                 classname={data.classname}
                 page={data.page}
                 type={data.type}
+                errorMessage={data.errorMessage}
                 addInputValue={props.addInputValue}
+                inputClearErrorMessage={props.inputClearErrorMessage}
                 key={index}
               />
               <p className={s.control}>{data.errorMessage}</p>

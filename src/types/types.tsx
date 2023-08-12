@@ -1,15 +1,10 @@
 import { To } from 'react-router-dom';
-
 export interface IFooterProps {
   className?: string;
   style?: React.CSSProperties;
 }
 
-export type PizzaParamsType = {
-  size: string;
-  length: string;
-  price: string;
-};
+//                                                    MAIN PAGE TYPES
 
 export type PizzaType = {
   link: string;
@@ -27,60 +22,38 @@ export type DrinkType = {
   price: string;
 };
 
-export type InputLoginType = {
-  id: number;
-  plshldr: string;
-  classname: string;
-  page: string;
-  type: string;
-  addInputValue: (id: number, value: string, inputType: string, page: string) => void;
+export type stateTypeMain = {
+  stateMain: {
+    drinks: DrinkType[];
+    pizzas: PizzaType[];
+    souces: SauceType[];
+  };
 };
+
+export type stateTypeDrinks = {
+  drinksType: DrinkType[];
+};
+
+export type stateTypePizzas = {
+  pizzasType: PizzaType[];
+};
+
+export type stateTypeSouces = {
+  saucesType: SauceType[];
+};
+
+export type stateTypeVisiblePizzas = PizzaType[];
+
+export type PizzaParamsType = {
+  size: string;
+  length: string;
+  price: string;
+};
+
+//                                                      LOGIN / REGISTER PAGE
 
 export type ButtonLoginType = {
   content: string;
-};
-
-export type ButtonRedirectType = {
-  content: string;
-  to: To;
-};
-
-export type typeState = {
-  mainPage: {
-    drinks: {
-      link: string;
-      price: string;
-    }[];
-    pizzas: {
-      link: string;
-      name: string;
-      cost: string[];
-    }[];
-    souces: {
-      link: string;
-      name: string;
-    }[];
-  };
-  loginPage: {
-    fieldData: {
-      id: number;
-      plshldr: string;
-      classname: string;
-      page: string;
-      type: string;
-      errorMessage: string;
-    }[];
-  };
-  registerPage: {
-    fieldData: {
-      id: number;
-      plshldr: string;
-      classname: string;
-      page: string;
-      type: string;
-      errorMessage: string;
-    }[];
-  };
 };
 
 export type addInputValueType = (
@@ -90,22 +63,58 @@ export type addInputValueType = (
   page: string,
 ) => void;
 
+export type inputClearErrorMessage = (id: number, page: string) => void;
+
+export type inputFieldsType = {
+  id: number;
+  plshldr: string;
+  classname: string;
+  page: string;
+  type: string;
+  errorMessage: string;
+};
+
+export type fieldType = {
+  id: number;
+  plshldr: string;
+  classname: string;
+  page: string;
+  type: string;
+  errorMessage: string;
+  value: string;
+};
+
+export type InputLoginType = {
+  id: number;
+  plshldr: string;
+  classname: string;
+  page: string;
+  type: string;
+  errorMessage: string;
+  addInputValue: addInputValueType;
+  inputClearErrorMessage: inputClearErrorMessage;
+};
+
+export type typeState = {
+  mainPage: {
+    drinks: DrinkType[];
+    pizzas: PizzaType[];
+    souces: SauceType[];
+  };
+  loginPage: {
+    fieldData: fieldType[];
+  };
+  registerPage: {
+    fieldData: fieldType[];
+  };
+};
+
 export type stateTypeApp = {
   state: {
     mainPage: {
-      drinks: {
-        link: string;
-        price: string;
-      }[];
-      pizzas: {
-        link: string;
-        name: string;
-        cost: string[];
-      }[];
-      souces: {
-        link: string;
-        name: string;
-      }[];
+      drinks: DrinkType[];
+      pizzas: PizzaType[];
+      souces: SauceType[];
     };
     loginPage: {
       fieldData: {
@@ -129,7 +138,8 @@ export type stateTypeApp = {
     };
   };
 
-  addInputValue: (id: number, value: string, inputType: string, page: string) => void;
+  addInputValue: addInputValueType;
+  inputClearErrorMessage: inputClearErrorMessage;
 };
 
 export type loginPageType = {
@@ -144,7 +154,8 @@ export type loginPageType = {
     }[];
   };
 
-  addInputValue: (id: number, value: string, inputType: string, page: string) => void;
+  addInputValue: addInputValueType;
+  inputClearErrorMessage: inputClearErrorMessage;
 };
 
 export type registerPageType = {
@@ -158,60 +169,13 @@ export type registerPageType = {
       errorMessage: string;
     }[];
   };
-  addInputValue: (id: number, value: string, inputType: string, page: string) => void;
+  addInputValue: addInputValueType;
+  inputClearErrorMessage: inputClearErrorMessage;
 };
 
-export type fieldType = {
-  id: number;
-  plshldr: string;
-  classname: string;
-  page: string;
-  type: string;
-  errorMessage: string;
-};
+//                                                                    ERROR PAGE
 
-export type stateTypeMain = {
-  stateMain: {
-    drinks: {
-      link: string;
-      price: string;
-    }[];
-    pizzas: {
-      link: string;
-      name: string;
-      cost: string[];
-    }[];
-    souces: {
-      link: string;
-      name: string;
-    }[];
-  };
-};
-
-export type stateTypeDrinks = {
-  drinksType: {
-    link: string;
-    price: string;
-  }[];
-};
-
-export type stateTypePizzas = {
-  pizzasType: {
-    link: string;
-    name: string;
-    cost: string[];
-  }[];
-};
-
-export type stateTypeVisiblePizzas = {
-  link: string;
-  name: string;
-  cost: string[];
-}[];
-
-export type stateTypeSouces = {
-  saucesType: {
-    link: string;
-    name: string;
-  }[];
+export type ButtonRedirectType = {
+  content: string;
+  to: To;
 };

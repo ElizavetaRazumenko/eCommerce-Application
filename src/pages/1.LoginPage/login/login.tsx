@@ -5,7 +5,11 @@ import { loginPageType } from '../../../types/types';
 const LoginPage = (props: loginPageType) => {
   return (
     <div className={s.login_wrapper}>
-      <LoginWindow stateLoginPage={props.stateLoginPage} addInputValue={props.addInputValue} />
+      <LoginWindow
+        stateLoginPage={props.stateLoginPage}
+        addInputValue={props.addInputValue}
+        inputClearErrorMessage={props.inputClearErrorMessage}
+      />
     </div>
   );
 };
