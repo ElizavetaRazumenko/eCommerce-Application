@@ -47,7 +47,6 @@ const Field = (props: InputLoginType) => {
         className={s.watch}
         onClick={() => {
           changeInputType();
-          inputRef.current!.focus();
         }}
       ></div>
     </div>

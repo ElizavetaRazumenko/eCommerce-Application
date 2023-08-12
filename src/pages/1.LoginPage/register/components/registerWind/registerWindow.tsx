@@ -26,7 +26,9 @@ const RegisterWindow = (props: registerPageType) => {
                 addInputValue={props.addInputValue}
                 key={index}
               />
-              <p className={s.control}>{data.errorMessage}</p>
+              <p className={s.control} key={100 - index}>
+                {data.errorMessage}
+              </p>
             </>
           );
         })}

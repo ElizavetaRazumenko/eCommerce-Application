@@ -205,8 +205,8 @@ const state = {
 
 export const inputValues: string[][] = [];
 
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 export const pageRedraw = () => {
-  const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
   root.render(
     <React.StrictMode>
       <App state={state} addInputValue={addInputValue} />
@@ -280,6 +280,8 @@ export const addInputValue = (id: number, value: string, inputType: string, page
       checkEmail(field);
     } else if (inputType === 'password') {
       checkPassword(field);
+    } else if (inputType.startsWith('date of')) {
+      console.log('ghbdtn');
     }
   }
   pageRedraw();
