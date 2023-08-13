@@ -199,7 +199,7 @@ const state = {
     location: {
       billing: {
         country: {
-          value: 'Choose the country',
+          value: 'Italy',
           errorMessage: '',
           isValid: false,
         },
@@ -222,7 +222,7 @@ const state = {
       },
       shipping: {
         country: {
-          value: 'Choose the country',
+          value: 'Italy',
           errorMessage: '',
           isValid: false,
         },
@@ -350,18 +350,14 @@ const checkPostalCode = (
       field.errorMessage = 'italy postal code must contain 5 digits';
       field.isValid = false;
     }
-  } else {
-    field.errorMessage = 'select a country to check the validity';
-    field.isValid = false;
   }
 };
 
 export const isValide = (type: 'billing' | 'shipping') => {
-  const countryValid = !(state.registerPage.location[type].country.value === 'Choose the country');
   const cityValid = state.registerPage.location[type].city.isValid;
   const streetValid = state.registerPage.location[type].street.isValid;
   const postalValid = state.registerPage.location[type].postal.isValid;
-  if (countryValid && cityValid && streetValid && postalValid) {
+  if (cityValid && streetValid && postalValid) {
     state.registerPage.location[type].isValid = true;
     return true;
   }
