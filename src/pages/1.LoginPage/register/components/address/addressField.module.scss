@@ -8,6 +8,7 @@
 }
 
 .country {
+    margin-top: 10px;
     cursor: pointer;
     box-sizing: border-box;
     display: flex;
@@ -83,7 +84,7 @@
     background-color: rgba($color: $main-grey, $alpha: .4);
     color: $main-dark-color;
     border-radius: 10px;
-    margin-top: 10px;
+    margin: 0;
     font-size: 1rem;
     padding: 5px 0 5px 25px;
     border: none;
@@ -92,4 +93,26 @@
     &:focus {
         box-shadow: 0 0 20px $main-grey;
     }
+}
+
+.error_message {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 15px;
+    text-align: end;
+    padding-bottom: 3px;
+    padding-right: 5px;
+    margin: 0;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .1px;
+    color: $color-red;
+}
+
+.invalid {
+    box-shadow: 0 0 5px red;
+
+    &:focus {
+        box-shadow: 0 0 10px red;
+    } 
 }

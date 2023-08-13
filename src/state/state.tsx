@@ -329,7 +329,7 @@ const checkPostalCode = (
   const country = state.registerPage.location[type].country;
   const reg = /^\d+$/;
   if (!reg.test(field.value)) {
-    field.errorMessage = 'postal code must contain contain only digits';
+    field.errorMessage = 'must contain contain only digits';
     state.registerPage.location[type].isValid = false;
   }
   if (country.value === 'Spain') {
@@ -339,9 +339,12 @@ const checkPostalCode = (
     }
   } else if (country.value === 'Italy') {
     if (field.value.length !== 5) {
-      field.errorMessage = 'spain postal code must contain 5 digits';
+      field.errorMessage = 'italy postal code must contain 5 digits';
       state.registerPage.location[type].isValid = false;
     }
+  } else {
+    field.errorMessage = 'select a country to check the validity';
+    state.registerPage.location[type].isValid = false;
   }
 };
 
@@ -357,13 +360,15 @@ export const addLocationValue = (
     field.errorMessage = 'must be filled';
     state.registerPage.location[type].isValid = false;
   } else state.registerPage.location[type].isValid = true;
-  if (property === 'postal') {
-    checkPostalCode(field, type);
-  } else {
-    const reg = /^\d+$/;
-    if (reg.test(field.value)) {
-      field.errorMessage = 'must not contain numbers';
-      state.registerPage.location[type].isValid = false;
+  if (state.registerPage.location[type].isValid) {
+    state.registerPage.location[type].isValid = true;
+    if (property === 'postal') {
+      checkPostalCode(field, type);
+    } else {
+      if (field.value.match(/[0-9]/)) {
+        field.errorMessage = 'must not contain numbers';
+        state.registerPage.location[type].isValid = false;
+      }
     }
   }
 };

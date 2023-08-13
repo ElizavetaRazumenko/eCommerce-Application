@@ -2,7 +2,9 @@
 
 
 .wrapper {
-    margin: 0 30px 0 30px;
+    box-sizing: border-box;
+    padding: 0 30px;
+    width: 100%;
 }
 .location_wrapper {
     box-sizing: border-box;

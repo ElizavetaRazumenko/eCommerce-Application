@@ -66,12 +66,17 @@ const Location = (props: registerPageType) => {
       setShippingCity(billingCity);
       setShippingStreet(billingStreet);
       setShippingPostal(billingPostal);
-      state.registerPage.location.shipping.country.value = billingCountry;
-      state.registerPage.location.shipping.city.value = billingCity;
-      state.registerPage.location.shipping.street.value = billingStreet;
-      state.registerPage.location.shipping.postal.value = billingPostal;
-      props.setState(state);
+    } else {
+      setShippingCountry('Choose the country');
+      setShippingCity('');
+      setShippingStreet('');
+      setShippingPostal('');
     }
+    state.registerPage.location.shipping.country.value = billingCountry;
+    state.registerPage.location.shipping.city.value = billingCity;
+    state.registerPage.location.shipping.street.value = billingStreet;
+    state.registerPage.location.shipping.postal.value = billingPostal;
+    props.setState(state);
   };
   return (
     <div className={s.wrapper}>

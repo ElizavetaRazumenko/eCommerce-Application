@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import s from './addressField.module.scss';
 
@@ -9,6 +9,19 @@ import { LocationValueType } from '../../../../../types/types';
 const AddressField = (props: LocationValueType) => {
   const countryRef = React.useRef<HTMLDivElement>(null);
   const addressRef = React.useRef<HTMLDivElement>(null);
+  const addressType = props.type;
+  const [errorMessageCountry, setErrorMessageCountry] = useState<string>(
+    props.state.registerPage.location[addressType].country.errorMessage,
+  );
+  const [errorMessageCity, setErrorMessageCity] = useState<string>(
+    props.state.registerPage.location[addressType].city.errorMessage,
+  );
+  const [errorMessageStreet, setErrorMessageStreet] = useState<string>(
+    props.state.registerPage.location[addressType].street.errorMessage,
+  );
+  const [errorMessagePostal, setErrorMessagePostal] = useState<string>(
+    props.state.registerPage.location[addressType].postal.errorMessage,
+  );
   const toggleCountry = () => {
     countryRef.current?.classList.toggle(s.active);
     addressRef.current?.classList.toggle(s.hidden);
@@ -27,13 +40,18 @@ const AddressField = (props: LocationValueType) => {
       if (target.id === 'city') {
         const value = props.state.registerPage.location[props.type].city.value;
         props.values.setCity(value);
-        // const error = props.state.registerPage.location[props.type].city.errorMessage;
+        const error = props.state.registerPage.location[props.type].city.errorMessage;
+        setErrorMessageCity(error);
       } else if (target.id === 'street') {
         const value = props.state.registerPage.location[props.type].street.value;
         props.values.setStreet(value);
+        const error = props.state.registerPage.location[props.type].street.errorMessage;
+        setErrorMessageStreet(error);
       } else {
         const value = props.state.registerPage.location[props.type].postal.value;
         props.values.setPostal(value);
+        const error = props.state.registerPage.location[props.type].postal.errorMessage;
+        setErrorMessagePostal(error);
       }
     }
   };
@@ -51,30 +69,34 @@ const AddressField = (props: LocationValueType) => {
           Spain
         </p>
       </div>
+      <p className={s.error_message}>{errorMessageCountry}</p>
       <input
         id='city'
-        className={s.input}
+        className={errorMessageCity === '' ? s.input : s.input + ' ' + s.invalid}
         type='text'
         placeholder='City'
         value={props.values.city}
         onChange={changeAddressValue}
       ></input>
+      <p className={s.error_message}>{errorMessageCity}</p>
       <input
         id='street'
-        className={s.input}
+        className={errorMessageStreet === '' ? s.input : s.input + ' ' + s.invalid}
         type='text'
         placeholder='Street'
         value={props.values.street}
         onChange={changeAddressValue}
       ></input>
+      <p className={s.error_message}>{errorMessageStreet}</p>
       <input
         id='postal'
-        className={s.input}
+        className={errorMessagePostal === '' ? s.input : s.input + ' ' + s.invalid}
         type='text'
         placeholder='Postal code'
         value={props.values.postal}
         onChange={changeAddressValue}
       ></input>
+      <p className={s.error_message}>{errorMessagePostal}</p>
     </div>
   );
 };
