@@ -52,18 +52,7 @@ export type PizzaParamsType = {
 
 //                                                      LOGIN / REGISTER PAGE
 
-export type ButtonLoginType = {
-  content: string;
-};
-
-export type addInputValueType = (
-  id: number,
-  value: string,
-  inputType: string,
-  page: string,
-) => void;
-
-export type fieldType = {
+export type FieldType = {
   id: number;
   plshldr: string;
   classname: string;
@@ -94,16 +83,51 @@ export type typeState = {
     souces: SauceType[];
   };
   loginPage: {
-    fieldData: fieldType[];
+    fieldData: FieldType[];
   };
   registerPage: {
-    fieldData: fieldType[];
+    fieldData: FieldType[];
+    location: {
+      billing: {
+        country: {
+          value: string;
+          errorMessage: string;
+        };
+        city: {
+          value: string;
+          errorMessage: string;
+        };
+        street: {
+          value: string;
+          errorMessage: string;
+        };
+        postal: {
+          value: string;
+          errorMessage: string;
+        };
+        isValid: boolean;
+      };
+      shipping: {
+        country: {
+          value: string;
+          errorMessage: string;
+        };
+        city: {
+          value: string;
+          errorMessage: string;
+        };
+        street: {
+          value: string;
+          errorMessage: string;
+        };
+        postal: {
+          value: string;
+          errorMessage: string;
+        };
+        isValid: boolean;
+      };
+    };
   };
-};
-
-export type stateTypeApp = {
-  state: typeState;
-  addInputValue: addInputValueType;
 };
 
 export type loginPageType = {
@@ -112,6 +136,22 @@ export type loginPageType = {
 };
 
 export type registerPageType = {
+  state: typeState;
+  setState: React.Dispatch<React.SetStateAction<typeState>>;
+};
+
+export type LocationValueType = {
+  values: {
+    country: string;
+    setCountry: React.Dispatch<React.SetStateAction<string>>;
+    city: string;
+    setCity: React.Dispatch<React.SetStateAction<string>>;
+    street: string;
+    setStreet: React.Dispatch<React.SetStateAction<string>>;
+    postal: string;
+    setPostal: React.Dispatch<React.SetStateAction<string>>;
+  };
+  type: 'billing' | 'shipping';
   state: typeState;
   setState: React.Dispatch<React.SetStateAction<typeState>>;
 };

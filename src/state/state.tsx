@@ -27,7 +27,7 @@ import onionUrl from '../assets/sauces/onion.png';
 import sourcreamUrl from '../assets/sauces/sourcream.png';
 import sweetUrl from '../assets/sauces/sweet.png';
 import tomatoUrl from '../assets/sauces/tomato.png';
-import { fieldType } from '../types/types';
+import { FieldType } from '../types/types';
 
 const state = {
   mainPage: {
@@ -196,29 +196,69 @@ const state = {
         isValid: false,
       },
     ],
+    location: {
+      billing: {
+        country: {
+          value: 'Choose the country',
+          errorMessage: '',
+        },
+        city: {
+          value: '',
+          errorMessage: '',
+        },
+        street: {
+          value: '',
+          errorMessage: '',
+        },
+        postal: {
+          value: '',
+          errorMessage: '',
+        },
+        isValid: false,
+      },
+      shipping: {
+        country: {
+          value: 'Choose the country',
+          errorMessage: '',
+        },
+        city: {
+          value: '',
+          errorMessage: '',
+        },
+        street: {
+          value: '',
+          errorMessage: '',
+        },
+        postal: {
+          value: '',
+          errorMessage: '',
+        },
+        isValid: false,
+      },
+    },
   },
 };
 
 export const inputValues: string[][] = [];
 
 const findField = (id: number, page: string) => {
-  let field: fieldType;
+  let field: FieldType;
   if (page === 'login') {
-    field = state.loginPage.fieldData.find((item) => item.id === id) as fieldType;
+    field = state.loginPage.fieldData.find((item) => item.id === id) as FieldType;
   } else {
-    field = state.registerPage.fieldData.find((item) => item.id === id) as fieldType;
+    field = state.registerPage.fieldData.find((item) => item.id === id) as FieldType;
   }
   return field;
 };
 
-const checkTextField = (field: fieldType) => {
+const checkTextField = (field: FieldType) => {
   if (field.value.length === 0) {
     field.errorMessage = 'must be filled';
     field.isValid = false;
   } else field.isValid = true;
 };
 
-const checkEmail = (field: fieldType) => {
+const checkEmail = (field: FieldType) => {
   const re = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
   if (field.value.match(/\s/)) {
     field.errorMessage = 'must not contain spaces';
@@ -235,7 +275,7 @@ const checkEmail = (field: fieldType) => {
   }
 };
 
-const checkPassword = (field: fieldType) => {
+const checkPassword = (field: FieldType) => {
   if (field.value.length < 8) {
     field.errorMessage = 'must be at least 8 characters long';
     field.isValid = false;
@@ -257,7 +297,7 @@ const checkPassword = (field: fieldType) => {
   }
 };
 
-const checkDate = (field: fieldType) => {
+const checkDate = (field: FieldType) => {
   const re =
     /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
   if (!re.test(field.value)) {
@@ -278,6 +318,52 @@ export const addInputValue = (id: string, value: string, inputType: string, page
       checkPassword(field);
     } else if (inputType.startsWith('date of')) {
       checkDate(field);
+    }
+  }
+};
+
+const checkPostalCode = (
+  field: { value: string; errorMessage: string },
+  type: 'billing' | 'shipping',
+) => {
+  const country = state.registerPage.location[type].country;
+  const reg = /^\d+$/;
+  if (!reg.test(field.value)) {
+    field.errorMessage = 'postal code must contain contain only digits';
+    state.registerPage.location[type].isValid = false;
+  }
+  if (country.value === 'Spain') {
+    if (field.value.length !== 6) {
+      field.errorMessage = 'spain postal code must contain 6 digits';
+      state.registerPage.location[type].isValid = false;
+    }
+  } else if (country.value === 'Italy') {
+    if (field.value.length !== 5) {
+      field.errorMessage = 'spain postal code must contain 5 digits';
+      state.registerPage.location[type].isValid = false;
+    }
+  }
+};
+
+export const addLocationValue = (
+  type: 'billing' | 'shipping',
+  property: 'city' | 'street' | 'postal',
+  value: string,
+) => {
+  const field = state.registerPage.location[type][property];
+  field.value = value;
+  field.errorMessage = '';
+  if (field.value.length === 0) {
+    field.errorMessage = 'must be filled';
+    state.registerPage.location[type].isValid = false;
+  } else state.registerPage.location[type].isValid = true;
+  if (property === 'postal') {
+    checkPostalCode(field, type);
+  } else {
+    const reg = /^\d+$/;
+    if (reg.test(field.value)) {
+      field.errorMessage = 'must not contain numbers';
+      state.registerPage.location[type].isValid = false;
     }
   }
 };

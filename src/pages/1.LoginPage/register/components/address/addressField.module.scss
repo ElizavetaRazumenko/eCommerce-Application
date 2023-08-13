@@ -76,3 +76,20 @@
     overflow: hidden;
     background-color: $main-light;
 }
+
+.input {
+    box-sizing: border-box;
+    width: 100%;
+    background-color: rgba($color: $main-grey, $alpha: .4);
+    color: $main-dark-color;
+    border-radius: 10px;
+    margin-top: 10px;
+    font-size: 1rem;
+    padding: 5px 0 5px 25px;
+    border: none;
+    transition: .5s;
+
+    &:focus {
+        box-shadow: 0 0 20px $main-grey;
+    }
+}

@@ -42,7 +42,7 @@ const RegisterWindow = (props: registerPageType) => {
             </div>
           );
         })}
-        <Location />
+        <Location state={props.state} setState={props.setState} />
         <p className={s.control}>{errorMessage}</p>
         <button className={s.button}>
           <span>Register</span>
