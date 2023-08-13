@@ -1,7 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-
-import App from '../app/App';
 import bonaquaUrl from '../assets/drinks/bonaqua.png';
 import colaUrl from '../assets/drinks/cola.png';
 import fantaUrl from '../assets/drinks/fanta.png';
@@ -205,15 +201,6 @@ const state = {
 
 export const inputValues: string[][] = [];
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-export const pageRedraw = () => {
-  root.render(
-    <React.StrictMode>
-      <App state={state} addInputValue={addInputValue} />
-    </React.StrictMode>,
-  );
-};
-
 const findField = (id: number, page: string) => {
   let field: fieldType;
   if (page === 'login') {
@@ -270,8 +257,17 @@ const checkPassword = (field: fieldType) => {
   }
 };
 
-export const addInputValue = (id: number, value: string, inputType: string, page: string) => {
-  const field = findField(id, page);
+const checkDate = (field: fieldType) => {
+  const re =
+    /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
+  if (!re.test(field.value)) {
+    field.errorMessage = 'incorrect date';
+    field.isValid = false;
+  }
+};
+
+export const addInputValue = (id: string, value: string, inputType: string, page: string) => {
+  const field = findField(+id, page);
   field.value = value;
   field.errorMessage = '';
   checkTextField(field);
@@ -281,10 +277,9 @@ export const addInputValue = (id: number, value: string, inputType: string, page
     } else if (inputType === 'password') {
       checkPassword(field);
     } else if (inputType.startsWith('date of')) {
-      console.log('ghbdtn');
+      checkDate(field);
     }
   }
-  pageRedraw();
 };
 
 export default state;

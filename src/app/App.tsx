@@ -12,33 +12,18 @@ import ProfilePage from '../pages/5.UserProfile/profile';
 import BasketPage from '../pages/6.BasketPage/basket';
 import ErrorPage from '../pages/7.ErrorPage/error';
 import Layout from '../pages/globalComponents/layout/layout';
-import { stateTypeApp } from '../types/types';
+import initialState from '../state/state';
 
-const App = (props: stateTypeApp) => {
+const App = () => {
+  const [state, setState] = React.useState(initialState);
   return (
     <BrowserRouter>
       <div className={s.container}>
         <Routes>
           <Route path='/' element={<Layout />}>
-            <Route
-              path='/login'
-              element={
-                <LoginPage
-                  stateLoginPage={props.state.loginPage}
-                  addInputValue={props.addInputValue}
-                />
-              }
-            />
-            <Route
-              path='/register'
-              element={
-                <RegisterPage
-                  stateRegisterPage={props.state.registerPage}
-                  addInputValue={props.addInputValue}
-                />
-              }
-            />
-            <Route index element={<Main stateMain={props.state.mainPage} />} />
+            <Route path='/login' element={<LoginPage state={state} setState={setState} />} />
+            <Route path='/register' element={<RegisterPage state={state} setState={setState} />} />
+            <Route index element={<Main />} />
             <Route path='/catalog' element={<CatalogPage />} />
             <Route path='/profile' element={<ProfilePage />} />
             <Route path='/cart' element={<BasketPage />} />

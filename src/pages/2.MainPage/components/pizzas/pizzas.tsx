@@ -4,9 +4,10 @@ import { NavLink } from 'react-router-dom';
 import Pizza from './components/pizza/pizza';
 import s from './pizzas.module.scss';
 
-import { stateTypePizzas, stateTypeVisiblePizzas } from '../../../../types/types';
+import state from '../../../../state/state';
+import { stateTypeVisiblePizzas } from '../../../../types/types';
 
-const SectionPizzas = (props: stateTypePizzas) => {
+const SectionPizzas = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [startIndex, setStartIndex] = useState(0);
   const itemsPerPage = 3;
@@ -20,7 +21,7 @@ const SectionPizzas = (props: stateTypePizzas) => {
     setTimeout(() => {
       setStartIndex((prevIndex) => {
         const newIndex = prevIndex + 1;
-        if (newIndex >= props.pizzasType.length) {
+        if (newIndex >= state.mainPage.pizzas.length) {
           return 0;
         }
         return newIndex;
@@ -36,7 +37,7 @@ const SectionPizzas = (props: stateTypePizzas) => {
       setStartIndex((prevIndex) => {
         const newIndex = prevIndex - 1;
         if (newIndex < 0) {
-          return props.pizzasType.length - 1;
+          return state.mainPage.pizzas.length - 1;
         }
         return newIndex;
       });
@@ -45,8 +46,8 @@ const SectionPizzas = (props: stateTypePizzas) => {
   };
 
   for (let i = startIndex - 1; i <= startIndex + itemsPerPage; i += 1) {
-    const pizzaIndex = (i + props.pizzasType.length) % props.pizzasType.length;
-    visiblePizzas.push(props.pizzasType[pizzaIndex]);
+    const pizzaIndex = (i + state.mainPage.pizzas.length) % state.mainPage.pizzas.length;
+    visiblePizzas.push(state.mainPage.pizzas[pizzaIndex]);
   }
 
   const pizzas = visiblePizzas.map((pizza, index) => (

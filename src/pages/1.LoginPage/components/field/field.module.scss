@@ -70,4 +70,22 @@
 
 .invalid {
     box-shadow: 0 0 5px red;
+
+    &:focus {
+        box-shadow: 0 0 20px red;
+    }
+}
+
+.control {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 17px;
+    text-align: end;
+    padding-bottom: 3px;
+    padding-right: 30px;
+    margin: 0;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .9px;
+    color: $color-red;
 }

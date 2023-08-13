@@ -3,7 +3,7 @@
 .login_window {
     box-sizing: border-box;
     width: 350px;
-    height: 390px;
+    height: 350px;
     background-color: $main-dark-color;
     background-image: url('../../../../../assets/png/smoke.png');
     background-size: cover;
@@ -21,15 +21,37 @@
     flex-direction: column;
     justify-content: center;
     padding: 35px 0 0 0;
+    align-items: center;
+}
+
+.button {
+    cursor: pointer;
+    border-radius: none;
+    box-sizing: border-box;
+    width: 120px;
+    height: auto;
+    padding: 5px 10px 5px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    border-radius: 20px;
+    text-align: center;
+    background-color: $main-light;
+    color: $main-grey;
+    font-size: 1.4rem;
+    font-weight: 700;
+    transition: .5s;
+
+    &:hover {
+        background-color: $white;
+    }
 }
 
 .control {
     box-sizing: border-box;
-    width: 100%;
+    width: auto;
     min-height: 17px;
     text-align: end;
-    padding-bottom: 3px;
-    padding-right: 30px;
+    padding: 0;
     margin: 0;
     font-size: .8rem;
     font-weight: 700;

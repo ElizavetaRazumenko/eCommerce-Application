@@ -83,7 +83,8 @@ export type InputLoginType = {
   errorMessage: string;
   value: string;
   isValid: boolean;
-  addInputValue: addInputValueType;
+  state: typeState;
+  setState: React.Dispatch<React.SetStateAction<typeState>>;
 };
 
 export type typeState = {
@@ -106,17 +107,13 @@ export type stateTypeApp = {
 };
 
 export type loginPageType = {
-  stateLoginPage: {
-    fieldData: fieldType[];
-  };
-  addInputValue: addInputValueType;
+  state: typeState;
+  setState: React.Dispatch<React.SetStateAction<typeState>>;
 };
 
 export type registerPageType = {
-  stateRegisterPage: {
-    fieldData: fieldType[];
-  };
-  addInputValue: addInputValueType;
+  state: typeState;
+  setState: React.Dispatch<React.SetStateAction<typeState>>;
 };
 
 //                                                                    ERROR PAGE
