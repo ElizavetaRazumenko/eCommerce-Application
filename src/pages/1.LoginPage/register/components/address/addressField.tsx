@@ -12,9 +12,6 @@ const AddressField = (props: LocationValueType) => {
   const postalBillingRef = React.useRef<HTMLInputElement>(null);
   const postalShippingRef = React.useRef<HTMLInputElement>(null);
   const addressType = props.type;
-  const [errorMessageCountry, setErrorMessageCountry] = useState<string>(
-    props.state.registerPage.location[addressType].country.errorMessage,
-  );
   const [errorMessageCity, setErrorMessageCity] = useState<string>(
     props.state.registerPage.location[addressType].city.errorMessage,
   );
@@ -36,12 +33,14 @@ const AddressField = (props: LocationValueType) => {
     } else {
       addLocationValue(props.type, 'postal', postalShippingRef.current!.value);
     }
+    const error = state.registerPage.location[props.type].postal.errorMessage;
+    if (error === 'must be filled') {
+      state.registerPage.location[props.type].postal.errorMessage = '';
+    } else {
+      setErrorMessagePostal(error);
+    }
     props.setState(state);
     props.values.setCountry(country);
-    const value = props.state.registerPage.location[props.type].postal.value;
-    props.values.setPostal(value);
-    const error = props.state.registerPage.location[props.type].postal.errorMessage;
-    setErrorMessagePostal(error);
   };
   const changeAddressValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
@@ -80,7 +79,6 @@ const AddressField = (props: LocationValueType) => {
           Spain
         </p>
       </div>
-      <p className={s.error_message}>{errorMessageCountry}</p>
       <input
         id='city'
         className={errorMessageCity === '' ? s.input : s.input + ' ' + s.invalid}

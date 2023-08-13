@@ -11,6 +11,7 @@ import AddressField from '../address/addressField';
 const Location = (props: registerPageType) => {
   const locationWrapperRef = React.useRef<HTMLDivElement>(null);
   const locationRef = React.useRef<HTMLDivElement>(null);
+  const checkboxRef = React.useRef<HTMLInputElement>(null);
   const toggleLocation = () => {
     locationRef.current?.classList.toggle(s.active);
     locationWrapperRef.current?.classList.toggle(s.hidden);
@@ -94,14 +95,19 @@ const Location = (props: registerPageType) => {
         />
         <label className={s.label_input}>
           Make this address as the default?
-          <input type='checkbox' name='address' onChange={(e) => addDefaultAddress(e)} />
+          <input
+            type='checkbox'
+            name='address'
+            onChange={(e) => addDefaultAddress(e)}
+            ref={checkboxRef}
+          />
         </label>
         <p className={s.address_name}>Shipping address</p>
         <AddressField
-          values={shipping}
+          values={checkboxRef.current?.checked ? billing : shipping}
           state={props.state}
           setState={props.setState}
-          type='shipping'
+          type={checkboxRef.current?.checked ? 'billing' : 'shipping'}
         />
         <div className={s.button_done} onClick={toggleLocation}>
           <p className={s.content}>Done</p>
