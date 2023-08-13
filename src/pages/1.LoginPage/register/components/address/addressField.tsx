@@ -9,6 +9,8 @@ import { LocationValueType } from '../../../../../types/types';
 const AddressField = (props: LocationValueType) => {
   const countryRef = React.useRef<HTMLDivElement>(null);
   const addressRef = React.useRef<HTMLDivElement>(null);
+  const postalBillingRef = React.useRef<HTMLInputElement>(null);
+  const postalShippingRef = React.useRef<HTMLInputElement>(null);
   const addressType = props.type;
   const [errorMessageCountry, setErrorMessageCountry] = useState<string>(
     props.state.registerPage.location[addressType].country.errorMessage,
@@ -29,8 +31,17 @@ const AddressField = (props: LocationValueType) => {
   const changeCountry = (country: string) => {
     toggleCountry();
     state.registerPage.location[props.type].country.value = country;
+    if (props.type === 'billing') {
+      addLocationValue(props.type, 'postal', postalBillingRef.current!.value);
+    } else {
+      addLocationValue(props.type, 'postal', postalShippingRef.current!.value);
+    }
     props.setState(state);
     props.values.setCountry(country);
+    const value = props.state.registerPage.location[props.type].postal.value;
+    props.values.setPostal(value);
+    const error = props.state.registerPage.location[props.type].postal.errorMessage;
+    setErrorMessagePostal(error);
   };
   const changeAddressValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
@@ -95,6 +106,7 @@ const AddressField = (props: LocationValueType) => {
         placeholder='Postal code'
         value={props.values.postal}
         onChange={changeAddressValue}
+        ref={props.type === 'billing' ? postalBillingRef : postalShippingRef}
       ></input>
       <p className={s.error_message}>{errorMessagePostal}</p>
     </div>
