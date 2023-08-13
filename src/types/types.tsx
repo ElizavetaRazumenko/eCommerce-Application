@@ -92,18 +92,22 @@ export type typeState = {
         country: {
           value: string;
           errorMessage: string;
+          isValid: boolean;
         };
         city: {
           value: string;
           errorMessage: string;
+          isValid: boolean;
         };
         street: {
           value: string;
           errorMessage: string;
+          isValid: boolean;
         };
         postal: {
           value: string;
           errorMessage: string;
+          isValid: boolean;
         };
         isValid: boolean;
       };
@@ -111,18 +115,22 @@ export type typeState = {
         country: {
           value: string;
           errorMessage: string;
+          isValid: boolean;
         };
         city: {
           value: string;
           errorMessage: string;
+          isValid: boolean;
         };
         street: {
           value: string;
           errorMessage: string;
+          isValid: boolean;
         };
         postal: {
           value: string;
           errorMessage: string;
+          isValid: boolean;
         };
         isValid: boolean;
       };
@@ -154,6 +162,7 @@ export type LocationValueType = {
   type: 'billing' | 'shipping';
   state: typeState;
   setState: React.Dispatch<React.SetStateAction<typeState>>;
+  fake: boolean;
 };
 
 //                                                                    ERROR PAGE

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import s from './location.module.scss';
 
 import imageurl from '../../../../../assets/png/downArrow.png';
-import state from '../../../../../state/state';
+import state, { isValide } from '../../../../../state/state';
 import { registerPageType } from '../../../../../types/types';
 import AddressField from '../address/addressField';
 
@@ -12,9 +12,22 @@ const Location = (props: registerPageType) => {
   const locationWrapperRef = React.useRef<HTMLDivElement>(null);
   const locationRef = React.useRef<HTMLDivElement>(null);
   const checkboxRef = React.useRef<HTMLInputElement>(null);
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const toggleLocation = () => {
     locationRef.current?.classList.toggle(s.active);
     locationWrapperRef.current?.classList.toggle(s.hidden);
+  };
+
+  const checkForm = () => {
+    const isValideBilling = isValide('billing');
+    const isValideShipping = isValide('shipping');
+    if (!isValideBilling && !isValideShipping) {
+      setErrorMessage('incorrect or incomplete billing and shipping address');
+    } else if (!isValideBilling) {
+      setErrorMessage('incorrect or incomplete billing address');
+    } else if (!isValideShipping) {
+      setErrorMessage('incorrect or incomplete shipping address');
+    }
   };
   const [billingCountry, setBillingCountry] = useState<string>(
     props.state.registerPage.location.billing.country.value,
@@ -92,6 +105,7 @@ const Location = (props: registerPageType) => {
           state={props.state}
           setState={props.setState}
           type='billing'
+          fake={false}
         />
         <label className={s.label_input}>
           Make this address as the default?
@@ -108,8 +122,10 @@ const Location = (props: registerPageType) => {
           state={props.state}
           setState={props.setState}
           type={checkboxRef.current?.checked ? 'billing' : 'shipping'}
+          fake={checkboxRef.current?.checked ? true : false}
         />
-        <div className={s.button_done} onClick={toggleLocation}>
+        <p className={s.error}>{errorMessage}</p>
+        <div className={s.button_done} onClick={checkForm}>
           <p className={s.content}>Done</p>
         </div>
       </div>

@@ -201,18 +201,22 @@ const state = {
         country: {
           value: 'Choose the country',
           errorMessage: '',
+          isValid: false,
         },
         city: {
           value: '',
           errorMessage: '',
+          isValid: false,
         },
         street: {
           value: '',
           errorMessage: '',
+          isValid: false,
         },
         postal: {
           value: '',
           errorMessage: '',
+          isValid: false,
         },
         isValid: false,
       },
@@ -220,18 +224,22 @@ const state = {
         country: {
           value: 'Choose the country',
           errorMessage: '',
+          isValid: false,
         },
         city: {
           value: '',
           errorMessage: '',
+          isValid: false,
         },
         street: {
           value: '',
           errorMessage: '',
+          isValid: false,
         },
         postal: {
           value: '',
           errorMessage: '',
+          isValid: false,
         },
         isValid: false,
       },
@@ -323,29 +331,41 @@ export const addInputValue = (id: string, value: string, inputType: string, page
 };
 
 const checkPostalCode = (
-  field: { value: string; errorMessage: string },
+  field: { value: string; errorMessage: string; isValid: boolean },
   type: 'billing' | 'shipping',
 ) => {
   const country = state.registerPage.location[type].country;
   const reg = /^\d+$/;
   if (!reg.test(field.value)) {
     field.errorMessage = 'must contain contain only digits';
-    state.registerPage.location[type].isValid = false;
+    field.isValid = false;
   }
   if (country.value === 'Spain') {
     if (field.value.length !== 6) {
       field.errorMessage = 'spain postal code must contain 6 digits';
-      state.registerPage.location[type].isValid = false;
+      field.isValid = false;
     }
   } else if (country.value === 'Italy') {
     if (field.value.length !== 5) {
       field.errorMessage = 'italy postal code must contain 5 digits';
-      state.registerPage.location[type].isValid = false;
+      field.isValid = false;
     }
   } else {
     field.errorMessage = 'select a country to check the validity';
-    state.registerPage.location[type].isValid = false;
+    field.isValid = false;
   }
+};
+
+export const isValide = (type: 'billing' | 'shipping') => {
+  const countryValid = !(state.registerPage.location[type].country.value === 'Choose the country');
+  const cityValid = state.registerPage.location[type].city.isValid;
+  const streetValid = state.registerPage.location[type].street.isValid;
+  const postalValid = state.registerPage.location[type].postal.isValid;
+  if (countryValid && cityValid && streetValid && postalValid) {
+    state.registerPage.location[type].isValid = true;
+    return true;
+  }
+  return false;
 };
 
 export const addLocationValue = (
@@ -358,16 +378,15 @@ export const addLocationValue = (
   field.errorMessage = '';
   if (field.value.length === 0) {
     field.errorMessage = 'must be filled';
-    state.registerPage.location[type].isValid = false;
-  } else state.registerPage.location[type].isValid = true;
-  if (state.registerPage.location[type].isValid) {
-    state.registerPage.location[type].isValid = true;
+    field.isValid = false;
+  } else field.isValid = true;
+  if (field.isValid) {
     if (property === 'postal') {
       checkPostalCode(field, type);
     } else {
       if (field.value.match(/[0-9]/)) {
         field.errorMessage = 'must not contain numbers';
-        state.registerPage.location[type].isValid = false;
+        field.isValid = false;
       }
     }
   }
