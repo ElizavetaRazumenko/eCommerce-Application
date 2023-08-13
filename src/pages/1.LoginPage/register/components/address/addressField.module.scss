@@ -7,7 +7,8 @@
     margin-bottom: 5px;
 }
 
-.country {
+.country, 
+.default_contry {
     margin-top: 10px;
     cursor: pointer;
     box-sizing: border-box;
@@ -32,6 +33,10 @@
         height: 15px;
         transition: .3s;
     }
+}
+
+.default_contry {
+    cursor: auto;
 }
 
 .country.active {
@@ -118,4 +123,8 @@
     &:focus {
         box-shadow: 0 0 10px red;
     } 
+}
+
+.default {
+    pointer-events: none; 
 }

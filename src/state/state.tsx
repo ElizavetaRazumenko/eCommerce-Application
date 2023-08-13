@@ -354,9 +354,9 @@ const checkPostalCode = (
 };
 
 export const isValide = (type: 'billing' | 'shipping') => {
-  const cityValid = state.registerPage.location[type].city.isValid;
-  const streetValid = state.registerPage.location[type].street.isValid;
-  const postalValid = state.registerPage.location[type].postal.isValid;
+  const cityValid = state.registerPage.location[type].city.value !== '';
+  const streetValid = state.registerPage.location[type].street.value !== '';
+  const postalValid = state.registerPage.location[type].postal.value !== '';
   if (cityValid && streetValid && postalValid) {
     state.registerPage.location[type].isValid = true;
     return true;

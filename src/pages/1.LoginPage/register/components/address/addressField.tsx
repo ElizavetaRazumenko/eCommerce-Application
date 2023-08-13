@@ -67,7 +67,13 @@ const AddressField = (props: LocationValueType) => {
   };
   return (
     <div className={s.address_wrapper}>
-      <div className={s.country} ref={countryRef} onClick={toggleCountry}>
+      <div
+        className={props.fake ? s.default_contry : s.country}
+        ref={countryRef}
+        onClick={(e) => {
+          if (!props.fake) toggleCountry();
+        }}
+      >
         <p className={s.content}>{props.values.country}</p>
         <img src={imageUrl} alt='arrow' className={s.arrow} />
       </div>
@@ -81,7 +87,13 @@ const AddressField = (props: LocationValueType) => {
       </div>
       <input
         id='city'
-        className={errorMessageCity === '' ? s.input : s.input + ' ' + s.invalid}
+        className={
+          props.fake
+            ? s.default + ' ' + s.input
+            : errorMessageStreet === ''
+            ? s.input
+            : s.input + ' ' + s.invalid
+        }
         type='text'
         placeholder='City'
         value={props.values.city}
@@ -90,7 +102,13 @@ const AddressField = (props: LocationValueType) => {
       <p className={s.error_message}>{errorMessageCity}</p>
       <input
         id='street'
-        className={errorMessageStreet === '' ? s.input : s.input + ' ' + s.invalid}
+        className={
+          props.fake
+            ? s.default + ' ' + s.input
+            : errorMessageStreet === ''
+            ? s.input
+            : s.input + ' ' + s.invalid
+        }
         type='text'
         placeholder='Street'
         value={props.values.street}
@@ -99,7 +117,13 @@ const AddressField = (props: LocationValueType) => {
       <p className={s.error_message}>{errorMessageStreet}</p>
       <input
         id='postal'
-        className={errorMessagePostal === '' ? s.input : s.input + ' ' + s.invalid}
+        className={
+          props.fake
+            ? s.default + ' ' + s.input
+            : errorMessageStreet === ''
+            ? s.input
+            : s.input + ' ' + s.invalid
+        }
         type='text'
         placeholder='Postal code'
         value={props.values.postal}

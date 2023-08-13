@@ -9,6 +9,7 @@ import { registerPageType } from '../../../../../types/types';
 import AddressField from '../address/addressField';
 
 const Location = (props: registerPageType) => {
+  let hasDefaultAddress = false;
   const locationWrapperRef = React.useRef<HTMLDivElement>(null);
   const locationRef = React.useRef<HTMLDivElement>(null);
   const checkboxRef = React.useRef<HTMLInputElement>(null);
@@ -19,14 +20,21 @@ const Location = (props: registerPageType) => {
   };
 
   const checkForm = () => {
+    if (hasDefaultAddress) {
+      state.registerPage.location.shipping.country.value = billingCountry;
+      state.registerPage.location.shipping.city.value = billingCity;
+      state.registerPage.location.shipping.street.value = billingStreet;
+      state.registerPage.location.shipping.postal.value = billingPostal;
+      props.setState(state);
+    }
     const isValideBilling = isValide('billing');
     const isValideShipping = isValide('shipping');
     if (!isValideBilling && !isValideShipping) {
-      setErrorMessage('incorrect or incomplete billing and shipping address');
+      setErrorMessage('incomplete billing and shipping address');
     } else if (!isValideBilling) {
-      setErrorMessage('incorrect or incomplete billing address');
+      setErrorMessage('incomplete billing address');
     } else if (!isValideShipping) {
-      setErrorMessage('incorrect or incomplete shipping address');
+      setErrorMessage('incomplete shipping address');
     }
   };
   const [billingCountry, setBillingCountry] = useState<string>(
@@ -76,20 +84,26 @@ const Location = (props: registerPageType) => {
   const addDefaultAddress = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target;
     if (target.checked) {
+      hasDefaultAddress = true;
       setShippingCountry(billingCountry);
       setShippingCity(billingCity);
       setShippingStreet(billingStreet);
       setShippingPostal(billingPostal);
+      state.registerPage.location.shipping.country.value = billingCountry;
+      state.registerPage.location.shipping.city.value = billingCity;
+      state.registerPage.location.shipping.street.value = billingStreet;
+      state.registerPage.location.shipping.postal.value = billingPostal;
     } else {
+      hasDefaultAddress = false;
       setShippingCountry('Choose the country');
       setShippingCity('');
       setShippingStreet('');
       setShippingPostal('');
+      state.registerPage.location.shipping.country.value = '';
+      state.registerPage.location.shipping.city.value = '';
+      state.registerPage.location.shipping.street.value = '';
+      state.registerPage.location.shipping.postal.value = '';
     }
-    state.registerPage.location.shipping.country.value = billingCountry;
-    state.registerPage.location.shipping.city.value = billingCity;
-    state.registerPage.location.shipping.street.value = billingStreet;
-    state.registerPage.location.shipping.postal.value = billingPostal;
     props.setState(state);
   };
   return (
