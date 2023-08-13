@@ -3,10 +3,11 @@ import React, { useState } from 'react';
 import s from './addressField.module.scss';
 
 import imageUrl from '../../../../../assets/png/downArrow.png';
-import state, { addLocationValue } from '../../../../../state/state';
+import state, { addLocationValue, makeValideDefault } from '../../../../../state/state';
 import { LocationValueType } from '../../../../../types/types';
 
 const AddressField = (props: LocationValueType) => {
+  let defaultAddress = props.fake;
   const countryRef = React.useRef<HTMLDivElement>(null);
   const addressRef = React.useRef<HTMLDivElement>(null);
   const postalBillingRef = React.useRef<HTMLInputElement>(null);
@@ -44,6 +45,10 @@ const AddressField = (props: LocationValueType) => {
   };
   const changeAddressValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
+    if (defaultAddress) {
+      makeValideDefault();
+      props.setState(state);
+    }
     if (target.id && (target.id === 'city' || target.id === 'street' || target.id === 'postal')) {
       addLocationValue(props.type, target.id, target.value);
       props.setState(state);

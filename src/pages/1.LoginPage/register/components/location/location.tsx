@@ -4,12 +4,11 @@ import React, { useState } from 'react';
 import s from './location.module.scss';
 
 import imageurl from '../../../../../assets/png/downArrow.png';
-import state, { isValide } from '../../../../../state/state';
+import state, { isValide, makeValideDefault } from '../../../../../state/state';
 import { registerPageType } from '../../../../../types/types';
 import AddressField from '../address/addressField';
 
 const Location = (props: registerPageType) => {
-  let hasDefaultAddress = false;
   const locationWrapperRef = React.useRef<HTMLDivElement>(null);
   const locationRef = React.useRef<HTMLDivElement>(null);
   const checkboxRef = React.useRef<HTMLInputElement>(null);
@@ -20,11 +19,8 @@ const Location = (props: registerPageType) => {
   };
 
   const checkForm = () => {
-    if (hasDefaultAddress) {
-      state.registerPage.location.shipping.country.value = billingCountry;
-      state.registerPage.location.shipping.city.value = billingCity;
-      state.registerPage.location.shipping.street.value = billingStreet;
-      state.registerPage.location.shipping.postal.value = billingPostal;
+    if (checkboxRef.current?.checked) {
+      makeValideDefault();
       props.setState(state);
     }
     const isValideBilling = isValide('billing');
@@ -35,6 +31,9 @@ const Location = (props: registerPageType) => {
       setErrorMessage('incomplete billing address');
     } else if (!isValideShipping) {
       setErrorMessage('incomplete shipping address');
+    } else {
+      setErrorMessage('');
+      toggleLocation();
     }
   };
   const [billingCountry, setBillingCountry] = useState<string>(
@@ -81,29 +80,16 @@ const Location = (props: registerPageType) => {
     postal: shippingPostal,
     setPostal: setShippingPostal,
   };
-  const addDefaultAddress = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const target = e.target;
-    if (target.checked) {
-      hasDefaultAddress = true;
-      setShippingCountry(billingCountry);
-      setShippingCity(billingCity);
-      setShippingStreet(billingStreet);
-      setShippingPostal(billingPostal);
-      state.registerPage.location.shipping.country.value = billingCountry;
-      state.registerPage.location.shipping.city.value = billingCity;
-      state.registerPage.location.shipping.street.value = billingStreet;
-      state.registerPage.location.shipping.postal.value = billingPostal;
-    } else {
-      hasDefaultAddress = false;
-      setShippingCountry('Choose the country');
-      setShippingCity('');
-      setShippingStreet('');
-      setShippingPostal('');
-      state.registerPage.location.shipping.country.value = '';
-      state.registerPage.location.shipping.city.value = '';
-      state.registerPage.location.shipping.street.value = '';
-      state.registerPage.location.shipping.postal.value = '';
-    }
+  const addDefaultAddress = () => {
+    setShippingCountry(billingCountry);
+    setShippingCity(billingCity);
+    setShippingStreet(billingStreet);
+    setShippingPostal(billingPostal);
+    state.registerPage.location.shipping.country.value = billingCountry;
+    state.registerPage.location.shipping.city.value = billingCity;
+    state.registerPage.location.shipping.street.value = billingStreet;
+    state.registerPage.location.shipping.postal.value = billingPostal;
+
     props.setState(state);
   };
   return (
@@ -123,19 +109,14 @@ const Location = (props: registerPageType) => {
         />
         <label className={s.label_input}>
           Make this address as the default?
-          <input
-            type='checkbox'
-            name='address'
-            onChange={(e) => addDefaultAddress(e)}
-            ref={checkboxRef}
-          />
+          <input type='checkbox' name='address' onChange={addDefaultAddress} ref={checkboxRef} />
         </label>
         <p className={s.address_name}>Shipping address</p>
         <AddressField
           values={checkboxRef.current?.checked ? billing : shipping}
           state={props.state}
           setState={props.setState}
-          type={checkboxRef.current?.checked ? 'billing' : 'shipping'}
+          type={'shipping'}
           fake={checkboxRef.current?.checked ? true : false}
         />
         <p className={s.error}>{errorMessage}</p>

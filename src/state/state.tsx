@@ -353,10 +353,29 @@ const checkPostalCode = (
   }
 };
 
+export const makeValideDefault = () => {
+  const shipping = state.registerPage.location.shipping;
+  const billing = state.registerPage.location.billing;
+
+  shipping.city.value = billing.city.value;
+  shipping.city.errorMessage = '';
+  shipping.city.isValid = true;
+
+  shipping.street.value = billing.street.value;
+  shipping.street.errorMessage = '';
+  shipping.street.isValid = true;
+
+  shipping.postal.value = billing.postal.value;
+  shipping.postal.errorMessage = '';
+  shipping.postal.isValid = true;
+
+  shipping.isValid = true;
+};
+
 export const isValide = (type: 'billing' | 'shipping') => {
-  const cityValid = state.registerPage.location[type].city.value !== '';
-  const streetValid = state.registerPage.location[type].street.value !== '';
-  const postalValid = state.registerPage.location[type].postal.value !== '';
+  const cityValid = state.registerPage.location[type].city.isValid;
+  const streetValid = state.registerPage.location[type].street.isValid;
+  const postalValid = state.registerPage.location[type].postal.isValid;
   if (cityValid && streetValid && postalValid) {
     state.registerPage.location[type].isValid = true;
     return true;
