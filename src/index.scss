@@ -20,8 +20,15 @@ body {
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-  background-image: url(./assets/svg/bg/noise_transparent@2x.png);
+  background: repeat url(./assets/svg/bg/noise_transparent@2x.png),
+  no-repeat center 650px url('./assets/png/smoke.png');
   background-color: $background_from;
+
+  @media (max-width: 990px) {
+    background: repeat url(./assets/svg/bg/noise_transparent@2x.png),
+    no-repeat center 550px url('./assets/png/smoke.png');
+    background-color: $background_from;
+  }
 }
 
 code {
