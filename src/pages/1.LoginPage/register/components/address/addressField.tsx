@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import s from './addressField.module.scss';
 
@@ -16,10 +16,6 @@ const AddressField = (props: LocationValueType) => {
   }
   const countryRef = React.useRef<HTMLDivElement>(null);
   const addressRef = React.useRef<HTMLDivElement>(null);
-  const [countryName, setCountryName] = useState<string>(
-    state.registerPage.location[props.type].find((item) => item.type === 'country')!.value,
-  );
-
   const toggleCountry = () => {
     countryRef.current?.classList.toggle(s.active);
     addressRef.current?.classList.toggle(s.hidden);
@@ -29,7 +25,9 @@ const AddressField = (props: LocationValueType) => {
     toggleCountry();
     state.registerPage.location[props.type].find((item) => item.type === 'country')!.value =
       country;
-    setCountryName(country);
+    props.type === 'billing'
+      ? props.states.setCountryB(country)
+      : props.states.setCountryS(country);
   };
   return (
     <div className={s.address_wrapper}>
@@ -41,7 +39,7 @@ const AddressField = (props: LocationValueType) => {
         }}
       >
         <p className={s.content} ref={countryNameRef}>
-          {countryName}
+          {props.type === 'billing' ? props.states.countryB : props.states.countryS}
         </p>
         <img src={imageUrl} alt='arrow' className={s.arrow} />
       </div>
@@ -59,6 +57,12 @@ const AddressField = (props: LocationValueType) => {
         addressType={props.type}
         default={props.default}
         refs={props.refs}
+        stateValue={props.type === 'billing' ? props.states.inputCityB : props.states.inputCityS}
+        setStateValue={props.type === 'billing' ? props.states.setCityB : props.states.setCityS}
+        errorValue={props.type === 'billing' ? props.states.errorCityB : props.states.errorCityS}
+        setErrorValue={
+          props.type === 'billing' ? props.states.setErrorCityB : props.states.setErrorCityS
+        }
       />
       <LocationInput
         id='street'
@@ -66,6 +70,16 @@ const AddressField = (props: LocationValueType) => {
         addressType={props.type}
         default={props.default}
         refs={props.refs}
+        stateValue={
+          props.type === 'billing' ? props.states.inputStreetB : props.states.inputStreetS
+        }
+        setStateValue={props.type === 'billing' ? props.states.setStreetB : props.states.setStreetS}
+        errorValue={
+          props.type === 'billing' ? props.states.errorStreetB : props.states.errorStreetS
+        }
+        setErrorValue={
+          props.type === 'billing' ? props.states.setErrorStreetB : props.states.setErrorStreetS
+        }
       />
       <LocationInput
         id='postal'
@@ -73,6 +87,16 @@ const AddressField = (props: LocationValueType) => {
         addressType={props.type}
         default={props.default}
         refs={props.refs}
+        stateValue={
+          props.type === 'billing' ? props.states.inputPostalB : props.states.inputPostalS
+        }
+        setStateValue={props.type === 'billing' ? props.states.setPostalB : props.states.setPostalS}
+        errorValue={
+          props.type === 'billing' ? props.states.errorPostalB : props.states.errorPostalS
+        }
+        setErrorValue={
+          props.type === 'billing' ? props.states.setErrorPostalB : props.states.setErrorPostalS
+        }
       />
     </div>
   );

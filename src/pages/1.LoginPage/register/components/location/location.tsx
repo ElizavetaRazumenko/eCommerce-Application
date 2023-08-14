@@ -38,19 +38,106 @@ const Location = () => {
     errorPostalS: React.useRef<HTMLParagraphElement>(null),
   };
 
+  const [countryNameB, setCountryNameB] = useState<string>(
+    state.registerPage.location.billing.find((item) => item.type === 'country')!.value,
+  );
+  const [countryNameS, setCountryNameS] = useState<string>(
+    state.registerPage.location.shipping.find((item) => item.type === 'country')!.value,
+  );
+  const [inputCityValueB, setCityValueB] = useState<string>(
+    state.registerPage.location.billing.find((item) => item.type === 'city')!.value,
+  );
+  const [inputErrorCityValueB, setErrorCityValueB] = useState<string>(
+    state.registerPage.location.billing.find((item) => item.type === 'city')!.errorMessage,
+  );
+  const [inputCityValueS, setCityValueS] = useState<string>(
+    state.registerPage.location.shipping.find((item) => item.type === 'city')!.value,
+  );
+  const [inputErrorCityValueS, setErrorCityValueS] = useState<string>(
+    state.registerPage.location.shipping.find((item) => item.type === 'city')!.errorMessage,
+  );
+  const [inputStreetValueB, setStreetValueB] = useState<string>(
+    state.registerPage.location.billing.find((item) => item.type === 'street')!.value,
+  );
+  const [inputErrorStreetValueB, setErrorStreetValueB] = useState<string>(
+    state.registerPage.location.billing.find((item) => item.type === 'street')!.errorMessage,
+  );
+  const [inputStreetValueS, setStreetValueS] = useState<string>(
+    state.registerPage.location.shipping.find((item) => item.type === 'street')!.value,
+  );
+  const [inputErrorStreetValueS, setErrorStreetValueS] = useState<string>(
+    state.registerPage.location.shipping.find((item) => item.type === 'street')!.errorMessage,
+  );
+  const [inputPostalValueB, setPostalValueB] = useState<string>(
+    state.registerPage.location.billing.find((item) => item.type === 'postal')!.value,
+  );
+  const [inputErrorPostalValueB, setErrorPostalValueB] = useState<string>(
+    state.registerPage.location.billing.find((item) => item.type === 'postal')!.errorMessage,
+  );
+  const [inputPostalyValueS, setPostalValueS] = useState<string>(
+    state.registerPage.location.shipping.find((item) => item.type === 'postal')!.value,
+  );
+  const [inputErrorPostalValueS, setErrorPostalValueS] = useState<string>(
+    state.registerPage.location.shipping.find((item) => item.type === 'postal')!.errorMessage,
+  );
+
+  const stateObj = {
+    countryB: countryNameB,
+    setCountryB: setCountryNameB,
+    countryS: countryNameS,
+    setCountryS: setCountryNameS,
+
+    inputCityB: inputCityValueB,
+    setCityB: setCityValueB,
+    errorCityB: inputErrorCityValueB,
+    setErrorCityB: setErrorCityValueB,
+
+    inputCityS: inputCityValueS,
+    setCityS: setCityValueS,
+    errorCityS: inputErrorCityValueS,
+    setErrorCityS: setErrorCityValueS,
+
+    inputStreetB: inputStreetValueB,
+    setStreetB: setStreetValueB,
+    errorStreetB: inputErrorStreetValueB,
+    setErrorStreetB: setErrorStreetValueB,
+
+    inputStreetS: inputStreetValueS,
+    setStreetS: setStreetValueS,
+    errorStreetS: inputErrorStreetValueS,
+    setErrorStreetS: setErrorStreetValueS,
+
+    inputPostalB: inputPostalValueB,
+    setPostalB: setPostalValueB,
+    errorPostalB: inputErrorPostalValueB,
+    setErrorPostalB: setErrorPostalValueB,
+
+    inputPostalS: inputPostalyValueS,
+    setPostalS: setPostalValueS,
+    errorPostalS: inputErrorPostalValueS,
+    setErrorPostalS: setErrorPostalValueS,
+  };
+
   const changeDefaultAddress = () => {
     setIsDefault(!isDefault);
     setErrorMessage('');
     if (!isDefault) {
-      // Refs.inputCountryS.current!.textContent = Refs.inputCountryB.current!.textContent;
-      // const country = state.registerPage.location.shipping.find((item) => item.type === 'country');
-      // if (country) {
-      //   country.value = Refs.inputCountryB.current!.textContent as string;
-      // }
-      // Refs.errorCityS.current!.textContent = '';
-      // Refs.errorStreetS.current!.textContent = '';
-      // Refs.errorPostalS.current!.textContent = '';
-      // state.registerPage.location.shipping.forEach((item) => (item.errorMessage = ''));
+      stateObj.setCountryS(stateObj.countryB);
+      state.registerPage.location.shipping.find((item) => item.type === 'country')!.value =
+        stateObj.countryB;
+      stateObj.setCityS(stateObj.inputCityB);
+      state.registerPage.location.shipping.find((item) => item.type === 'city')!.value =
+        stateObj.inputCityB;
+      stateObj.setStreetS(stateObj.inputStreetB);
+      state.registerPage.location.shipping.find((item) => item.type === 'city')!.value =
+        stateObj.inputStreetB;
+      stateObj.setPostalS(stateObj.inputPostalB);
+      state.registerPage.location.shipping.find((item) => item.type === 'city')!.value =
+        stateObj.inputPostalB;
+      stateObj.setErrorCityS('');
+      stateObj.setErrorStreetS('');
+      stateObj.setErrorPostalS('');
+      state.registerPage.location.shipping.forEach((item) => (item.errorMessage = ''));
     }
   };
 
@@ -78,7 +165,7 @@ const Location = () => {
       <div className={s.location_wrapper + ' ' + s.hidden} ref={locationWrapperRef}>
         <p className={s.address_name}>Billing address</p>
         <form onChange={() => setErrorMessage('')}>
-          <AddressField type='billing' default={false} refs={Refs} />
+          <AddressField type='billing' default={false} refs={Refs} states={stateObj} />
         </form>
         <label className={s.label_input}>
           Make this address as the default?
@@ -86,7 +173,7 @@ const Location = () => {
         </label>
         <p className={s.address_name}>Shipping address</p>
         <form onChange={() => setErrorMessage('')} ref={formShippingRef}>
-          <AddressField type='shipping' default={isDefault} refs={Refs} />
+          <AddressField type='shipping' default={isDefault} refs={Refs} states={stateObj} />
         </form>
         <p className={s.error}>{errorMessage}</p>
         <div className={s.button_done} onClick={checkForm}>

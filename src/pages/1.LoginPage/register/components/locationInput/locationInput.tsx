@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import React from 'react';
 
 import s from './locationInput.module.scss';
@@ -8,25 +6,6 @@ import state, { addLocationValue } from '../../../../../state/state';
 import { InputLocationPropsType } from '../../../../../types/types';
 
 const LocationInput = (props: InputLocationPropsType) => {
-  const [inputValue, setInputValue] = useState<string>(
-    state.registerPage.location[props.addressType].find((item) => item.type === props.id)!.value,
-  );
-  const [errorMessage, setErrorMessage] = useState<string>(
-    state.registerPage.location[props.addressType].find((item) => item.type === props.id)!
-      .errorMessage,
-  );
-  const changeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const target = e.target as HTMLInputElement;
-    addLocationValue(props.addressType, props.id, target.value);
-    setInputValue(
-      state.registerPage.location[props.addressType].find((item) => item.type === props.id)!.value,
-    );
-    setErrorMessage(
-      state.registerPage.location[props.addressType].find((item) => item.type === props.id)!
-        .errorMessage,
-    );
-  };
-
   let inputRef: React.RefObject<HTMLInputElement>;
   let errorRef: React.RefObject<HTMLParagraphElement>;
 
@@ -53,6 +32,18 @@ const LocationInput = (props: InputLocationPropsType) => {
       errorRef = props.refs.errorPostalS;
     }
   }
+
+  const changeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement;
+    addLocationValue(props.addressType, props.id, target.value);
+    props.setStateValue(
+      state.registerPage.location[props.addressType].find((item) => item.type === props.id)!.value,
+    );
+    props.setErrorValue(
+      state.registerPage.location[props.addressType].find((item) => item.type === props.id)!
+        .errorMessage,
+    );
+  };
   return (
     <div>
       <input
@@ -60,17 +51,17 @@ const LocationInput = (props: InputLocationPropsType) => {
         className={
           props.default
             ? s.input + ' ' + s.default
-            : errorMessage === ''
+            : props.errorValue === ''
             ? s.input
             : s.input + ' ' + s.invalid
         }
         placeholder={props.plshldr}
-        value={inputValue}
+        value={props.stateValue}
         onChange={changeInputValue}
         ref={inputRef}
       />
       <p className={s.error_message} ref={errorRef}>
-        {errorMessage}
+        {props.errorValue}
       </p>
     </div>
   );

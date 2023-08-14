@@ -74,6 +74,42 @@ export type InputLoginType = {
   isValid: boolean;
 };
 
+type StatesType = {
+  countryB: string;
+  setCountryB: React.Dispatch<React.SetStateAction<string>>;
+  countryS: string;
+  setCountryS: React.Dispatch<React.SetStateAction<string>>;
+  inputCityB: string;
+  setCityB: React.Dispatch<React.SetStateAction<string>>;
+  errorCityB: string;
+  setErrorCityB: React.Dispatch<React.SetStateAction<string>>;
+
+  inputCityS: string;
+  setCityS: React.Dispatch<React.SetStateAction<string>>;
+  errorCityS: string;
+  setErrorCityS: React.Dispatch<React.SetStateAction<string>>;
+
+  inputStreetB: string;
+  setStreetB: React.Dispatch<React.SetStateAction<string>>;
+  errorStreetB: string;
+  setErrorStreetB: React.Dispatch<React.SetStateAction<string>>;
+
+  inputStreetS: string;
+  setStreetS: React.Dispatch<React.SetStateAction<string>>;
+  errorStreetS: string;
+  setErrorStreetS: React.Dispatch<React.SetStateAction<string>>;
+
+  inputPostalB: string;
+  setPostalB: React.Dispatch<React.SetStateAction<string>>;
+  errorPostalB: string;
+  setErrorPostalB: React.Dispatch<React.SetStateAction<string>>;
+
+  inputPostalS: string;
+  setPostalS: React.Dispatch<React.SetStateAction<string>>;
+  errorPostalS: string;
+  setErrorPostalS: React.Dispatch<React.SetStateAction<string>>;
+};
+
 export type LocationValueType = {
   type: 'billing' | 'shipping';
   default: boolean;
@@ -93,6 +129,7 @@ export type LocationValueType = {
     inputPostalS: React.RefObject<HTMLInputElement>;
     errorPostalS: React.RefObject<HTMLParagraphElement>;
   };
+  states: StatesType;
 };
 
 export type InputLocationPropsType = {
@@ -116,6 +153,10 @@ export type InputLocationPropsType = {
     inputPostalS: React.RefObject<HTMLInputElement>;
     errorPostalS: React.RefObject<HTMLParagraphElement>;
   };
+  stateValue: string;
+  setStateValue: React.Dispatch<React.SetStateAction<string>>;
+  errorValue: string;
+  setErrorValue: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export type FieldLocationType = {
