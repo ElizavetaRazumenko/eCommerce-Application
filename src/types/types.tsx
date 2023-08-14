@@ -77,6 +77,22 @@ export type InputLoginType = {
 export type LocationValueType = {
   type: 'billing' | 'shipping';
   default: boolean;
+  refs: {
+    inputCountryB: React.RefObject<HTMLParagraphElement>;
+    inputCityB: React.RefObject<HTMLInputElement>;
+    errorCityB: React.RefObject<HTMLParagraphElement>;
+    inputStreetB: React.RefObject<HTMLInputElement>;
+    errorStreetB: React.RefObject<HTMLParagraphElement>;
+    inputPostalB: React.RefObject<HTMLInputElement>;
+    errorPostalB: React.RefObject<HTMLParagraphElement>;
+    inputCountryS: React.RefObject<HTMLParagraphElement>;
+    inputCityS: React.RefObject<HTMLInputElement>;
+    errorCityS: React.RefObject<HTMLParagraphElement>;
+    inputStreetS: React.RefObject<HTMLInputElement>;
+    errorStreetS: React.RefObject<HTMLParagraphElement>;
+    inputPostalS: React.RefObject<HTMLInputElement>;
+    errorPostalS: React.RefObject<HTMLParagraphElement>;
+  };
 };
 
 export type InputLocationPropsType = {
@@ -84,6 +100,22 @@ export type InputLocationPropsType = {
   plshldr: string;
   addressType: 'billing' | 'shipping';
   default: boolean;
+  refs: {
+    inputCountryB: React.RefObject<HTMLDivElement>;
+    inputCityB: React.RefObject<HTMLInputElement>;
+    errorCityB: React.RefObject<HTMLParagraphElement>;
+    inputStreetB: React.RefObject<HTMLInputElement>;
+    errorStreetB: React.RefObject<HTMLParagraphElement>;
+    inputPostalB: React.RefObject<HTMLInputElement>;
+    errorPostalB: React.RefObject<HTMLParagraphElement>;
+    inputCountryS: React.RefObject<HTMLDivElement>;
+    inputCityS: React.RefObject<HTMLInputElement>;
+    errorCityS: React.RefObject<HTMLParagraphElement>;
+    inputStreetS: React.RefObject<HTMLInputElement>;
+    errorStreetS: React.RefObject<HTMLParagraphElement>;
+    inputPostalS: React.RefObject<HTMLInputElement>;
+    errorPostalS: React.RefObject<HTMLParagraphElement>;
+  };
 };
 
 export type FieldLocationType = {

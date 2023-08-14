@@ -8,24 +8,32 @@ import Toggler from '../../../components/toggler/toggler';
 import Location from '../location/location';
 
 const RegisterWindow = () => {
-  const formRef = useRef<HTMLFormElement>(null);
-
-  const deleteError = () => {
-    setErrorMessage('');
-  };
+  const formRef = useRef<HTMLDivElement>(null);
 
   const [errorMessage, setErrorMessage] = useState<string>('');
-  const checkSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const checkSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    const isValidForm = state.registerPage.fieldData.some((field) => !field.isValid);
+    const isValidForm = state.registerPage.fieldData.find((field) => !field.isValid);
+    const isValidBilling = state.registerPage.location.billing.find((field) => !field.isValid);
+    const isValidShipping = state.registerPage.location.shipping.find((field) => !field.isValid);
     if (isValidForm) {
-      setErrorMessage('some fields are empty or not valid');
+      isValidForm.value === ''
+        ? setErrorMessage(`field '${isValidForm.plshldr}' is empty`)
+        : setErrorMessage(`field '${isValidForm.plshldr}' is not valid`);
+    } else if (isValidBilling) {
+      isValidBilling.value === ''
+        ? setErrorMessage(`in Billing address field '${isValidBilling.type}' is empty`)
+        : setErrorMessage(`in Billing address field '${isValidBilling.type}' is not valid`);
+    } else if (isValidShipping) {
+      isValidShipping.value === ''
+        ? setErrorMessage(`in Shippnig address field '${isValidShipping.type}' is empty`)
+        : setErrorMessage(`in Shipping address field '${isValidShipping.type}' is not valid`);
     }
   };
   return (
     <div className={s.register_window}>
       <Toggler />
-      <form className={s.field_wrapper} ref={formRef} onSubmit={checkSubmit} onChange={deleteError}>
+      <div className={s.field_wrapper} ref={formRef}>
         {state.registerPage.fieldData.map((data) => {
           return (
             <div key={data.id}>
@@ -44,10 +52,10 @@ const RegisterWindow = () => {
         })}
         <Location />
         <p className={s.control}>{errorMessage}</p>
-        <button className={s.button}>
+        <button className={s.button} onClick={checkSubmit}>
           <span>Register</span>
         </button>
-      </form>
+      </div>
     </div>
   );
 };

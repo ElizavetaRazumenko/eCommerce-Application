@@ -15,9 +15,9 @@ const LocationInput = (props: InputLocationPropsType) => {
     state.registerPage.location[props.addressType].find((item) => item.type === props.id)!
       .errorMessage,
   );
-  const inputRef = React.useRef<HTMLInputElement>(null);
-  const changeInputValue = () => {
-    addLocationValue(props.addressType, props.id, inputRef.current!.value);
+  const changeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement;
+    addLocationValue(props.addressType, props.id, target.value);
     setInputValue(
       state.registerPage.location[props.addressType].find((item) => item.type === props.id)!.value,
     );
@@ -27,8 +27,34 @@ const LocationInput = (props: InputLocationPropsType) => {
     );
   };
 
+  let inputRef: React.RefObject<HTMLInputElement>;
+  let errorRef: React.RefObject<HTMLParagraphElement>;
+
+  if (props.addressType === 'billing') {
+    if (props.id === 'city') {
+      inputRef = props.refs.inputCityB;
+      errorRef = props.refs.errorCityB;
+    } else if (props.id === 'street') {
+      inputRef = props.refs.inputStreetB;
+      errorRef = props.refs.errorStreetB;
+    } else {
+      inputRef = props.refs.inputPostalB;
+      errorRef = props.refs.errorPostalB;
+    }
+  } else {
+    if (props.id === 'city') {
+      inputRef = props.refs.inputCityS;
+      errorRef = props.refs.errorCityS;
+    } else if (props.id === 'street') {
+      inputRef = props.refs.inputStreetS;
+      errorRef = props.refs.errorStreetS;
+    } else {
+      inputRef = props.refs.inputPostalS;
+      errorRef = props.refs.errorPostalS;
+    }
+  }
   return (
-    <>
+    <div>
       <input
         type='text'
         className={
@@ -43,8 +69,10 @@ const LocationInput = (props: InputLocationPropsType) => {
         onChange={changeInputValue}
         ref={inputRef}
       />
-      <p className={s.error_message}>{errorMessage}</p>
-    </>
+      <p className={s.error_message} ref={errorRef}>
+        {errorMessage}
+      </p>
+    </div>
   );
 };
 

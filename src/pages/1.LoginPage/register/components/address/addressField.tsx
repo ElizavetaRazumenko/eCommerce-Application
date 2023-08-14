@@ -8,6 +8,12 @@ import { LocationValueType } from '../../../../../types/types';
 import LocationInput from '../locationInput/locationInput';
 
 const AddressField = (props: LocationValueType) => {
+  let countryNameRef: React.RefObject<HTMLParagraphElement>;
+  if (props.type === 'billing') {
+    countryNameRef = props.refs.inputCountryB;
+  } else {
+    countryNameRef = props.refs.inputCountryS;
+  }
   const countryRef = React.useRef<HTMLDivElement>(null);
   const addressRef = React.useRef<HTMLDivElement>(null);
   const [countryName, setCountryName] = useState<string>(
@@ -34,7 +40,9 @@ const AddressField = (props: LocationValueType) => {
           if (!props.default) toggleCountry();
         }}
       >
-        <p className={s.content}>{countryName}</p>
+        <p className={s.content} ref={countryNameRef}>
+          {countryName}
+        </p>
         <img src={imageUrl} alt='arrow' className={s.arrow} />
       </div>
       <div className={s.country_fields + ' ' + s.hidden} ref={addressRef}>
@@ -45,18 +53,26 @@ const AddressField = (props: LocationValueType) => {
           Spain
         </p>
       </div>
-      <LocationInput id='city' plshldr='City' addressType={props.type} default={props.default} />
+      <LocationInput
+        id='city'
+        plshldr='City'
+        addressType={props.type}
+        default={props.default}
+        refs={props.refs}
+      />
       <LocationInput
         id='street'
         plshldr='Street'
         addressType={props.type}
         default={props.default}
+        refs={props.refs}
       />
       <LocationInput
         id='postal'
         plshldr='Postal code'
         addressType={props.type}
         default={props.default}
+        refs={props.refs}
       />
     </div>
   );
