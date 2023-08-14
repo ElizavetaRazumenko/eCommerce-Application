@@ -113,8 +113,8 @@ const state = {
     fieldData: [
       {
         id: 1,
-        plshldr: 'Username',
-        classname: 'user',
+        plshldr: 'Email',
+        classname: 'email',
         page: 'login',
         type: 'text',
         errorMessage: '',
@@ -137,16 +137,6 @@ const state = {
     fieldData: [
       {
         id: 1,
-        plshldr: 'Username',
-        classname: 'user',
-        page: 'register',
-        type: 'text',
-        errorMessage: '',
-        value: '',
-        isValid: false,
-      },
-      {
-        id: 2,
         plshldr: 'First name',
         classname: 'user',
         page: 'register',
@@ -156,7 +146,7 @@ const state = {
         isValid: false,
       },
       {
-        id: 3,
+        id: 2,
         plshldr: 'Last name',
         classname: 'user',
         page: 'register',
@@ -166,8 +156,8 @@ const state = {
         isValid: false,
       },
       {
-        id: 4,
-        plshldr: 'Date of birth: dd.mm.yy',
+        id: 3,
+        plshldr: 'Date of birth: yyyy-mm-dd',
         classname: 'user',
         page: 'register',
         type: 'text',
@@ -176,7 +166,7 @@ const state = {
         isValid: false,
       },
       {
-        id: 5,
+        id: 4,
         plshldr: 'Email',
         classname: 'email',
         page: 'register',
@@ -186,7 +176,7 @@ const state = {
         isValid: false,
       },
       {
-        id: 6,
+        id: 5,
         plshldr: 'Password',
         classname: 'password',
         page: 'register',
@@ -264,6 +254,16 @@ const checkTextField = (field: FieldType) => {
     field.errorMessage = 'must be filled';
     field.isValid = false;
   } else field.isValid = true;
+  if ([1, 2].includes(field.id)) {
+    if (field.value.match(/[0-9]/)) {
+      field.errorMessage = 'must not contain numbers';
+      field.isValid = false;
+    }
+    if (field.value.match(/[!@#$&*]/)) {
+      field.errorMessage = 'must not contain special characters';
+      field.isValid = false;
+    }
+  }
 };
 
 const checkEmail = (field: FieldType) => {
@@ -287,11 +287,11 @@ const checkPassword = (field: FieldType) => {
   if (field.value.length < 8) {
     field.errorMessage = 'must be at least 8 characters long';
     field.isValid = false;
-  } else if (field.value.toLowerCase() === field.value) {
-    field.errorMessage = 'must contain at least one capital letter';
+  } else if (!field.value.match(/[A-Z]/)) {
+    field.errorMessage = 'must contain at least one capital letter (AZ)';
     field.isValid = false;
-  } else if (field.value.toUpperCase() === field.value) {
-    field.errorMessage = 'must contain at least one lowercase letter';
+  } else if (!field.value.match(/[a-z]/)) {
+    field.errorMessage = 'must contain at least one lowercase letter (az)';
     field.isValid = false;
   } else if (!field.value.match(/\d/)) {
     field.errorMessage = 'must contain at least one number';
@@ -306,10 +306,25 @@ const checkPassword = (field: FieldType) => {
 };
 
 const checkDate = (field: FieldType) => {
-  const re =
-    /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
+  const re = /\d{4}(-)\d{2}\1\d{2}/g;
   if (!re.test(field.value)) {
     field.errorMessage = 'incorrect date';
+    field.isValid = false;
+  }
+  const currentYear = new Date().getFullYear();
+  const date = field.value.slice(8);
+  const mounth = field.value.slice(5, 7);
+  const year = field.value.slice(0, 4);
+  const userBirthday = new Date(`${currentYear}-${mounth}-${date}`);
+  let age = currentYear - +year;
+  if (new Date() < userBirthday) {
+    age = age - 1;
+  }
+  if (currentYear - +year < 0) {
+    field.errorMessage = 'you cannot be born in the future';
+    field.isValid = false;
+  } else if (age < 13) {
+    field.errorMessage = 'registration of users over 13 years old';
     field.isValid = false;
   }
 };
