@@ -12,7 +12,6 @@ const RegisterWindow = () => {
 
   const [errorMessage, setErrorMessage] = useState<string>('');
   const checkSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
     const isValidForm = state.registerPage.fieldData.find((field) => !field.isValid);
     const isValidBilling = state.registerPage.location.billing.find((field) => !field.isValid);
     const isValidShipping = state.registerPage.location.shipping.find((field) => !field.isValid);

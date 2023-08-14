@@ -16,9 +16,11 @@ const LoginWindow = () => {
 
   const checkSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const isValidForm = state.loginPage.fieldData.some((field) => !field.isValid);
+    const isValidForm = state.loginPage.fieldData.find((field) => !field.isValid);
     if (isValidForm) {
-      setErrorMessage('some fields are empty or not valid');
+      isValidForm.value === ''
+        ? setErrorMessage(`field '${isValidForm.plshldr}' is empty`)
+        : setErrorMessage(`field '${isValidForm.plshldr}' is not valid`);
     }
   };
   return (
