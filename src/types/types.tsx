@@ -72,8 +72,6 @@ export type InputLoginType = {
   errorMessage: string;
   value: string;
   isValid: boolean;
-  state: typeState;
-  setState: React.Dispatch<React.SetStateAction<typeState>>;
 };
 
 export type typeState = {
@@ -160,9 +158,7 @@ export type LocationValueType = {
     setPostal: React.Dispatch<React.SetStateAction<string>>;
   };
   type: 'billing' | 'shipping';
-  state: typeState;
-  setState: React.Dispatch<React.SetStateAction<typeState>>;
-  fake: boolean;
+  default: boolean;
 };
 
 //                                                                    ERROR PAGE

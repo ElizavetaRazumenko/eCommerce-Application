@@ -254,7 +254,7 @@ const checkTextField = (field: FieldType) => {
     field.errorMessage = 'must be filled';
     field.isValid = false;
   } else field.isValid = true;
-  if ([1, 2].includes(field.id)) {
+  if (['First name', 'Last name'].includes(field.plshldr)) {
     if (field.value.match(/[0-9]/)) {
       field.errorMessage = 'must not contain numbers';
       field.isValid = false;
@@ -360,7 +360,7 @@ const checkPostalCode = (
       field.errorMessage = 'spain postal code must contain 6 digits';
       field.isValid = false;
     }
-  } else if (country.value === 'Italy') {
+  } else {
     if (field.value.length !== 5) {
       field.errorMessage = 'italy postal code must contain 5 digits';
       field.isValid = false;
@@ -410,6 +410,14 @@ export const addLocationValue = (
     field.errorMessage = 'must be filled';
     field.isValid = false;
   } else field.isValid = true;
+  if (field.value.match(/[0-9]/)) {
+    field.errorMessage = 'must not contain numbers';
+    field.isValid = false;
+  }
+  if (field.value.match(/[!@#$&*]/)) {
+    field.errorMessage = 'must not contain special characters';
+    field.isValid = false;
+  }
   if (field.isValid) {
     if (property === 'postal') {
       checkPostalCode(field, type);

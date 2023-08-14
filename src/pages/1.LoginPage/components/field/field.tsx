@@ -23,17 +23,14 @@ const Field = (props: InputLoginType) => {
       inputRef.current!.placeholder.toLowerCase(),
       props.page,
     );
-    props.setState(state);
     if (props.page === 'login') {
-      const field = props.state.loginPage.fieldData.find(
-        (field) => field.id === +inputRef.current!.id,
-      );
+      const field = state.loginPage.fieldData.find((field) => field.id === +inputRef.current!.id);
       if (field) {
         setInputValue(field.value);
         setErrorMessage(field.errorMessage);
       }
     } else {
-      const field = props.state.registerPage.fieldData.find(
+      const field = state.registerPage.fieldData.find(
         (field) => field.id === +inputRef.current!.id,
       );
       if (field) {
@@ -47,6 +44,7 @@ const Field = (props: InputLoginType) => {
       <div className={s.input_wrapper}>
         <input
           id={`${props.id}`}
+          name={`${props.id} ${props.page}`}
           type={inputType}
           placeholder={props.plshldr}
           className={

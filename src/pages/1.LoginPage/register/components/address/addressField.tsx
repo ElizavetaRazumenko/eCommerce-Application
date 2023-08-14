@@ -7,21 +7,22 @@ import state, { addLocationValue, makeValideDefault } from '../../../../../state
 import { LocationValueType } from '../../../../../types/types';
 
 const AddressField = (props: LocationValueType) => {
-  let defaultAddress = props.fake;
+  let defaultAddress = props.default;
   const countryRef = React.useRef<HTMLDivElement>(null);
   const addressRef = React.useRef<HTMLDivElement>(null);
   const postalBillingRef = React.useRef<HTMLInputElement>(null);
   const postalShippingRef = React.useRef<HTMLInputElement>(null);
   const addressType = props.type;
   const [errorMessageCity, setErrorMessageCity] = useState<string>(
-    props.state.registerPage.location[addressType].city.errorMessage,
+    state.registerPage.location[addressType].city.errorMessage,
   );
   const [errorMessageStreet, setErrorMessageStreet] = useState<string>(
-    props.state.registerPage.location[addressType].street.errorMessage,
+    state.registerPage.location[addressType].street.errorMessage,
   );
   const [errorMessagePostal, setErrorMessagePostal] = useState<string>(
-    props.state.registerPage.location[addressType].postal.errorMessage,
+    state.registerPage.location[addressType].postal.errorMessage,
   );
+
   const toggleCountry = () => {
     countryRef.current?.classList.toggle(s.active);
     addressRef.current?.classList.toggle(s.hidden);
@@ -40,32 +41,29 @@ const AddressField = (props: LocationValueType) => {
     } else {
       setErrorMessagePostal(error);
     }
-    props.setState(state);
     props.values.setCountry(country);
   };
   const changeAddressValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
     if (defaultAddress) {
       makeValideDefault();
-      props.setState(state);
     }
     if (target.id && (target.id === 'city' || target.id === 'street' || target.id === 'postal')) {
       addLocationValue(props.type, target.id, target.value);
-      props.setState(state);
       if (target.id === 'city') {
-        const value = props.state.registerPage.location[props.type].city.value;
+        const value = state.registerPage.location[props.type].city.value;
         props.values.setCity(value);
-        const error = props.state.registerPage.location[props.type].city.errorMessage;
+        const error = state.registerPage.location[props.type].city.errorMessage;
         setErrorMessageCity(error);
       } else if (target.id === 'street') {
-        const value = props.state.registerPage.location[props.type].street.value;
+        const value = state.registerPage.location[props.type].street.value;
         props.values.setStreet(value);
-        const error = props.state.registerPage.location[props.type].street.errorMessage;
+        const error = state.registerPage.location[props.type].street.errorMessage;
         setErrorMessageStreet(error);
       } else {
-        const value = props.state.registerPage.location[props.type].postal.value;
+        const value = state.registerPage.location[props.type].postal.value;
         props.values.setPostal(value);
-        const error = props.state.registerPage.location[props.type].postal.errorMessage;
+        const error = state.registerPage.location[props.type].postal.errorMessage;
         setErrorMessagePostal(error);
       }
     }
@@ -73,10 +71,10 @@ const AddressField = (props: LocationValueType) => {
   return (
     <div className={s.address_wrapper}>
       <div
-        className={props.fake ? s.default_contry : s.country}
+        className={props.default ? s.default_contry : s.country}
         ref={countryRef}
         onClick={(e) => {
-          if (!props.fake) toggleCountry();
+          if (!props.default) toggleCountry();
         }}
       >
         <p className={s.content}>{props.values.country}</p>
@@ -92,8 +90,9 @@ const AddressField = (props: LocationValueType) => {
       </div>
       <input
         id='city'
+        name='city'
         className={
-          props.fake
+          props.default
             ? s.default + ' ' + s.input
             : errorMessageStreet === ''
             ? s.input
@@ -107,8 +106,9 @@ const AddressField = (props: LocationValueType) => {
       <p className={s.error_message}>{errorMessageCity}</p>
       <input
         id='street'
+        name='street'
         className={
-          props.fake
+          props.default
             ? s.default + ' ' + s.input
             : errorMessageStreet === ''
             ? s.input
@@ -122,8 +122,9 @@ const AddressField = (props: LocationValueType) => {
       <p className={s.error_message}>{errorMessageStreet}</p>
       <input
         id='postal'
+        name='postal'
         className={
-          props.fake
+          props.default
             ? s.default + ' ' + s.input
             : errorMessageStreet === ''
             ? s.input
