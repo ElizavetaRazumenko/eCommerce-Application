@@ -21,22 +21,6 @@ const Location = () => {
     locationRef.current?.classList.toggle(s.active);
     locationWrapperRef.current?.classList.toggle(s.hidden);
   };
-  const Refs = {
-    inputCountryB: React.useRef<HTMLParagraphElement>(null),
-    inputCityB: React.useRef<HTMLInputElement>(null),
-    errorCityB: React.useRef<HTMLParagraphElement>(null),
-    inputStreetB: React.useRef<HTMLInputElement>(null),
-    errorStreetB: React.useRef<HTMLParagraphElement>(null),
-    inputPostalB: React.useRef<HTMLInputElement>(null),
-    errorPostalB: React.useRef<HTMLParagraphElement>(null),
-    inputCountryS: React.useRef<HTMLParagraphElement>(null),
-    inputCityS: React.useRef<HTMLInputElement>(null),
-    errorCityS: React.useRef<HTMLParagraphElement>(null),
-    inputStreetS: React.useRef<HTMLInputElement>(null),
-    errorStreetS: React.useRef<HTMLParagraphElement>(null),
-    inputPostalS: React.useRef<HTMLInputElement>(null),
-    errorPostalS: React.useRef<HTMLParagraphElement>(null),
-  };
 
   const [countryNameB, setCountryNameB] = useState<string>(
     state.registerPage.location.billing.find((item) => item.type === 'country')!.value,
@@ -118,6 +102,25 @@ const Location = () => {
     setErrorPostalS: setErrorPostalValueS,
   };
 
+  const defailtAddressBehavior = () => {
+    stateObj.setCityS(stateObj.inputCityB);
+    stateObj.setStreetS(stateObj.inputStreetB);
+    stateObj.setPostalS(stateObj.inputPostalB);
+    const fields = ['city', 'street', 'postal'];
+    fields.forEach((field) => {
+      const elem = state.registerPage.location.shipping.find((item) => item.type === field)!;
+      elem.value =
+        field === 'city'
+          ? stateObj.inputCityB
+          : field === 'street'
+          ? stateObj.inputStreetB
+          : stateObj.inputPostalB;
+      elem.isValid = state.registerPage.location.billing.find(
+        (item) => item.type === field,
+      )!.isValid;
+    });
+  };
+
   const changeDefaultAddress = () => {
     setIsDefault(!isDefault);
     setErrorMessage('');
@@ -125,15 +128,7 @@ const Location = () => {
       stateObj.setCountryS(stateObj.countryB);
       state.registerPage.location.shipping.find((item) => item.type === 'country')!.value =
         stateObj.countryB;
-      stateObj.setCityS(stateObj.inputCityB);
-      state.registerPage.location.shipping.find((item) => item.type === 'city')!.value =
-        stateObj.inputCityB;
-      stateObj.setStreetS(stateObj.inputStreetB);
-      state.registerPage.location.shipping.find((item) => item.type === 'city')!.value =
-        stateObj.inputStreetB;
-      stateObj.setPostalS(stateObj.inputPostalB);
-      state.registerPage.location.shipping.find((item) => item.type === 'city')!.value =
-        stateObj.inputPostalB;
+      defailtAddressBehavior();
       stateObj.setErrorCityS('');
       stateObj.setErrorStreetS('');
       stateObj.setErrorPostalS('');
@@ -164,8 +159,13 @@ const Location = () => {
       </div>
       <div className={s.location_wrapper + ' ' + s.hidden} ref={locationWrapperRef}>
         <p className={s.address_name}>Billing address</p>
-        <form onChange={() => setErrorMessage('')}>
-          <AddressField type='billing' default={false} refs={Refs} states={stateObj} />
+        <form
+          onChange={() => {
+            setErrorMessage('');
+            if (isDefault) defailtAddressBehavior();
+          }}
+        >
+          <AddressField type='billing' default={false} states={stateObj} />
         </form>
         <label className={s.label_input}>
           Make this address as the default?
@@ -173,7 +173,7 @@ const Location = () => {
         </label>
         <p className={s.address_name}>Shipping address</p>
         <form onChange={() => setErrorMessage('')} ref={formShippingRef}>
-          <AddressField type='shipping' default={isDefault} refs={Refs} states={stateObj} />
+          <AddressField type='shipping' default={isDefault} states={stateObj} />
         </form>
         <p className={s.error}>{errorMessage}</p>
         <div className={s.button_done} onClick={checkForm}>

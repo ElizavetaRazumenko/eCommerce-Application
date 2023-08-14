@@ -6,33 +6,6 @@ import state, { addLocationValue } from '../../../../../state/state';
 import { InputLocationPropsType } from '../../../../../types/types';
 
 const LocationInput = (props: InputLocationPropsType) => {
-  let inputRef: React.RefObject<HTMLInputElement>;
-  let errorRef: React.RefObject<HTMLParagraphElement>;
-
-  if (props.addressType === 'billing') {
-    if (props.id === 'city') {
-      inputRef = props.refs.inputCityB;
-      errorRef = props.refs.errorCityB;
-    } else if (props.id === 'street') {
-      inputRef = props.refs.inputStreetB;
-      errorRef = props.refs.errorStreetB;
-    } else {
-      inputRef = props.refs.inputPostalB;
-      errorRef = props.refs.errorPostalB;
-    }
-  } else {
-    if (props.id === 'city') {
-      inputRef = props.refs.inputCityS;
-      errorRef = props.refs.errorCityS;
-    } else if (props.id === 'street') {
-      inputRef = props.refs.inputStreetS;
-      errorRef = props.refs.errorStreetS;
-    } else {
-      inputRef = props.refs.inputPostalS;
-      errorRef = props.refs.errorPostalS;
-    }
-  }
-
   const changeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
     addLocationValue(props.addressType, props.id, target.value);
@@ -58,11 +31,8 @@ const LocationInput = (props: InputLocationPropsType) => {
         placeholder={props.plshldr}
         value={props.stateValue}
         onChange={changeInputValue}
-        ref={inputRef}
       />
-      <p className={s.error_message} ref={errorRef}>
-        {props.errorValue}
-      </p>
+      <p className={s.error_message}>{props.errorValue}</p>
     </div>
   );
 };
