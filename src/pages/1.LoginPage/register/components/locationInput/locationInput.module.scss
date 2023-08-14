@@ -38,3 +38,9 @@
     letter-spacing: .1px;
     color: $color-red;
 }
+
+.default {
+    pointer-events: none;
+    background-color: rgba($color: $main-grey, $alpha: .7);
+
+}

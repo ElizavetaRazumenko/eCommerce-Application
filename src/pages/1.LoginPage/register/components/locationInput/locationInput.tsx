@@ -31,7 +31,13 @@ const LocationInput = (props: InputLocationPropsType) => {
     <>
       <input
         type='text'
-        className={errorMessage === '' ? s.input : s.input + ' ' + s.invalid}
+        className={
+          props.default
+            ? s.input + ' ' + s.default
+            : errorMessage === ''
+            ? s.input
+            : s.input + ' ' + s.invalid
+        }
         placeholder={props.plshldr}
         value={inputValue}
         onChange={changeInputValue}

@@ -83,6 +83,7 @@ export type InputLocationPropsType = {
   id: 'city' | 'street' | 'postal';
   plshldr: string;
   addressType: 'billing' | 'shipping';
+  default: boolean;
 };
 
 export type FieldLocationType = {

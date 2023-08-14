@@ -19,23 +19,20 @@ const Location = () => {
     locationWrapperRef.current?.classList.toggle(s.hidden);
   };
 
-  // const checkForm = () => {
-  //   if (checkboxRef.current?.checked) {
-  //     makeValideDefault();
-  //   }
-  //   const isValideBilling = isValide('billing');
-  //   const isValideShipping = isValide('shipping');
-  //   if (!isValideBilling && !isValideShipping) {
-  //     setErrorMessage('incomplete billing and shipping address');
-  //   } else if (!isValideBilling) {
-  //     setErrorMessage('incomplete billing address');
-  //   } else if (!isValideShipping) {
-  //     setErrorMessage('incomplete shipping address');
-  //   } else {
-  //     setErrorMessage('');
-  //     toggleLocation();
-  //   }
-  // };
+  const checkForm = () => {
+    const isValideBilling = state.registerPage.location.billing.every((item) => item.isValid);
+    const isValideShipping = state.registerPage.location.shipping.every((item) => item.isValid);
+    if (!isValideBilling && !isValideShipping) {
+      setErrorMessage('incomplete billing and shipping address');
+    } else if (!isValideBilling) {
+      setErrorMessage('incomplete billing address');
+    } else if (!isValideShipping) {
+      setErrorMessage('incomplete shipping address');
+    } else {
+      setErrorMessage('');
+      toggleLocation();
+    }
+  };
 
   return (
     <div className={s.wrapper}>
@@ -45,7 +42,9 @@ const Location = () => {
       </div>
       <div className={s.location_wrapper + ' ' + s.hidden} ref={locationWrapperRef}>
         <p className={s.address_name}>Billing address</p>
-        <AddressField type='billing' default={isDefault} />
+        <form onChange={() => setErrorMessage('')}>
+          <AddressField type='billing' default={false} />
+        </form>
         <label className={s.label_input}>
           Make this address as the default?
           <input
@@ -56,9 +55,11 @@ const Location = () => {
           />
         </label>
         <p className={s.address_name}>Shipping address</p>
-        <AddressField type='shipping' default={isDefault} />
+        <form onChange={() => setErrorMessage('')}>
+          <AddressField type='shipping' default={isDefault} />
+        </form>
         <p className={s.error}>{errorMessage}</p>
-        <div className={s.button_done}>
+        <div className={s.button_done} onClick={checkForm}>
           <p className={s.content}>Done</p>
         </div>
       </div>

@@ -8,7 +8,7 @@
 }
 
 .country, 
-.default_contry {
+.default {
     margin-top: 10px;
     cursor: pointer;
     box-sizing: border-box;
@@ -35,8 +35,12 @@
     }
 }
 
-.default_contry {
+.default {
+    background-color: rgba($color: $main-grey, $alpha: .7);
     cursor: auto;
+    .content {
+        cursor: auto;
+    }
 }
 
 .country.active {
@@ -84,8 +88,4 @@
     height: 0;
     overflow: hidden;
     background-color: $main-light;
-}
-
-.default {
-    pointer-events: none; 
 }
