@@ -1,0 +1,163 @@
+.section_offer {
+  padding: 160px auto 100px;
+  margin: 0;
+  background-image: url("../../../../assets/png/smoke.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  overflow: hidden;
+}
+@media (max-width: 1199px) {
+  .section_offer {
+    margin: 0 auto;
+    padding: 0;
+    width: 711px;
+  }
+}
+
+.title_section {
+  font-size: 2.7rem;
+  letter-spacing: 1.8px;
+  color: #D9D9D9;
+}
+@media (max-width: 1199px) {
+  .title_section {
+    padding-top: 100px;
+    max-width: 700px;
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+}
+@media (max-width: 860px) {
+  .title_section {
+    max-width: 500px;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+  }
+}
+
+.title_center {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.pizza_collection {
+  position: relative;
+  left: 0%;
+  margin: 90px -326px 0;
+  gap: 105px;
+  display: flex;
+  flex-direction: row;
+  transition: 1s;
+}
+@media (max-width: 1199px) {
+  .pizza_collection {
+    left: -57.5%;
+    margin: 90px auto 0;
+  }
+}
+@media (max-width: 1199px) {
+  .pizza_collection {
+    margin: 50px auto 0;
+  }
+}
+
+@keyframes right {
+  from {
+    transform: translate(0%);
+  }
+  to {
+    transform: translateX(21%);
+  }
+}
+.transition_right {
+  animation-name: right;
+  animation-duration: 1s;
+}
+
+@keyframes left {
+  from {
+    transform: translate(0%);
+  }
+  to {
+    transform: translate(-21%);
+  }
+}
+@media (max-width: 1199px) {
+  @keyframes right {
+    from {
+      transform: translate(0%);
+    }
+    to {
+      transform: translateX(57.3%);
+    }
+  }
+  @keyframes left {
+    from {
+      transform: translate(0%);
+    }
+    to {
+      transform: translate(-57.3%);
+    }
+  }
+}
+.transition_left {
+  animation-name: left;
+  animation-duration: 1s;
+}
+
+.btn_see_all {
+  cursor: pointer;
+  text-align: center;
+  display: block;
+  height: 60px;
+  width: 200px;
+  font-weight: 700;
+  font-size: 20px;
+  border-radius: 35px;
+  margin: 70px auto;
+  transition: 0.5s;
+  border: none;
+  transition: 1s;
+}
+.btn_see_all:hover {
+  background: #ffffff url("../../../../assets/png/smoke.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+@media (max-width: 1199px) {
+  .btn_see_all {
+    margin: 20px auto 70px;
+  }
+}
+
+.arrows {
+  position: relative;
+  max-width: 1280px;
+  height: 40px;
+  bottom: 250px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.arrow_left,
+.arrow_right {
+  height: 110px;
+  width: 50px;
+  background-size: 100%;
+  background-position: center;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.arrow_left {
+  background: no-repeat url("../../../../assets/svg/arrow-left.svg");
+}
+
+.arrow_right {
+  background: no-repeat url("../../../../assets/svg/arrow-right.svg");
+}
+
+.link {
+  text-decoration: none;
+}/*# sourceMappingURL=pizzas.module.css.map */

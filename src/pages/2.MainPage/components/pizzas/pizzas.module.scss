@@ -1,19 +1,42 @@
 @import '../../../../globalVariables.scss';
 
 .section_offer {
-    padding: 160px 0 100px;
+    padding: 160px auto 100px;
     margin: 0 ;
     background-image: url('../../../../assets/png/smoke.png');
     background-repeat: no-repeat;
     background-size: contain;
     overflow: hidden;
+    @media (max-width: 1199px) {
+      margin: 0 auto;
+      padding: 0;
+      width: 711px;
+      // background-size: cover;
+      // background-size: 150%;
 
+  }
+  // @media (max-width: 1030px) {
+  //   padding: 160px 2 100px;
+
+    
+  // }
 }
 
 .title_section {
-    font-size: 38px;
+    font-size: 2.7rem;
     letter-spacing: 1.8px;
     color: $main-light;
+    @media (max-width: 1199px) {
+      padding-top: 100px;
+      max-width: 700px;
+      font-size: 2rem;
+      letter-spacing: 2px;
+  }
+      @media (max-width: 860px) {
+          max-width: 500px;
+          font-size: 1.5rem;
+          letter-spacing: 1px;
+      }
 }
 
 .title_center {
@@ -29,6 +52,13 @@
     display: flex;
     flex-direction: row;
     transition: 1s;
+    @media (max-width: 1199px) {
+      left: -57.5%;
+      margin: 90px auto 0;
+  }
+  @media (max-width: 1199px) {
+    margin: 50px auto 0;
+}
 }
 
 @keyframes right {
@@ -37,8 +67,9 @@
     }
     to {
       transform: translateX(21%);
-    }
   }
+}
+
   .transition_right {
     animation-name: right;
     animation-duration: 1s;
@@ -52,6 +83,26 @@
       transform: translate(-21%);
     }
   }
+
+  @media (max-width: 1199px) {
+    @keyframes right {
+      from {
+        transform: translate(0%);
+      }
+      to {
+        transform: translateX(57.3%);
+    }
+  }
+  @keyframes left {
+    from {
+      transform: translate(0%);
+    }
+    to {
+      transform: translate(-57.3%);
+    }
+  }
+  }
+
   .transition_left {
     animation-name: left;
     animation-duration: 1s;
@@ -77,15 +128,19 @@
           background-repeat: no-repeat;
           background-position: left;
     }
+
+    @media (max-width: 1199px) {
+      margin: 20px auto 70px;
+  }
 }
 
 
-.img-pizza {
-    &:hover{
-        top: 5px;
-        left: 5px;
-    }
-}
+// .img-pizza {
+//     &:hover{
+//         top: 5px;
+//         left: 5px;
+//     }
+// }
 
 .arrows {
     position: relative;
@@ -95,6 +150,12 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    @media (max-width: 1199px) {
+      // ? нужен абсолют
+    //  width: 120%;
+    //  margin: 0 auto;
+    //  left: 0;
+  }
 }
 
 .arrow_left,

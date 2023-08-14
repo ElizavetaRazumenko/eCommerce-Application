@@ -1,0 +1,22 @@
+.location_wrapper {
+  color: #D9D9D9;
+}
+.location_wrapper .links_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.location_wrapper .links_wrapper .adress {
+  color: #D9D9D9;
+  text-decoration: none;
+  margin: 0;
+  line-height: 40px;
+  padding-left: 35px;
+  background: no-repeat url("../../../../../assets/svg/location1.svg");
+  background-size: 7%;
+  background-position: left center;
+  cursor: pointer;
+  transition: color 0.5s;
+}
+.location_wrapper .links_wrapper .adress:hover {
+  color: #ffffff;
+}/*# sourceMappingURL=location.module.css.map */

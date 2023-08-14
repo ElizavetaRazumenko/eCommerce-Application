@@ -1,0 +1,122 @@
+.address_wrapper {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 20px;
+  margin-bottom: 5px;
+}
+
+.country,
+.default_contry {
+  margin-top: 10px;
+  cursor: pointer;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  width: 100%;
+  background-color: rgba(92, 92, 92, 0.4);
+  border-radius: 10px;
+  font-size: 1rem;
+  padding: 0 15px 0 25px;
+  transition: 0.3s;
+}
+.country .content,
+.default_contry .content {
+  margin: 7px 0;
+  color: #5C5C5C;
+}
+.country .arrow,
+.default_contry .arrow {
+  width: 20px;
+  height: 15px;
+  transition: 0.3s;
+}
+
+.default_contry {
+  cursor: auto;
+}
+
+.country.active {
+  background-color: #5C5C5C;
+  margin-bottom: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.country.active .content {
+  color: #D9D9D9;
+}
+.country.active .arrow {
+  transform: rotate(180deg);
+}
+
+.country_fields {
+  height: 45px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 15px;
+  background-color: #5C5C5C;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  transition: 0.3s;
+}
+.country_fields .country_name {
+  cursor: pointer;
+  color: #D9D9D9;
+  padding-bottom: 5px;
+  margin: 0;
+  transition: 0.1s;
+}
+.country_fields .country_name:hover {
+  color: #ffffff;
+}
+
+.country_fields.hidden {
+  margin-bottom: 0;
+  height: 0;
+  overflow: hidden;
+  background-color: #D9D9D9;
+}
+
+.input {
+  box-sizing: border-box;
+  width: 100%;
+  background-color: rgba(92, 92, 92, 0.4);
+  color: #211F20;
+  border-radius: 10px;
+  margin: 0;
+  font-size: 1rem;
+  padding: 5px 0 5px 25px;
+  border: none;
+  transition: 0.5s;
+}
+.input:focus {
+  box-shadow: 0 0 20px #5C5C5C;
+}
+
+.error_message {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 15px;
+  text-align: end;
+  padding-bottom: 3px;
+  padding-right: 5px;
+  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1px;
+  color: red;
+}
+
+.invalid {
+  box-shadow: 0 0 5px red;
+}
+.invalid:focus {
+  box-shadow: 0 0 10px red;
+}
+
+.default {
+  pointer-events: none;
+}/*# sourceMappingURL=addressField.module.css.map */

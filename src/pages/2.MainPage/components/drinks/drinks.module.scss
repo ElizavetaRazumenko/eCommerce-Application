@@ -10,6 +10,14 @@
    background:  no-repeat url('../../../../assets/png/water.png');
    background-size: 53%;
    background-position: right -10% top 46%;
+   @media (max-width: 1199px) {
+    background-position: right -30% top 46%;
+}
+@media (max-width: 999px) {
+    background-position: right -30% top 46%;
+    background-size: 100%;
+
+}
 }
 
 .title_right{
@@ -17,6 +25,15 @@
     margin-top: 50px;
     text-align: right;
     margin-right: 7%;
+    @media (max-width: 1199px) {
+        font-size: 2rem;
+        letter-spacing: 2px;
+    }
+        @media (max-width: 860px) {
+            margin-top: 0;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
 }
 
 .drinks_container{
@@ -29,10 +46,20 @@
     flex-wrap: wrap;
     column-gap: 100px;
     row-gap: 45px;
+    @media (max-width: 1199px) {
+        margin-left: 50px;
+        margin-top: 50px;
+
+
+    }
+        @media (max-width: 860px) {
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
 }
 
 .btn_catalog {
-    margin: 40px 0 30px 280px;
+    margin: 40px 0 70px 280px;
     border-radius: 25px;
     font-size: 1.2rem;
     width: 200px;
@@ -50,6 +77,8 @@
         background-repeat: no-repeat;
         background-position: left;
     }
+
+  
 }
 
 .link {

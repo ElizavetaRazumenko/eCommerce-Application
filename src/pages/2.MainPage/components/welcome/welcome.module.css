@@ -1,0 +1,63 @@
+.section_welcome {
+  width: 100%;
+  min-height: 650px;
+  background: no-repeat url("../../../../assets/png/slice.png");
+  background-size: 42%;
+  background-position: right -10px top 0px;
+}
+@media (max-width: 1199px) {
+  .section_welcome {
+    min-height: 450px;
+  }
+}
+@media (max-width: 860px) {
+  .section_welcome {
+    min-height: 350px;
+  }
+}
+.section_welcome .title_welcome {
+  padding-top: 140px;
+  max-width: 800px;
+  letter-spacing: 3.5px;
+  font-size: 2.7rem;
+  margin: 0;
+}
+@media (max-width: 1199px) {
+  .section_welcome .title_welcome {
+    padding-top: 100px;
+    max-width: 600px;
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+}
+@media (max-width: 860px) {
+  .section_welcome .title_welcome {
+    padding-top: 40px;
+    max-width: 400px;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+  }
+}
+.section_welcome .welcome_content {
+  margin-top: 50px;
+  font-size: 1.3rem;
+  letter-spacing: 1.8px;
+  line-height: 1.7;
+  text-align: left;
+  color: #D9D9D9;
+  max-width: 650px;
+  font-weight: 600;
+}
+@media (max-width: 1199px) {
+  .section_welcome .welcome_content {
+    font-size: 1rem;
+    max-width: 450px;
+  }
+}
+@media (max-width: 860px) {
+  .section_welcome .welcome_content {
+    margin-top: 30px;
+    font-size: 0.8rem;
+    max-width: 350px;
+  }
+}/*# sourceMappingURL=welcome.module.css.map */

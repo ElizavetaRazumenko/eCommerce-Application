@@ -6,6 +6,16 @@
     background: no-repeat url('../../../../assets/png/slice.png');
     background-size: 42%;
     background-position: right -10px top 0px;
+    @media (max-width: 1199px) {
+        min-height: 450px;
+    }
+    // @media (max-width: 950px) {
+    //     min-height: 350px;
+    // }
+    @media (max-width: 860px) {
+        min-height: 350px;
+
+    }
 
     .title_welcome {
         padding-top: 140px;
@@ -13,6 +23,18 @@
         letter-spacing: 3.5px;
         font-size: 2.7rem;
         margin: 0;
+        @media (max-width: 1199px) {
+            padding-top: 100px;
+            max-width: 600px;
+            font-size: 2rem;
+            letter-spacing: 2px;
+        }
+        @media (max-width: 860px) {
+            padding-top: 40px;
+            max-width: 400px;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
     }
 
     .welcome_content {
@@ -24,5 +46,14 @@
         color: $main-light;
         max-width: 650px;
         font-weight: 600;
+        @media (max-width: 1199px) {
+            font-size: 1rem;
+            max-width: 450px;
+        }
+        @media (max-width: 860px) {
+            margin-top: 30px;
+            font-size: .8rem;
+            max-width: 350px;
+        }
     }
 }
