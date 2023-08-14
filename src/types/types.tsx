@@ -74,91 +74,22 @@ export type InputLoginType = {
   isValid: boolean;
 };
 
-export type typeState = {
-  mainPage: {
-    drinks: DrinkType[];
-    pizzas: PizzaType[];
-    souces: SauceType[];
-  };
-  loginPage: {
-    fieldData: FieldType[];
-  };
-  registerPage: {
-    fieldData: FieldType[];
-    location: {
-      billing: {
-        country: {
-          value: string;
-          errorMessage: string;
-          isValid: boolean;
-        };
-        city: {
-          value: string;
-          errorMessage: string;
-          isValid: boolean;
-        };
-        street: {
-          value: string;
-          errorMessage: string;
-          isValid: boolean;
-        };
-        postal: {
-          value: string;
-          errorMessage: string;
-          isValid: boolean;
-        };
-        isValid: boolean;
-      };
-      shipping: {
-        country: {
-          value: string;
-          errorMessage: string;
-          isValid: boolean;
-        };
-        city: {
-          value: string;
-          errorMessage: string;
-          isValid: boolean;
-        };
-        street: {
-          value: string;
-          errorMessage: string;
-          isValid: boolean;
-        };
-        postal: {
-          value: string;
-          errorMessage: string;
-          isValid: boolean;
-        };
-        isValid: boolean;
-      };
-    };
-  };
-};
-
-export type loginPageType = {
-  state: typeState;
-  setState: React.Dispatch<React.SetStateAction<typeState>>;
-};
-
-export type registerPageType = {
-  state: typeState;
-  setState: React.Dispatch<React.SetStateAction<typeState>>;
-};
-
 export type LocationValueType = {
-  values: {
-    country: string;
-    setCountry: React.Dispatch<React.SetStateAction<string>>;
-    city: string;
-    setCity: React.Dispatch<React.SetStateAction<string>>;
-    street: string;
-    setStreet: React.Dispatch<React.SetStateAction<string>>;
-    postal: string;
-    setPostal: React.Dispatch<React.SetStateAction<string>>;
-  };
   type: 'billing' | 'shipping';
   default: boolean;
+};
+
+export type InputLocationPropsType = {
+  id: 'city' | 'street' | 'postal';
+  plshldr: string;
+  addressType: 'billing' | 'shipping';
+};
+
+export type FieldLocationType = {
+  type: string;
+  value: string;
+  errorMessage: string;
+  isValid: boolean;
 };
 
 //                                                                    ERROR PAGE

@@ -3,71 +3,54 @@ import React, { useState } from 'react';
 import s from './addressField.module.scss';
 
 import imageUrl from '../../../../../assets/png/downArrow.png';
-import state, { addLocationValue, makeValideDefault } from '../../../../../state/state';
+import state from '../../../../../state/state';
 import { LocationValueType } from '../../../../../types/types';
+import LocationInput from '../locationInput/locationInput';
 
 const AddressField = (props: LocationValueType) => {
-  let defaultAddress = props.default;
   const countryRef = React.useRef<HTMLDivElement>(null);
   const addressRef = React.useRef<HTMLDivElement>(null);
-  const postalBillingRef = React.useRef<HTMLInputElement>(null);
-  const postalShippingRef = React.useRef<HTMLInputElement>(null);
-  const addressType = props.type;
-  const [errorMessageCity, setErrorMessageCity] = useState<string>(
-    state.registerPage.location[addressType].city.errorMessage,
-  );
-  const [errorMessageStreet, setErrorMessageStreet] = useState<string>(
-    state.registerPage.location[addressType].street.errorMessage,
-  );
-  const [errorMessagePostal, setErrorMessagePostal] = useState<string>(
-    state.registerPage.location[addressType].postal.errorMessage,
+  const [countryName, setCountryName] = useState<string>(
+    state.registerPage.location[props.type].find((item) => item.type === 'country')!.value,
   );
 
   const toggleCountry = () => {
     countryRef.current?.classList.toggle(s.active);
     addressRef.current?.classList.toggle(s.hidden);
   };
+
   const changeCountry = (country: string) => {
     toggleCountry();
-    state.registerPage.location[props.type].country.value = country;
-    if (props.type === 'billing') {
-      addLocationValue(props.type, 'postal', postalBillingRef.current!.value);
-    } else {
-      addLocationValue(props.type, 'postal', postalShippingRef.current!.value);
-    }
-    const error = state.registerPage.location[props.type].postal.errorMessage;
-    if (error === 'must be filled') {
-      state.registerPage.location[props.type].postal.errorMessage = '';
-    } else {
-      setErrorMessagePostal(error);
-    }
-    props.values.setCountry(country);
+    state.registerPage.location[props.type].find((item) => item.type === 'country')!.value =
+      country;
+    setCountryName(country);
   };
-  const changeAddressValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const target = e.target as HTMLInputElement;
-    if (defaultAddress) {
-      makeValideDefault();
-    }
-    if (target.id && (target.id === 'city' || target.id === 'street' || target.id === 'postal')) {
-      addLocationValue(props.type, target.id, target.value);
-      if (target.id === 'city') {
-        const value = state.registerPage.location[props.type].city.value;
-        props.values.setCity(value);
-        const error = state.registerPage.location[props.type].city.errorMessage;
-        setErrorMessageCity(error);
-      } else if (target.id === 'street') {
-        const value = state.registerPage.location[props.type].street.value;
-        props.values.setStreet(value);
-        const error = state.registerPage.location[props.type].street.errorMessage;
-        setErrorMessageStreet(error);
-      } else {
-        const value = state.registerPage.location[props.type].postal.value;
-        props.values.setPostal(value);
-        const error = state.registerPage.location[props.type].postal.errorMessage;
-        setErrorMessagePostal(error);
-      }
-    }
-  };
+
+  // const changeAddressValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const target = e.target as HTMLInputElement;
+  //   if (defaultAddress) {
+  //     makeValideDefault();
+  //   }
+  //   if (target.id && (target.id === 'city' || target.id === 'street' || target.id === 'postal')) {
+  //     addLocationValue(props.type, target.id, target.value);
+  //     if (target.id === 'city') {
+  //       const value = state.registerPage.location[props.type].city.value;
+  //       props.values.setCity(value);
+  //       const error = state.registerPage.location[props.type].city.errorMessage;
+  //       setErrorMessageCity(error);
+  //     } else if (target.id === 'street') {
+  //       const value = state.registerPage.location[props.type].street.value;
+  //       props.values.setStreet(value);
+  //       const error = state.registerPage.location[props.type].street.errorMessage;
+  //       setErrorMessageStreet(error);
+  //     } else {
+  //       const value = state.registerPage.location[props.type].postal.value;
+  //       props.values.setPostal(value);
+  //       const error = state.registerPage.location[props.type].postal.errorMessage;
+  //       setErrorMessagePostal(error);
+  //     }
+  //   }
+  // };
   return (
     <div className={s.address_wrapper}>
       <div
@@ -77,7 +60,7 @@ const AddressField = (props: LocationValueType) => {
           if (!props.default) toggleCountry();
         }}
       >
-        <p className={s.content}>{props.values.country}</p>
+        <p className={s.content}>{countryName}</p>
         <img src={imageUrl} alt='arrow' className={s.arrow} />
       </div>
       <div className={s.country_fields + ' ' + s.hidden} ref={addressRef}>
@@ -88,7 +71,10 @@ const AddressField = (props: LocationValueType) => {
           Spain
         </p>
       </div>
-      <input
+      <LocationInput id='city' plshldr='City' addressType={props.type} />
+      <LocationInput id='street' plshldr='Street' addressType={props.type} />
+      <LocationInput id='postal' plshldr='Postal code' addressType={props.type} />
+      {/* <input
         id='city'
         name='city'
         className={
@@ -136,7 +122,7 @@ const AddressField = (props: LocationValueType) => {
         onChange={changeAddressValue}
         ref={props.type === 'billing' ? postalBillingRef : postalShippingRef}
       ></input>
-      <p className={s.error_message}>{errorMessagePostal}</p>
+      <p className={s.error_message}>{errorMessagePostal}</p> */}
     </div>
   );
 };

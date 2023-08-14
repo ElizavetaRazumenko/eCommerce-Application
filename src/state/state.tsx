@@ -27,7 +27,7 @@ import onionUrl from '../assets/sauces/onion.png';
 import sourcreamUrl from '../assets/sauces/sourcream.png';
 import sweetUrl from '../assets/sauces/sweet.png';
 import tomatoUrl from '../assets/sauces/tomato.png';
-import { FieldType } from '../types/types';
+import { FieldLocationType, FieldType } from '../types/types';
 
 const state = {
   mainPage: {
@@ -187,52 +187,58 @@ const state = {
       },
     ],
     location: {
-      billing: {
-        country: {
+      billing: [
+        {
+          type: 'country',
           value: 'Italy',
           errorMessage: '',
-          isValid: false,
+          isValid: true,
         },
-        city: {
+        {
+          type: 'city',
           value: '',
           errorMessage: '',
           isValid: false,
         },
-        street: {
+        {
+          type: 'street',
           value: '',
           errorMessage: '',
           isValid: false,
         },
-        postal: {
+        {
+          type: 'postal',
           value: '',
           errorMessage: '',
           isValid: false,
         },
-        isValid: false,
-      },
-      shipping: {
-        country: {
+      ],
+      shipping: [
+        {
+          type: 'country',
           value: 'Italy',
           errorMessage: '',
-          isValid: false,
+          isValid: true,
         },
-        city: {
+        {
+          type: 'city',
           value: '',
           errorMessage: '',
           isValid: false,
         },
-        street: {
+        {
+          type: 'street',
           value: '',
           errorMessage: '',
           isValid: false,
         },
-        postal: {
+        {
+          type: 'postal',
           value: '',
           errorMessage: '',
           isValid: false,
         },
-        isValid: false,
-      },
+      ],
     },
   },
 };
@@ -345,71 +351,56 @@ export const addInputValue = (id: string, value: string, inputType: string, page
   }
 };
 
-const checkPostalCode = (
-  field: { value: string; errorMessage: string; isValid: boolean },
-  type: 'billing' | 'shipping',
-) => {
-  const country = state.registerPage.location[type].country;
+const checkPostalCode = (field: FieldLocationType, typeAddress: 'billing' | 'shipping') => {
+  const country = state.registerPage.location[typeAddress].find(
+    (item) => item.type === 'country',
+  )!.value;
   const reg = /^\d+$/;
   if (!reg.test(field.value)) {
     field.errorMessage = 'must contain contain only digits';
     field.isValid = false;
   }
-  if (country.value === 'Spain') {
-    if (field.value.length !== 6) {
-      field.errorMessage = 'spain postal code must contain 6 digits';
-      field.isValid = false;
-    }
-  } else {
-    if (field.value.length !== 5) {
-      field.errorMessage = 'italy postal code must contain 5 digits';
-      field.isValid = false;
-    }
-  }
-};
-
-export const makeValideDefault = () => {
-  const shipping = state.registerPage.location.shipping;
-  const billing = state.registerPage.location.billing;
-
-  shipping.city.value = billing.city.value;
-  shipping.city.errorMessage = '';
-  shipping.city.isValid = true;
-
-  shipping.street.value = billing.street.value;
-  shipping.street.errorMessage = '';
-  shipping.street.isValid = true;
-
-  shipping.postal.value = billing.postal.value;
-  shipping.postal.errorMessage = '';
-  shipping.postal.isValid = true;
-
-  shipping.isValid = true;
-};
-
-export const isValide = (type: 'billing' | 'shipping') => {
-  const cityValid = state.registerPage.location[type].city.isValid;
-  const streetValid = state.registerPage.location[type].street.isValid;
-  const postalValid = state.registerPage.location[type].postal.isValid;
-  if (cityValid && streetValid && postalValid) {
-    state.registerPage.location[type].isValid = true;
-    return true;
-  }
-  return false;
-};
-
-export const addLocationValue = (
-  type: 'billing' | 'shipping',
-  property: 'city' | 'street' | 'postal',
-  value: string,
-) => {
-  const field = state.registerPage.location[type][property];
-  field.value = value;
-  field.errorMessage = '';
-  if (field.value.length === 0) {
-    field.errorMessage = 'must be filled';
+  if (country === 'Spain' && field.value.length !== 6) {
+    field.errorMessage = 'spain postal code must contain 6 digits';
     field.isValid = false;
-  } else field.isValid = true;
+  }
+  if (country === 'Italy' && field.value.length !== 5) {
+    field.errorMessage = 'italy postal code must contain 5 digits';
+    field.isValid = false;
+  }
+};
+
+// export const makeValideDefault = () => {
+//   const shipping = state.registerPage.location.shipping;
+//   const billing = state.registerPage.location.billing;
+
+//   shipping.city.value = billing.city.value;
+//   shipping.city.errorMessage = '';
+//   shipping.city.isValid = true;
+
+//   shipping.street.value = billing.street.value;
+//   shipping.street.errorMessage = '';
+//   shipping.street.isValid = true;
+
+//   shipping.postal.value = billing.postal.value;
+//   shipping.postal.errorMessage = '';
+//   shipping.postal.isValid = true;
+
+//   shipping.isValid = true;
+// };
+
+// export const isValide = (type: 'billing' | 'shipping') => {
+//   const cityValid = state.registerPage.location[type].city.isValid;
+//   const streetValid = state.registerPage.location[type].street.isValid;
+//   const postalValid = state.registerPage.location[type].postal.isValid;
+//   if (cityValid && streetValid && postalValid) {
+//     state.registerPage.location[type].isValid = true;
+//     return true;
+//   }
+//   return false;
+// };
+
+const checkTextLocationField = (field: FieldLocationType) => {
   if (field.value.match(/[0-9]/)) {
     field.errorMessage = 'must not contain numbers';
     field.isValid = false;
@@ -418,15 +409,24 @@ export const addLocationValue = (
     field.errorMessage = 'must not contain special characters';
     field.isValid = false;
   }
-  if (field.isValid) {
-    if (property === 'postal') {
-      checkPostalCode(field, type);
-    } else {
-      if (field.value.match(/[0-9]/)) {
-        field.errorMessage = 'must not contain numbers';
-        field.isValid = false;
-      }
-    }
+};
+
+export const addLocationValue = (
+  typeAddress: 'billing' | 'shipping',
+  type: 'city' | 'street' | 'postal',
+  value: string,
+) => {
+  const field = state.registerPage.location[typeAddress].find((item) => item.type === type)!;
+  field.value = value;
+  field.errorMessage = '';
+  if (field.value.length === 0) {
+    field.errorMessage = 'must be filled';
+    field.isValid = false;
+  } else field.isValid = true;
+  if (['city', 'street'].includes(field.type)) {
+    checkTextLocationField(field);
+  } else {
+    checkPostalCode(field, typeAddress);
   }
 };
 
