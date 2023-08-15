@@ -22,7 +22,7 @@ const AddressField = (props: LocationValueType) => {
     props.type === 'billing'
       ? props.states.setCountryB(country)
       : props.states.setCountryS(country);
-    if (!props.default && props.type === 'billing') {
+    if (!props.toggle && props.type === 'billing') {
       state.registerPage.location.shipping.find((item) => item.type === 'country')!.value = country;
       props.states.setCountryS(country);
     }

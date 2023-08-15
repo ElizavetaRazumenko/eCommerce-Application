@@ -103,9 +103,16 @@ const Location = () => {
   };
 
   const defailtAddressBehavior = () => {
-    stateObj.setCityS(stateObj.inputCityB);
-    stateObj.setStreetS(stateObj.inputStreetB);
-    stateObj.setPostalS(stateObj.inputPostalB);
+    stateObj.setCityS(
+      state.registerPage.location.billing.find((item) => item.type === 'city')!.value,
+    );
+    console.log(state.registerPage.location.billing.find((item) => item.type === 'city')!.value);
+    stateObj.setStreetS(
+      state.registerPage.location.billing.find((item) => item.type === 'street')!.value,
+    );
+    stateObj.setPostalS(
+      state.registerPage.location.billing.find((item) => item.type === 'postal')!.value,
+    );
     const fields = ['city', 'street', 'postal'];
     fields.forEach((field) => {
       const elem = state.registerPage.location.shipping.find((item) => item.type === field)!;
@@ -137,14 +144,20 @@ const Location = () => {
   };
 
   const checkForm = () => {
-    const isValideBilling = state.registerPage.location.billing.every((item) => item.isValid);
-    const isValideShipping = state.registerPage.location.shipping.every((item) => item.isValid);
-    if (!isValideBilling && !isValideShipping) {
-      setErrorMessage('incomplete billing and shipping address');
-    } else if (!isValideBilling) {
-      setErrorMessage('incomplete billing address');
-    } else if (!isValideShipping) {
-      setErrorMessage('incomplete shipping address');
+    const isValideBilling = state.registerPage.location.billing.find((item) => !item.isValid)!;
+    const isValideShipping = state.registerPage.location.shipping.find((item) => !item.isValid)!;
+    if (isValideBilling) {
+      if (isValideBilling.value === '') {
+        setErrorMessage(`empty field '${isValideBilling.type}' in billing address`);
+      } else {
+        setErrorMessage(`incorrect field '${isValideBilling.type}' in billing address`);
+      }
+    } else if (isValideShipping) {
+      if (isValideShipping.value === '') {
+        setErrorMessage(`empty field '${isValideShipping.type}' in shipping address`);
+      } else {
+        setErrorMessage(`incomplete field '${isValideShipping.type}' in shipping address`);
+      }
     } else {
       setErrorMessage('');
       toggleLocation();
@@ -165,7 +178,7 @@ const Location = () => {
             if (isDefault) defailtAddressBehavior();
           }}
         >
-          <AddressField type='billing' default={false} states={stateObj} />
+          <AddressField type='billing' default={false} states={stateObj} toggle={!isDefault} />
         </form>
         <label className={s.label_input}>
           Make this address as the default?
