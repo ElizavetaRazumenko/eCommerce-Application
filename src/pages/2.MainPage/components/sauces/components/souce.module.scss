@@ -18,18 +18,30 @@
     &:hover {
         margin: 15px 0 5px 5px;
     }
+
 }
+
 
 .sauce_price,
 .sauce_title {
     text-align: center;
     margin: 5px auto 0;
     color: $main-grey;
+    @media (max-width: 860px) {
+        // font-size: .8em;
+        // letter-spacing: .1px;
+ }
 }
 
 .sauce_title{
     font-size: 1.3rem;
+    @media (max-width: 860px) {
+        // font-size: .7em;
+        // letter-spacing: .1px;
+ }
+
 }
+
 
 .btn_add_sauce{
     font-weight: 700;
@@ -47,4 +59,14 @@
         color: $main-grey ;
         border: .1px solid $main-grey;
     }
+
+    @media (max-width: 860px) {
+        // font-size: .9rem;
+        // letter-spacing: .01px;
+        // font-size: .6rem;
+        // width: 65px;
+        // margin: 10px auto 0;
+        // height: 20px;
+        // font-weight: 700;
+ }
 }

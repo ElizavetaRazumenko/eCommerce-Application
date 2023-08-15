@@ -8,6 +8,12 @@
   background-position: center;
   padding-bottom: 20px;
 }
+@media (max-width: 465px) {
+  .pizza_item {
+    max-width: 270px;
+    font-size: 1rem;
+  }
+}
 
 .pizza_img {
   cursor: pointer;
@@ -16,8 +22,12 @@
   height: 275px;
   transition: 0.5s;
 }
-.pizza_img:hover {
-  transform: scale(1.02);
+@media (max-width: 465px) {
+  .pizza_img {
+    width: 260px;
+    height: 260px;
+    margin: 5px;
+  }
 }
 
 .pizza_name {

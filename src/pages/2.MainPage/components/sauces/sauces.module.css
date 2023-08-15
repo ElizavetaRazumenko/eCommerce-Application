@@ -19,8 +19,15 @@
 }
 @media (max-width: 860px) {
   .section_souce {
+    margin-top: 0;
+    padding: 0;
     background-size: 20%;
-    background-position: left 0 top 60%;
+    background-position: left 0 top 30%;
+  }
+}
+@media (max-width: 700px) {
+  .section_souce {
+    background: none;
   }
 }
 
@@ -43,6 +50,26 @@
     max-width: 600px;
     font-size: 1.5rem;
     letter-spacing: 1px;
+    padding-top: 0;
+  }
+}
+@media (max-width: 645px) {
+  .title_section {
+    padding-top: 0;
+    max-width: 500px;
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 530px) {
+  .title_section {
+    text-align: center;
+    font-size: 1rem;
+    letter-spacing: 0.7px;
+  }
+}
+@media (max-width: 380px) {
+  .title_section {
+    width: 300px;
   }
 }
 
@@ -60,7 +87,21 @@
 @media (max-width: 860px) {
   .select_souce {
     margin-top: 45px;
-    column-gap: 30px;
-    row-gap: 40px;
+    width: 480px;
+    column-gap: 20px;
+    row-gap: 20px;
+  }
+}
+@media (max-width: 645px) {
+  .select_souce {
+    column-gap: 10px;
+    width: 470px;
+  }
+}
+@media (max-width: 530px) {
+  .select_souce {
+    float: none;
+    margin: 45px auto 0;
+    width: 230px;
   }
 }/*# sourceMappingURL=sauces.module.css.map */

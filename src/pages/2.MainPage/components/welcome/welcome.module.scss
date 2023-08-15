@@ -9,13 +9,22 @@
     @media (max-width: 1199px) {
         min-height: 450px;
     }
-    // @media (max-width: 950px) {
-    //     min-height: 350px;
-    // }
     @media (max-width: 860px) {
         min-height: 350px;
-
     }
+    @media (max-width: 645px) {
+        background: none;
+        min-height: 250px;
+    }
+    // @media (max-width: 515px) {
+    //     min-height: 250px;
+    //     background-position: right 10px top 50px;
+    // }
+    // @media (max-width: 450px) {
+    //     min-height: 250px;
+    //     background-position: right 10px top 70px;
+    //     background: none;
+    // }
 
     .title_welcome {
         padding-top: 140px;
@@ -34,6 +43,16 @@
             max-width: 400px;
             font-size: 1.5rem;
             letter-spacing: 1px;
+        }
+        @media (max-width: 645px) {
+            padding-top: 40px;
+            max-width: 300px;
+            // letter-spacing: 1px;
+            font-size: 1.2rem;
+        }
+        @media (max-width: 515px) {
+            // max-width: 270px;
+            font-size: 1rem;
         }
     }
 
@@ -54,6 +73,15 @@
             margin-top: 30px;
             font-size: .8rem;
             max-width: 350px;
+        }
+        @media (max-width: 645px) {
+            margin-top: 30px;
+            font-size: .7rem;
+            max-width: 270px;
+        }
+        @media (max-width: 515px) {
+            margin-top: 20px;
+            min-width: 250px;
         }
     }
 }

@@ -15,6 +15,12 @@
     min-height: 350px;
   }
 }
+@media (max-width: 645px) {
+  .section_welcome {
+    background: none;
+    min-height: 250px;
+  }
+}
 .section_welcome .title_welcome {
   padding-top: 140px;
   max-width: 800px;
@@ -38,6 +44,18 @@
     letter-spacing: 1px;
   }
 }
+@media (max-width: 645px) {
+  .section_welcome .title_welcome {
+    padding-top: 40px;
+    max-width: 300px;
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 515px) {
+  .section_welcome .title_welcome {
+    font-size: 1rem;
+  }
+}
 .section_welcome .welcome_content {
   margin-top: 50px;
   font-size: 1.3rem;
@@ -59,5 +77,18 @@
     margin-top: 30px;
     font-size: 0.8rem;
     max-width: 350px;
+  }
+}
+@media (max-width: 645px) {
+  .section_welcome .welcome_content {
+    margin-top: 30px;
+    font-size: 0.7rem;
+    max-width: 270px;
+  }
+}
+@media (max-width: 515px) {
+  .section_welcome .welcome_content {
+    margin-top: 20px;
+    min-width: 250px;
   }
 }/*# sourceMappingURL=welcome.module.css.map */

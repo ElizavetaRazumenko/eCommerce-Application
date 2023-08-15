@@ -5,4 +5,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+@media (max-width: 340px) {
+  .container {
+    margin: 0;
+    padding: 0 auto;
+  }
 }/*# sourceMappingURL=App.module.css.map */

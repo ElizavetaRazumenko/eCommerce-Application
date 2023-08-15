@@ -16,8 +16,26 @@ body {
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-  background-image: url(./assets/svg/bg/noise_transparent@2x.png);
+  background: repeat url(./assets/svg/bg/noise_transparent@2x.png), no-repeat center 650px url("./assets/png/smoke.png");
   background-color: #211F20;
+}
+@media (max-width: 990px) {
+  body {
+    background: repeat url(./assets/svg/bg/noise_transparent@2x.png), no-repeat center 550px url("./assets/png/smoke.png");
+    background-color: #211F20;
+  }
+}
+
+body::-webkit-scrollbar {
+  width: 0;
+}
+
+body::-webkit-scrollbar-track {
+  background: none;
+}
+
+body::-webkit-scrollbar-thumb {
+  border: none;
 }
 
 code {
@@ -37,6 +55,7 @@ main {
   width: 100%;
   margin: 0 auto;
   height: 100%;
+  overflow-x: hidden;
 }
 @media (max-width: 1199px) {
   #root {

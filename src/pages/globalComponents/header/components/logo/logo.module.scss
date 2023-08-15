@@ -1,21 +1,22 @@
 @import '../../../../../globalVariables.scss';
 
 .logo_wrapper {
+  position: relative;
   cursor: pointer;
   width: auto;
   height: auto;
   text-decoration: none;
-
+    
 
   .logo_title {
-    margin: 0;
+    position: relative;
+    margin: 0 ;
     color: $main-light;
     font-size: 1.4rem;
     padding-top: 1.4rem;
     text-shadow: -1px -1px 0 $main-dark-color, 1px -1px 0 $main-dark-color, -1px 1px 0 $main-dark-color, 1px 1px 0 $main-dark-color;
   }
 }
-
 
 .app_logo {
   position: absolute;
@@ -34,6 +35,8 @@
   z-index: 1;
 }
 
+
+
 .subtitle,
 .parsley {
   letter-spacing: 1.07px;
@@ -45,6 +48,6 @@
   color: $color-parsley;
 }
 
-.space{
-  width: 20px;
-}
+// .space{
+//   width: 20px;
+// }

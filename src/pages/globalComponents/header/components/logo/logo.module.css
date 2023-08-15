@@ -1,10 +1,12 @@
 .logo_wrapper {
+  position: relative;
   cursor: pointer;
   width: auto;
   height: auto;
   text-decoration: none;
 }
 .logo_wrapper .logo_title {
+  position: relative;
   margin: 0;
   color: #D9D9D9;
   font-size: 1.4rem;
@@ -36,8 +38,4 @@
 
 .parsley {
   color: #adff2f;
-}
-
-.space {
-  width: 20px;
 }/*# sourceMappingURL=logo.module.css.map */

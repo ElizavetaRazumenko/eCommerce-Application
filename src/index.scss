@@ -31,6 +31,18 @@ body {
   }
 }
 
+body::-webkit-scrollbar {
+  width: 0;
+}
+
+body::-webkit-scrollbar-track {
+  background: none; 
+}
+
+body::-webkit-scrollbar-thumb {
+  border: none; 
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
@@ -48,23 +60,15 @@ main {
   width: 100%;
   margin: 0 auto;
   height: 100%;
+  overflow-x: hidden;
+
   @media (max-width: 1199px) {
     max-width: 90%;
- 
-
   }
-
 }
 
 .container {
   max-width: 1280px;
   margin: 0 auto;
-  @media (max-width: 1199px) {
-    // margin: 0 200px;
-    // box-sizing: content-box;
-    // max-width: 90%;
- 
 
-
-  }
 }

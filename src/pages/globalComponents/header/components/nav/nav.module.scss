@@ -1,17 +1,56 @@
 @import '../../../../../globalVariables.scss';
 
+
 .navigation_list {
     left: 10px;
     margin: 0;
     height: 75px;
-    display: flex;
+    display:flex;
     flex-direction: row;
     color: $main-light;
     max-width: 400px;
     gap: 30px;
     justify-content: space-between;
+    transition: 2s;
 
+    @media (max-width: 645px) {
+        padding: 30px 0 0 10px;
+        transform: translateX(300%);
+        top: 20px;
+        flex-direction: column;
+        gap: 20px;
+        justify-content: flex-start;
+        position: fixed;
+        height: 300px;
+        width: 200px;
+        background-color: #211F20;
+        border-radius: 20px;
+        z-index: 2;
+        transition: 2s;
+        box-shadow: 0 0 20px $main-light;
+        visibility: hidden;
+        left: auto;
+
+        }
 }
+
+.burger_menu_open{
+    @media (max-width: 645px) {
+
+        visibility: visible;
+        right: 10px;
+        position: fixed;
+        transform: translateX(0%);
+        transition: 2s;
+        background-image: url('../../../../../assets/png/slice.png');
+        background-size: 62%;
+        background-position: right 10px bottom 10px;
+        background-repeat: no-repeat;
+
+
+    }
+}
+
 
 .nav_item {
     height: 26px;
@@ -20,6 +59,10 @@
     border-bottom: 3px solid rgba(255, 255, 128, 0);
     align-self: center;
     list-style: none;
+
+    @media (max-width: 645px) {
+        margin: 0 auto 0 20px;
+    }
 
     .link {
         text-decoration: none;
@@ -42,6 +85,75 @@
 }
 
 .no_active_link {
-    border-bottom: 3px solid $color-parsley;
-    pointer-events: none;
+border-bottom: 3px solid $color-parsley;
+pointer-events: none;
+}
+
+.burger_btn {
+    display: none;
+    position: fixed;
+
+    @media (max-width: 645px) {
+        display: flex; 
+        right: 50px;
+        top: 47px;
+        flex-direction: column;
+        justify-content: right;
+        width: 40px;
+        height: 26px;
+        line-height: 47px;
+        z-index: 2;
+    }
+}
+    
+
+.burger_line {
+    width: inherit;
+    position: absolute;
+    height: 1px;
+    background: $main-light;
+}
+
+.burger_line_1{
+    transition: .3s;
+    top: 0;
+    transform: translateX(0);
+
+&.open_line{
+    top: -50%;
+    opacity: 0;
+    background: $color-parsley;
+}
+
+}
+.burger_line_2{
+    top: 33%; 
+    transition: 1s;
+
+        &.open_line{
+            top:47%;
+            transform: rotate(675deg);
+            background: $color-parsley;
+        }
+    }
+.burger_line_3{
+    bottom: 33%; 
+    transition: 1s;
+
+    &.open_line{
+        bottom: 47%;
+        transform: rotate(-675deg);
+        background: $color-parsley;
+    }
+}
+.burger_line_4{
+bottom: 0;
+transform: translateX(0);
+transition: .3s;
+
+    &.open_line{
+        background: $color-parsley;
+        bottom: -50%;
+        opacity: 0;
+        }
 }
