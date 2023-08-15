@@ -9,6 +9,16 @@
   font-weight: 700;
   margin: 80px 0 0 0;
 }
+@media (max-width: 645px) {
+  .error_wrapper .info {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 455px) {
+  .error_wrapper .info {
+    font-size: 1.5rem;
+  }
+}
 .error_wrapper .error {
   text-align: center;
   color: #D9D9D9;
@@ -16,4 +26,15 @@
   font-weight: 800;
   margin: 0 0 100px 0;
   background: url("../../assets/png/parsley2.png") no-repeat 62% 140%;
+}
+@media (max-width: 645px) {
+  .error_wrapper .error {
+    background: url("../../assets/png/parsley2.png") no-repeat 72% 60%;
+    font-size: 8rem;
+  }
+}
+@media (max-width: 520px) {
+  .error_wrapper .error {
+    background: url("../../assets/png/parsley2.png") no-repeat 92% 60%;
+  }
 }/*# sourceMappingURL=error.module.css.map */

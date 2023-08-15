@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["catalog.module.scss","../../globalVariables.scss"],"names":[],"mappings":"AAEA;EACI;EACA;EACA;;AAEA;EACI;EACA,OCLK;EDML;EACA","file":"catalog.module.css"}
+{"version":3,"sourceRoot":"","sources":["catalog.module.scss","../../globalVariables.scss"],"names":[],"mappings":"AAEA;EACI;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA,OCRK;EDSL;EACA;;AACA;EALJ;IAMQ;;;AAEH;EARL;IASQ;;;AAEH;EAXL;IAYQ","file":"catalog.module.css"}
