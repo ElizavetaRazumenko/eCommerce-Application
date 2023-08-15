@@ -46,8 +46,6 @@
         background-size: 62%;
         background-position: right 10px bottom 10px;
         background-repeat: no-repeat;
-
-
     }
 }
 
@@ -78,10 +76,8 @@
         &:hover {
             color: $white;
             border-bottom: 3px solid $color-parsley;
-    
         }
     }
-
 }
 
 .no_active_link {
@@ -127,7 +123,7 @@ pointer-events: none;
 
 }
 .burger_line_2{
-    top: 33%; 
+    top: 31.8%; 
     transition: 1s;
 
         &.open_line{
@@ -137,7 +133,7 @@ pointer-events: none;
         }
     }
 .burger_line_3{
-    bottom: 33%; 
+    bottom: 31.8%; 
     transition: 1s;
 
     &.open_line{

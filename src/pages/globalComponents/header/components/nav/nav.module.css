@@ -115,7 +115,7 @@
 }
 
 .burger_line_2 {
-  top: 33%;
+  top: 31.8%;
   transition: 1s;
 }
 .burger_line_2.open_line {
@@ -125,7 +125,7 @@
 }
 
 .burger_line_3 {
-  bottom: 33%;
+  bottom: 31.8%;
   transition: 1s;
 }
 .burger_line_3.open_line {

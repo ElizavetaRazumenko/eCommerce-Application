@@ -3,7 +3,7 @@ import s from './location.module.scss';
 const Location = () => {
   return (
     <div className={s.location_wrapper}>
-      <h3>Our location</h3>
+      <h3 className={s.footer_titles}>Our location</h3>
       <div className={s.links_wrapper}>
         <a
           className={s.adress}

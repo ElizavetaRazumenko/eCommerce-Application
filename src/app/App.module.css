@@ -6,9 +6,8 @@
   flex-direction: column;
   justify-content: space-between;
 }
-@media (max-width: 340px) {
+@media (max-width: 1199px) {
   .container {
-    margin: 0;
-    padding: 0 auto;
+    max-width: 90%;
   }
 }/*# sourceMappingURL=App.module.css.map */

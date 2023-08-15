@@ -50,12 +50,11 @@
     max-width: 600px;
     font-size: 1.5rem;
     letter-spacing: 1px;
-    padding-top: 0;
+    padding-top: 50px;
   }
 }
 @media (max-width: 645px) {
   .title_section {
-    padding-top: 0;
     max-width: 500px;
     font-size: 1.2rem;
   }

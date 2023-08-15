@@ -1,8 +1,11 @@
-footer {
+.footer {
   display: flex;
   justify-content: space-between;
-}
-
-.footer {
   padding-bottom: 50px;
+}
+@media (max-width: 645px) {
+  .footer {
+    flex-direction: column;
+    margin: 0 auto;
+  }
 }/*# sourceMappingURL=footer.module.css.map */

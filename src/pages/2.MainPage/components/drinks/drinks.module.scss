@@ -18,15 +18,14 @@
         background-size: 100%;
         margin-top: -250px;
     }
-    @media (max-width: 999px) {
+    @media (max-width: 645px) {
       background: none;
-        margin-top: 0;
     }
    
    
-    // @media (max-width: 999px) {
-    //     margin-top: -250px;
-    // }
+    @media (max-width: 530px) {
+        margin-top: 0;
+    }
 }
 
 .title_right{
