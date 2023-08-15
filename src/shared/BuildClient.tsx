@@ -5,7 +5,9 @@ import {
   type AuthMiddlewareOptions, // Required for auth
   type HttpMiddlewareOptions, // Required for sending HTTP requests
 } from '@commercetools/sdk-client-v2';
-import fetch from 'node-fetch';
+
+// import fetch from 'node-fetch';
+const fetch = require('node-fetch');
 
 const projectKey = '{projectKey}';
 const scopes = ['{scope}'];

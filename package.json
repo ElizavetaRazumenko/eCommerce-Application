@@ -2,6 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@commercetools/history-sdk": "^3.5.0",
     "@commercetools/importapi-sdk": "^4.6.2",
