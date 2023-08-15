@@ -106,7 +106,6 @@ const Location = () => {
     stateObj.setCityS(
       state.registerPage.location.billing.find((item) => item.type === 'city')!.value,
     );
-    console.log(state.registerPage.location.billing.find((item) => item.type === 'city')!.value);
     stateObj.setStreetS(
       state.registerPage.location.billing.find((item) => item.type === 'street')!.value,
     );
