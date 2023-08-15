@@ -122,7 +122,7 @@ const Location = () => {
   };
 
   const changeDefaultAddress = () => {
-    setIsDefault(!isDefault);
+    setIsDefault(checkboxRef.current!.checked);
     setErrorMessage('');
     if (!isDefault) {
       stateObj.setCountryS(stateObj.countryB);
