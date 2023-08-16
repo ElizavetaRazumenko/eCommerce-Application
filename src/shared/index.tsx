@@ -3,9 +3,28 @@ import { ApiRoot, createApiBuilderFromCtpClient } from '@commercetools/platform-
 import { ctpClient } from './BuildClient';
 
 // Create apiRoot from the imported ClientBuilder and include your Project key
-const apiRoot = createApiBuilderFromCtpClient(ctpClient).withProjectKey({
-  projectKey: '{projectKey}',
+export const apiRoot = createApiBuilderFromCtpClient(ctpClient).withProjectKey({
+  projectKey: 'ecommece-application',
 });
+
+try {
+  apiRoot
+    .me()
+    .signup()
+    .post({
+      body: {
+        email: 'razumenro99@mail.ru',
+        password: '123456L@3j',
+        firstName: 'Elizaveta',
+        lastName: 'Razumenko',
+        dateOfBirth: '1999-05-30',
+      },
+    })
+    .execute()
+    .then((data) => console.log(data));
+} catch (e) {
+  console.log(e);
+}
 
 // Example call to return Project information
 // This code has the same effect as sending a GET request to the commercetools Composable Commerce API without any endpoints.
