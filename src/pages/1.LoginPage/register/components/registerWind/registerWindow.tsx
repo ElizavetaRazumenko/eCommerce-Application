@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 
 import s from './registerWindow.module.scss';
 
+import { apiRoot } from '../../../../../shared';
 import state from '../../../../../state/state';
 import Field from '../../../components/field/field';
 import Toggler from '../../../components/toggler/toggler';
@@ -15,6 +16,7 @@ const RegisterWindow = () => {
     const isValidForm = state.registerPage.fieldData.find((field) => !field.isValid);
     const isValidBilling = state.registerPage.location.billing.find((field) => !field.isValid);
     const isValidShipping = state.registerPage.location.shipping.find((field) => !field.isValid);
+    console.log(isValidForm);
     if (isValidForm) {
       isValidForm.value === ''
         ? setErrorMessage(`field '${isValidForm.plshldr}' is empty`)
@@ -27,6 +29,8 @@ const RegisterWindow = () => {
       isValidShipping.value === ''
         ? setErrorMessage(`in Shippnig address field '${isValidShipping.type}' is empty`)
         : setErrorMessage(`in Shipping address field '${isValidShipping.type}' is not valid`);
+    } else {
+      apiRoot.get().execute();
     }
   };
   return (
