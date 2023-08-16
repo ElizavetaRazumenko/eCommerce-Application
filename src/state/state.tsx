@@ -265,7 +265,7 @@ const checkTextField = (field: FieldType) => {
       field.errorMessage = 'must not contain numbers';
       field.isValid = false;
     }
-    if (field.value.match(/[!@#$&*]/)) {
+    if (field.value.match(/[!@#$&*"'./|/\\+]/)) {
       field.errorMessage = 'must not contain special characters';
       field.isValid = false;
     }
@@ -314,7 +314,7 @@ const checkPassword = (field: FieldType) => {
 const checkDate = (field: FieldType) => {
   const re = /\d{4}(-)\d{2}\1\d{2}/g;
   if (!re.test(field.value)) {
-    field.errorMessage = 'incorrect date';
+    field.errorMessage = 'date must be in the form yyyy-mm-dd';
     field.isValid = false;
   }
   const currentYear = new Date().getFullYear();
@@ -331,6 +331,9 @@ const checkDate = (field: FieldType) => {
     field.isValid = false;
   } else if (age < 13) {
     field.errorMessage = 'registration of users over 13 years old';
+    field.isValid = false;
+  } else if (field.value.length > 10) {
+    field.errorMessage = 'date must be in the form yyyy-mm-dd';
     field.isValid = false;
   }
 };
@@ -375,7 +378,7 @@ const checkTextLocationField = (field: FieldLocationType) => {
     field.errorMessage = 'must not contain numbers';
     field.isValid = false;
   }
-  if (field.value.match(/[!@#$&*]/)) {
+  if (field.value.match(/[!@#$&*"'./|/\\+]/)) {
     field.errorMessage = 'must not contain special characters';
     field.isValid = false;
   }
