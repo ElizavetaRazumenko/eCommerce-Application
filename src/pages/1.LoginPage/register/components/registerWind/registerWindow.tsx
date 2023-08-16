@@ -16,6 +16,7 @@ const RegisterWindow = () => {
     const isValidForm = state.registerPage.fieldData.find((field) => !field.isValid);
     const isValidBilling = state.registerPage.location.billing.find((field) => !field.isValid);
     const isValidShipping = state.registerPage.location.shipping.find((field) => !field.isValid);
+    console.log(isValidForm);
     if (isValidForm) {
       isValidForm.value === ''
         ? setErrorMessage(`field '${isValidForm.plshldr}' is empty`)
@@ -28,22 +29,6 @@ const RegisterWindow = () => {
       isValidShipping.value === ''
         ? setErrorMessage(`in Shippnig address field '${isValidShipping.type}' is empty`)
         : setErrorMessage(`in Shipping address field '${isValidShipping.type}' is not valid`);
-    } else {
-      try {
-        await apiRoot
-          .customers()
-          .post({
-            body: {
-              email: 'razumenro99@mail.ru',
-              password: '123456L@3j',
-              firstName: 'Elizaveta',
-              lastName: 'Razumenko',
-            },
-          })
-          .execute();
-      } catch (e) {
-        console.log(e);
-      }
     }
   };
   return (
