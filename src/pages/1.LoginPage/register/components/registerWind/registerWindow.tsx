@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 
 import s from './registerWindow.module.scss';
 
+import { apiRoot } from '../../../../../shared/index';
 import state from '../../../../../state/state';
 import Field from '../../../components/field/field';
 import Toggler from '../../../components/toggler/toggler';
@@ -11,7 +12,7 @@ const RegisterWindow = () => {
   const formRef = useRef<HTMLDivElement>(null);
 
   const [errorMessage, setErrorMessage] = useState<string>('');
-  const checkSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const checkSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const isValidForm = state.registerPage.fieldData.find((field) => !field.isValid);
     const isValidBilling = state.registerPage.location.billing.find((field) => !field.isValid);
     const isValidShipping = state.registerPage.location.shipping.find((field) => !field.isValid);
@@ -27,6 +28,22 @@ const RegisterWindow = () => {
       isValidShipping.value === ''
         ? setErrorMessage(`in Shippnig address field '${isValidShipping.type}' is empty`)
         : setErrorMessage(`in Shipping address field '${isValidShipping.type}' is not valid`);
+    } else {
+      try {
+        await apiRoot
+          .customers()
+          .post({
+            body: {
+              email: 'razumenro99@mail.ru',
+              password: '123456L@3j',
+              firstName: 'Elizaveta',
+              lastName: 'Razumenko',
+            },
+          })
+          .execute();
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
   return (
