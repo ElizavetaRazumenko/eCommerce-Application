@@ -1,18 +1,53 @@
+import { useRef, useState } from 'react';
+
 import s from './loginWindow.module.scss';
 
-import Button from '../../../components/button/button';
+import state from '../../../../../state/state';
 import Field from '../../../components/field/field';
 import Toggler from '../../../components/toggler/toggler';
 
 const LoginWindow = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [errorMessage, setErrorMessage] = useState<string>('');
+
+  const deleteError = () => {
+    setErrorMessage('');
+  };
+
+  const checkSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const isValidForm = state.loginPage.fieldData.find((field) => !field.isValid);
+    if (isValidForm) {
+      isValidForm.value === ''
+        ? setErrorMessage(`field '${isValidForm.plshldr}' is empty`)
+        : setErrorMessage(`field '${isValidForm.plshldr}' is not valid`);
+    }
+  };
   return (
     <div className={s.login_window}>
       <Toggler />
-      <div className={s.field_wrapper}>
-        <Field plshldr='Username' classname='user' page='field_login' type='text' />
-        <Field plshldr='Password' classname='password' page='field_login' type='password' />
-      </div>
-      <Button content='Login' />
+      <form className={s.field_wrapper} ref={formRef} onSubmit={checkSubmit} onChange={deleteError}>
+        {state.loginPage.fieldData.map((data) => {
+          return (
+            <div key={data.id}>
+              <Field
+                id={data.id}
+                plshldr={data.plshldr}
+                classname={data.classname}
+                errorMessage={data.errorMessage}
+                page={data.page}
+                type={data.type}
+                value={data.value}
+                isValid={data.isValid}
+              />
+            </div>
+          );
+        })}
+        <p className={s.control}>{errorMessage}</p>
+        <button className={s.button}>
+          <span>Login</span>
+        </button>
+      </form>
     </div>
   );
 };

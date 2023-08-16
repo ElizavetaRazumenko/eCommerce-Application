@@ -24,6 +24,14 @@ const Nav = () => {
         </li>
         <li className={s.nav_item}>
           <NavLink
+            to='/details'
+            className={({ isActive }) => (isActive ? s.link + ' ' + s.no_active_link : s.link)}
+          >
+            Details
+          </NavLink>
+        </li>
+        <li className={s.nav_item}>
+          <NavLink
             to='/profile'
             className={({ isActive }) => (isActive ? s.link + ' ' + s.no_active_link : s.link)}
           >

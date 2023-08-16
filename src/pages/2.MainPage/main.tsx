@@ -6,15 +6,13 @@ import SectionSauces from './components/sauces/sauces';
 import SectionWelcome from './components/welcome/welcome';
 import s from './main.module.scss';
 
-import { stateTypeMain } from '../../types/types';
-
-const Main = (props: stateTypeMain) => {
+const Main = () => {
   return (
     <main className={s.main}>
       <SectionWelcome />
-      <SectionPizzas pizzasType={props.stateMain.pizzas} />
-      <SectionSauces saucesType={props.stateMain.souces} />
-      <SectionDrinks drinksType={props.stateMain.drinks} />
+      <SectionPizzas />
+      <SectionSauces />
+      <SectionDrinks />
     </main>
   );
 };

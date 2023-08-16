@@ -27,6 +27,7 @@ import onionUrl from '../assets/sauces/onion.png';
 import sourcreamUrl from '../assets/sauces/sourcream.png';
 import sweetUrl from '../assets/sauces/sweet.png';
 import tomatoUrl from '../assets/sauces/tomato.png';
+import { FieldLocationType, FieldType } from '../types/types';
 
 const state = {
   mainPage: {
@@ -108,6 +109,295 @@ const state = {
       },
     ],
   },
+  loginPage: {
+    fieldData: [
+      {
+        id: 1,
+        plshldr: 'Email',
+        classname: 'email',
+        page: 'login',
+        type: 'text',
+        errorMessage: '',
+        value: '',
+        isValid: false,
+      },
+      {
+        id: 2,
+        plshldr: 'Password',
+        classname: 'password',
+        page: 'login',
+        type: 'password',
+        errorMessage: '',
+        value: '',
+        isValid: false,
+      },
+    ],
+  },
+  registerPage: {
+    fieldData: [
+      {
+        id: 1,
+        plshldr: 'First name',
+        classname: 'user',
+        page: 'register',
+        type: 'text',
+        errorMessage: '',
+        value: '',
+        isValid: false,
+      },
+      {
+        id: 2,
+        plshldr: 'Last name',
+        classname: 'user',
+        page: 'register',
+        type: 'text',
+        errorMessage: '',
+        value: '',
+        isValid: false,
+      },
+      {
+        id: 3,
+        plshldr: 'Date of birth: yyyy-mm-dd',
+        classname: 'user',
+        page: 'register',
+        type: 'text',
+        errorMessage: '',
+        value: '',
+        isValid: false,
+      },
+      {
+        id: 4,
+        plshldr: 'Email',
+        classname: 'email',
+        page: 'register',
+        type: 'email',
+        errorMessage: '',
+        value: '',
+        isValid: false,
+      },
+      {
+        id: 5,
+        plshldr: 'Password',
+        classname: 'password',
+        page: 'register',
+        type: 'password',
+        errorMessage: '',
+        value: '',
+        isValid: false,
+      },
+    ],
+    location: {
+      billing: [
+        {
+          type: 'country',
+          value: 'Italy',
+          errorMessage: '',
+          isValid: true,
+        },
+        {
+          type: 'city',
+          value: '',
+          errorMessage: '',
+          isValid: false,
+        },
+        {
+          type: 'street',
+          value: '',
+          errorMessage: '',
+          isValid: false,
+        },
+        {
+          type: 'postal',
+          value: '',
+          errorMessage: '',
+          isValid: false,
+        },
+      ],
+      shipping: [
+        {
+          type: 'country',
+          value: 'Italy',
+          errorMessage: '',
+          isValid: true,
+        },
+        {
+          type: 'city',
+          value: '',
+          errorMessage: '',
+          isValid: false,
+        },
+        {
+          type: 'street',
+          value: '',
+          errorMessage: '',
+          isValid: false,
+        },
+        {
+          type: 'postal',
+          value: '',
+          errorMessage: '',
+          isValid: false,
+        },
+      ],
+    },
+  },
+};
+
+export const inputValues: string[][] = [];
+
+const findField = (id: number, page: string) => {
+  let field: FieldType;
+  if (page === 'login') {
+    field = state.loginPage.fieldData.find((item) => item.id === id) as FieldType;
+  } else {
+    field = state.registerPage.fieldData.find((item) => item.id === id) as FieldType;
+  }
+  return field;
+};
+
+const checkTextField = (field: FieldType) => {
+  if (field.value.length === 0) {
+    field.errorMessage = 'must be filled';
+    field.isValid = false;
+  } else field.isValid = true;
+  if (['First name', 'Last name'].includes(field.plshldr)) {
+    if (field.value.match(/[0-9]/)) {
+      field.errorMessage = 'must not contain numbers';
+      field.isValid = false;
+    }
+    if (field.value.match(/[!@#$&*]/)) {
+      field.errorMessage = 'must not contain special characters';
+      field.isValid = false;
+    }
+  }
+};
+
+const checkEmail = (field: FieldType) => {
+  const re = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
+  if (field.value.match(/\s/)) {
+    field.errorMessage = 'must not contain spaces';
+    field.isValid = false;
+  } else if (!field.value.includes('@')) {
+    field.errorMessage = 'must contain @';
+    field.isValid = false;
+  } else if (!field.value.includes('.')) {
+    field.errorMessage = 'must contain a domain name';
+    field.isValid = false;
+  } else if (!re.test(field.value)) {
+    field.errorMessage = 'incorrect email form';
+    field.isValid = false;
+  }
+};
+
+const checkPassword = (field: FieldType) => {
+  if (field.value.length < 8) {
+    field.errorMessage = 'must be at least 8 characters long';
+    field.isValid = false;
+  } else if (!field.value.match(/[A-Z]/)) {
+    field.errorMessage = 'must contain at least one capital letter (AZ)';
+    field.isValid = false;
+  } else if (!field.value.match(/[a-z]/)) {
+    field.errorMessage = 'must contain at least one lowercase letter (az)';
+    field.isValid = false;
+  } else if (!field.value.match(/\d/)) {
+    field.errorMessage = 'must contain at least one number';
+    field.isValid = false;
+  } else if (!field.value.match(/[!@#$&*]/)) {
+    field.errorMessage = 'must contain at least one special character';
+    field.isValid = false;
+  } else if (field.value.trim() !== field.value) {
+    field.errorMessage = 'must not contain leading or trailing spaces';
+    field.isValid = false;
+  }
+};
+
+const checkDate = (field: FieldType) => {
+  const re = /\d{4}(-)\d{2}\1\d{2}/g;
+  if (!re.test(field.value)) {
+    field.errorMessage = 'incorrect date';
+    field.isValid = false;
+  }
+  const currentYear = new Date().getFullYear();
+  const date = field.value.slice(8);
+  const mounth = field.value.slice(5, 7);
+  const year = field.value.slice(0, 4);
+  const userBirthday = new Date(`${currentYear}-${mounth}-${date}`);
+  let age = currentYear - +year;
+  if (new Date() < userBirthday) {
+    age = age - 1;
+  }
+  if (currentYear - +year < 0) {
+    field.errorMessage = 'you cannot be born in the future';
+    field.isValid = false;
+  } else if (age < 13) {
+    field.errorMessage = 'registration of users over 13 years old';
+    field.isValid = false;
+  }
+};
+
+export const addInputValue = (id: string, value: string, inputType: string, page: string) => {
+  const field = findField(+id, page);
+  field.value = value;
+  field.errorMessage = '';
+  checkTextField(field);
+  if (field.isValid) {
+    if (inputType === 'email') {
+      checkEmail(field);
+    } else if (inputType === 'password') {
+      checkPassword(field);
+    } else if (inputType.startsWith('date of')) {
+      checkDate(field);
+    }
+  }
+};
+
+const checkPostalCode = (field: FieldLocationType, typeAddress: 'billing' | 'shipping') => {
+  const country = state.registerPage.location[typeAddress].find(
+    (item) => item.type === 'country',
+  )!.value;
+  const reg = /^\d+$/;
+  if (!reg.test(field.value)) {
+    field.errorMessage = 'must contain contain only digits';
+    field.isValid = false;
+  }
+  if (country === 'Spain' && field.value.length !== 6) {
+    field.errorMessage = 'spain postal code must contain 6 digits';
+    field.isValid = false;
+  }
+  if (country === 'Italy' && field.value.length !== 5) {
+    field.errorMessage = 'italy postal code must contain 5 digits';
+    field.isValid = false;
+  }
+};
+
+const checkTextLocationField = (field: FieldLocationType) => {
+  if (field.value.match(/[0-9]/)) {
+    field.errorMessage = 'must not contain numbers';
+    field.isValid = false;
+  }
+  if (field.value.match(/[!@#$&*]/)) {
+    field.errorMessage = 'must not contain special characters';
+    field.isValid = false;
+  }
+};
+
+export const addLocationValue = (
+  typeAddress: 'billing' | 'shipping',
+  type: 'city' | 'street' | 'postal',
+  value: string,
+) => {
+  const field = state.registerPage.location[typeAddress].find((item) => item.type === type)!;
+  field.value = value;
+  field.errorMessage = '';
+  if (field.value.length === 0) {
+    field.errorMessage = 'must be filled';
+    field.isValid = false;
+  } else field.isValid = true;
+  if (['city', 'street'].includes(field.type)) {
+    checkTextLocationField(field);
+  } else {
+    checkPostalCode(field, typeAddress);
+  }
 };
 
 export default state;

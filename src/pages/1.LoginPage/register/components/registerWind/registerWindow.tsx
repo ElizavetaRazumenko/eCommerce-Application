@@ -1,36 +1,60 @@
+import { useRef, useState } from 'react';
+
 import s from './registerWindow.module.scss';
 
-import Button from '../../../components/button/button';
+import state from '../../../../../state/state';
 import Field from '../../../components/field/field';
 import Toggler from '../../../components/toggler/toggler';
 import Location from '../location/location';
 
 const RegisterWindow = () => {
+  const formRef = useRef<HTMLDivElement>(null);
+
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const checkSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const isValidForm = state.registerPage.fieldData.find((field) => !field.isValid);
+    const isValidBilling = state.registerPage.location.billing.find((field) => !field.isValid);
+    const isValidShipping = state.registerPage.location.shipping.find((field) => !field.isValid);
+    if (isValidForm) {
+      isValidForm.value === ''
+        ? setErrorMessage(`field '${isValidForm.plshldr}' is empty`)
+        : setErrorMessage(`field '${isValidForm.plshldr}' is not valid`);
+    } else if (isValidBilling) {
+      isValidBilling.value === ''
+        ? setErrorMessage(`in Billing address field '${isValidBilling.type}' is empty`)
+        : setErrorMessage(`in Billing address field '${isValidBilling.type}' is not valid`);
+    } else if (isValidShipping) {
+      isValidShipping.value === ''
+        ? setErrorMessage(`in Shippnig address field '${isValidShipping.type}' is empty`)
+        : setErrorMessage(`in Shipping address field '${isValidShipping.type}' is not valid`);
+    }
+  };
   return (
     <div className={s.register_window}>
       <Toggler />
-      <div className={s.field_wrapper}>
-        <Field plshldr='Username' classname='user' page='field_register' type='text' />
-        <Field plshldr='First name' classname='user' page='field_register' type='text' />
-        <Field
-          plshldr='Date of birth: dd.mm.yy'
-          classname='user_no_magrin'
-          page='field_register'
-          type='text'
-        />
-        <p className={s.invalide + ' ' + s.control}>enter the date in the required format</p>
+      <div className={s.field_wrapper} ref={formRef}>
+        {state.registerPage.fieldData.map((data) => {
+          return (
+            <div key={data.id}>
+              <Field
+                id={data.id}
+                plshldr={data.plshldr}
+                classname={data.classname}
+                errorMessage={data.errorMessage}
+                page={data.page}
+                type={data.type}
+                value={data.value}
+                isValid={data.isValid}
+              />
+            </div>
+          );
+        })}
         <Location />
-        <Field plshldr='Email' classname='email' page='field_register' type='email' />
-        <p className={s.invalide + ' ' + s.control}>invalid email address</p>
-        <Field
-          plshldr='Password'
-          classname='password_no_magrin'
-          page='field_register'
-          type='password'
-        />
-        <p className={s.invalide + ' ' + s.control}>password must contain special characters</p>
+        <p className={s.control}>{errorMessage}</p>
+        <button className={s.button} onClick={checkSubmit}>
+          <span>Register</span>
+        </button>
       </div>
-      <Button content='Register' />
     </div>
   );
 };
