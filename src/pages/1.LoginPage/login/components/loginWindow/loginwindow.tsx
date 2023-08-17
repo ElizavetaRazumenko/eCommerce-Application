@@ -1,5 +1,7 @@
 import { useRef, useState } from 'react';
 
+import { useNavigate } from 'react-router';
+
 import s from './loginWindow.module.scss';
 
 import { apiRoot2 } from '../../../../../shared';
@@ -10,6 +12,7 @@ import Toggler from '../../../components/toggler/toggler';
 const LoginWindow = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const navigate = useNavigate();
 
   const deleteError = () => {
     setErrorMessage('');
@@ -34,6 +37,7 @@ const LoginWindow = () => {
             },
           })
           .execute();
+        navigate('/');
       } catch (e) {
         if (e instanceof Error) {
           console.log(e.message);

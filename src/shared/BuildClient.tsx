@@ -52,7 +52,7 @@ const loginMiddlewareOptions: PasswordAuthMiddlewareOptions = {
       password: '123456L@3j',
     },
   },
-  scopes: [`manage_project:${projectKey}`],
+  scopes: [`manage_my_profile:${projectKey}`],
   fetch,
 };
 export const ctpClient = new ClientBuilder()
