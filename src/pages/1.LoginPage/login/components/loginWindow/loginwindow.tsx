@@ -48,6 +48,7 @@ const LoginWindow = () => {
     }
   };
   return (
+
     <div className={s.wrapper}>
       <div className={s.login_window}>
         <Toggler />

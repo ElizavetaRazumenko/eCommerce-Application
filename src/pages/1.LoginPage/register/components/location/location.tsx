@@ -6,16 +6,17 @@ import s from './location.module.scss';
 
 import imageurl from '../../../../../assets/png/downArrow.png';
 import state from '../../../../../state/state';
+import { LocationPropsType } from '../../../../../types/types';
 import AddressField from '../address/addressField';
 
-const Location = () => {
+const Location = (props: LocationPropsType) => {
   const locationWrapperRef = React.useRef<HTMLDivElement>(null);
   const locationRef = React.useRef<HTMLDivElement>(null);
   const checkboxRef = React.useRef<HTMLInputElement>(null);
   const formShippingRef = React.useRef<HTMLFormElement>(null);
 
   const [errorMessage, setErrorMessage] = useState<string>('');
-  const [isDefault, setIsDefault] = useState<boolean>(false);
+  const [isOneAddress, setIsOneAddress] = useState<boolean>(false);
 
   const toggleLocation = () => {
     locationRef.current?.classList.toggle(s.active);
@@ -128,9 +129,9 @@ const Location = () => {
   };
 
   const changeDefaultAddress = () => {
-    setIsDefault(checkboxRef.current!.checked);
+    setIsOneAddress(checkboxRef.current!.checked);
     setErrorMessage('');
-    if (!isDefault) {
+    if (!isOneAddress) {
       stateObj.setCountryS(stateObj.countryB);
       state.registerPage.location.shipping.find((item) => item.type === 'country')!.value =
         stateObj.countryB;
@@ -163,6 +164,18 @@ const Location = () => {
     }
   };
 
+  const setDefaultBilling = () => {
+    props.defaultSetting.defaultBilling === 'no'
+      ? props.defaultSetting.setdDefaultBilling('yes')
+      : props.defaultSetting.setdDefaultBilling('no');
+  };
+
+  const setDefaultShipping = () => {
+    props.defaultSetting.defaultShipping === 'no'
+      ? props.defaultSetting.setdDefaultShipping('yes')
+      : props.defaultSetting.setdDefaultShipping('no');
+  };
+
   return (
     <div className={s.wrapper}>
       <div className={s.location_select} ref={locationRef} onClick={toggleLocation}>
@@ -174,19 +187,37 @@ const Location = () => {
         <form
           onChange={() => {
             setErrorMessage('');
-            if (isDefault) defailtAddressBehavior();
+            if (isOneAddress) defailtAddressBehavior();
           }}
         >
-          <AddressField type='billing' default={false} states={stateObj} toggle={!isDefault} />
+          <AddressField
+            type='billing'
+            isOneAddress={false}
+            states={stateObj}
+            toggle={!isOneAddress}
+          />
         </form>
         <label className={s.label_input}>
-          Make this address as the default?
-          <input type='checkbox' name='address' onChange={changeDefaultAddress} ref={checkboxRef} />
+          use as default
+          <input type='checkbox' name='default_billing' onClick={setDefaultBilling} />
+        </label>
+        <label className={s.label_input}>
+          use for shipping address
+          <input
+            type='checkbox'
+            name='one_adress'
+            onChange={changeDefaultAddress}
+            ref={checkboxRef}
+          />
         </label>
         <p className={s.address_name}>Shipping address</p>
         <form onChange={() => setErrorMessage('')} ref={formShippingRef}>
-          <AddressField type='shipping' default={isDefault} states={stateObj} />
+          <AddressField type='shipping' isOneAddress={isOneAddress} states={stateObj} />
         </form>
+        <label className={s.label_input}>
+          use as default
+          <input type='checkbox' name='default_shipping' onClick={setDefaultShipping} />
+        </label>
         <p className={s.error}>{errorMessage}</p>
         <div className={s.button_done} onClick={checkForm}>
           <p className={s.content}>Done</p>

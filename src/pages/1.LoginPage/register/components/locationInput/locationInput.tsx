@@ -22,8 +22,8 @@ const LocationInput = (props: InputLocationPropsType) => {
       <input
         type='text'
         className={
-          props.default
-            ? s.input + ' ' + s.default
+          props.isOneAddress
+            ? s.input + ' ' + s.one_address
             : props.errorValue === ''
             ? s.input
             : s.input + ' ' + s.invalid

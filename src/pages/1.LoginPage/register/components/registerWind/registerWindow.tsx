@@ -1,6 +1,9 @@
 import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import s from './registerWindow.module.scss';
+
+import { requestBody } from './utils/utils';
 
 import { apiRoot } from '../../../../../shared/index';
 import state from '../../../../../state/state';
@@ -10,70 +13,86 @@ import Location from '../location/location';
 
 const RegisterWindow = () => {
   const formRef = useRef<HTMLDivElement>(null);
-
+  const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const [successMessage, setSuccessMessage] = useState<string>('');
+  const [useAsDefaultBilling, setAsDefaultBilling] = useState<string>('');
+  const [useAsDefaultShipping, setAsDefaultShipping] = useState<string>('');
+
+  const requestSettings = {
+    defaultBilling: useAsDefaultBilling,
+    setdDefaultBilling: setAsDefaultBilling,
+    defaultShipping: useAsDefaultShipping,
+    setdDefaultShipping: setAsDefaultShipping,
+  };
+
+  const deleteError = () => setErrorMessage('');
+
   const checkSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    const isValidForm = state.registerPage.fieldData.find((field) => !field.isValid);
-    const isValidBilling = state.registerPage.location.billing.find((field) => !field.isValid);
-    const isValidShipping = state.registerPage.location.shipping.find((field) => !field.isValid);
-    if (isValidForm) {
-      isValidForm.value === ''
-        ? setErrorMessage(`field '${isValidForm.plshldr}' is empty`)
-        : setErrorMessage(`field '${isValidForm.plshldr}' is not valid`);
-    } else if (isValidBilling) {
-      isValidBilling.value === ''
-        ? setErrorMessage(`in Billing address field '${isValidBilling.type}' is empty`)
-        : setErrorMessage(`in Billing address field '${isValidBilling.type}' is not valid`);
-    } else if (isValidShipping) {
-      isValidShipping.value === ''
-        ? setErrorMessage(`in Shippnig address field '${isValidShipping.type}' is empty`)
-        : setErrorMessage(`in Shipping address field '${isValidShipping.type}' is not valid`);
+    const invalidForm = state.registerPage.fieldData.find((field) => !field.isValid);
+    const invalidBilling = state.registerPage.location.billing.find((field) => !field.isValid);
+    const invalidShipping = state.registerPage.location.shipping.find((field) => !field.isValid);
+    if (invalidForm) {
+      invalidForm.value === ''
+        ? setErrorMessage(`field '${invalidForm.plshldr}' is empty`)
+        : setErrorMessage(`field '${invalidForm.plshldr}' is not valid`);
+    } else if (invalidBilling) {
+      invalidBilling.value === ''
+        ? setErrorMessage(`in Billing address field '${invalidBilling.type}' is empty`)
+        : setErrorMessage(`in Billing address field '${invalidBilling.type}' is not valid`);
+    } else if (invalidShipping) {
+      invalidShipping.value === ''
+        ? setErrorMessage(`in Shippnig address field '${invalidShipping.type}' is empty`)
+        : setErrorMessage(`in Shipping address field '${invalidShipping.type}' is not valid`);
     } else {
       try {
         await apiRoot
-          .me()
-          .signup()
+          .customers()
           .post({
-            body: {
-              email: 'razumenko99@mail.ru',
-              password: '123456L@3j',
-              firstName: 'Elizaveta',
-              lastName: 'Razumenko',
-              dateOfBirth: '1999-05-30',
-            },
+            body: requestBody(requestSettings.defaultBilling, requestSettings.defaultShipping),
           })
           .execute();
+        setSuccessMessage('Successfully');
+        setTimeout(() => navigate('/'), 700);
       } catch (e) {
-        console.log(e);
+        if (e instanceof Error) {
+          if (e.message !== '') {
+            setErrorMessage(e.message);
+          }
+        }
       }
     }
   };
   return (
-    <div className={s.register_window}>
-      <Toggler />
-      <div className={s.field_wrapper} ref={formRef}>
-        {state.registerPage.fieldData.map((data) => {
-          return (
-            <div key={data.id}>
-              <Field
-                id={data.id}
-                plshldr={data.plshldr}
-                classname={data.classname}
-                errorMessage={data.errorMessage}
-                page={data.page}
-                type={data.type}
-                value={data.value}
-                isValid={data.isValid}
-              />
-            </div>
-          );
-        })}
-        <Location />
-        <p className={s.control}>{errorMessage}</p>
-        <button className={s.button} onClick={checkSubmit}>
-          <span>Register</span>
-        </button>
+    <div className={s.wrapper}>
+      <div className={s.register_window}>
+        <Toggler />
+        <div className={s.field_wrapper} ref={formRef}>
+          {state.registerPage.fieldData.map((data) => {
+            return (
+              <div key={data.id} onChange={deleteError}>
+                <Field
+                  id={data.id}
+                  name={data.plshldr}
+                  plshldr={data.plshldr}
+                  classname={data.classname}
+                  errorMessage={data.errorMessage}
+                  page={data.page}
+                  type={data.type}
+                  value={data.value}
+                  isValid={data.isValid}
+                />
+              </div>
+            );
+          })}
+          <Location defaultSetting={requestSettings} />
+          <p className={s.control}>{errorMessage}</p>
+          <button className={s.button} onClick={checkSubmit}>
+            <span>Register</span>
+          </button>
+        </div>
       </div>
+      <p className={s.notification}>{successMessage}</p>
     </div>
   );
 };
