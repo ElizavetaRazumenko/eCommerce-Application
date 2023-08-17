@@ -12,6 +12,7 @@ import Toggler from '../../../components/toggler/toggler';
 const LoginWindow = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const [successMessage, setSuccessMessage] = useState<string>('');
   const navigate = useNavigate();
 
   const deleteError = () => {
@@ -32,44 +33,53 @@ const LoginWindow = () => {
           .login()
           .post({
             body: {
-              email: 'razumenko99@mail.ru',
-              password: '123456L@3j',
+              email: state.loginPage.fieldData.find((el) => el.classname === 'email')!.value,
+              password: state.loginPage.fieldData.find((el) => el.classname === 'password')!.value,
             },
           })
           .execute();
-        navigate('/');
+        setSuccessMessage('Successfully');
+        setTimeout(() => navigate('/'), 700);
       } catch (e) {
         if (e instanceof Error) {
-          console.log(e.message);
+          setErrorMessage(e.message);
         }
       }
     }
   };
   return (
-    <div className={s.login_window}>
-      <Toggler />
-      <form className={s.field_wrapper} ref={formRef} onSubmit={checkSubmit} onChange={deleteError}>
-        {state.loginPage.fieldData.map((data) => {
-          return (
-            <div key={data.id}>
-              <Field
-                id={data.id}
-                plshldr={data.plshldr}
-                classname={data.classname}
-                errorMessage={data.errorMessage}
-                page={data.page}
-                type={data.type}
-                value={data.value}
-                isValid={data.isValid}
-              />
-            </div>
-          );
-        })}
-        <p className={s.control}>{errorMessage}</p>
-        <button className={s.button}>
-          <span>Login</span>
-        </button>
-      </form>
+    <div className={s.wrapper}>
+      <div className={s.login_window}>
+        <Toggler />
+        <form
+          className={s.field_wrapper}
+          ref={formRef}
+          onSubmit={checkSubmit}
+          onChange={deleteError}
+        >
+          {state.loginPage.fieldData.map((data) => {
+            return (
+              <div key={data.id}>
+                <Field
+                  id={data.id}
+                  plshldr={data.plshldr}
+                  classname={data.classname}
+                  errorMessage={data.errorMessage}
+                  page={data.page}
+                  type={data.type}
+                  value={data.value}
+                  isValid={data.isValid}
+                />
+              </div>
+            );
+          })}
+          <p className={s.control}>{errorMessage}</p>
+          <button className={s.button}>
+            <span>Login</span>
+          </button>
+        </form>
+      </div>
+      <p className={s.notification}>{successMessage}</p>
     </div>
   );
 };
