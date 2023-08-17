@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 
 import s from './loginWindow.module.scss';
 
+import { apiRoot2 } from '../../../../../shared';
 import state from '../../../../../state/state';
 import Field from '../../../components/field/field';
 import Toggler from '../../../components/toggler/toggler';
@@ -14,13 +15,30 @@ const LoginWindow = () => {
     setErrorMessage('');
   };
 
-  const checkSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const checkSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const isValidForm = state.loginPage.fieldData.find((field) => !field.isValid);
     if (isValidForm) {
       isValidForm.value === ''
         ? setErrorMessage(`field '${isValidForm.plshldr}' is empty`)
         : setErrorMessage(`field '${isValidForm.plshldr}' is not valid`);
+    } else {
+      try {
+        await apiRoot2
+          .me()
+          .login()
+          .post({
+            body: {
+              email: 'razumenko99@mail.ru',
+              password: '123456L@3j',
+            },
+          })
+          .execute();
+      } catch (e) {
+        if (e instanceof Error) {
+          console.log(e.message);
+        }
+      }
     }
   };
   return (
