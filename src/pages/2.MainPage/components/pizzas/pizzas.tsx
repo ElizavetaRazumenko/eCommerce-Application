@@ -27,7 +27,7 @@ const SectionPizzas = () => {
         return newIndex;
       });
       setIsAnimating(false);
-    }, 1000);
+    }, 900);
   };
 
   const clickLeft = (): void => {
@@ -42,7 +42,7 @@ const SectionPizzas = () => {
         return newIndex;
       });
       setIsAnimating(false);
-    }, 1000);
+    }, 900);
   };
 
   for (let i = startIndex - 1; i <= startIndex + itemsPerPage; i += 1) {
