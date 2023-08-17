@@ -21,4 +21,19 @@
     margin: 0 0 100px 0;
     background: url('../../assets/png/parsley2.png') no-repeat 62% 140%;
   }
+
+  .info,
+  .error {
+    @media (max-width: 860px) {
+      font-size: 2rem;
+   }  
+
+   @media (max-width: 520px) {
+      font-size: 1.5rem;
+   }  
+   
+   @media (max-width: 390px) {
+      font-size: 1.2rem;
+   } 
+  }
 }

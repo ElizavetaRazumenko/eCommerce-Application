@@ -3,7 +3,7 @@ import s from './questions.module.scss';
 const Question = () => {
   return (
     <div className={s.question_wrapper}>
-      <h3>For questions</h3>
+      <h3 className={s.footer_titles}>For questions</h3>
       <div className={s.links_wrapper}>
         <a className={s.email} href='mailto:pizza_italiano@food.com'>
           pizza_italiano@food.com

@@ -34,6 +34,10 @@
     &:focus {
         box-shadow: 0 0 20px $main-light;
     }
+
+    @media (max-width: 440px) {
+        font-size: .9rem;
+    }
 }
 
 .user {

@@ -56,6 +56,10 @@
         user-select: none;
         color: $input-placeholder;
         margin: 7px 0px;
+
+        @media (max-width: 440px) {
+            font-size: .9rem;
+        }
     }
 
     .arrow {

@@ -20,6 +20,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media (max-width: 440px) {
+        width: 290px;
+    }
 }
 
 .field_wrapper {
@@ -52,6 +56,7 @@
         background-color: $white;
     }
 }
+
 .control {
     box-sizing: border-box;
     width: auto;

@@ -5,10 +5,26 @@
     height: 100%;
     padding: 50px;
 
+    @media (max-width: 860px) {
+      padding: 50px 10px;
+   }
+
     .welcome {
         text-align: center;
         color: $main-light;
         font-size: 3rem;
         font-weight: 700;
+
+        @media (max-width: 860px) {
+            font-size: 2rem;
+         }  
+
+         @media (max-width: 520px) {
+            font-size: 1.5rem;
+         }  
+         
+         @media (max-width: 390px) {
+            font-size: 1.2rem;
+         } 
     }
 }
