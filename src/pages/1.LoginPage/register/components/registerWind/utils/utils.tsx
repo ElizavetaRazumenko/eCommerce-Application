@@ -9,7 +9,7 @@ export const getKey = () => {
   return result;
 };
 
-export const requestBody = (isDefaultBilling: boolean, isDefaultShipping: boolean) => {
+export const requestBody = (isDefaultBilling: string, isDefaultShipping: string) => {
   const keyBilling = getKey();
   const keyShipping = getKey();
   const dateOfBirth = state.registerPage.fieldData.find(
@@ -50,13 +50,13 @@ export const requestBody = (isDefaultBilling: boolean, isDefaultShipping: boolea
     billingAddresses: [0],
     shippingAddresses: [1],
   };
-  if (!isDefaultBilling && !isDefaultShipping) {
+  if (['yes'].includes(isDefaultBilling) && ['yes'].includes(isDefaultShipping)) {
     return body;
-  } else if (isDefaultBilling && isDefaultShipping) {
+  } else if (['', 'no'].includes(isDefaultBilling) && ['', 'no'].includes(isDefaultShipping)) {
     body.defaultBillingAddress = 0;
     body.defaultShippingAddress = 1;
     return body;
-  } else if (isDefaultShipping) {
+  } else if (['', 'no'].includes(isDefaultShipping)) {
     body.defaultShippingAddress = 1;
     return body;
   } else {

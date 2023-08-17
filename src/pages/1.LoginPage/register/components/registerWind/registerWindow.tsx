@@ -14,8 +14,8 @@ const RegisterWindow = () => {
   const formRef = useRef<HTMLDivElement>(null);
 
   const [errorMessage, setErrorMessage] = useState<string>('');
-  const [useAsDefaultBilling, setAsDefaultBilling] = useState<boolean>(false);
-  const [useAsDefaultShipping, setAsDefaultShipping] = useState<boolean>(false);
+  const [useAsDefaultBilling, setAsDefaultBilling] = useState<string>('');
+  const [useAsDefaultShipping, setAsDefaultShipping] = useState<string>('');
 
   const requestSettings = {
     defaultBilling: useAsDefaultBilling,
@@ -47,7 +47,7 @@ const RegisterWindow = () => {
         await apiRoot
           .customers()
           .post({
-            body: requestBody(useAsDefaultBilling, useAsDefaultShipping),
+            body: requestBody(requestSettings.defaultBilling, requestSettings.defaultShipping),
           })
           .execute();
       } catch (e) {

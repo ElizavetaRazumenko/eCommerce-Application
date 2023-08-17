@@ -164,6 +164,18 @@ const Location = (props: LocationPropsType) => {
     }
   };
 
+  const setDefaultBilling = () => {
+    props.defaultSetting.defaultBilling === 'no'
+      ? props.defaultSetting.setdDefaultBilling('yes')
+      : props.defaultSetting.setdDefaultBilling('no');
+  };
+
+  const setDefaultShipping = () => {
+    props.defaultSetting.defaultShipping === 'no'
+      ? props.defaultSetting.setdDefaultShipping('yes')
+      : props.defaultSetting.setdDefaultShipping('no');
+  };
+
   return (
     <div className={s.wrapper}>
       <div className={s.location_select} ref={locationRef} onClick={toggleLocation}>
@@ -187,7 +199,7 @@ const Location = (props: LocationPropsType) => {
         </form>
         <label className={s.label_input}>
           use as default
-          <input type='checkbox' name='default_billing' />
+          <input type='checkbox' name='default_billing' onClick={setDefaultBilling} />
         </label>
         <label className={s.label_input}>
           use for shipping address
@@ -204,7 +216,7 @@ const Location = (props: LocationPropsType) => {
         </form>
         <label className={s.label_input}>
           use as default
-          <input type='checkbox' name='default_shipping' />
+          <input type='checkbox' name='default_shipping' onClick={setDefaultShipping} />
         </label>
         <p className={s.error}>{errorMessage}</p>
         <div className={s.button_done} onClick={checkForm}>

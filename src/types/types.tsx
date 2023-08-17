@@ -138,10 +138,10 @@ export type FieldLocationType = {
 
 export type LocationPropsType = {
   defaultSetting: {
-    defaultBilling: boolean;
-    setdDefaultBilling: React.Dispatch<React.SetStateAction<boolean>>;
-    defaultShipping: boolean;
-    setdDefaultShipping: React.Dispatch<React.SetStateAction<boolean>>;
+    defaultBilling: string;
+    setdDefaultBilling: React.Dispatch<React.SetStateAction<string>>;
+    defaultShipping: string;
+    setdDefaultShipping: React.Dispatch<React.SetStateAction<string>>;
   };
 };
 
