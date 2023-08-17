@@ -1,7 +1,8 @@
 import {
   ClientBuilder,
   type AuthMiddlewareOptions, // Required for auth
-  type HttpMiddlewareOptions, // Required for sending HTTP requests
+  type HttpMiddlewareOptions,
+  PasswordAuthMiddlewareOptions, // Required for sending HTTP requests
 } from '@commercetools/sdk-client-v2';
 
 // import fetch from 'node-fetch';
@@ -40,8 +41,24 @@ const httpMiddlewareOptions: HttpMiddlewareOptions = {
   fetch,
 };
 
+const loginMiddlewareOptions: PasswordAuthMiddlewareOptions = {
+  host: `https://auth.europe-west1.gcp.commercetools.com/`,
+  projectKey: projectKey,
+  credentials: {
+    clientId: 'HgTug4REahFA11dVfXfn2FW3',
+    clientSecret: 'vdT50e1NqbdNH6Z2NhExia6lqwFfC8OT',
+    user: {
+      username: 'razumenko99@mail.ru',
+      password: '123456L@3j',
+    },
+  },
+  scopes: [`manage_my_profile:${projectKey}`],
+  fetch,
+};
 export const ctpClient = new ClientBuilder()
   .withClientCredentialsFlow(authMiddlewareOptions)
   .withHttpMiddleware(httpMiddlewareOptions)
   .withLoggerMiddleware()
   .build();
+
+export const client = new ClientBuilder().withPasswordFlow(loginMiddlewareOptions).build();
