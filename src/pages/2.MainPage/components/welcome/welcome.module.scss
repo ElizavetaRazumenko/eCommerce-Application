@@ -10,8 +10,13 @@
     @media (max-width: 1199px) {
         min-height: 450px;
     }
+    @media (max-width: 950px) {
+        background-position: right -10px top 30px;
+        min-height: 450px;
+    }
 
     @media (max-width: 860px) {
+        background-position: right -10px top 0px;
         min-height: 350px;
     }
 
