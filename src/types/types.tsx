@@ -65,6 +65,7 @@ export type FieldType = {
 
 export type InputLoginType = {
   id: number;
+  name: string;
   plshldr: string;
   classname: string;
   page: string;

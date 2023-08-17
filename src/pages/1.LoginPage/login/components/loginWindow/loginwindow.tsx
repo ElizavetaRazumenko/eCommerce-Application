@@ -32,6 +32,7 @@ const LoginWindow = () => {
             <div key={data.id}>
               <Field
                 id={data.id}
+                name={data.plshldr}
                 plshldr={data.plshldr}
                 classname={data.classname}
                 errorMessage={data.errorMessage}
