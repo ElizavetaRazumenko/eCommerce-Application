@@ -42,13 +42,14 @@ const LoginWindow = () => {
         setTimeout(() => navigate('/'), 700);
       } catch (e) {
         if (e instanceof Error) {
-          setErrorMessage(e.message);
+          if (e.message === 'Missing required user credentials (username, password)') {
+            setErrorMessage('Invalid email or password');
+          } else setErrorMessage(e.message);
         }
       }
     }
   };
   return (
-
     <div className={s.wrapper}>
       <div className={s.login_window}>
         <Toggler />
@@ -63,6 +64,7 @@ const LoginWindow = () => {
               <div key={data.id}>
                 <Field
                   id={data.id}
+                  name={data.plshldr}
                   plshldr={data.plshldr}
                   classname={data.classname}
                   errorMessage={data.errorMessage}

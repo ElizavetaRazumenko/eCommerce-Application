@@ -54,6 +54,7 @@ const Field = (props: InputLoginType) => {
           }
           value={inputValue}
           onChange={changeValue}
+          onPaste={changeValue}
           ref={inputRef}
         />
         <div

@@ -6,9 +6,9 @@ import state, { addLocationValue } from '../../../../../state/state';
 import { InputLocationPropsType } from '../../../../../types/types';
 
 const LocationInput = (props: InputLocationPropsType) => {
-  const changeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const target = e.target as HTMLInputElement;
-    addLocationValue(props.addressType, props.id, target.value);
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  const changeInputValue = () => {
+    addLocationValue(props.addressType, props.id, inputRef.current!.value);
     props.setStateValue(
       state.registerPage.location[props.addressType].find((item) => item.type === props.id)!.value,
     );
@@ -31,6 +31,8 @@ const LocationInput = (props: InputLocationPropsType) => {
         placeholder={props.plshldr}
         value={props.stateValue}
         onChange={changeInputValue}
+        onPaste={changeInputValue}
+        ref={inputRef}
       />
       <p className={s.error_message}>{props.errorValue}</p>
     </div>
