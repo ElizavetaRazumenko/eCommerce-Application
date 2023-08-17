@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import s from './registerWindow.module.scss';
 
@@ -12,8 +13,9 @@ import Location from '../location/location';
 
 const RegisterWindow = () => {
   const formRef = useRef<HTMLDivElement>(null);
-
+  const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const [successMessage, setSuccessMessage] = useState<string>('');
   const [useAsDefaultBilling, setAsDefaultBilling] = useState<string>('');
   const [useAsDefaultShipping, setAsDefaultShipping] = useState<string>('');
 
@@ -50,6 +52,8 @@ const RegisterWindow = () => {
             body: requestBody(requestSettings.defaultBilling, requestSettings.defaultShipping),
           })
           .execute();
+        setSuccessMessage('Successfully');
+        setTimeout(() => navigate('/'), 700);
       } catch (e) {
         if (e instanceof Error) {
           if (e.message !== '') {
@@ -60,32 +64,35 @@ const RegisterWindow = () => {
     }
   };
   return (
-    <div className={s.register_window}>
-      <Toggler />
-      <div className={s.field_wrapper} ref={formRef}>
-        {state.registerPage.fieldData.map((data) => {
-          return (
-            <div key={data.id} onChange={deleteError}>
-              <Field
-                id={data.id}
-                name={data.plshldr}
-                plshldr={data.plshldr}
-                classname={data.classname}
-                errorMessage={data.errorMessage}
-                page={data.page}
-                type={data.type}
-                value={data.value}
-                isValid={data.isValid}
-              />
-            </div>
-          );
-        })}
-        <Location defaultSetting={requestSettings} />
-        <p className={s.control}>{errorMessage}</p>
-        <button className={s.button} onClick={checkSubmit}>
-          <span>Register</span>
-        </button>
+    <div className={s.wrapper}>
+      <div className={s.register_window}>
+        <Toggler />
+        <div className={s.field_wrapper} ref={formRef}>
+          {state.registerPage.fieldData.map((data) => {
+            return (
+              <div key={data.id} onChange={deleteError}>
+                <Field
+                  id={data.id}
+                  name={data.plshldr}
+                  plshldr={data.plshldr}
+                  classname={data.classname}
+                  errorMessage={data.errorMessage}
+                  page={data.page}
+                  type={data.type}
+                  value={data.value}
+                  isValid={data.isValid}
+                />
+              </div>
+            );
+          })}
+          <Location defaultSetting={requestSettings} />
+          <p className={s.control}>{errorMessage}</p>
+          <button className={s.button} onClick={checkSubmit}>
+            <span>Register</span>
+          </button>
+        </div>
       </div>
+      <p className={s.notification}>{successMessage}</p>
     </div>
   );
 };
