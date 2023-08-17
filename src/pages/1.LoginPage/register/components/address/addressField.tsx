@@ -30,10 +30,10 @@ const AddressField = (props: LocationValueType) => {
   return (
     <div className={s.address_wrapper}>
       <div
-        className={props.default ? s.default : s.country}
+        className={props.isOneAddress ? s.default : s.country}
         ref={countryRef}
         onClick={(e) => {
-          if (!props.default) toggleCountry();
+          if (!props.isOneAddress) toggleCountry();
         }}
       >
         <p className={s.content}>
@@ -53,7 +53,7 @@ const AddressField = (props: LocationValueType) => {
         id='city'
         plshldr='City'
         addressType={props.type}
-        default={props.default}
+        isOneAddress={props.isOneAddress}
         stateValue={props.type === 'billing' ? props.states.inputCityB : props.states.inputCityS}
         setStateValue={props.type === 'billing' ? props.states.setCityB : props.states.setCityS}
         errorValue={props.type === 'billing' ? props.states.errorCityB : props.states.errorCityS}
@@ -65,7 +65,7 @@ const AddressField = (props: LocationValueType) => {
         id='street'
         plshldr='Street'
         addressType={props.type}
-        default={props.default}
+        isOneAddress={props.isOneAddress}
         stateValue={
           props.type === 'billing' ? props.states.inputStreetB : props.states.inputStreetS
         }
@@ -81,7 +81,7 @@ const AddressField = (props: LocationValueType) => {
         id='postal'
         plshldr='Postal code'
         addressType={props.type}
-        default={props.default}
+        isOneAddress={props.isOneAddress}
         stateValue={
           props.type === 'billing' ? props.states.inputPostalB : props.states.inputPostalS
         }

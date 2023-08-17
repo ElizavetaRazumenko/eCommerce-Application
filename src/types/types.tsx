@@ -113,7 +113,7 @@ type StatesType = {
 
 export type LocationValueType = {
   type: 'billing' | 'shipping';
-  default: boolean;
+  isOneAddress: boolean;
   states: StatesType;
   toggle?: boolean;
 };
@@ -122,7 +122,7 @@ export type InputLocationPropsType = {
   id: 'city' | 'street' | 'postal';
   plshldr: string;
   addressType: 'billing' | 'shipping';
-  default: boolean;
+  isOneAddress: boolean;
   stateValue: string;
   setStateValue: React.Dispatch<React.SetStateAction<string>>;
   errorValue: string;
@@ -134,6 +134,43 @@ export type FieldLocationType = {
   value: string;
   errorMessage: string;
   isValid: boolean;
+};
+
+export type LocationPropsType = {
+  defaultSetting: {
+    defaultBilling: boolean;
+    setdDefaultBilling: React.Dispatch<React.SetStateAction<boolean>>;
+    defaultShipping: boolean;
+    setdDefaultShipping: React.Dispatch<React.SetStateAction<boolean>>;
+  };
+};
+
+export type RequestBodyType = {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  dateOfBirth: string;
+  addresses: [
+    {
+      key: string;
+      country: string;
+      city: string;
+      streetName: string;
+      postalCode: string;
+    },
+    {
+      key: string;
+      country: string;
+      city: string;
+      streetName: string;
+      postalCode: string;
+    },
+  ];
+  billingAddresses: [0];
+  shippingAddresses: [1];
+  defaultBillingAddress?: number;
+  defaultShippingAddress?: number;
 };
 
 //                                                                    ERROR PAGE

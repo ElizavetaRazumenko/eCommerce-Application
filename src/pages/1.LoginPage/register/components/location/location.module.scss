@@ -21,6 +21,7 @@
 
     .address_name {
         margin: 0;
+        font-weight: 700;
     }
 }
 
@@ -80,9 +81,10 @@
 }
 
 .label_input {
-    padding-left: 5px;
+    align-self: flex-start;
+    padding-left: 40px;
     font-size: .8rem;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 .button_done {

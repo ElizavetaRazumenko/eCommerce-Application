@@ -335,6 +335,12 @@ const checkDate = (field: FieldType) => {
   } else if (field.value.length > 10) {
     field.errorMessage = 'date must be in the form yyyy-mm-dd';
     field.isValid = false;
+  } else if (+mounth > 12) {
+    field.errorMessage = 'enter the number of the month from 1 to 12';
+    field.isValid = false;
+  } else if (+date > 31) {
+    field.errorMessage = 'enter the number of the day from 1 to 31';
+    field.isValid = false;
   }
 };
 

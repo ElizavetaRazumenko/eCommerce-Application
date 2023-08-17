@@ -1,7 +1,8 @@
-import { ErrorObject } from '@commercetools/platform-sdk';
 import { useRef, useState } from 'react';
 
 import s from './registerWindow.module.scss';
+
+import { requestBody } from './utils/utils';
 
 import { apiRoot } from '../../../../../shared/index';
 import state from '../../../../../state/state';
@@ -9,72 +10,44 @@ import Field from '../../../components/field/field';
 import Toggler from '../../../components/toggler/toggler';
 import Location from '../location/location';
 
-const getKey = () => {
-  const keyString = '0123456789abcdef';
-  let result = '';
-  for (let i = 0; i < 6; i += 1) {
-    result += keyString[Math.floor(Math.random() * keyString.length)];
-  }
-  return result;
-};
-
 const RegisterWindow = () => {
   const formRef = useRef<HTMLDivElement>(null);
 
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const [useAsDefaultBilling, setAsDefaultBilling] = useState<boolean>(false);
+  const [useAsDefaultShipping, setAsDefaultShipping] = useState<boolean>(false);
+
+  const requestSettings = {
+    defaultBilling: useAsDefaultBilling,
+    setdDefaultBilling: setAsDefaultBilling,
+    defaultShipping: useAsDefaultShipping,
+    setdDefaultShipping: setAsDefaultShipping,
+  };
 
   const deleteError = () => setErrorMessage('');
 
   const checkSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    const isValidForm = state.registerPage.fieldData.find((field) => !field.isValid);
-    const isValidBilling = state.registerPage.location.billing.find((field) => !field.isValid);
-    const isValidShipping = state.registerPage.location.shipping.find((field) => !field.isValid);
-    if (isValidForm) {
-      isValidForm.value === ''
-        ? setErrorMessage(`field '${isValidForm.plshldr}' is empty`)
-        : setErrorMessage(`field '${isValidForm.plshldr}' is not valid`);
-    } else if (isValidBilling) {
-      isValidBilling.value === ''
-        ? setErrorMessage(`in Billing address field '${isValidBilling.type}' is empty`)
-        : setErrorMessage(`in Billing address field '${isValidBilling.type}' is not valid`);
-    } else if (isValidShipping) {
-      isValidShipping.value === ''
-        ? setErrorMessage(`in Shippnig address field '${isValidShipping.type}' is empty`)
-        : setErrorMessage(`in Shipping address field '${isValidShipping.type}' is not valid`);
+    const invalidForm = state.registerPage.fieldData.find((field) => !field.isValid);
+    const invalidBilling = state.registerPage.location.billing.find((field) => !field.isValid);
+    const invalidShipping = state.registerPage.location.shipping.find((field) => !field.isValid);
+    if (invalidForm) {
+      invalidForm.value === ''
+        ? setErrorMessage(`field '${invalidForm.plshldr}' is empty`)
+        : setErrorMessage(`field '${invalidForm.plshldr}' is not valid`);
+    } else if (invalidBilling) {
+      invalidBilling.value === ''
+        ? setErrorMessage(`in Billing address field '${invalidBilling.type}' is empty`)
+        : setErrorMessage(`in Billing address field '${invalidBilling.type}' is not valid`);
+    } else if (invalidShipping) {
+      invalidShipping.value === ''
+        ? setErrorMessage(`in Shippnig address field '${invalidShipping.type}' is empty`)
+        : setErrorMessage(`in Shipping address field '${invalidShipping.type}' is not valid`);
     } else {
-      const keyBilling = getKey();
-      const keyShipping = getKey();
       try {
         await apiRoot
           .customers()
           .post({
-            body: {
-              email: 'uotytiiy99@mail.ru',
-              password: '123456L@3j',
-              firstName: 'Ea',
-              lastName: 'Razo',
-              dateOfBirth: '1999-05-30',
-              addresses: [
-                {
-                  key: keyBilling,
-                  country: 'IT',
-                  city: 'ooo',
-                  streetName: 'jh',
-                  postalCode: '000000',
-                },
-                {
-                  key: keyShipping,
-                  country: 'IT',
-                  city: 'ooo',
-                  streetName: 'jh',
-                  postalCode: '000000',
-                },
-              ],
-              billingAddresses: [0],
-              shippingAddresses: [0],
-              defaultBillingAddress: 0,
-              defaultShippingAddress: 0,
-            },
+            body: requestBody(useAsDefaultBilling, useAsDefaultShipping),
           })
           .execute();
       } catch (e) {
@@ -107,7 +80,7 @@ const RegisterWindow = () => {
             </div>
           );
         })}
-        <Location />
+        <Location defaultSetting={requestSettings} />
         <p className={s.control}>{errorMessage}</p>
         <button className={s.button} onClick={checkSubmit}>
           <span>Register</span>
