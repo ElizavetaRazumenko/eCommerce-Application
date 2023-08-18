@@ -27,6 +27,16 @@ const LoginWindow = () => {
         ? setErrorMessage(`field '${isValidForm.plshldr}' is empty`)
         : setErrorMessage(`field '${isValidForm.plshldr}' is not valid`);
     } else {
+      localStorage.setItem(
+        'Email',
+        state.loginPage.fieldData.find((el) => el.classname === 'email')!.value,
+      );
+      localStorage.setItem(
+        'Password',
+        state.loginPage.fieldData.find((el) => el.classname === 'password')!.value,
+      );
+      console.log(state.loginPage.fieldData.find((el) => el.classname === 'email')!.value);
+      console.log(state.loginPage.fieldData.find((el) => el.classname === 'password')!.value);
       try {
         await apiRoot2
           .me()

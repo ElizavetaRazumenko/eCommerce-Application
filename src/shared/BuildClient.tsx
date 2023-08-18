@@ -50,10 +50,10 @@ const loginMiddlewareOptions: PasswordAuthMiddlewareOptions = {
     clientId: 'HgTug4REahFA11dVfXfn2FW3',
     clientSecret: 'vdT50e1NqbdNH6Z2NhExia6lqwFfC8OT',
     user: {
-      username: state.loginPage.fieldData.find((el) => el.classname === 'email')!.value,
-      password: state.loginPage.fieldData.find((el) => el.classname === 'password')!.value,
-      // username: 'razumenko99@mail.ru',
-      // password: '123456L@3j',
+      // username: state.loginPage.fieldData.find((el) => el.classname === 'email')!.value,
+      // password: state.loginPage.fieldData.find((el) => el.classname === 'password')!.value,
+      username: 'lalala@mail.ru',
+      password: 'laLa@s#f2',
     },
   },
   scopes: [`manage_my_profile:${projectKey}`],
@@ -65,4 +65,9 @@ export const ctpClient = new ClientBuilder()
   .withLoggerMiddleware()
   .build();
 
-export const client = new ClientBuilder().withPasswordFlow(loginMiddlewareOptions).build();
+// export const client = new ClientBuilder().withPasswordFlow(loginMiddlewareOptions).build();
+export const client = new ClientBuilder()
+  .withPasswordFlow(loginMiddlewareOptions)
+  .withHttpMiddleware(httpMiddlewareOptions)
+  .withLoggerMiddleware()
+  .build();

@@ -10,9 +10,3 @@ export const apiRoot = createApiBuilderFromCtpClient(ctpClient).withProjectKey({
 export const apiRoot2 = createApiBuilderFromCtpClient(client).withProjectKey({
   projectKey: 'ecommece-application',
 });
-
-// const getProject = () => {
-//   return apiRoot.get().execute();
-// };
-
-// getProject().then(console.log).catch(console.error);
