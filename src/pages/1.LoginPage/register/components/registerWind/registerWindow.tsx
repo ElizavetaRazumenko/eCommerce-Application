@@ -7,11 +7,12 @@ import { requestBody } from './utils/utils';
 
 import { apiRoot } from '../../../../../shared/index';
 import state from '../../../../../state/state';
+import { RegisterPagePropsType } from '../../../../../types/types';
 import Field from '../../../components/field/field';
 import Toggler from '../../../components/toggler/toggler';
 import Location from '../location/location';
 
-const RegisterWindow = () => {
+const RegisterWindow = (props: RegisterPagePropsType) => {
   const formRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState<string>('');
@@ -52,12 +53,16 @@ const RegisterWindow = () => {
             body: requestBody(requestSettings.defaultBilling, requestSettings.defaultShipping),
           })
           .execute();
+        props.setUserState('Logout');
+        localStorage.setItem('userState', 'Logout');
         setSuccessMessage('Successfully');
         setTimeout(() => navigate('/'), 700);
       } catch (e) {
         if (e instanceof Error) {
-          if (e.message !== '') {
-            setErrorMessage(e.message);
+          if (e.message === 'There is already an existing customer with the provided email.') {
+            setErrorMessage('User with this email already exists');
+          } else {
+            setErrorMessage('Something went wrong. Please try again later');
           }
         }
       }

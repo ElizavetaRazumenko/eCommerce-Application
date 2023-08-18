@@ -5,12 +5,14 @@ import Nav from './components/nav/Nav';
 
 import s from './header.module.scss';
 
-const Header = () => {
+import { HeaderPropsType } from '../../../types/types';
+
+const Header = (props: HeaderPropsType) => {
   return (
     <header>
       <div className={s.header_container}>
         <Logo />
-        <Nav />
+        <Nav userState={props.userState} />
       </div>
     </header>
   );

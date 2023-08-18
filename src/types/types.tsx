@@ -173,6 +173,17 @@ export type RequestBodyType = {
   defaultShippingAddress?: number;
 };
 
+export type LoginPagePropsType = {
+  setUserState: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export type RegisterPagePropsType = LoginPagePropsType;
+
+export type LayoutPropsType = {
+  userState: string;
+};
+
+export type HeaderPropsType = LayoutPropsType;
 //                                                                    ERROR PAGE
 
 export type ButtonRedirectType = {

@@ -13,7 +13,7 @@ const Toggler = () => {
       </NavLink>
       <NavLink
         className={({ isActive }) => (isActive ? s.link + ' ' + s.active_link : s.link)}
-        to='/register'
+        to='/registration'
       >
         Register
       </NavLink>

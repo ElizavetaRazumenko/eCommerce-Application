@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import s from './App.module.scss';
 
@@ -15,13 +15,27 @@ import ErrorPage from '../pages/7.ErrorPage/error';
 import Layout from '../pages/globalComponents/layout/layout';
 
 const App = () => {
+  const [userState, setUserState] = useState<string>(
+    localStorage.getItem('userState') === 'Logout' ? 'Logout' : 'Login',
+  );
+  const loginRedirection = () => {
+    return userState === 'Logout' ? <Navigate to='/' /> : <LoginPage setUserState={setUserState} />;
+  };
+  const registratironRedirection = () => {
+    return userState === 'Logout' ? (
+      <Navigate to='/' />
+    ) : (
+      <RegisterPage setUserState={setUserState} />
+    );
+  };
+
   return (
     <BrowserRouter>
       <div className={s.container}>
         <Routes>
-          <Route path='/' element={<Layout />}>
-            <Route path='/login' element={<LoginPage />} />
-            <Route path='/register' element={<RegisterPage />} />
+          <Route path='/' element={<Layout userState={userState} />}>
+            <Route path='/login' element={loginRedirection()} />
+            <Route path='/registration' element={registratironRedirection()} />
             <Route index element={<Main />} />
             <Route path='/catalog' element={<CatalogPage />} />
             <Route path='/details' element={<DetailedPage />} />

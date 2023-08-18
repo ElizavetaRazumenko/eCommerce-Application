@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { useNavigate } from 'react-router';
 
@@ -6,19 +6,15 @@ import s from './loginWindow.module.scss';
 
 import { getPasswordFlowClient } from '../../../../../shared';
 import state from '../../../../../state/state';
+import { LoginPagePropsType } from '../../../../../types/types';
 import Field from '../../../components/field/field';
 import Toggler from '../../../components/toggler/toggler';
 
-const LoginWindow = () => {
+const LoginWindow = (props: LoginPagePropsType) => {
   const formRef = useRef<HTMLFormElement>(null);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [successMessage, setSuccessMessage] = useState<string>('');
-  const [userState, setUserState] = useState<string>('unlog');
   const navigate = useNavigate();
-
-  useEffect(() => {
-    localStorage.setItem('userState', userState);
-  }, [userState]);
 
   const deleteError = () => {
     setErrorMessage('');
@@ -45,7 +41,8 @@ const LoginWindow = () => {
             },
           })
           .execute();
-        setUserState('log');
+        props.setUserState('Logout');
+        localStorage.setItem('userState', 'Logout');
         setSuccessMessage('Successfully');
         setTimeout(() => navigate('/'), 700);
       } catch (e) {
