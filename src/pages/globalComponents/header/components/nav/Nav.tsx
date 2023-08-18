@@ -66,7 +66,11 @@ const Nav = (props: HeaderPropsType) => {
           <li className={s.nav_item}>
             <NavLink
               to={'/login'}
-              onClick={() => setIsOpen(false)}
+              onClick={() => {
+                setIsOpen(false);
+                props.setUserState('Login');
+                localStorage.setItem('userState', 'Login');
+              }}
               className={({ isActive }) => (isActive ? s.link + ' ' + s.no_active_link : s.link)}
             >
               {props.userState}

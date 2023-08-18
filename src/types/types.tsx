@@ -181,6 +181,7 @@ export type RegisterPagePropsType = LoginPagePropsType;
 
 export type LayoutPropsType = {
   userState: string;
+  setUserState: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export type HeaderPropsType = LayoutPropsType;

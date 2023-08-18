@@ -12,7 +12,7 @@ const Header = (props: HeaderPropsType) => {
     <header>
       <div className={s.header_container}>
         <Logo />
-        <Nav userState={props.userState} />
+        <Nav userState={props.userState} setUserState={props.setUserState} />
       </div>
     </header>
   );

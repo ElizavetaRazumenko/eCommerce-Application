@@ -8,7 +8,7 @@ import Header from '../header/header';
 const Layout = (props: LayoutPropsType) => {
   return (
     <>
-      <Header userState={props.userState} />
+      <Header userState={props.userState} setUserState={props.setUserState} />
       <Outlet />
       <Footer />
     </>

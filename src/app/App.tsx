@@ -33,7 +33,7 @@ const App = () => {
     <BrowserRouter>
       <div className={s.container}>
         <Routes>
-          <Route path='/' element={<Layout userState={userState} />}>
+          <Route path='/' element={<Layout userState={userState} setUserState={setUserState} />}>
             <Route path='/login' element={loginRedirection()} />
             <Route path='/registration' element={registratironRedirection()} />
             <Route index element={<Main />} />

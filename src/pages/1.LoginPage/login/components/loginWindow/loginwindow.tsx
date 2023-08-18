@@ -31,7 +31,7 @@ const LoginWindow = (props: LoginPagePropsType) => {
       const Email = state.loginPage.fieldData.find((el) => el.classname === 'email')!.value;
       const Password = state.loginPage.fieldData.find((el) => el.classname === 'password')!.value;
       try {
-        const responce = await getPasswordFlowClient(Email, Password)
+        await getPasswordFlowClient(Email, Password)
           .me()
           .login()
           .post({
