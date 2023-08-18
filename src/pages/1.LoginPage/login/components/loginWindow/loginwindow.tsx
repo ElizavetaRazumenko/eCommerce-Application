@@ -37,7 +37,7 @@ const LoginWindow = (props: LoginPagePropsType) => {
       const Email = state.loginPage.fieldData.find((el) => el.classname === 'email')!.value;
       const Password = state.loginPage.fieldData.find((el) => el.classname === 'password')!.value;
       try {
-        await getPasswordFlowClient(Email, Password)
+        const response = await getPasswordFlowClient(Email, Password)
           .me()
           .login()
           .post({
@@ -47,6 +47,8 @@ const LoginWindow = (props: LoginPagePropsType) => {
             },
           })
           .execute();
+        localStorage.setItem('userInfo', JSON.stringify(response.body));
+        console.log(JSON.stringify(response.body));
         setSuccessMessage('Successfully');
         setTimeout(loginTrek, 700);
       } catch (e) {

@@ -39,8 +39,8 @@ const App = () => {
             <Route index element={<Main />} />
             <Route path='/catalog' element={<CatalogPage />} />
             <Route path='/details' element={<DetailedPage />} />
-            <Route path='/profile' element={<ProfilePage />} />
-            <Route path='/cart' element={<BasketPage />} />
+            <Route path='/profile' element={<ProfilePage userState={userState} />} />
+            <Route path='/cart' element={<BasketPage userState={userState} />} />
             <Route path='*' element={<ErrorPage />} />
           </Route>
         </Routes>

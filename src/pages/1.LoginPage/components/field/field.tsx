@@ -41,7 +41,7 @@ const Field = (props: InputLoginType) => {
   };
   return (
     <div>
-      <form className={s.input_wrapper}>
+      <div className={s.input_wrapper}>
         <input
           id={`${props.id}`}
           name={`${props.id} ${props.page}`}
@@ -64,7 +64,7 @@ const Field = (props: InputLoginType) => {
             changeInputType();
           }}
         ></div>
-      </form>
+      </div>
       <p className={s.control}>{errorMessage}</p>
     </div>
   );

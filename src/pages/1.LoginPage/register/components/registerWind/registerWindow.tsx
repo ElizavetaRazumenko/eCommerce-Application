@@ -52,13 +52,15 @@ const RegisterWindow = (props: RegisterPagePropsType) => {
         ? setErrorMessage(`in Shippnig address field '${invalidShipping.type}' is empty`)
         : setErrorMessage(`in Shipping address field '${invalidShipping.type}' is not valid`);
     } else {
+      console.log(requestBody(requestSettings.defaultBilling, requestSettings.defaultShipping));
       try {
-        await apiRoot
+        const response = await apiRoot
           .customers()
           .post({
             body: requestBody(requestSettings.defaultBilling, requestSettings.defaultShipping),
           })
           .execute();
+        localStorage.setItem('userInfo', JSON.stringify(response.body));
         setSuccessMessage('Successfully');
         setTimeout(registerTrek, 700);
       } catch (e) {

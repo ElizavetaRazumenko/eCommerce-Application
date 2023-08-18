@@ -185,6 +185,25 @@ export type LayoutPropsType = {
 };
 
 export type HeaderPropsType = LayoutPropsType;
+
+export type CartPropsType = {
+  userState: string;
+};
+
+export type UserPropsType = {
+  userState: string;
+};
+
+export type AddressType = {
+  city: string;
+  country: string;
+  id: string;
+  key: string;
+  postalCode: string;
+  streetName: string;
+};
+
+export type CustomerAddressesType = AddressType[];
 //                                                                    ERROR PAGE
 
 export type ButtonRedirectType = {
