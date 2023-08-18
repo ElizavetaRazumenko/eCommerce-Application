@@ -41,7 +41,7 @@ const Field = (props: InputLoginType) => {
   };
   return (
     <div>
-      <div className={s.input_wrapper}>
+      <form className={s.input_wrapper}>
         <input
           id={`${props.id}`}
           name={`${props.id} ${props.page}`}
@@ -56,6 +56,7 @@ const Field = (props: InputLoginType) => {
           onChange={changeValue}
           onPaste={changeValue}
           ref={inputRef}
+          autoComplete={inputType === 'password' ? 'on' : 'false'}
         />
         <div
           className={s.watch}
@@ -63,7 +64,7 @@ const Field = (props: InputLoginType) => {
             changeInputType();
           }}
         ></div>
-      </div>
+      </form>
       <p className={s.control}>{errorMessage}</p>
     </div>
   );
