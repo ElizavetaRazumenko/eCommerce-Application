@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 
 import s from './loginWindow.module.scss';
 
-import { apiRoot2 } from '../../../../../shared';
+import { getPasswordFlowClient } from '../../../../../shared';
 import state from '../../../../../state/state';
 import Field from '../../../components/field/field';
 import Toggler from '../../../components/toggler/toggler';
@@ -27,24 +27,16 @@ const LoginWindow = () => {
         ? setErrorMessage(`field '${isValidForm.plshldr}' is empty`)
         : setErrorMessage(`field '${isValidForm.plshldr}' is not valid`);
     } else {
-      localStorage.setItem(
-        'Email',
-        state.loginPage.fieldData.find((el) => el.classname === 'email')!.value,
-      );
-      localStorage.setItem(
-        'Password',
-        state.loginPage.fieldData.find((el) => el.classname === 'password')!.value,
-      );
-      console.log(state.loginPage.fieldData.find((el) => el.classname === 'email')!.value);
-      console.log(state.loginPage.fieldData.find((el) => el.classname === 'password')!.value);
+      const Email = state.loginPage.fieldData.find((el) => el.classname === 'email')!.value;
+      const Password = state.loginPage.fieldData.find((el) => el.classname === 'password')!.value;
       try {
-        await apiRoot2
+        await getPasswordFlowClient(Email, Password)
           .me()
           .login()
           .post({
             body: {
-              email: state.loginPage.fieldData.find((el) => el.classname === 'email')!.value,
-              password: state.loginPage.fieldData.find((el) => el.classname === 'password')!.value,
+              email: Email,
+              password: Password,
             },
           })
           .execute();
