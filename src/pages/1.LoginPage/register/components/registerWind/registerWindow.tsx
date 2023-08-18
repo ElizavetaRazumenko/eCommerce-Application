@@ -29,6 +29,12 @@ const RegisterWindow = (props: RegisterPagePropsType) => {
 
   const deleteError = () => setErrorMessage('');
 
+  const registerTrek = () => {
+    navigate('/');
+    props.setUserState('Logout');
+    localStorage.setItem('userState', 'Logout');
+  };
+
   const checkSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const invalidForm = state.registerPage.fieldData.find((field) => !field.isValid);
     const invalidBilling = state.registerPage.location.billing.find((field) => !field.isValid);
@@ -53,10 +59,8 @@ const RegisterWindow = (props: RegisterPagePropsType) => {
             body: requestBody(requestSettings.defaultBilling, requestSettings.defaultShipping),
           })
           .execute();
-        props.setUserState('Logout');
-        localStorage.setItem('userState', 'Logout');
         setSuccessMessage('Successfully');
-        setTimeout(() => navigate('/'), 700);
+        setTimeout(registerTrek, 700);
       } catch (e) {
         if (e instanceof Error) {
           if (e.message === 'There is already an existing customer with the provided email.') {

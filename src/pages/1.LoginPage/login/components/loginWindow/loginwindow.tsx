@@ -20,6 +20,12 @@ const LoginWindow = (props: LoginPagePropsType) => {
     setErrorMessage('');
   };
 
+  const loginTrek = () => {
+    navigate('/');
+    props.setUserState('Logout');
+    localStorage.setItem('userState', 'Logout');
+  };
+
   const checkSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const isValidForm = state.loginPage.fieldData.find((field) => !field.isValid);
@@ -41,10 +47,8 @@ const LoginWindow = (props: LoginPagePropsType) => {
             },
           })
           .execute();
-        props.setUserState('Logout');
-        localStorage.setItem('userState', 'Logout');
         setSuccessMessage('Successfully');
-        setTimeout(() => navigate('/'), 700);
+        setTimeout(loginTrek, 700);
       } catch (e) {
         if (e instanceof Error) {
           if (e.message === 'Missing required user credentials (username, password)') {
