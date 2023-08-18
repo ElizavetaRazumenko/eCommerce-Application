@@ -1,10 +1,24 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import s from './nav.module.scss';
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [myVar, setMyVar] = useState(localStorage.getItem('userState'));
+
+  useEffect(() => {
+    const handleStorageChange = (e: Event) => {
+      e.preventDefault();
+      setMyVar(localStorage.getItem('userState'));
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, [myVar]);
 
   const toggleBurgerMenu = () => {
     if (isOpen) {
@@ -68,7 +82,7 @@ const Nav = () => {
               onClick={() => setIsOpen(false)}
               className={({ isActive }) => (isActive ? s.link + ' ' + s.no_active_link : s.link)}
             >
-              Login
+              {myVar === 'log' ? 'Logout' : 'Login'}
             </NavLink>
           </li>
         </ul>

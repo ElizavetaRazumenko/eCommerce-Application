@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { useNavigate } from 'react-router';
 
@@ -13,7 +13,12 @@ const LoginWindow = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [successMessage, setSuccessMessage] = useState<string>('');
+  const [userState, setUserState] = useState<string>('unlog');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    localStorage.setItem('userState', userState);
+  }, [userState]);
 
   const deleteError = () => {
     setErrorMessage('');
@@ -30,7 +35,7 @@ const LoginWindow = () => {
       const Email = state.loginPage.fieldData.find((el) => el.classname === 'email')!.value;
       const Password = state.loginPage.fieldData.find((el) => el.classname === 'password')!.value;
       try {
-        await getPasswordFlowClient(Email, Password)
+        const responce = await getPasswordFlowClient(Email, Password)
           .me()
           .login()
           .post({
@@ -40,6 +45,7 @@ const LoginWindow = () => {
             },
           })
           .execute();
+        setUserState('log');
         setSuccessMessage('Successfully');
         setTimeout(() => navigate('/'), 700);
       } catch (e) {
