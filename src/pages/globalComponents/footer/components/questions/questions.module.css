@@ -1,0 +1,49 @@
+.question_wrapper {
+  color: #D9D9D9;
+}
+@media (max-width: 860px) {
+  .question_wrapper .footer_titles {
+    font-size: 1rem;
+    margin: 25px auto 5px 5px;
+  }
+}
+@media (max-width: 645px) {
+  .question_wrapper .footer_titles {
+    border-top: 1px solid #adff2f;
+  }
+}
+.question_wrapper .links_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.question_wrapper .links_wrapper .email {
+  background: no-repeat url("../../../../../assets/svg/email.svg");
+}
+.question_wrapper .links_wrapper .contact {
+  background: no-repeat url("../../../../../assets/svg/mob.svg");
+}
+.question_wrapper .links_wrapper .contact,
+.question_wrapper .links_wrapper .email {
+  color: #D9D9D9;
+  text-decoration: none;
+  margin: 0;
+  line-height: 40px;
+  padding-left: 35px;
+  background-size: 9%;
+  background-position: left center;
+  cursor: pointer;
+  transition: color 0.5s;
+}
+.question_wrapper .links_wrapper .contact:hover,
+.question_wrapper .links_wrapper .email:hover {
+  color: #ffffff;
+}
+@media (max-width: 860px) {
+  .question_wrapper .links_wrapper .contact,
+  .question_wrapper .links_wrapper .email {
+    padding-left: 20px;
+    line-height: 30px;
+    letter-spacing: 0.01px;
+    font-size: 0.8rem;
+  }
+}/*# sourceMappingURL=questions.module.css.map */

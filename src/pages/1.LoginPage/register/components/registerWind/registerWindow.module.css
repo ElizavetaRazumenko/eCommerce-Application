@@ -1,0 +1,79 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register_window {
+  box-sizing: border-box;
+  width: 350px;
+  height: auto;
+  background-color: #211F20;
+  background-image: url("../../../../../assets/png/smoke.png");
+  background-size: cover;
+  border-radius: 50px;
+  border: 3px solid #D9D9D9;
+  box-shadow: 0 0 20px #D9D9D9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media (max-width: 440px) {
+  .register_window {
+    width: 290px;
+  }
+}
+
+.field_wrapper {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 35px 0 10px 0;
+  align-items: center;
+}
+
+.button {
+  cursor: pointer;
+  border-radius: none;
+  box-sizing: border-box;
+  width: 120px;
+  height: auto;
+  padding: 5px 10px 5px;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  border-radius: 20px;
+  text-align: center;
+  background-color: #D9D9D9;
+  color: #5C5C5C;
+  font-size: 1.4rem;
+  font-weight: 700;
+  transition: 0.5s;
+}
+.button:hover {
+  background-color: #ffffff;
+}
+
+.control {
+  box-sizing: border-box;
+  width: auto;
+  min-height: 17px;
+  text-align: center;
+  padding: 0 15px;
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.9px;
+  color: red;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.notification {
+  margin: 20px 0;
+  color: rgb(29, 104, 10);
+  font-weight: 700;
+  font-size: 2rem;
+}/*# sourceMappingURL=registerWindow.module.css.map */
