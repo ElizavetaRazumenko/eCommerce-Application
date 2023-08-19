@@ -11,9 +11,9 @@
     .welcome,
     .welcome_content {
         text-align: center;
+        letter-spacing: 1px;
         color: $main-light;
         font-size: 3rem;
-        font-weight: 700;
 
         @media (max-width: 860px) {
             font-size: 2rem;
@@ -26,10 +26,19 @@
          @media (max-width: 390px) {
             font-size: 1.2rem;
          } 
+
+         .span {
+            color: $color-parsley;
+            font-weight: 700;
+         }
     }
 
     .welcome_content {
+      text-align: left;
       font-size: 1.1rem;
+      @media (max-width: 390px) {
+         font-size: .9rem;
+      } 
     }
    
     .hidden {

@@ -49,8 +49,8 @@ const LoginWindow = (props: LoginPagePropsType) => {
         setTimeout(loginTrek, 700);
       } catch (e) {
         if (e instanceof Error) {
-          if (e.message === 'Missing required user credentials (username, password)') {
-            setErrorMessage('Invalid email or password');
+          if (e.message === 'Customer account with the given credentials not found.') {
+            setErrorMessage("Invalid email or password. Don't have an account? Click registration");
           } else setErrorMessage(e.message);
         }
       }
