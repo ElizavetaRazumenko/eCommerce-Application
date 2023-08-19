@@ -44,7 +44,6 @@ const LoginWindow = (props: LoginPagePropsType) => {
           })
           .execute();
         localStorage.setItem('userInfo', JSON.stringify(response.body));
-        console.log(JSON.stringify(response.body));
         setSuccessMessage('Successfully');
         setTimeout(loginTrek, 700);
       } catch (e) {

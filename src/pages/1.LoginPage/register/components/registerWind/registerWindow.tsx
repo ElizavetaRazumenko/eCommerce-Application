@@ -53,7 +53,6 @@ const RegisterWindow = (props: RegisterPagePropsType) => {
         ? setErrorMessage(`in Shippnig address field '${invalidShipping.type}' is empty`)
         : setErrorMessage(`in Shipping address field '${invalidShipping.type}' is not valid`);
     } else {
-      console.log(requestBody(requestSettings.defaultBilling, requestSettings.defaultShipping));
       try {
         const response = await apiRoot
           .customers()
