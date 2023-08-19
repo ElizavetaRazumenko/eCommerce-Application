@@ -22,7 +22,7 @@ const AddressField = (props: LocationValueType) => {
     props.type === 'billing'
       ? props.states.setCountryB(country)
       : props.states.setCountryS(country);
-    if (!props.toggle && props.type === 'billing') {
+    if (localStorage.getItem('makeOneAddress') === 'yes' && props.type === 'billing') {
       state.registerPage.location.shipping.find((item) => item.type === 'country')!.value = country;
       props.states.setCountryS(country);
     }
@@ -32,7 +32,7 @@ const AddressField = (props: LocationValueType) => {
       <div
         className={props.isOneAddress ? s.default : s.country}
         ref={countryRef}
-        onClick={(e) => {
+        onClick={() => {
           if (!props.isOneAddress) toggleCountry();
         }}
       >

@@ -115,7 +115,6 @@ export type LocationValueType = {
   type: 'billing' | 'shipping';
   isOneAddress: boolean;
   states: StatesType;
-  toggle?: boolean;
 };
 
 export type InputLocationPropsType = {

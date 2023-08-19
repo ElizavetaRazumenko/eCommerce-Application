@@ -65,7 +65,7 @@ const ProfilePage = (props: UserPropsType) => {
           ? ` ${defaultBilling.country === 'IT' ? 'Italy' : 'Spain'} ${defaultBilling.city} st.${
               defaultBilling.streetName
             }, ${defaultBilling.postalCode}`
-          : 'was not selected'}
+          : ' was not selected'}
       </p>
       <p className={props.userState === 'Login' ? s.hidden : s.welcome_content + ' ' + s.default}>
         <span className={s.span}>Default Shipping address:</span>
@@ -73,7 +73,7 @@ const ProfilePage = (props: UserPropsType) => {
           ? ` ${defaultShipping.country === 'IT' ? 'Italy' : 'Spain'} ${defaultShipping.city} st.${
               defaultShipping.streetName
             }, ${defaultShipping.postalCode}`
-          : 'was not selected'}
+          : ' was not selected'}
       </p>
     </div>
   );
