@@ -1,0 +1,11 @@
+.main {
+  position: relative;
+  margin: 0;
+  flex-grow: 1;
+  padding: 0 20px;
+}
+@media (max-width: 380px) {
+  .main {
+    padding: 0;
+  }
+}/*# sourceMappingURL=main.module.css.map */

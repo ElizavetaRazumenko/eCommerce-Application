@@ -1,0 +1,41 @@
+.input {
+  box-sizing: border-box;
+  width: 100%;
+  background-color: rgba(92, 92, 92, 0.4);
+  color: #211F20;
+  border-radius: 10px;
+  margin: 0;
+  font-size: 1rem;
+  padding: 5px 0 5px 25px;
+  border: none;
+  transition: 0.5s;
+}
+.input:focus {
+  box-shadow: 0 0 20px #5C5C5C;
+}
+
+.input.invalid {
+  box-shadow: 0 0 5px red;
+}
+.input.invalid:focus {
+  box-shadow: 0 0 10px red;
+}
+
+.error_message {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 15px;
+  text-align: end;
+  padding-bottom: 3px;
+  padding-right: 5px;
+  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1px;
+  color: red;
+}
+
+.one_address {
+  pointer-events: none;
+  background-color: rgba(92, 92, 92, 0.7);
+}/*# sourceMappingURL=locationInput.module.css.map */

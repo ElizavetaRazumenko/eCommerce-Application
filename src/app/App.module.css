@@ -1,0 +1,16 @@
+.container {
+  width: 1280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+@media (max-width: 1199px) {
+  .container {
+    max-width: 90%;
+  }
+}
+@media (max-width: 380px) {
+  .container {
+    max-width: 80%;
+  }
+}/*# sourceMappingURL=App.module.css.map */

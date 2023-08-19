@@ -1,0 +1,106 @@
+.section_souce {
+  min-height: 900px;
+  padding: 30px 90px 0 0;
+  margin-top: -60px;
+  background: no-repeat url("../../../../assets/png/pepper1.png");
+  background-size: 35%;
+  background-position: left 5% top 75%;
+}
+@media (max-width: 1199px) {
+  .section_souce {
+    padding: 0;
+  }
+}
+@media (max-width: 950px) {
+  .section_souce {
+    background-size: 30%;
+    background-position: left 0 top 70%;
+  }
+}
+@media (max-width: 860px) {
+  .section_souce {
+    margin-top: 0;
+    padding: 0;
+    background-size: 20%;
+    background-position: left 0 top 30%;
+  }
+}
+@media (max-width: 700px) {
+  .section_souce {
+    background: none;
+  }
+}
+
+.title_section {
+  font-size: 2.3rem;
+  letter-spacing: 1.8px;
+  text-align: left;
+  color: #D9D9D9;
+}
+@media (max-width: 1199px) {
+  .title_section {
+    padding-top: 100px;
+    max-width: 900px;
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+}
+@media (max-width: 860px) {
+  .title_section {
+    max-width: 600px;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    padding-top: 50px;
+  }
+}
+@media (max-width: 645px) {
+  .title_section {
+    max-width: 500px;
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 530px) {
+  .title_section {
+    text-align: center;
+    font-size: 1rem;
+    letter-spacing: 0.7px;
+  }
+}
+@media (max-width: 380px) {
+  .title_section {
+    width: 300px;
+  }
+}
+
+.select_souce {
+  margin-top: 75px;
+  margin-right: 0px;
+  float: right;
+  width: 510px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  column-gap: 50px;
+  row-gap: 60px;
+}
+@media (max-width: 860px) {
+  .select_souce {
+    margin-top: 45px;
+    width: 480px;
+    column-gap: 20px;
+    row-gap: 20px;
+  }
+}
+@media (max-width: 645px) {
+  .select_souce {
+    column-gap: 10px;
+    width: 470px;
+  }
+}
+@media (max-width: 530px) {
+  .select_souce {
+    float: none;
+    margin: 45px auto 0;
+    width: 230px;
+  }
+}/*# sourceMappingURL=sauces.module.css.map */
