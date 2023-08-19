@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import s from './registerWindow.module.scss';
 
@@ -14,11 +13,14 @@ import Location from '../location/location';
 
 const RegisterWindow = (props: RegisterPagePropsType) => {
   const formRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [successMessage, setSuccessMessage] = useState<string>('');
-  const [useAsDefaultBilling, setAsDefaultBilling] = useState<string>('');
-  const [useAsDefaultShipping, setAsDefaultShipping] = useState<string>('');
+  const [useAsDefaultBilling, setAsDefaultBilling] = useState<string>(
+    localStorage.getItem('defaultB') === 'yes' ? 'yes' : 'no',
+  );
+  const [useAsDefaultShipping, setAsDefaultShipping] = useState<string>(
+    localStorage.getItem('defaultS') === 'yes' ? 'yes' : 'no',
+  );
 
   const requestSettings = {
     defaultBilling: useAsDefaultBilling,
@@ -30,7 +32,6 @@ const RegisterWindow = (props: RegisterPagePropsType) => {
   const deleteError = () => setErrorMessage('');
 
   const registerTrek = () => {
-    navigate('/');
     props.setUserState('Logout');
     localStorage.setItem('userState', 'Logout');
   };

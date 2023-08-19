@@ -1,7 +1,5 @@
 import { useRef, useState } from 'react';
 
-import { useNavigate } from 'react-router';
-
 import s from './loginWindow.module.scss';
 
 import { getPasswordFlowClient } from '../../../../../shared';
@@ -14,14 +12,12 @@ const LoginWindow = (props: LoginPagePropsType) => {
   const formRef = useRef<HTMLFormElement>(null);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [successMessage, setSuccessMessage] = useState<string>('');
-  const navigate = useNavigate();
 
   const deleteError = () => {
     setErrorMessage('');
   };
 
   const loginTrek = () => {
-    navigate('/');
     props.setUserState('Logout');
     localStorage.setItem('userState', 'Logout');
   };

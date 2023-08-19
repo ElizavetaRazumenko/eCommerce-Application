@@ -165,15 +165,23 @@ const Location = (props: LocationPropsType) => {
   };
 
   const setDefaultBilling = () => {
-    props.defaultSetting.defaultBilling === 'no'
-      ? props.defaultSetting.setdDefaultBilling('yes')
-      : props.defaultSetting.setdDefaultBilling('no');
+    if (localStorage.getItem('defaultB') !== 'yes') {
+      props.defaultSetting.setdDefaultBilling('yes');
+      localStorage.setItem('defaultB', 'yes');
+    } else {
+      props.defaultSetting.setdDefaultBilling('no');
+      localStorage.setItem('defaultB', 'no');
+    }
   };
 
   const setDefaultShipping = () => {
-    props.defaultSetting.defaultShipping === 'no'
-      ? props.defaultSetting.setdDefaultShipping('yes')
-      : props.defaultSetting.setdDefaultShipping('no');
+    if (localStorage.getItem('defaultS') !== 'yes') {
+      props.defaultSetting.setdDefaultShipping('yes');
+      localStorage.setItem('defaultS', 'yes');
+    } else {
+      props.defaultSetting.setdDefaultShipping('no');
+      localStorage.setItem('defaultS', 'no');
+    }
   };
 
   return (
@@ -197,10 +205,15 @@ const Location = (props: LocationPropsType) => {
             toggle={!isOneAddress}
           />
         </form>
-        <label className={s.label_input}>
-          use as default
-          <input type='checkbox' name='default_billing' onClick={setDefaultBilling} />
-        </label>
+        <div className={s.label}>
+          <span>use as default</span>
+          <div
+            className={
+              localStorage.getItem('defaultB') === 'yes' ? s.checkbox + ' ' + s.checked : s.checkbox
+            }
+            onClick={setDefaultBilling}
+          />
+        </div>
         <label className={s.label_input}>
           use for shipping address
           <input
@@ -214,10 +227,15 @@ const Location = (props: LocationPropsType) => {
         <form onChange={() => setErrorMessage('')} ref={formShippingRef}>
           <AddressField type='shipping' isOneAddress={isOneAddress} states={stateObj} />
         </form>
-        <label className={s.label_input}>
-          use as default
-          <input type='checkbox' name='default_shipping' onClick={setDefaultShipping} />
-        </label>
+        <div className={s.label}>
+          <span>use as default</span>
+          <div
+            className={
+              localStorage.getItem('defaultS') === 'yes' ? s.checkbox + ' ' + s.checked : s.checkbox
+            }
+            onClick={setDefaultShipping}
+          />
+        </div>
         <p className={s.error}>{errorMessage}</p>
         <div className={s.button_done} onClick={checkForm}>
           <p className={s.content}>Done</p>

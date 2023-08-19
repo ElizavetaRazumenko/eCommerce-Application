@@ -3,17 +3,38 @@ import s from './profile.module.scss';
 import { AddressType, CustomerAddressesType, UserPropsType } from '../../types/types';
 
 const ProfilePage = (props: UserPropsType) => {
-  const customerAddresses: CustomerAddressesType = JSON.parse(
-    localStorage.getItem('userInfo') || '',
-  ).customer.addresses;
+  const customer = localStorage.getItem('userInfo');
+  let customerAddresses: CustomerAddressesType = null;
+  if (customer) {
+    customerAddresses = JSON.parse(customer).customer.addresses;
+  }
+  let billingAddress: AddressType = {
+    city: '',
+    country: '',
+    id: '',
+    key: '',
+    postalCode: '',
+    streetName: '',
+  };
 
-  const billingAddressId: string = JSON.parse(localStorage.getItem('userInfo') || '').customer
-    .billingAddressIds[0];
-  const billingAddress: AddressType = customerAddresses.find((el) => el.id === billingAddressId)!;
+  let shippingAddress: AddressType = {
+    city: '',
+    country: '',
+    id: '',
+    key: '',
+    postalCode: '',
+    streetName: '',
+  };
 
-  const shippingAddressId: string = JSON.parse(localStorage.getItem('userInfo') || '').customer
-    .shippingAddressIds[0];
-  const shippingAddress: AddressType = customerAddresses.find((el) => el.id === shippingAddressId)!;
+  if (customerAddresses) {
+    const billingAddressId: string = JSON.parse(localStorage.getItem('userInfo') || '').customer
+      .billingAddressIds[0];
+    billingAddress = customerAddresses.find((el) => el.id === billingAddressId)!;
+
+    const shippingAddressId: string = JSON.parse(localStorage.getItem('userInfo') || '').customer
+      .shippingAddressIds[0];
+    shippingAddress = customerAddresses.find((el) => el.id === shippingAddressId)!;
+  }
   return (
     <div className={s.profile_wrapper}>
       <p className={s.welcome}>Welcome to the Profile Page!</p>

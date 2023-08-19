@@ -91,6 +91,30 @@
     margin-bottom: 5px;
 }
 
+.label {
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    padding-left: 40px;
+    font-size: .8rem;
+    margin-bottom: 5px;
+
+    .checkbox {
+        cursor: pointer;
+        border: 1px solid $main-dark-color;
+        background-color: $white;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-left: 5px;
+        transition: .5s;
+    }
+
+    .checkbox.checked {
+        background-color: $color-green;
+    }
+}
+
 .button_done {
     cursor: pointer;
     margin-top: 10px;

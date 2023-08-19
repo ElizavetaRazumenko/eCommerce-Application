@@ -1,6 +1,7 @@
 import state from '../../../../../../state/state';
 import { RequestBodyType } from '../../../../../../types/types';
-export const getKey = () => {
+
+const getKey = () => {
   const keyString = '0123456789abcdef';
   let result = '';
   for (let i = 0; i < 8; i += 1) {
@@ -25,6 +26,7 @@ export const requestBody = (isDefaultBilling: string, isDefaultShipping: string)
     const field = state.registerPage.location.shipping.find((el) => el.type === 'country')!;
     return field.value === 'Italy' ? 'IT' : 'ES';
   };
+
   const body: RequestBodyType = {
     email: state.registerPage.fieldData.find((el) => el.plshldr === 'Email')!.value,
     password: state.registerPage.fieldData.find((el) => el.plshldr === 'Password')!.value,
@@ -49,14 +51,16 @@ export const requestBody = (isDefaultBilling: string, isDefaultShipping: string)
     ],
     billingAddresses: [0],
     shippingAddresses: [1],
+    defaultBillingAddress: undefined,
+    defaultShippingAddress: undefined,
   };
-  if (['yes'].includes(isDefaultBilling) && ['yes'].includes(isDefaultShipping)) {
+  if (isDefaultBilling === 'no' && isDefaultShipping === 'no') {
     return body;
-  } else if (['', 'no'].includes(isDefaultBilling) && ['', 'no'].includes(isDefaultShipping)) {
+  } else if (isDefaultBilling === 'yes' && isDefaultShipping === 'yes') {
     body.defaultBillingAddress = 0;
     body.defaultShippingAddress = 1;
     return body;
-  } else if (['', 'no'].includes(isDefaultShipping)) {
+  } else if (isDefaultShipping === 'yes') {
     body.defaultShippingAddress = 1;
     return body;
   } else {
