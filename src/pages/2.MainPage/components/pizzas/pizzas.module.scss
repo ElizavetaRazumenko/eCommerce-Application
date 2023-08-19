@@ -1,3 +1,4 @@
+
 @import '../../../../globalVariables.scss';
 
 .section_offer {
@@ -218,6 +219,9 @@
     @media (max-width: 1199px) {
       margin: 60px auto 0px;
   }
+//   @media (max-width: 1199px) {
+//     margin: 20px auto 70px;
+// }
 }
 
 .arrows {
