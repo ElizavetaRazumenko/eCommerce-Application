@@ -27,7 +27,6 @@
     "react-dom": "^18.2.0",
     "react-router": "^6.14.2",
     "react-router-dom": "^6.14.2",
-    "react-scripts": "^5.0.1",
     "sass": "^1.64.2",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
@@ -35,7 +34,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --coverage",
+    "coverage": "npx nyc report --reporter=text-lcov && npx nyc check-coverage --lines 25 --functions 25 --branches 25",
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "lint:es": "eslint --ext .js,.jsx,.ts,.tsx src",
@@ -54,12 +54,17 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/node-fetch": "^2.6.4",
     "eslint-config-prettier": "^8.9.0",
     "eslint-import-resolver-typescript": "^3.5.5",
     "eslint-plugin-prettier": "^5.0.0",
     "husky": "^8.0.3",
-    "prettier": "^3.0.0"
+    "jest": "^27.5.1",
+    "nyc": "^15.1.0",
+    "prettier": "^3.0.0",
+    "react-scripts": "^5.0.1",
+    "react-test-renderer": "^18.2.0"
   },
   "lint-staged": {
     "*.(ts|tsx|js|jsx)": [

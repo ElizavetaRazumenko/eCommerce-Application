@@ -270,9 +270,10 @@ const checkTextField = (field: FieldType) => {
       field.isValid = false;
     }
   }
+  return field;
 };
 
-const checkEmail = (field: FieldType) => {
+export const checkEmail = (field: FieldType) => {
   const re = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
   if (field.value.match(/\s/)) {
     field.errorMessage = 'must not contain spaces';
@@ -289,7 +290,7 @@ const checkEmail = (field: FieldType) => {
   }
 };
 
-const checkPassword = (field: FieldType) => {
+export const checkPassword = (field: FieldType) => {
   if (field.value.length < 8) {
     field.errorMessage = 'must be at least 8 characters long';
     field.isValid = false;
