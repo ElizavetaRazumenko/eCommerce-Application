@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 
 import s from './loginWindow.module.scss';
 
-import { getPasswordFlowClient } from '../../../../../shared';
+import { loginClient } from '../../../../../shared/index';
 import state from '../../../../../state/state';
 import { LoginPagePropsType } from '../../../../../types/types';
 import Field from '../../../components/field/field';
@@ -30,22 +30,12 @@ const LoginWindow = (props: LoginPagePropsType) => {
         ? setErrorMessage(`field '${isValidForm.plshldr}' is empty`)
         : setErrorMessage(`field '${isValidForm.plshldr}' is not valid`);
     } else {
-      const Email = state.loginPage.fieldData.find((el) => el.classname === 'email')!.value;
-      const Password = state.loginPage.fieldData.find((el) => el.classname === 'password')!.value;
+      const email = state.loginPage.fieldData.find((el) => el.classname === 'email')!.value;
+      const password = state.loginPage.fieldData.find((el) => el.classname === 'password')!.value;
       try {
-        const response = await getPasswordFlowClient(Email, Password)
-          .me()
-          .login()
-          .post({
-            body: {
-              email: Email,
-              password: Password,
-            },
-          })
-          .execute();
-        localStorage.setItem('userInfo', JSON.stringify(response.body));
-        setSuccessMessage('Successfully');
-        setTimeout(loginTrek, 500);
+        await loginClient(email, password);
+        setSuccessMessage('Authorized ✔');
+        setTimeout(loginTrek, 700);
       } catch (e) {
         if (e instanceof Error) {
           if (e.message === 'Customer account with the given credentials not found.') {

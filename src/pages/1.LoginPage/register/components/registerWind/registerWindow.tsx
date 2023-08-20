@@ -2,9 +2,9 @@ import { useRef, useState } from 'react';
 
 import s from './registerWindow.module.scss';
 
-import { requestBody } from './utils/utils';
+import { getRequestData } from './utils/utils';
 
-import { apiRoot } from '../../../../../shared/index';
+import { apiRoot, loginClient } from '../../../../../shared/index';
 import state from '../../../../../state/state';
 import { RegisterPagePropsType } from '../../../../../types/types';
 import Field from '../../../components/field/field';
@@ -53,21 +53,26 @@ const RegisterWindow = (props: RegisterPagePropsType) => {
         ? setErrorMessage(`in Shippnig address field '${invalidShipping.type}' is empty`)
         : setErrorMessage(`in Shipping address field '${invalidShipping.type}' is not valid`);
     } else {
+      const requestData = getRequestData(
+        requestSettings.defaultBilling,
+        requestSettings.defaultShipping,
+      );
       try {
-        const response = await apiRoot
+        await apiRoot
           .customers()
           .post({
-            body: requestBody(requestSettings.defaultBilling, requestSettings.defaultShipping),
+            body: requestData.body,
           })
-          .execute();
-        localStorage.setItem('userInfo', JSON.stringify(response.body));
-        setSuccessMessage('Successfully');
-        setTimeout(registerTrek, 500);
+          .execute()
+          .then(() => loginClient(requestData.email, requestData.password));
+        setSuccessMessage('Registered ✔');
+        setTimeout(registerTrek, 700);
       } catch (e) {
         if (e instanceof Error) {
           if (e.message === 'There is already an existing customer with the provided email.') {
             setErrorMessage('User with this email already exists');
           } else {
+            console.log(e.message);
             setErrorMessage('Something went wrong. Please try again later');
           }
         }
