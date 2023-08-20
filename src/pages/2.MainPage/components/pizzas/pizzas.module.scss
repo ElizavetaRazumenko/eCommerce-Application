@@ -7,6 +7,9 @@
     background-repeat: no-repeat;
     background-size: contain;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     @media (max-width: 1199px) {
       margin: 0 auto;
       padding: 0;
@@ -225,7 +228,7 @@
   width: 1285px;
   height: 110px;
   top: 1060px;
-  left: 51.4%;
+  left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: row;
