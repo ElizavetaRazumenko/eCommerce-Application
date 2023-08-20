@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+
 import { MemoryRouter } from 'react-router-dom';
 
 import Logo from './Logo';
@@ -13,7 +14,7 @@ const isSubtitleText = (content: string, element: Element | null) => {
 };
 
 describe('Logo component', () => {
-  it('renders correctly', () => {
+  test('renders correctly', () => {
     render(
       <MemoryRouter>
         <Logo />

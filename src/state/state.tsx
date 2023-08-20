@@ -255,7 +255,7 @@ const findField = (id: number, page: string) => {
   return field;
 };
 
-const checkTextField = (field: FieldType) => {
+export const checkTextField = (field: FieldType) => {
   if (field.value.length === 0) {
     field.errorMessage = 'must be filled';
     field.isValid = false;
@@ -312,7 +312,7 @@ export const checkPassword = (field: FieldType) => {
   }
 };
 
-const checkDate = (field: FieldType) => {
+export const checkDate = (field: FieldType) => {
   const re = /\d{4}(-)\d{2}\1\d{2}/g;
   if (!re.test(field.value)) {
     field.errorMessage = 'date must be in the form yyyy-mm-dd';
@@ -361,7 +361,7 @@ export const addInputValue = (id: string, value: string, inputType: string, page
   }
 };
 
-const checkPostalCode = (field: FieldLocationType, typeAddress: 'billing' | 'shipping') => {
+export const checkPostalCode = (field: FieldLocationType, typeAddress: 'billing' | 'shipping') => {
   const country = state.registerPage.location[typeAddress].find(
     (item) => item.type === 'country',
   )!.value;
@@ -380,7 +380,7 @@ const checkPostalCode = (field: FieldLocationType, typeAddress: 'billing' | 'shi
   }
 };
 
-const checkTextLocationField = (field: FieldLocationType) => {
+export const checkTextLocationField = (field: FieldLocationType) => {
   if (field.value.match(/[0-9]/)) {
     field.errorMessage = 'must not contain numbers';
     field.isValid = false;
