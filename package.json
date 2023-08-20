@@ -36,8 +36,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test fix": "react-scripts test --detectOpenHandles ",
+    "test jest": "jest",
+    "all tests": "npm test path/to/your/testFile.test.js",
     "test:coverage": "npx nyc react-scripts test --coverage",
+    "test:coverage all": "npx nyc react-scripts test --coverage --include=src/**/*.test.tsx",
     "report:coverage": "npx nyc report --reporter=lcov",
     "test all": "jest --collectCoverageFrom='src/**/*.tsx' --collectCoverageFrom='!**/node_modules/**'",
     "eject": "react-scripts eject",
@@ -64,6 +66,7 @@
     "eslint-import-resolver-typescript": "^3.5.5",
     "eslint-plugin-prettier": "^5.0.0",
     "husky": "^8.0.3",
+    "jest": "^27.5.1",
     "prettier": "^3.0.0"
   },
   "lint-staged": {
