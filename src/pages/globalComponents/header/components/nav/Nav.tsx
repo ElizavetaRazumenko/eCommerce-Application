@@ -71,9 +71,13 @@ const Nav = (props: HeaderPropsType) => {
                 props.setUserState('Login');
                 localStorage.setItem('userState', 'Login');
               }}
-              className={({ isActive }) => (isActive ? s.link + ' ' + s.no_active_link : s.link)}
+              className={({ isActive }) =>
+                isActive || window.location.pathname === '/registration'
+                  ? s.link + ' ' + s.no_active_link
+                  : s.link
+              }
             >
-              {props.userState}
+              {props.userState === 'Login' ? 'Login/Register' : 'Logout'}
             </NavLink>
           </li>
         </ul>

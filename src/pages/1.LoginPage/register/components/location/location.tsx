@@ -219,7 +219,7 @@ const Location = (props: LocationPropsType) => {
         </div>
 
         <div className={s.label}>
-          <span>use for shipping address</span>
+          <span>make shipping address as billing</span>
           <div
             className={makeOneAddress ? s.checkbox + ' ' + s.checked : s.checkbox}
             onClick={changeOneAddress}

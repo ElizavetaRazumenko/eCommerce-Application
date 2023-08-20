@@ -45,7 +45,7 @@ const LoginWindow = (props: LoginPagePropsType) => {
           .execute();
         localStorage.setItem('userInfo', JSON.stringify(response.body));
         setSuccessMessage('Successfully');
-        setTimeout(loginTrek, 700);
+        setTimeout(loginTrek, 500);
       } catch (e) {
         if (e instanceof Error) {
           if (e.message === 'Customer account with the given credentials not found.') {

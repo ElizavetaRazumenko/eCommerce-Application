@@ -62,7 +62,7 @@ const RegisterWindow = (props: RegisterPagePropsType) => {
           .execute();
         localStorage.setItem('userInfo', JSON.stringify(response.body));
         setSuccessMessage('Successfully');
-        setTimeout(registerTrek, 700);
+        setTimeout(registerTrek, 500);
       } catch (e) {
         if (e instanceof Error) {
           if (e.message === 'There is already an existing customer with the provided email.') {
