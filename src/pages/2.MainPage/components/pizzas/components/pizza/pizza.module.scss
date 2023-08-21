@@ -10,6 +10,10 @@
     max-width: 303px;
     background-position: center;
     padding-bottom: 20px;
+
+    @media (max-width: 465px) {
+        font-size: 1rem;
+    }
 }
 
 .pizza_img {
@@ -18,9 +22,12 @@
     width: 275px;
     height: 275px;
     transition: .5s;
-    &:hover{
-        transform: scale(1.02) rotate(30deg);
-       }
+   
+    @media (max-width: 465px) {
+        width: 260px;
+        height: 260px;
+        margin: 5px;
+    }
 }
 
 .pizza_name {

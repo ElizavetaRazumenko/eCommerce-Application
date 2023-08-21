@@ -2,13 +2,14 @@
 
 .logo_wrapper {
   cursor: pointer;
+  position: relative;
   width: auto;
   height: auto;
   text-decoration: none;
-
-
+    
   .logo_title {
-    margin: 0;
+    position: relative;
+    margin: 0 ;
     color: $main-light;
     font-size: 1.4rem;
     padding-top: 1.4rem;
@@ -43,8 +44,4 @@
 
 .parsley {
   color: $color-parsley;
-}
-
-.space{
-  width: 20px;
 }

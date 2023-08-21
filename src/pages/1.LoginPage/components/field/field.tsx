@@ -54,7 +54,9 @@ const Field = (props: InputLoginType) => {
           }
           value={inputValue}
           onChange={changeValue}
+          onPaste={changeValue}
           ref={inputRef}
+          autoComplete={inputType === 'password' ? 'on' : 'false'}
         />
         <div
           className={s.watch}

@@ -21,6 +21,7 @@
 
     .address_name {
         margin: 0;
+        font-weight: 700;
     }
 }
 
@@ -55,6 +56,10 @@
         user-select: none;
         color: $input-placeholder;
         margin: 7px 0px;
+
+        @media (max-width: 440px) {
+            font-size: .9rem;
+        }
     }
 
     .arrow {
@@ -80,9 +85,43 @@
 }
 
 .label_input {
-    padding-left: 5px;
+    align-self: flex-start;
+    padding-left: 40px;
     font-size: .8rem;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
+}
+
+.label {
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    padding-left: 40px;
+    font-size: .8rem;
+    margin-bottom: 5px;
+
+    @media (max-width: 440px) {
+        padding-left: 25px;
+    }
+
+    span {
+        @media (max-width: 440px) {
+            font-size: .7rem;
+        }
+    }
+    .checkbox {
+        cursor: pointer;
+        border: 1px solid $main-dark-color;
+        background-color: $white;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-left: 5px;
+        transition: .5s;
+    }
+
+    .checkbox.checked {
+        background-color: $color-green;
+    }
 }
 
 .button_done {

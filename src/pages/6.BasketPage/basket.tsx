@@ -1,6 +1,8 @@
 import s from './basket.module.scss';
 
-const BasketPage = () => {
+import { CartPropsType } from '../../types/types';
+
+const BasketPage = (props: CartPropsType) => {
   return (
     <div className={s.basket_wrapper}>
       <p className={s.welcome}>Welcome to the Cart Page!</p>

@@ -265,8 +265,12 @@ const checkTextField = (field: FieldType) => {
       field.errorMessage = 'must not contain numbers';
       field.isValid = false;
     }
-    if (field.value.match(/[!@#$&*]/)) {
+    if (field.value.match(/[!@#$&*"'./|/\\+^`~_=]/)) {
       field.errorMessage = 'must not contain special characters';
+      field.isValid = false;
+    }
+    if (field.value.trim() !== field.value) {
+      field.errorMessage = 'must not contain leading or trailing spaces';
       field.isValid = false;
     }
   }
@@ -302,7 +306,7 @@ const checkPassword = (field: FieldType) => {
   } else if (!field.value.match(/\d/)) {
     field.errorMessage = 'must contain at least one number';
     field.isValid = false;
-  } else if (!field.value.match(/[!@#$&*]/)) {
+  } else if (!field.value.match(/[[!@#$&*"'./|/\\+^`~_=]/)) {
     field.errorMessage = 'must contain at least one special character';
     field.isValid = false;
   } else if (field.value.trim() !== field.value) {
@@ -314,7 +318,7 @@ const checkPassword = (field: FieldType) => {
 const checkDate = (field: FieldType) => {
   const re = /\d{4}(-)\d{2}\1\d{2}/g;
   if (!re.test(field.value)) {
-    field.errorMessage = 'incorrect date';
+    field.errorMessage = 'date must be in the form yyyy-mm-dd';
     field.isValid = false;
   }
   const currentYear = new Date().getFullYear();
@@ -331,6 +335,15 @@ const checkDate = (field: FieldType) => {
     field.isValid = false;
   } else if (age < 13) {
     field.errorMessage = 'registration of users over 13 years old';
+    field.isValid = false;
+  } else if (field.value.length > 10) {
+    field.errorMessage = 'date must be in the form yyyy-mm-dd';
+    field.isValid = false;
+  } else if (+mounth > 12) {
+    field.errorMessage = 'enter the number of the month from 1 to 12';
+    field.isValid = false;
+  } else if (+date > 31) {
+    field.errorMessage = 'enter the number of the day from 1 to 31';
     field.isValid = false;
   }
 };
@@ -359,12 +372,10 @@ const checkPostalCode = (field: FieldLocationType, typeAddress: 'billing' | 'shi
   if (!reg.test(field.value)) {
     field.errorMessage = 'must contain contain only digits';
     field.isValid = false;
-  }
-  if (country === 'Spain' && field.value.length !== 6) {
-    field.errorMessage = 'spain postal code must contain 6 digits';
+  } else if (country === 'Spain' && field.value.length !== 5) {
+    field.errorMessage = 'spain postal code must contain 5 digits';
     field.isValid = false;
-  }
-  if (country === 'Italy' && field.value.length !== 5) {
+  } else if (country === 'Italy' && field.value.length !== 5) {
     field.errorMessage = 'italy postal code must contain 5 digits';
     field.isValid = false;
   }
@@ -375,8 +386,12 @@ const checkTextLocationField = (field: FieldLocationType) => {
     field.errorMessage = 'must not contain numbers';
     field.isValid = false;
   }
-  if (field.value.match(/[!@#$&*]/)) {
+  if (field.value.match(/[[!@#$&*"'./|/\\+^`~_=]/) && field.type === 'city') {
     field.errorMessage = 'must not contain special characters';
+    field.isValid = false;
+  }
+  if (field.value.trim() !== field.value) {
+    field.errorMessage = 'cannot start/end with a space';
     field.isValid = false;
   }
 };

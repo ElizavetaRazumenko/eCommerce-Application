@@ -4,6 +4,18 @@
 .location_wrapper {
     color: $main-light;
 
+    .footer_titles {
+
+        @media (max-width:860px) {
+            font-size: 1rem;
+            margin: 25px auto 5px 5px; 
+          }  
+
+          @media (max-width: 645px) {
+            border-top: 1px solid $color-parsley;
+         }  
+    }
+
     .links_wrapper {
         display: flex;
         flex-direction: column;
@@ -19,9 +31,17 @@
             background-position: left center;
             cursor: pointer;
             transition: color .5s;
+
             &:hover{
                 color:$white;
             }
+
+            @media (max-width: 860px) {
+                padding-left: 20px;
+                line-height: 30px;
+                letter-spacing: .01px;
+                font-size: .8rem;
+            }  
         }
     }
 }
