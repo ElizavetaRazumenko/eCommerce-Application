@@ -1,0 +1,306 @@
+
+@import '../../../../globalVariables.scss';
+
+.section_offer {
+    padding: 160px auto 100px;
+    margin: 0 ;
+    background-image: url('../../../../assets/png/smoke.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    @media (max-width: 1199px) {
+      margin: 0 auto;
+      padding: 0;
+      width: 711px;
+      background-repeat: repeat-y;
+  }
+  
+      @media (max-width: 795px) {
+        width: 303px
+      }
+      @media (max-width: 645px) {
+        margin: 50px auto 0;
+        width: 303px
+      }
+      @media (max-width: 515px) {
+        margin: 0 auto;
+      }
+      @media (max-width: 465px) {
+        margin: 0 auto;
+        width: 270px
+      }
+}
+
+.title_section {
+    font-size: 2.7rem;
+    letter-spacing: 1.8px;
+    color: $main-light;
+    @media (max-width: 1199px) {
+      padding-top: 100px;
+      max-width: 700px;
+      font-size: 2rem;
+      letter-spacing: 2px;
+  }
+      @media (max-width: 860px) {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+        top: 330px;
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+        transition: 1s;
+      }
+    @media (max-width: 645px) {
+        top: 330px;
+        padding-top: 0;
+        max-width: 500px;
+        font-size: 1.2rem;
+    }
+    @media (max-width: 515px) {
+        top: 300px;
+        font-size: 1rem;
+        letter-spacing: .7px;
+    }
+
+    @media (max-width: 465px) {
+      font-size: 1rem;
+      letter-spacing: .7px;
+  }
+    @media (max-width: 380px) {
+      width: 300px;
+
+  }
+}
+
+.title_center {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.pizza_collection {
+    position: relative;
+    left: 0%;
+    margin: 90px -326px 0;
+    gap: 105px;
+    display: flex;
+    flex-direction: row;
+    transition: 1s;
+
+    @media (max-width: 1199px) {
+      left: -57.5%;
+      margin: 90px auto 0;
+    }
+        @media (max-width: 860px) {
+          // margin: 70px auto 0;
+      }
+      @media (max-width: 795px) {
+        left: -135%;
+    }
+    @media (max-width: 645px) {
+      margin: 90px auto 0;
+    }
+    
+    @media (max-width: 465px) {
+      margin: 80px auto 0;
+      left: -139%;
+    }
+}
+
+@keyframes right {
+    from {
+      transform: translate(0%);
+    }
+    to {
+      transform: translateX(21%);
+  }
+}
+
+  .transition_right {
+    animation-name: right;
+    animation-duration: 1s;
+  }
+  
+  @keyframes left {
+    from {
+      transform: translate(0%);
+    }
+    to {
+      transform: translate(-21%);
+    }
+  }
+
+  @media (max-width: 1199px) {
+    @keyframes right {
+      from {
+        transform: translate(0%);
+      }
+      to {
+        transform: translateX(415px);
+    }
+  }
+
+  @keyframes left {
+    from {
+      transform: translate(0%);
+    }
+    to {
+      transform: translate(-415px);
+    }
+  }
+  }
+
+  @media (max-width: 795px) {
+    @keyframes right {
+      from {
+        transform: translate(0%);
+      }
+      to {
+        transform: translateX(415px);
+    }
+  }
+  @keyframes left {
+    from {
+      transform: translate(0%);
+    }
+    to {
+      transform: translate(-415px);
+    }
+  }
+  }
+
+  @media (max-width: 465px) {
+    @keyframes right {
+      from {
+        transform: translate(0%);
+      }
+      to {
+        transform: translateX(378px);
+    }
+  }
+  @keyframes left {
+    from {
+      transform: translate(0%);
+    }
+    to {
+      transform: translate(-378px);
+    }
+  }
+  }
+
+
+  .transition_left {
+    animation-name: left;
+    animation-duration: 1s;
+  }
+
+.btn_see_all {
+    cursor: pointer;
+    text-align: center;
+    display: block;
+    height: 60px;
+    width: 200px;
+    font-weight: 700;
+    font-size: 20px;
+    border-radius: 35px;
+    margin: 70px auto;
+    transition: .5s;
+    border: none;
+    transition: 1s;
+
+    &:hover {
+          background:$white url('../../../../assets/png/smoke.png');
+          background-size: 100%;
+          background-repeat: no-repeat;
+          background-position: left;
+    }
+
+    @media (max-width: 1199px) {
+      margin: 60px auto 0px;
+  }
+//   @media (max-width: 1199px) {
+//     margin: 20px auto 70px;
+// }
+}
+
+.arrows {
+  position: absolute;
+  width: 1285px;
+  height: 110px;
+  top: 1060px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  @media (max-width: 1199px) {
+    left: 50%;
+    top: 960px;
+    width: 900px;
+  }
+  @media (max-width: 930px) {
+    width: 850px;
+  }
+  @media (max-width: 860px) {
+    width: 780px;
+    top: 700px;
+  }
+  @media (max-width: 795px) {
+    width: 400px;
+    top: 700px;
+  }
+  @media (max-width: 795px) {
+    top: 650px;
+  }
+  @media (max-width: 430px) {
+    top: 600px;
+    width: 330px;
+  }
+  @media (max-width: 350px) {
+    top: 600px;
+    width: 250px;
+    margin: 0 auto;
+  }
+
+}
+
+.arrow_left,
+.arrow_right {
+    height: 100%;
+    width: 40px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    transition: .5s;
+    @media (max-width: 860px) {
+      background-size: 60%;
+      width: 40px;
+      height: 70px;
+    } 
+}
+
+.arrow_left {
+  background-image: url('../../../../assets/png/rigthbutton.png');
+  transform: rotate(180deg);
+  @media (max-width: 860px) {
+    background-size: cover;
+  }
+}
+
+.arrow_right {
+  background-image: url('../../../../assets/png/rigthbutton.png');
+    @media (max-width: 860px) {
+      background-size: cover;
+
+    }
+}
+
+.link {
+  text-decoration: none;
+}

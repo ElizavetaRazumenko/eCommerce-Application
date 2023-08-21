@@ -1,0 +1,131 @@
+@import '../../../../globalVariables.scss';
+
+
+.section_drinks {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: no-repeat url('../../../../assets/png/water.png');
+    background-size: 53%;
+    background-position: right -10% top 46%;
+
+    @media (max-width: 1199px) {
+        background-position: right -30% top 46%;
+    }
+
+    @media (max-width: 999px) {
+        background-position: right -30% top 46%;
+        background-size: 100%;
+        margin-top: -250px;
+    }
+
+    @media (max-width: 645px) {
+        background: none;
+    }
+
+
+    @media (max-width: 530px) {
+        margin-top: 0;
+    }
+}
+
+.title_right {
+    font-size: 2.3rem;
+    margin-top: 50px;
+    text-align: right;
+    margin-right: 7%;
+
+    @media (max-width: 1199px) {
+        font-size: 2rem;
+        letter-spacing: 2px;
+    }
+
+    @media (max-width: 860px) {
+        margin-top: 80px;
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+    }
+
+    @media (max-width: 645px) {
+        padding-top: 0;
+        max-width: 500px;
+        font-size: 1.2rem;
+    }
+
+    @media (max-width: 530px) {
+        text-align: center;
+        font-size: 1rem;
+        letter-spacing: .7px;
+    }
+
+    @media (max-width: 380px) {
+        width: 290px;
+        margin: 80px auto 0;
+
+    }
+}
+
+.drinks_container {
+    margin-left: 150px;
+    margin-top: 100px;
+    max-width: 600px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 100px;
+    row-gap: 45px;
+
+    @media (max-width: 1199px) {
+        margin-left: 50px;
+        margin-top: 50px;
+    }
+       
+        @media (max-width: 645px) {
+            column-gap: 30px;
+            max-width: 400px;
+        }
+        @media (max-width: 465px) {
+            column-gap: 10px;
+            justify-content: space-between;
+            margin: 60px auto 0;
+            width: 200px;
+        }
+}
+
+.btn_catalog {
+    border-radius: 25px;
+    font-size: 1.2rem;
+    width: 200px;
+    height: 40px;
+    cursor: pointer;
+    color: $main-dark-color;
+    border: none;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: 1s;
+
+    &:hover {
+        background-color: $white;
+        color: $main-grey;
+    }
+}
+
+.link {
+    text-decoration: none;
+    margin-top: 50px;
+    margin-bottom: 70px;
+    position: relative;
+    left: 22%;
+    transform: translate(0, -50%);
+    border-radius: 25px;
+    width: 200px;
+    height: 40px;
+
+    @media (max-width: 530px) {
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
