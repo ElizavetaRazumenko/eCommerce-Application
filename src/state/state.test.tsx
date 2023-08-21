@@ -9,6 +9,44 @@ import {
 
 import { FieldLocationType, FieldType } from '../types/types';
 
+describe('checkTextField', () => {
+  it('should set  isValid to false for empty field', () => {
+    const emptyField = {
+      value: '',
+      errorMessage: '',
+      isValid: true,
+      plshldr: 'First name',
+    } as FieldType;
+
+    const resultEmptyField = checkTextField(emptyField);
+
+    expect(resultEmptyField.isValid).toBe(false);
+  });
+
+  it('should set isValid to false for field with numbers', () => {
+    const numericField = {
+      value: 'John123',
+      errorMessage: '',
+      isValid: true,
+      plshldr: 'First name',
+    } as FieldType;
+    const resultNumericField = checkTextField(numericField);
+    expect(resultNumericField.isValid).toBe(false);
+  });
+
+  it('should set  isValid to false for field with special characters', () => {
+    const specialCharField = {
+      value: 'John@Doe',
+      errorMessage: '',
+      isValid: true,
+      plshldr: 'Last name',
+    } as FieldType;
+
+    const resultSpecialCharField = checkTextField(specialCharField);
+    expect(resultSpecialCharField.isValid).toBe(false);
+  });
+});
+
 describe('checkEmail function', () => {
   test('should set isValid to false for an email with spaces', () => {
     const testField = {

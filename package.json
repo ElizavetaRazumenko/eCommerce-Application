@@ -39,11 +39,8 @@
     "test": "react-scripts test",
     "test jest": "jest",
     "test jest coverage": "jest --coverage",
-
-    "all tests": "npm test path/to/your/testFile.test.js",
     "test:coverage": "npx nyc react-scripts test --coverage",
     "report:coverage": "npx nyc report --reporter=lcov",
-    "test all": "jest --collectCoverageFrom='src/**/*.tsx",
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "lint:es": "eslint --ext .js,.jsx,.ts,.tsx src",
