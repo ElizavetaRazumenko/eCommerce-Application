@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom';
+
 import s from './welcome.module.scss';
 
 const SectionWelcome = () => {
@@ -9,6 +11,12 @@ const SectionWelcome = () => {
         ingredients and the freshest vegetables for cooking. But the most important ingredient is
         that we make pizza with love!
       </p>
+      <div className={s.link_wrapper}>
+        <p className={s.welcome_content + ' ' + s.member}>Become a member of our community:</p>
+        <NavLink to='/registration' className={s.link}>
+          <button className={s.btn_login}>Register</button>
+        </NavLink>
+      </div>
     </section>
   );
 };
