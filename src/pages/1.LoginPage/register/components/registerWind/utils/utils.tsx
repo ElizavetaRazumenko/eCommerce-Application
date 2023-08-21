@@ -29,7 +29,6 @@ export const getRequestData = (isDefaultBilling: string, isDefaultShipping: stri
   const userEmail = state.registerPage.fieldData.find((el) => el.plshldr === 'Email')!.value;
   const userPassword = state.registerPage.fieldData.find((el) => el.plshldr === 'Password')!.value;
   console.log(`email: ${userEmail}, password: ${userPassword}`);
-
   const body: RequestBodyType = {
     email: userEmail,
     password: userPassword,
@@ -58,7 +57,7 @@ export const getRequestData = (isDefaultBilling: string, isDefaultShipping: stri
   if (isDefaultBilling === 'no' && isDefaultShipping === 'no') {
     return {
       body: body,
-      email: userPassword,
+      email: userEmail,
       password: userPassword,
     };
   } else if (isDefaultBilling === 'yes' && isDefaultShipping === 'yes') {
@@ -66,21 +65,21 @@ export const getRequestData = (isDefaultBilling: string, isDefaultShipping: stri
     body.defaultShippingAddress = 1;
     return {
       body: body,
-      email: userPassword,
+      email: userEmail,
       password: userPassword,
     };
   } else if (isDefaultShipping === 'yes') {
     body.defaultShippingAddress = 1;
     return {
       body: body,
-      email: userPassword,
+      email: userEmail,
       password: userPassword,
     };
   } else {
     body.defaultBillingAddress = 0;
     return {
       body: body,
-      email: userPassword,
+      email: userEmail,
       password: userPassword,
     };
   }

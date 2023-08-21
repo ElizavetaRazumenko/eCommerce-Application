@@ -8,8 +8,8 @@ import {
   TokenCache,
   TokenStore,
   TokenCacheOptions,
-  Client,
-  ExistingTokenMiddlewareOptions, // Required for sending HTTP requests
+  // Client,
+  // ExistingTokenMiddlewareOptions, // Required for sending HTTP requests
 } from '@commercetools/sdk-client-v2';
 
 const fetch = require('node-fetch');
@@ -112,10 +112,10 @@ export const getPasswordFlowClient = (email: string, login: string) => {
   return apiRoot;
 };
 
-const setToken = () => {
-  myTokenCache.get();
-  localStorage.setItem('TokenСache', myTokenCache.get().token);
-};
+// const setToken = () => {
+//   myTokenCache.get();
+//   localStorage.setItem('TokenСache', myTokenCache.get().token);
+// };
 
 export const ctpClient = defaultClient.withAnonymousSessionFlow(authMiddlewareOptions).build();
 
