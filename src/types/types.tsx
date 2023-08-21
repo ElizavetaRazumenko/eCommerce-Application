@@ -63,6 +63,11 @@ export type FieldType = {
   isValid: boolean;
 };
 
+export type TestFieldType = {
+  value: string;
+  isValid: boolean;
+};
+
 export type InputLoginType = {
   id: number;
   name: string;
