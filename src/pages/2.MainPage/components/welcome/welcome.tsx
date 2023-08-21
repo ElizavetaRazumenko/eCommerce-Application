@@ -13,8 +13,8 @@ const SectionWelcome = () => {
       </p>
       <div className={s.link_wrapper}>
         <p className={s.welcome_content + ' ' + s.member}>Become a member of our community:</p>
-        <NavLink to='/registration' className={s.link}>
-          <button className={s.btn_login}>Register</button>
+        <NavLink to='/login' className={s.link}>
+          <button className={s.btn_login}>Login/Register</button>
         </NavLink>
       </div>
     </section>
