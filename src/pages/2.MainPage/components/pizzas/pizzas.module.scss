@@ -140,15 +140,16 @@
         transform: translate(0%);
       }
       to {
-        transform: translateX(57.3%);
+        transform: translateX(415px);
     }
   }
+
   @keyframes left {
     from {
       transform: translate(0%);
     }
     to {
-      transform: translate(-57.3%);
+      transform: translate(-415px);
     }
   }
   }
@@ -159,7 +160,7 @@
         transform: translate(0%);
       }
       to {
-        transform: translateX(134.5%);
+        transform: translateX(415px);
     }
   }
   @keyframes left {
@@ -167,7 +168,7 @@
       transform: translate(0%);
     }
     to {
-      transform: translate(-134.5%);
+      transform: translate(-415px);
     }
   }
   }
@@ -178,7 +179,7 @@
         transform: translate(0%);
       }
       to {
-        transform: translateX(139%);
+        transform: translateX(378px);
     }
   }
   @keyframes left {
@@ -186,7 +187,7 @@
       transform: translate(0%);
     }
     to {
-      transform: translate(-139%);
+      transform: translate(-378px);
     }
   }
   }
