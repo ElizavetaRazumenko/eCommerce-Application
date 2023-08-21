@@ -265,8 +265,12 @@ export const checkTextField = (field: FieldType) => {
       field.errorMessage = 'must not contain numbers';
       field.isValid = false;
     }
-    if (field.value.match(/[!@#$&*"'./|/\\+]/)) {
+    if (field.value.match(/[!@#$&*"'./|/\\+^`~_=]/)) {
       field.errorMessage = 'must not contain special characters';
+      field.isValid = false;
+    }
+    if (field.value.trim() !== field.value) {
+      field.errorMessage = 'must not contain leading or trailing spaces';
       field.isValid = false;
     }
   }
@@ -303,7 +307,7 @@ export const checkPassword = (field: FieldType) => {
   } else if (!field.value.match(/\d/)) {
     field.errorMessage = 'must contain at least one number';
     field.isValid = false;
-  } else if (!field.value.match(/[!@#$&*]/)) {
+  } else if (!field.value.match(/[[!@#$&*"'./|/\\+^`~_=]/)) {
     field.errorMessage = 'must contain at least one special character';
     field.isValid = false;
   } else if (field.value.trim() !== field.value) {
@@ -369,12 +373,10 @@ export const checkPostalCode = (field: FieldLocationType, typeAddress: 'billing'
   if (!reg.test(field.value)) {
     field.errorMessage = 'must contain contain only digits';
     field.isValid = false;
-  }
-  if (country === 'Spain' && field.value.length !== 6) {
-    field.errorMessage = 'spain postal code must contain 6 digits';
+  } else if (country === 'Spain' && field.value.length !== 5) {
+    field.errorMessage = 'spain postal code must contain 5 digits';
     field.isValid = false;
-  }
-  if (country === 'Italy' && field.value.length !== 5) {
+  } else if (country === 'Italy' && field.value.length !== 5) {
     field.errorMessage = 'italy postal code must contain 5 digits';
     field.isValid = false;
   }
@@ -385,8 +387,12 @@ export const checkTextLocationField = (field: FieldLocationType) => {
     field.errorMessage = 'must not contain numbers';
     field.isValid = false;
   }
-  if (field.value.match(/[!@#$&*"'./|/\\+]/)) {
+  if (field.value.match(/[[!@#$&*"'./|/\\+^`~_=]/) && field.type === 'city') {
     field.errorMessage = 'must not contain special characters';
+    field.isValid = false;
+  }
+  if (field.value.trim() !== field.value) {
+    field.errorMessage = 'cannot start/end with a space';
     field.isValid = false;
   }
 };

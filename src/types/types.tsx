@@ -120,7 +120,6 @@ export type LocationValueType = {
   type: 'billing' | 'shipping';
   isOneAddress: boolean;
   states: StatesType;
-  toggle?: boolean;
 };
 
 export type InputLocationPropsType = {
@@ -208,7 +207,7 @@ export type AddressType = {
   streetName: string;
 };
 
-export type CustomerAddressesType = AddressType[];
+export type CustomerAddressesType = AddressType[] | null;
 //                                                                    ERROR PAGE
 
 export type ButtonRedirectType = {

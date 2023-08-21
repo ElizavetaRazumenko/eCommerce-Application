@@ -8,6 +8,12 @@
    left: 50%;
    transform: translateX(-50%);
 
+
+    @media (max-width: 860px) {
+      padding: 50px 10px;
+   }  
+
+
     .welcome {
         text-align: center;
         color: $main-light;

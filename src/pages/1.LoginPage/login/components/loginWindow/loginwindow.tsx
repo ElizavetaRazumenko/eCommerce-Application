@@ -1,10 +1,8 @@
 import { useRef, useState } from 'react';
 
-import { useNavigate } from 'react-router';
-
 import s from './loginWindow.module.scss';
 
-import { getPasswordFlowClient } from '../../../../../shared';
+import { loginClient } from '../../../../../shared/index';
 import state from '../../../../../state/state';
 import { LoginPagePropsType } from '../../../../../types/types';
 import Field from '../../../components/field/field';
@@ -14,14 +12,12 @@ const LoginWindow = (props: LoginPagePropsType) => {
   const formRef = useRef<HTMLFormElement>(null);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [successMessage, setSuccessMessage] = useState<string>('');
-  const navigate = useNavigate();
 
   const deleteError = () => {
     setErrorMessage('');
   };
 
   const loginTrek = () => {
-    navigate('/');
     props.setUserState('Logout');
     localStorage.setItem('userState', 'Logout');
   };
@@ -34,27 +30,16 @@ const LoginWindow = (props: LoginPagePropsType) => {
         ? setErrorMessage(`field '${isValidForm.plshldr}' is empty`)
         : setErrorMessage(`field '${isValidForm.plshldr}' is not valid`);
     } else {
-      const Email = state.loginPage.fieldData.find((el) => el.classname === 'email')!.value;
-      const Password = state.loginPage.fieldData.find((el) => el.classname === 'password')!.value;
+      const email = state.loginPage.fieldData.find((el) => el.classname === 'email')!.value;
+      const password = state.loginPage.fieldData.find((el) => el.classname === 'password')!.value;
       try {
-        const response = await getPasswordFlowClient(Email, Password)
-          .me()
-          .login()
-          .post({
-            body: {
-              email: Email,
-              password: Password,
-            },
-          })
-          .execute();
-        localStorage.setItem('userInfo', JSON.stringify(response.body));
-        console.log(JSON.stringify(response.body));
-        setSuccessMessage('Successfully');
+        await loginClient(email, password);
+        setSuccessMessage('Authorized ✔');
         setTimeout(loginTrek, 700);
       } catch (e) {
         if (e instanceof Error) {
-          if (e.message === 'Missing required user credentials (username, password)') {
-            setErrorMessage('Invalid email or password');
+          if (e.message === 'Customer account with the given credentials not found.') {
+            setErrorMessage("Invalid email or password. Don't have an account? Click registration");
           } else setErrorMessage(e.message);
         }
       }

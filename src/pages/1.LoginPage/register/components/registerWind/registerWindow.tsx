@@ -1,11 +1,10 @@
 import { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import s from './registerWindow.module.scss';
 
-import { requestBody } from './utils/utils';
+import { getRequestData } from './utils/utils';
 
-import { apiRoot } from '../../../../../shared/index';
+import { apiRoot, loginClient } from '../../../../../shared/index';
 import state from '../../../../../state/state';
 import { RegisterPagePropsType } from '../../../../../types/types';
 import Field from '../../../components/field/field';
@@ -14,11 +13,14 @@ import Location from '../location/location';
 
 const RegisterWindow = (props: RegisterPagePropsType) => {
   const formRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [successMessage, setSuccessMessage] = useState<string>('');
-  const [useAsDefaultBilling, setAsDefaultBilling] = useState<string>('');
-  const [useAsDefaultShipping, setAsDefaultShipping] = useState<string>('');
+  const [useAsDefaultBilling, setAsDefaultBilling] = useState<string>(
+    localStorage.getItem('defaultB') === 'yes' ? 'yes' : 'no',
+  );
+  const [useAsDefaultShipping, setAsDefaultShipping] = useState<string>(
+    localStorage.getItem('defaultS') === 'yes' ? 'yes' : 'no',
+  );
 
   const requestSettings = {
     defaultBilling: useAsDefaultBilling,
@@ -30,7 +32,6 @@ const RegisterWindow = (props: RegisterPagePropsType) => {
   const deleteError = () => setErrorMessage('');
 
   const registerTrek = () => {
-    navigate('/');
     props.setUserState('Logout');
     localStorage.setItem('userState', 'Logout');
   };
@@ -52,22 +53,27 @@ const RegisterWindow = (props: RegisterPagePropsType) => {
         ? setErrorMessage(`in Shippnig address field '${invalidShipping.type}' is empty`)
         : setErrorMessage(`in Shipping address field '${invalidShipping.type}' is not valid`);
     } else {
-      console.log(requestBody(requestSettings.defaultBilling, requestSettings.defaultShipping));
+      const requestData = getRequestData(
+        requestSettings.defaultBilling,
+        requestSettings.defaultShipping,
+      );
       try {
-        const response = await apiRoot
+        console.log(`email: ${requestData.email}, password: ${requestData.password}`);
+        await apiRoot
           .customers()
           .post({
-            body: requestBody(requestSettings.defaultBilling, requestSettings.defaultShipping),
+            body: requestData.body,
           })
-          .execute();
-        localStorage.setItem('userInfo', JSON.stringify(response.body));
-        setSuccessMessage('Successfully');
+          .execute()
+          .then(() => loginClient(requestData.email, requestData.password));
+        setSuccessMessage('Registered ✔');
         setTimeout(registerTrek, 700);
       } catch (e) {
         if (e instanceof Error) {
           if (e.message === 'There is already an existing customer with the provided email.') {
             setErrorMessage('User with this email already exists');
           } else {
+            console.log(e.message);
             setErrorMessage('Something went wrong. Please try again later');
           }
         }

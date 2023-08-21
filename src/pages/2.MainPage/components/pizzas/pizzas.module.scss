@@ -8,6 +8,9 @@
     background-repeat: no-repeat;
     background-size: contain;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     @media (max-width: 1199px) {
       margin: 0 auto;
       padding: 0;
@@ -60,7 +63,7 @@
         font-size: 1.2rem;
     }
     @media (max-width: 515px) {
-        top: 280px;
+        top: 300px;
         font-size: 1rem;
         letter-spacing: .7px;
     }
@@ -138,15 +141,16 @@
         transform: translate(0%);
       }
       to {
-        transform: translateX(57.3%);
+        transform: translateX(415px);
     }
   }
+
   @keyframes left {
     from {
       transform: translate(0%);
     }
     to {
-      transform: translate(-57.3%);
+      transform: translate(-415px);
     }
   }
   }
@@ -157,7 +161,7 @@
         transform: translate(0%);
       }
       to {
-        transform: translateX(134.5%);
+        transform: translateX(415px);
     }
   }
   @keyframes left {
@@ -165,7 +169,7 @@
       transform: translate(0%);
     }
     to {
-      transform: translate(-134.5%);
+      transform: translate(-415px);
     }
   }
   }
@@ -176,7 +180,7 @@
         transform: translate(0%);
       }
       to {
-        transform: translateX(139%);
+        transform: translateX(378px);
     }
   }
   @keyframes left {
@@ -184,7 +188,7 @@
       transform: translate(0%);
     }
     to {
-      transform: translate(-139%);
+      transform: translate(-378px);
     }
   }
   }
@@ -227,9 +231,9 @@
 .arrows {
   position: absolute;
   width: 1285px;
-  height: 40px;
+  height: 110px;
   top: 1060px;
-  left: 50.4%;
+  left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: row;
@@ -267,30 +271,32 @@
 
 .arrow_left,
 .arrow_right {
-    height: 110px;
-    width: 50px;
+    height: 100%;
+    width: 40px;
     background-size: 100%;
+    background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
     transition: .5s;
     @media (max-width: 860px) {
       background-size: 60%;
-      width: 20px;
+      width: 40px;
       height: 70px;
     } 
 }
 
 .arrow_left {
-    background: no-repeat url('../../../../assets/svg/arrow-left.svg');
-    @media (max-width: 860px) {
-      background-size: 100%;
-    }
+  background-image: url('../../../../assets/png/rigthbutton.png');
+  transform: rotate(180deg);
+  @media (max-width: 860px) {
+    background-size: cover;
+  }
 }
 
 .arrow_right {
-    background: no-repeat url('../../../../assets/svg/arrow-right.svg');
+  background-image: url('../../../../assets/png/rigthbutton.png');
     @media (max-width: 860px) {
-      background-size: 100%;
+      background-size: cover;
 
     }
 }

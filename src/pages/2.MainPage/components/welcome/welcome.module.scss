@@ -89,3 +89,56 @@
         }
     }
 }
+
+.link_wrapper {
+    display: flex;
+    align-items: center;
+    @media (max-width: 860px) {
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+    @media (max-width: 500px) {
+        flex-direction: column;
+    }
+}
+
+.welcome_content.member {
+    @media (max-width: 500px) {
+        margin-top: 15px;
+        margin-bottom: 5px;
+    }
+}
+
+.btn_login {
+    margin-top: 30px;
+    margin-left: 35px;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    width: 170px;
+    height: 40px;
+    cursor: pointer;
+    color: $main-dark-color;
+    border: none;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: 1s;
+
+    &:hover {
+        background-color: $white;
+        color: $main-grey;
+    }
+
+    @media (max-width: 860px) {
+        font-size: 0.9rem;
+        width: 130px;
+        height: 25px;
+    }
+
+    @media (max-width: 500px) {
+        font-size: 0.7rem;
+        width: 95px;
+        height: 15px;
+        margin-top: 5px;
+        margin-left: 5px;
+    }
+}

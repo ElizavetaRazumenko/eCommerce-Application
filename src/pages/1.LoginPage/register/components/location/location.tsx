@@ -12,11 +12,13 @@ import AddressField from '../address/addressField';
 const Location = (props: LocationPropsType) => {
   const locationWrapperRef = React.useRef<HTMLDivElement>(null);
   const locationRef = React.useRef<HTMLDivElement>(null);
-  const checkboxRef = React.useRef<HTMLInputElement>(null);
   const formShippingRef = React.useRef<HTMLFormElement>(null);
+  const useDefaultRef = React.useRef<HTMLDivElement>(null);
 
   const [errorMessage, setErrorMessage] = useState<string>('');
-  const [isOneAddress, setIsOneAddress] = useState<boolean>(false);
+  const [makeOneAddress, setMakeOneAddress] = useState<boolean>(
+    localStorage.getItem('makeOneAddress') === 'yes' ? true : false,
+  );
 
   const toggleLocation = () => {
     locationRef.current?.classList.toggle(s.active);
@@ -103,7 +105,7 @@ const Location = (props: LocationPropsType) => {
     setErrorPostalS: setErrorPostalValueS,
   };
 
-  const defailtAddressBehavior = () => {
+  const oneAddressBehavior = () => {
     stateObj.setCityS(
       state.registerPage.location.billing.find((item) => item.type === 'city')!.value,
     );
@@ -118,28 +120,32 @@ const Location = (props: LocationPropsType) => {
       const elem = state.registerPage.location.shipping.find((item) => item.type === field)!;
       elem.value =
         field === 'city'
-          ? stateObj.inputCityB
+          ? state.registerPage.location.billing.find((item) => item.type === 'city')!.value
           : field === 'street'
-          ? stateObj.inputStreetB
-          : stateObj.inputPostalB;
+          ? state.registerPage.location.billing.find((item) => item.type === 'street')!.value
+          : state.registerPage.location.billing.find((item) => item.type === 'postal')!.value;
       elem.isValid = state.registerPage.location.billing.find(
         (item) => item.type === field,
       )!.isValid;
     });
   };
 
-  const changeDefaultAddress = () => {
-    setIsOneAddress(checkboxRef.current!.checked);
-    setErrorMessage('');
-    if (!isOneAddress) {
+  const changeOneAddress = () => {
+    if (localStorage.getItem('makeOneAddress') !== 'yes') {
+      setErrorMessage('');
       stateObj.setCountryS(stateObj.countryB);
       state.registerPage.location.shipping.find((item) => item.type === 'country')!.value =
         stateObj.countryB;
-      defailtAddressBehavior();
+      oneAddressBehavior();
       stateObj.setErrorCityS('');
       stateObj.setErrorStreetS('');
       stateObj.setErrorPostalS('');
       state.registerPage.location.shipping.forEach((item) => (item.errorMessage = ''));
+      localStorage.setItem('makeOneAddress', 'yes');
+      setMakeOneAddress(true);
+    } else {
+      localStorage.setItem('makeOneAddress', 'no');
+      setMakeOneAddress(false);
     }
   };
 
@@ -165,15 +171,23 @@ const Location = (props: LocationPropsType) => {
   };
 
   const setDefaultBilling = () => {
-    props.defaultSetting.defaultBilling === 'no'
-      ? props.defaultSetting.setdDefaultBilling('yes')
-      : props.defaultSetting.setdDefaultBilling('no');
+    if (localStorage.getItem('defaultB') !== 'yes') {
+      props.defaultSetting.setdDefaultBilling('yes');
+      localStorage.setItem('defaultB', 'yes');
+    } else {
+      props.defaultSetting.setdDefaultBilling('no');
+      localStorage.setItem('defaultB', 'no');
+    }
   };
 
   const setDefaultShipping = () => {
-    props.defaultSetting.defaultShipping === 'no'
-      ? props.defaultSetting.setdDefaultShipping('yes')
-      : props.defaultSetting.setdDefaultShipping('no');
+    if (localStorage.getItem('defaultS') !== 'yes') {
+      props.defaultSetting.setdDefaultShipping('yes');
+      localStorage.setItem('defaultS', 'yes');
+    } else {
+      props.defaultSetting.setdDefaultShipping('no');
+      localStorage.setItem('defaultS', 'no');
+    }
   };
 
   return (
@@ -187,37 +201,47 @@ const Location = (props: LocationPropsType) => {
         <form
           onChange={() => {
             setErrorMessage('');
-            if (isOneAddress) defailtAddressBehavior();
+            if (localStorage.getItem('makeOneAddress') === 'yes') oneAddressBehavior();
           }}
         >
-          <AddressField
-            type='billing'
-            isOneAddress={false}
-            states={stateObj}
-            toggle={!isOneAddress}
-          />
+          <AddressField type='billing' isOneAddress={false} states={stateObj} />
         </form>
-        <label className={s.label_input}>
-          use as default
-          <input type='checkbox' name='default_billing' onClick={setDefaultBilling} />
-        </label>
-        <label className={s.label_input}>
-          use for shipping address
-          <input
-            type='checkbox'
-            name='one_adress'
-            onChange={changeDefaultAddress}
-            ref={checkboxRef}
+        <div className={s.label}>
+          <span>use as default</span>
+          <div
+            className={
+              props.defaultSetting.defaultBilling === 'yes'
+                ? s.checkbox + ' ' + s.checked
+                : s.checkbox
+            }
+            onClick={setDefaultBilling}
           />
-        </label>
+        </div>
+
+        <div className={s.label}>
+          <span>make shipping address as billing</span>
+          <div
+            className={makeOneAddress ? s.checkbox + ' ' + s.checked : s.checkbox}
+            onClick={changeOneAddress}
+            ref={useDefaultRef}
+          />
+        </div>
+
         <p className={s.address_name}>Shipping address</p>
         <form onChange={() => setErrorMessage('')} ref={formShippingRef}>
-          <AddressField type='shipping' isOneAddress={isOneAddress} states={stateObj} />
+          <AddressField type='shipping' isOneAddress={makeOneAddress} states={stateObj} />
         </form>
-        <label className={s.label_input}>
-          use as default
-          <input type='checkbox' name='default_shipping' onClick={setDefaultShipping} />
-        </label>
+        <div className={s.label}>
+          <span>use as default</span>
+          <div
+            className={
+              props.defaultSetting.defaultShipping === 'yes'
+                ? s.checkbox + ' ' + s.checked
+                : s.checkbox
+            }
+            onClick={setDefaultShipping}
+          />
+        </div>
         <p className={s.error}>{errorMessage}</p>
         <div className={s.button_done} onClick={checkForm}>
           <p className={s.content}>Done</p>
