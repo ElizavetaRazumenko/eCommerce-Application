@@ -208,6 +208,7 @@ export type AddressType = {
 };
 
 export type CustomerAddressesType = AddressType[] | null;
+
 //                                                                    ERROR PAGE
 
 export type ButtonRedirectType = {
