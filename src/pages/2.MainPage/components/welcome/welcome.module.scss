@@ -12,17 +12,19 @@
     }
     @media (max-width: 950px) {
         background-position: right -10px top 30px;
-        min-height: 450px;
     }
 
     @media (max-width: 860px) {
         background-position: right -10px top 0px;
-        min-height: 350px;
     }
 
-    @media (max-width: 645px) {
+    @media (max-width: 670px) {
         background: none;
         min-height: 250px;
+    }
+
+    @media (max-width: 520px) {
+        min-height: 300px;
     }
 
     .title_welcome {
@@ -43,6 +45,8 @@
             padding-top: 40px;
             max-width: 400px;
             letter-spacing: 1px;
+            font-size: 1.5rem;
+
         }
 
         @media (max-width: 645px) {
@@ -103,8 +107,13 @@
 }
 
 .welcome_content.member {
-    @media (max-width: 500px) {
+    @media (max-width: 860px) {
+        margin-top: 75px;
+    }
+    @media (max-width: 670px) {
         margin-top: 15px;
+    }
+    @media (max-width: 500px) {
         margin-bottom: 5px;
     }
 }
@@ -132,6 +141,15 @@
         font-size: 0.9rem;
         width: 130px;
         height: 25px;
+        margin-top: 75px;
+    }
+
+    @media (max-width: 670px) {
+        margin-top: 15px;
+    }
+
+    @media (max-width: 650px) {
+        margin-top: 15px;
     }
 
     @media (max-width: 500px) {
