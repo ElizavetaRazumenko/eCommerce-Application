@@ -1,0 +1,91 @@
+@import '../../../globalVariables.scss';
+
+.slider_wrapper {
+    display: flex;
+    width: max-content;
+    height: 100%;
+    align-items: flex-start;
+    margin-right: 40px;
+ }
+ 
+ .picture_wrapper {
+    display: grid;
+    grid-template-rows: 440px 150px;
+    grid-template-columns: 250px 250px;
+    grid-template-areas: 
+       'big big' 
+       'small_first small_second';
+    border-radius: 20px;
+    width: auto;
+    background-color: $main-light;
+
+    .pic {
+       box-sizing: border-box;
+       grid-area: big;
+       border-top-left-radius: 20px;
+       border-top-right-radius: 20px;
+       border-bottom: 16px solid $main-dark-color;
+       padding: 30px 30px;
+       display: flex;
+       justify-content: center;
+    }
+ }
+
+
+ .pic_small_left,
+ .pic_small_right {
+    box-sizing: border-box;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+
+ .pic_small_left {
+    grid-area: small_first;
+    border-right: 8px solid $main-dark-color;
+ }
+
+ .pic_small_right {
+    grid-area: small_second;
+    border-left: 8px solid $main-dark-color;
+ }
+
+ .big_img,
+ .small_left_img,
+ .small_right_img {
+   width: 100%;
+   height: 100%;
+   background-position: 50% 50%;
+   background-repeat: no-repeat;
+   background-size: contain;
+}
+
+.image {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.arrow_left {
+ align-self: center;
+ cursor: pointer;
+ margin-right: 20px;
+ background-image: url('../../../assets/png/rigthbutton.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ transform: rotate(180deg);
+ width: 20px;
+ height: 70px;
+}
+
+.arrow_right {
+ align-self: center;
+ cursor: pointer;
+ margin-left: 20px;
+ margin-top: 50px;
+ background-image: url('../../../assets/png/rigthbutton.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ width: 20px;
+ height: 70px;
+}

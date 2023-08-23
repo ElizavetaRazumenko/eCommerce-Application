@@ -1,82 +1,45 @@
-import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
+import Slider from './components/slider';
 import s from './detailedPage.module.scss';
 
-import urlPizza from '../../assets/details/1.png';
-import urlProducts from '../../assets/details/2.png';
-import urlBox from '../../assets/details/box.png';
-
 const DetailedPage = () => {
-  const urlArray = [urlPizza, urlProducts, urlBox];
-  const [firstLink, setFirstLink] = useState<string>(urlArray[0]);
-  const [secondLink, setSecondLink] = useState<string>(urlArray[1]);
-  const [thirdLink, setThirdLink] = useState<string>(urlArray[2]);
-
-  const toLeft = () => {
-    const indexFirst = urlArray.indexOf(firstLink);
-    const indexSecond = urlArray.indexOf(secondLink);
-    const indexThird = urlArray.indexOf(thirdLink);
-
-    if (indexFirst === 0) {
-      setFirstLink(urlArray[2]);
-    } else {
-      setFirstLink(urlArray[indexFirst - 1]);
-    }
-
-    if (indexSecond === 0) {
-      setSecondLink(urlArray[2]);
-    } else {
-      setSecondLink(urlArray[indexSecond - 1]);
-    }
-
-    if (indexThird === 0) {
-      setThirdLink(urlArray[2]);
-    } else {
-      setThirdLink(urlArray[indexThird - 1]);
-    }
-  };
-
-  const toRight = () => {
-    const indexFirst = urlArray.indexOf(firstLink);
-    const indexSecond = urlArray.indexOf(secondLink);
-    const indexThird = urlArray.indexOf(thirdLink);
-
-    if (indexFirst === 2) {
-      setFirstLink(urlArray[0]);
-    } else {
-      setFirstLink(urlArray[indexFirst + 1]);
-    }
-
-    if (indexSecond === 2) {
-      setSecondLink(urlArray[0]);
-    } else {
-      setSecondLink(urlArray[indexSecond + 1]);
-    }
-
-    if (indexThird === 2) {
-      setThirdLink(urlArray[0]);
-    } else {
-      setThirdLink(urlArray[indexThird + 1]);
-    }
-  };
   return (
-    <div className={s.details_wrapper}>
-      <div className={s.slider_wrapper}>
-        <div className={s.arrow_left} onClick={toLeft}></div>
-        <div className={s.picture_wrapper}>
-          <div className={s.pic}>
-            <img src={firstLink} alt='big_pic' className={s.image} />
-          </div>
-          <div className={s.pic_small_left}>
-            <img src={secondLink} alt='left_pic' className={s.image} />
-          </div>
-          <div className={s.pic_small_right}>
-            <img src={thirdLink} alt='right_pic' className={s.image} />
-          </div>
+    <div className={s.page_wrapper}>
+      <NavLink to='/catalog' className={s.nav_link}>
+        <div className={s.button_back}>
+          <div className={s.arrow_back}></div>
+          <span>Back to the catalog</span>
         </div>
-        <div className={s.arrow_right} onClick={toRight}></div>
+      </NavLink>
+      <div className={s.details_wrapper}>
+        <Slider />
+        <div className={s.description_wrapper}>
+          <p className={s.name}>Pepperoni</p>
+          <p className={s.description}>
+            Pepperoni is a variety of spicy salami made from cured pork and beef seasoned with
+            paprika or other chili pepper
+          </p>
+          <p className={s.description}>
+            Main ingredients: salami, beef, cheese, tomato paste, mushrooms
+          </p>
+          <div className='s.pfc'>
+            <p className={s.info_string}>Proteins: 10.4gr</p>
+            <p className={s.info_string}>Fats: 12.8gr</p>
+            <p className={s.info_string}>Carbohydrates: 21.2gr</p>
+          </div>
+          <div className={s.call_weight}>
+            <p className={s.info_string}>Calories per 100 gr: 241</p>
+            <p className={s.info_string}>Weight: 945gr</p>
+          </div>
+          <p className={s.price}>32.00$</p>
+          <NavLink to='/cart' className={s.nav_link}>
+            <div className={s.button}>
+              <span>Add to backet</span>
+            </div>
+          </NavLink>
+        </div>
       </div>
-      <div className={s.description_wrapper}></div>
     </div>
   );
 };

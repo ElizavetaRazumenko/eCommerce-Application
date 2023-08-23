@@ -1,98 +1,125 @@
 @import '../../globalVariables.scss';
 
- .details_wrapper {
-   display: flex;
+.page_wrapper {
    width: 100%;
    height: 100%;
-   padding: 50px;
+}
+.details_wrapper {
+   display: flex;
+   width: auto;
+   height: 100%;
+   padding: 20px 50px 10px;
+   justify-content: space-between;
+   align-items: flex-start;
 
-    @media (max-width: 860px) {
-      padding: 50px 10px;
-   }
-   
-   .slider_wrapper {
-      display: flex;
-      width: 100%;
-      height: 100%;
+   @media (max-width: 1460px) {
+      padding: 50px 5px;
+      flex-direction: column;
       align-items: center;
    }
-   
-   .picture_wrapper {
-      display: grid;
-      grid-template-rows: 440px 150px;
-      grid-template-columns: 250px 250px;
-      grid-template-areas: 
-         'big big' 
-         'small_first small_second';
-      border-radius: 20px;
-      width: auto;
-      background-color: $main-light;
+}
 
-      .pic {
-         box-sizing: border-box;
-         grid-area: big;
-         border-top-left-radius: 20px;
-         border-top-right-radius: 20px;
-         border-bottom: 16px solid $main-dark-color;
-         padding: 30px 30px;
-         display: flex;
-         justify-content: center;
-      }
-   }
- }
-
-   .pic_small_left,
-   .pic_small_right {
-      box-sizing: border-box;
-      padding: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-   }
-
-   .pic_small_left {
-      grid-area: small_first;
-      border-right: 8px solid $main-dark-color;
-   }
-
-   .pic_small_right {
-      grid-area: small_second;
-      border-left: 8px solid $main-dark-color;
-   }
-
-   .big_img,
-   .small_left_img,
-   .small_right_img {
-     width: 100%;
-     height: 100%;
-     background-position: 50% 50%;
-     background-repeat: no-repeat;
-     background-size: contain;
-  }
-
-  .image {
-      max-width: 100%;
-      max-height: 100%;
-  }
-
-  .arrow_left {
+.button {
+   box-sizing: border-box;
+   padding: 10px 20px;
+   margin-top: 10px;
+   border-radius: 25px;
+   font-size: 1rem;
+   width: max-content;
+   height: 38px;
+   background-color: $main-light;
    cursor: pointer;
-   margin-right: 20px;
-   background-image: url('../../assets/png/rigthbutton.png');
-   background-repeat: no-repeat;
-   background-size: contain;
-   transform: rotate(180deg);
-   width: 40px;
-   height: 90px;
-  }
+   color: $main-dark-color;
+   border: none;
+   font-weight: 700;
+   font-family: Arial, Helvetica, sans-serif;
+   transition: 1s;
 
-  .arrow_right {
+   &:hover {
+      background-color: $white;
+      color: $main-grey;
+   }
+}
+
+.nav_link {
+   text-decoration: none;
+   width: auto;
+}
+
+.button_back {
    cursor: pointer;
    margin-left: 20px;
-   margin-top: 20px;
-   background-image: url('../../assets/png/rigthbutton.png');
-   background-repeat: no-repeat;
-   background-size: contain;
-   width: 40px;
-   height: 90px;
-  }
+   margin-bottom: 15px;
+   display: flex;
+   align-items: center;
+   font-size: 1rem;
+   color: $main-light;
+   font-weight: 700;
+   max-width: 200px;
+
+   span {
+      transition: .5s;
+   }
+
+   &:hover span {
+      color: $white;
+   }
+
+   .arrow_back {
+      width: 25px;
+      height: 25px;
+      background-image: url('../../assets/png/forward_104137.png');
+      background-size: contain;
+      margin-right: 10px;
+   }
+}
+
+.description_wrapper {
+   box-sizing: border-box;
+   background-color: rgba($color: $main-grey, $alpha: 0.1);
+   border-radius: 30px;
+   padding: 10px 20px 20px;
+   width: max-content;
+   height: max-content;
+}
+
+.name,
+.description,
+.info_string,
+.price {
+   font-size: 2.5rem;
+   font-weight: 700;
+   margin: 10px 0;
+}
+
+.name {
+   color: $white;
+   margin-bottom: 20px;
+}
+
+.description {
+   font-size: 1.1rem;
+   font-weight: 400;
+   letter-spacing: .5px;
+   margin-bottom: 25px;
+   color: $main-light;
+
+}
+
+.call_weight {
+   margin-top: 35px;
+}
+
+.info_string {
+   margin: 0;
+   font-size: 1rem;
+   font-weight: 400;
+   letter-spacing: .5px;
+   color: $main-light;
+   margin-bottom: 5px;
+}
+
+.price {
+   color: $main-light;
+   margin-bottom: 30px;
+}
