@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import Slider from './components/slider';
 import s from './detailedPage.module.scss';
 
 const DetailedPage = () => {
+  const [imageCount, setImageCount] = useState<number>(1);
   return (
     <div className={s.page_wrapper}>
       <NavLink to='/catalog' className={s.nav_link}>
@@ -13,7 +15,7 @@ const DetailedPage = () => {
         </div>
       </NavLink>
       <div className={s.details_wrapper}>
-        <Slider />
+        <Slider imageCount={imageCount} />
         <div className={s.description_wrapper}>
           <p className={s.name}>Pepperoni</p>
           <p className={s.description}>
