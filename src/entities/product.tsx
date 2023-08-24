@@ -1,4 +1,5 @@
 // бизнес-сущности.(например, User, Product, Order)
+
 const infoProducts = {
   pizzas: [
     {
@@ -308,3 +309,5 @@ const infoProducts = {
     },
   ],
 };
+
+export default infoProducts;
