@@ -2,7 +2,10 @@
 
 .page_wrapper {
    width: 100%;
-   height: 100%;
+   height: max-content;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
 }
 .details_wrapper {
    display: flex;
@@ -16,6 +19,7 @@
       padding: 50px 5px;
       flex-direction: column;
       align-items: center;
+      justify-content: space-between;
    }
 }
 
@@ -38,6 +42,12 @@
    &:hover {
       background-color: $white;
       color: $main-grey;
+   }
+
+   @media (max-width: 730px) {
+      font-size: .8rem;
+      padding: 5px 15px;
+      height: 25px;
    }
 }
 
@@ -70,7 +80,12 @@
       height: 25px;
       background-image: url('../../assets/png/forward_104137.png');
       background-size: contain;
+      background-repeat: no-repeat;
       margin-right: 10px;
+   }
+
+   @media (max-width: 730px) {
+      font-size: .8rem;
    }
 }
 
@@ -81,20 +96,38 @@
    padding: 10px 20px 20px;
    width: max-content;
    height: max-content;
+
+   @media (max-width: 1460px) {
+      margin-top: 40px;
+      width: 510px;
+   }
+
+   @media (max-width: 730px) {
+      margin-top: 20px;
+      width: 380px;
+   }
+
+   @media (max-width: 480px) {
+      width: 300px;
+   }
+
 }
 
 .name,
 .description,
 .info_string,
 .price {
-   font-size: 2.5rem;
    font-weight: 700;
    margin: 10px 0;
 }
 
 .name {
    color: $white;
+   font-size: 2.5rem;
    margin-bottom: 20px;
+   @media (max-width: 730px) {
+      font-size: 1.5rem;
+   }
 }
 
 .description {
@@ -103,6 +136,9 @@
    letter-spacing: .5px;
    margin-bottom: 25px;
    color: $main-light;
+   @media (max-width: 730px) {
+      font-size: .8rem;
+   }
 
 }
 
@@ -117,9 +153,16 @@
    letter-spacing: .5px;
    color: $main-light;
    margin-bottom: 5px;
+   @media (max-width: 730px) {
+      font-size: .8rem;
+   }
 }
 
 .price {
+   font-size: 2.5rem;
    color: $main-light;
    margin-bottom: 30px;
+   @media (max-width: 730px) {
+      font-size: 1.5rem;
+   }
 }
