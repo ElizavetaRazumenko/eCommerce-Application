@@ -1,0 +1,86 @@
+@import './../../../../globalVariables.scss';
+
+
+.inputs_wrapper{
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding-left: 30px;
+    @media (max-width: 1000px) { 
+        padding: 0;    }
+    
+}
+
+.inputs{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    justify-content: space-between;
+    margin: 20px auto;
+   
+    @media (max-width: 740px) {
+        flex-direction: column;
+    }
+}
+.input_wrapper{ 
+    display: flex;
+    flex-direction: row;
+}
+
+.input{
+    height: 30px;
+    background-color: $unactive-register-grey;
+    color: $white;
+    width: 150px;
+    border-radius: 15px;
+    border: none;
+    padding-left: 30px;
+    &::placeholder {
+        color: $main-light;
+        width: 120px;
+    }
+    @media (max-width: 740px) {
+        margin: 10px 0;
+    }
+}
+
+.input_sort{
+    background-image: url('../../../../assets/png/sort.png');
+    background-position: center left 7px;
+    background-size: 10%;
+    background-repeat: no-repeat;
+
+}
+
+.input_find_after,
+.input_filter_after,
+.input_sort_after{
+    height: 30px;
+    width: 30px;
+    right: 35px;
+    background: no-repeat  url('../../../../assets/png/sort-arrow.png'); 
+    background-position: center;
+    background-size: 60%;
+    z-index:1;
+    position: relative;
+    cursor: pointer;
+    transition: .5s;;
+    @media (max-width: 740px) {
+        margin: 10px 0;
+    }
+
+}
+
+.input_find{
+    background-image: url('../../../../assets/png/find.png');
+    background-position: center left 7px;
+    background-size: 10%;
+    background-repeat: no-repeat;
+}
+
+.input_filter{
+    background-image: url('../../../../assets/png/filter.png');
+    background-position: center left 7px;
+    background-size: 10%;
+    background-repeat: no-repeat;
+}
