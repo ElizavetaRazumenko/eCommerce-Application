@@ -1,0 +1,62 @@
+@import '../../../../globalVariables.scss';
+
+
+.section_sauce_catalog {
+    max-height: 100%;
+    margin: 0 auto;
+ 
+
+    @media (max-width: 1199px) {
+        padding: 0;
+    
+}
+}
+
+.title_section {
+    font-size: 2.3rem;
+    letter-spacing: 1.8px;
+    text-align: center;
+    color: $main-light;
+    margin: 100px auto 0;
+
+    @media (max-width: 670px) {
+        font-size: 2rem;
+      }
+  
+      @media (max-width: 465px) {
+        font-size: 1.5rem;
+    }
+
+}
+
+.select_sauce_catalog {
+
+       margin: 75px auto 0;
+       position: relative;
+        max-width: 1200px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, auto);
+        column-gap: auto; 
+        row-gap: 30px;
+        align-items: center; 
+        justify-items: center; 
+
+        @media (max-width: 1090px) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, auto);
+        margin: 50px auto 0;
+        max-width: 500px;
+}
+@media (max-width: 550px) {
+    grid-template-columns: repeat(1, 1fr);
+
+    max-width: 300px;
+}
+
+    @media (max-width: 530px) {
+        float: none;
+        margin: 45px auto 0;
+        width: 230px;
+    }
+}
