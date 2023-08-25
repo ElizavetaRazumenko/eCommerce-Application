@@ -2,13 +2,11 @@ import React, { useState, ChangeEvent } from 'react';
 
 import s from './inputs.module.scss';
 
-// import CatalogPizzas from './components/catalog-pizzas/pizzas';
-
 const Inputs = () => {
   const [sortBy, setSortBy] = useState('');
   const [findBy, setFindBy] = useState('');
-
   const [filterBy, setFilterBy] = useState('');
+
   const sortChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSortBy(event.target.value);
   };
@@ -24,29 +22,37 @@ const Inputs = () => {
   return (
     <div className={s.inputs_wrapper}>
       <div className={s.inputs}>
-        <input
-          type='text'
-          placeholder='Sort by'
-          value={sortBy}
-          onChange={sortChange}
-          className={s.input}
-        />
-        <input
-          type='text'
-          placeholder='Find'
-          value={findBy}
-          onChange={findChange}
-          className={s.input}
-        />
-        <input
-          type='text'
-          placeholder='Filter by'
-          value={filterBy}
-          onChange={filterChange}
-          className={s.input}
-        />
+        <div className={s.input_wrapper}>
+          <input
+            type='text'
+            placeholder='Sort by'
+            value={sortBy}
+            onChange={sortChange}
+            className={s.input + ' ' + s.input_sort}
+          />
+          <div className={s.input_sort_after}></div>
+        </div>
+        <div className={s.input_wrapper}>
+          <input
+            type='text'
+            placeholder='Find'
+            value={findBy}
+            onChange={findChange}
+            className={s.input + ' ' + s.input_find}
+          />
+          <div className={s.input_find_after}></div>
+        </div>
+        <div className={s.input_wrapper}>
+          <input
+            type='text'
+            placeholder='Filter by'
+            value={filterBy}
+            onChange={filterChange}
+            className={s.input + ' ' + s.input_filter}
+          />
+          <div className={s.input_filter_after}></div>
+        </div>
       </div>
-      {/* <CatalogPizzas sortBy={sortBy} findBy={findBy} filterBy={filterBy} /> */}
     </div>
   );
 };

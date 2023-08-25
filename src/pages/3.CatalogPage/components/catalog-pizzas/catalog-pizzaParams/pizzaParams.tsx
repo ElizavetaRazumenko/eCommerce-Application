@@ -7,7 +7,7 @@ import { PizzaParamsType } from '../../../../../types/types';
 const PizzaParams = (props: PizzaParamsType) => {
   return (
     <div className={s.pizza_title}>
-      <div>
+      <div className={s.size_wrapper}>
         <span className={s.span_line}>{props.size}</span>
         <span className={s.span_size}>{props.length}</span>
       </div>

@@ -10,6 +10,7 @@ export type PizzaType = {
   link: string;
   name: string;
   cost: string[];
+  mainIngredients?: string;
 };
 
 export type SauceType = {

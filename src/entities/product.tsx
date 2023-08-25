@@ -17,7 +17,7 @@ const infoProducts = {
       name: 'Salami',
       description:
         "The Salami pizza is a carnivore's delight that brings together the bold and savory flavors of salami with classic pizza elements, resulting in a satisfying culinary experience.",
-      mainIngrediens: 'salami slices, mozzarella cheese, tomato sauce, black olives, red onion',
+      mainIngredients: 'salami slices, mozzarella cheese, tomato sauce, black olives, red onion',
       PFC: [14.7, 16.2, 22.9],
       calories: 324,
       isVegetarian: false,
@@ -28,7 +28,7 @@ const infoProducts = {
       name: 'Rustic',
       description:
         'Rustic pizza captures the essence of the countryside with a mix of hearty ingredients and earthy flavors.',
-      mainIngrediens:
+      mainIngredients:
         'rosemary-infused olive oil, roasted garlic, goat cheese, caramelized onions, spinach',
       PFC: [9.7, 11.3, 27.8],
       calories: 315,
@@ -40,7 +40,7 @@ const infoProducts = {
       name: 'Greek',
       description:
         'Greek pizza offers a taste of the Mediterranean with a blend of olives, feta cheese, and fresh vegetables.',
-      mainIngrediens:
+      mainIngredients:
         'kalamata olives, feta cheese, red onion, bell peppers, cherry tomatoes, oregano',
       PFC: [12.1, 9.8, 26.5],
       calories: 278,
@@ -52,7 +52,7 @@ const infoProducts = {
       name: 'Cheese & Meat',
       description:
         'Indulge in the perfect combination of gooey melted cheese and savory meat toppings, creating a delightful harmony of flavors.',
-      mainIngrediens: 'mozzarella cheese, pepperoni, Italian sausage, bacon, ham',
+      mainIngredients: 'mozzarella cheese, pepperoni, Italian sausage, bacon, ham',
       PFC: [18.6, 22.4, 15.8],
       calories: 348,
       isVegetarian: false,
@@ -63,7 +63,7 @@ const infoProducts = {
       name: 'Mushroom',
       description:
         'The Mushroom pizza is a celebration of earthy flavors with a generous topping of various mushrooms that create a rich and satisfying taste.',
-      mainIngrediens:
+      mainIngredients:
         'button mushrooms, portobello mushrooms, shiitake mushrooms, mozzarella cheese, garlic, thyme',
       PFC: [10.2, 8.7, 30.5],
       calories: 256,
@@ -75,7 +75,7 @@ const infoProducts = {
       name: 'Vegetable',
       description:
         'The Vegetable pizza is a garden-fresh delight, featuring a colorful assortment of vibrant vegetables that come together in a burst of flavor.',
-      mainIngrediens:
+      mainIngredients:
         'bell peppers, red onion, cherry tomatoes, black olives, spinach, mozzarella cheese',
       PFC: [9.3, 11.6, 24.9],
       calories: 235,
@@ -87,7 +87,7 @@ const infoProducts = {
       name: 'Original',
       description:
         'The Original pizza pays homage to the classic flavors that started it all, combining a simple yet satisfying combination of timeless ingredients.',
-      mainIngrediens:
+      mainIngredients:
         'tomato sauce, mozzarella cheese, pepperoni, green bell peppers, black olives',
       PFC: [12.8, 15.4, 18.2],
       calories: 285,
@@ -99,7 +99,7 @@ const infoProducts = {
       name: 'Tomato',
       description:
         'The Tomato pizza is a celebration of the bold and vibrant flavors of tomatoes, featuring a delicious combination of tomato-based ingredients.',
-      mainIngrediens:
+      mainIngredients:
         'tomato sauce, fresh tomatoes, sun-dried tomatoes, cherry tomatoes, mozzarella cheese, basil',
       PFC: [9.7, 12.1, 22.8],
       calories: 258,
@@ -111,7 +111,7 @@ const infoProducts = {
       name: 'Vegetarian',
       description:
         'The Vegetarian pizza is a wholesome delight for herbivores, featuring an abundance of fresh and flavorful plant-based ingredients.',
-      mainIngrediens:
+      mainIngredients:
         'bell peppers, red onion, mushrooms, spinach, black olives, mozzarella cheese, tomato sauce',
       PFC: [11.2, 10.8, 27.6],
       calories: 269,
@@ -123,7 +123,7 @@ const infoProducts = {
       name: 'Bacon',
       description:
         'The Bacon pizza is a savory delight that combines the irresistible smokiness of bacon with classic pizza ingredients, creating a mouthwatering experience.',
-      mainIngrediens: 'bacon, mozzarella cheese, tomato sauce, red onion, bell peppers',
+      mainIngredients: 'bacon, mozzarella cheese, tomato sauce, red onion, bell peppers',
       PFC: [14.3, 18.6, 23.2],
       calories: 345,
       isVegetarian: false,
@@ -134,7 +134,7 @@ const infoProducts = {
       name: 'Broccoli',
       description:
         'The Broccoli pizza is a flavorful twist that embraces the nutritional goodness of broccoli, paired with complementary ingredients for a delicious and healthy option.',
-      mainIngrediens: 'broccoli florets, mozzarella cheese, garlic, red pepper flakes, olive oil',
+      mainIngredients: 'broccoli florets, mozzarella cheese, garlic, red pepper flakes, olive oil',
       PFC: [8.9, 11.2, 19.7],
       calories: 236,
       isVegetarian: true,
@@ -145,7 +145,7 @@ const infoProducts = {
       name: 'Hunting',
       description:
         'The Hunting pizza is a bold fusion of flavors that captures the essence of the great outdoors. Rich and hearty game meats are combined with robust ingredients to create a truly satisfying culinary experience.',
-      mainIngrediens:
+      mainIngredients:
         'venison sausage, wild boar bacon, elk steak strips, caramelized onions, aged cheddar cheese',
       PFC: [16.5, 19.8, 14.2],
       calories: 324,
@@ -157,7 +157,7 @@ const infoProducts = {
       name: 'Forest',
       description:
         'The Forest pizza is a culinary journey into the heart of nature, where earthy ingredients come together to create a harmonious and aromatic medley of flavors.',
-      mainIngrediens:
+      mainIngredients:
         'wild mushrooms, truffle oil, spinach, caramelized shallots, goat cheese, mozzarella cheese',
       PFC: [9.2, 13.5, 21.8],
       calories: 278,
@@ -169,7 +169,7 @@ const infoProducts = {
       name: 'Spicy',
       description:
         'Spicy is a fiery delight that combines the kick of chili peppers with savory toppings for a tantalizing experience.',
-      mainIngrediens: 'chili peppers, pepper jack cheese, spicy sausage, red onion, jalapenos',
+      mainIngredients: 'chili peppers, pepper jack cheese, spicy sausage, red onion, jalapenos',
       PFC: [13.5, 15.2, 18.7],
       calories: 289,
       isVegetarian: false,

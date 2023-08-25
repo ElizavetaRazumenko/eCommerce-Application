@@ -6,9 +6,11 @@
     flex-direction: row;
     justify-content: space-between;
     height: 30px;
-    padding: 0 25px;
+    padding: 3px 25px;
     border-bottom: 1px solid $main-grey; 
 }
+
+
 
 .span_line{ 
     display: inline-block;
@@ -16,7 +18,7 @@
     background: url('./../../../../../assets/logo/parsley.png');
     background-size: 100%;
     background-repeat: no-repeat;
-    background-position: left  center;
+    background-position: left  top 10px;
     text-align: center;
 }
 
@@ -27,9 +29,10 @@
     font-size: 1.2rem;
     color: $main-grey;
     color: $main-dark-color;
-    line-height: 30px;
+    line-height: 40px;
     width: 30px;
     font-weight: 500;
+    margin-bottom: 10px;
 }
 
 .span_price {
@@ -42,7 +45,7 @@
 .span_size {
     width: 60px;
 }
-
+.size_wrapper,
 .price_wrapper {
     height: 30px;
     line-height: 30px;

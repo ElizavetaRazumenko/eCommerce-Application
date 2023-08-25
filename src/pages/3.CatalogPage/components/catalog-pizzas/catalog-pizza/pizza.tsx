@@ -4,12 +4,16 @@ import { NavLink } from 'react-router-dom';
 
 import s from './pizza.module.scss';
 
+import infoProducts from '../../../../../entities/product';
+
 import { PizzaType } from '../../../../../types/types';
 
 import PizzaParams from '../catalog-pizzaParams/pizzaParams';
 
-const Pizza = (props: PizzaType) => {
+const Pizza = (props: PizzaType & { index: number }) => {
   const [isHovered, setIsHovered] = useState(false);
+
+  const pizzaIndex = props.index;
 
   const arrayPizzaParams = [
     {
@@ -31,17 +35,22 @@ const Pizza = (props: PizzaType) => {
 
   const pizzaSizes = ['large', 'middle', 'small'];
 
+  const mainIngredients = infoProducts.pizzas[pizzaIndex].mainIngredients;
+
   return (
-    <div
-      className={`${s.pizza_item_catalog} ${isHovered ? s.hovered : ''}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className={s.image_wrapper}>
-        <img src={props.link} className={s.pizza_img} alt='pizza' />
+    <div className={s.pizza_item_catalog}>
+      <div
+        className={`${s.blur_wrapper} ${isHovered ? s.hovered : ''}`}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <div className={s.image_wrapper}>
+          <img src={props.link} className={s.pizza_img} alt='pizza' />
+          <div className={s.overlay}></div>
+        </div>
+        <h3 className={s.pizza_name}>{props.name}</h3>
+        <div className={s.pizza_ingredients}>{mainIngredients}</div>
       </div>
-      <div className={s.overlay}></div>
-      <h3 className={s.pizza_name}>{props.name}</h3>
       <div className={s.pizza_params}>
         {props.cost.map((price, index) => (
           <PizzaParams
