@@ -7,11 +7,11 @@ import state from '../../../../state/state';
 const CatalogSauces = () => {
   return (
     <div>
-      <section className={s.section_souce_catalog}>
+      <section className={s.section_sauce_catalog}>
         <h2 className={s.title_section}>Sauces</h2>
-        <div className={s.select_souce}>
-          {state.mainPage.souces.map((souce, index) => (
-            <Sauce link={souce.link} name={souce.name} key={index} />
+        <div className={s.select_sauce_catalog}>
+          {state.mainPage.souces.map((sauce, index) => (
+            <Sauce link={sauce.link} name={sauce.name} key={index} />
           ))}
         </div>
       </section>

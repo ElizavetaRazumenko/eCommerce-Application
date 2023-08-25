@@ -28,6 +28,14 @@
     color: $main-grey;
 }
 
+.sauce_price{
+
+    @media (max-width: 865px) {
+        font-size: 1rem;
+    }
+   
+}
+
 .sauce_title{
     font-size: 1.3rem;
 }

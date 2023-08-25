@@ -1,5 +1,7 @@
 import s from './catalog.module.scss';
 
+import CatalogDrinks from './components/catalog-drinks/drinks';
+
 import CatalogPizzas from './components/catalog-pizzas/pizzas';
 
 import CatalogSauces from './components/catalog-sauces/sauces';
@@ -12,7 +14,7 @@ const CatalogPage = () => {
       <Inputs />
       <CatalogPizzas />
       <CatalogSauces />
-
+      <CatalogDrinks />
       {/* <CatalogPizzas sortBy={sortBy} findBy={findBy} filterBy={filterBy} /> */}
     </main>
   );
