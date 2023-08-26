@@ -12,16 +12,6 @@
 
 
 
-.span_line{ 
-    display: inline-block;
-    width: 30px;
-    background: url('./../../../../../assets/logo/parsley.png');
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: left  top 10px;
-    text-align: center;
-}
-
 .span_line,
 .span_price,
 .span_size {
@@ -33,6 +23,13 @@
     width: 30px;
     font-weight: 500;
     margin-bottom: 10px;
+}
+
+.span_line { 
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+    font-weight: 700;
 }
 
 .span_price {

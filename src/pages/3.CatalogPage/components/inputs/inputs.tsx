@@ -6,15 +6,31 @@ const Inputs = () => {
   const sortRef = useRef<HTMLDivElement>(null);
   const sortMenuRef = useRef<HTMLDivElement>(null);
   const filterRef = useRef<HTMLDivElement>(null);
+  const filterMenuRef = useRef<HTMLDivElement>(null);
+  const lowPrice = useRef<HTMLParagraphElement>(null);
+  const hightPrice = useRef<HTMLParagraphElement>(null);
+  const a_z = useRef<HTMLParagraphElement>(null);
+  const z_a = useRef<HTMLParagraphElement>(null);
   const [sortBy, setSortBy] = useState('Sort by');
   const [findBy, setFindBy] = useState('');
   const [filterBy, setFilterBy] = useState('');
 
-  const sortChange = (event: React.MouseEvent<HTMLParagraphElement, MouseEvent>) => {
-    const target = event.target as HTMLParagraphElement;
-    setSortBy(target.textContent!);
-    sortMenuRef.current!.classList.add(s.hidden);
-    sortRef.current!.classList.remove(s.open);
+  const sortChange = (ref: React.RefObject<HTMLParagraphElement>, type: string) => {
+    ref.current!.classList.toggle(s.selected);
+    switch (type) {
+      case 'low-price':
+        hightPrice.current!.classList.remove(s.selected);
+        break;
+      case 'high-price':
+        lowPrice.current!.classList.remove(s.selected);
+        break;
+      case 'az':
+        z_a.current!.classList.remove(s.selected);
+        break;
+      case 'za':
+        a_z.current!.classList.remove(s.selected);
+        break;
+    }
   };
 
   const findChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -25,31 +41,45 @@ const Inputs = () => {
     setFilterBy(event.target.value);
   };
 
-  const openMenu = (ref: React.RefObject<HTMLDivElement>) => {
+  const openMenuSort = (ref: React.RefObject<HTMLDivElement>, type: string) => {
     ref.current!.classList.toggle(s.open);
-    ref.current!.classList.contains(s.open)
-      ? sortMenuRef.current!.classList.remove(s.hidden)
-      : sortMenuRef.current!.classList.add(s.hidden);
+    if (type === 'sort') {
+      ref.current!.classList.contains(s.open)
+        ? sortMenuRef.current!.classList.remove(s.hidden)
+        : sortMenuRef.current!.classList.add(s.hidden);
+    } else {
+      ref.current!.classList.contains(s.open)
+        ? filterMenuRef.current!.classList.remove(s.hidden)
+        : filterMenuRef.current!.classList.add(s.hidden);
+    }
   };
 
   return (
     <div className={s.inputs_wrapper}>
       <div className={s.sort_menu}>
-        <div className={s.div_sort} onClick={() => openMenu(sortRef)} ref={sortRef}>
-          <span>{sortBy}</span>
+        <div className={s.div_sort} onClick={() => openMenuSort(sortRef, 'sort')} ref={sortRef}>
+          <span>Sort by</span>
           <div className={s.sort_arrow}></div>
         </div>
         <div className={s.sort_menu_choise + ' ' + s.hidden} ref={sortMenuRef}>
-          <p className={s.sort_item} onClick={(e) => sortChange(e)}>
+          <p
+            className={s.sort_item}
+            onClick={() => sortChange(lowPrice, 'low-price')}
+            ref={lowPrice}
+          >
             From low to high price
           </p>
-          <p className={s.sort_item} onClick={(e) => sortChange(e)}>
+          <p
+            className={s.sort_item}
+            onClick={() => sortChange(hightPrice, 'high-price')}
+            ref={hightPrice}
+          >
             From high to low price
           </p>
-          <p className={s.sort_item} onClick={(e) => sortChange(e)}>
+          <p className={s.sort_item} onClick={() => sortChange(a_z, 'az')} ref={a_z}>
             Alphabetically (A-Z)
           </p>
-          <p className={s.sort_item} onClick={(e) => sortChange(e)}>
+          <p className={s.sort_item} onClick={() => sortChange(z_a, 'za')} ref={z_a}>
             Alphabetically (Z-A)
           </p>
         </div>
@@ -63,9 +93,20 @@ const Inputs = () => {
           className={s.input_find}
         />
       </div>
-      <div className={s.div_filter} ref={filterRef} onClick={() => openMenu(filterRef)}>
-        <span>Filter by</span>
-        <div className={s.sort_arrow}></div>
+      <div className={s.filter_menu}>
+        <div
+          className={s.div_filter}
+          ref={filterRef}
+          onClick={() => openMenuSort(filterRef, 'filter')}
+        >
+          <span>Filter by</span>
+          <div className={s.sort_arrow}></div>
+        </div>
+        <div className={s.filter_menu_choise + ' ' + s.hidden} ref={filterMenuRef}>
+          <p className={s.sort_item}>Vegetarian food</p>
+          <p className={s.sort_item}>Not spicy food</p>
+          <p className={s.sort_item}>Low calorie food</p>
+        </div>
       </div>
     </div>
   );

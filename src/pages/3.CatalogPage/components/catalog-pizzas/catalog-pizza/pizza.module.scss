@@ -27,7 +27,6 @@
 }
 
 .pizza_ingredients{
-    color: $color-green;
     margin-top: -20px;
     margin-bottom: 20px;
     text-align: center;
@@ -86,7 +85,6 @@
 
     &:hover {
         color:$color-green;
-        border-bottom: 1px solid $color-green;
 
     }
 }

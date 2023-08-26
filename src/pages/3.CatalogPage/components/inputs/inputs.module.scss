@@ -2,8 +2,9 @@
 
 
 .inputs_wrapper {
+  box-sizing: border-box;
     width: 100%;
-    padding-left: 30px;
+    padding: 0 60px;
     display: flex;
     justify-content: space-between;
     @media (max-width: 1000px) { 
@@ -13,7 +14,8 @@
     
 }
 
-.sort_menu {
+.sort_menu,
+.filter_menu {
   width: 250px;
   position: relative;
 }
@@ -58,7 +60,8 @@
 }
 }
 
-.sort_menu_choise {
+.sort_menu_choise,
+.filter_menu_choise {
   box-sizing: border-box;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
@@ -73,15 +76,27 @@
   .sort_item {
     cursor: pointer;
     margin: 10px 0 0;
-    transition: .5s;
+    transition: color .5s;
 
     &:hover{
       color: $main-grey;
     }
   }
+
+  .sort_item.selected {
+    font-weight: 700;
+    &:hover{
+      color: #000000;
+    }
+  }
 }
 
-.sort_menu_choise.hidden {
+.filter_menu_choise {
+  height: 120px;
+}
+
+.sort_menu_choise.hidden,
+.filter_menu_choise.hidden {
   padding: 0;
   height: 0;
   overflow: hidden;
@@ -105,12 +120,12 @@
 .input_find {
     background-image: url('../../../../assets/png/find.png');
     background-position: center left 10px;
-    background-size: 6%;
+    background-size: 5%;
     background-repeat: no-repeat;
     height: 30px;
     background-color: $unactive-register-grey;
     color: $white;
-    width: 250px;
+    width: 350px;
     border-radius: 15px;
     border: none;
     padding-left: 40px;
