@@ -1,5 +1,129 @@
 // бизнес-сущности.(например, User, Product, Order)
 
+export const productsKeys = {
+  pizzas: [
+    {
+      name: 'Pepperoni',
+      key: 'PS-1-1-1',
+    },
+    {
+      name: 'Salami',
+      key: 'PS-1-1-2',
+    },
+    {
+      name: 'Rustic',
+      key: 'PS-1-1-3',
+    },
+    {
+      name: 'Greek',
+      key: 'PS-1-1-4',
+    },
+    {
+      name: 'Cheese & Meat',
+      key: 'PS-1-1-5',
+    },
+    {
+      name: 'Mushroom',
+      key: 'PS-1-1-6',
+    },
+    {
+      name: 'Vegetable',
+      key: 'PS-1-1-7',
+    },
+    {
+      name: 'Original',
+      key: 'PS-1-1-8',
+    },
+    {
+      name: 'Tomato',
+      key: 'PS-1-1-9',
+    },
+    {
+      name: 'Vegetarian',
+      key: 'PS-1-1-10',
+    },
+    {
+      name: 'Bacon',
+      key: 'PS-1-1-11',
+    },
+    {
+      name: 'Broccoli',
+      key: 'PS-1-1-12',
+    },
+    {
+      name: 'Hunting',
+      key: 'PS-1-1-13',
+    },
+    {
+      name: 'Forest',
+      key: 'PS-1-1-14',
+    },
+    {
+      name: 'Spicy',
+      key: 'PS-1-1-15',
+    },
+  ],
+  sauces: [
+    {
+      name: 'Curry',
+      key: 'PS-1-2-1',
+    },
+    {
+      name: 'Ketchup',
+      key: 'PS-1-2-2',
+    },
+    {
+      name: 'Tomato Sauce',
+      key: 'PS-1-2-3',
+    },
+    {
+      name: 'Onion',
+      key: 'PS-1-2-4',
+    },
+    {
+      name: 'Sweet',
+      key: 'PS-1-2-5',
+    },
+    {
+      name: 'Garlic',
+      key: 'PS-1-2-6',
+    },
+    {
+      name: 'Sour Cream',
+      key: 'PS-1-2-7',
+    },
+    {
+      name: 'Barbecue',
+      key: 'PS-1-2-8',
+    },
+  ],
+  drinks: [
+    {
+      name: 'Coca-Cola',
+      key: 'DR-1-1',
+    },
+    {
+      name: 'Fanta',
+      key: 'DR-1-2',
+    },
+    {
+      name: 'Sprite',
+      key: 'DR-1-3',
+    },
+    {
+      name: 'Pepsi',
+      key: 'DR-1-4',
+    },
+    {
+      name: 'Bonaqua',
+      key: 'DR-1-5',
+    },
+    {
+      name: 'GOOD Juicery',
+      key: 'DR-1-6',
+    },
+  ],
+};
 const infoProducts = {
   pizzas: [
     {
@@ -12,6 +136,7 @@ const infoProducts = {
       isVvegetarian: false,
       isNoSpacy: false,
       isLowColorie: true,
+      key: 'PS-1-1-1',
     },
     {
       name: 'Salami',
@@ -23,6 +148,7 @@ const infoProducts = {
       isVegetarian: false,
       isNoSpacy: false,
       isLowColorie: false,
+      key: 'PS-1-1-2',
     },
     {
       name: 'Rustic',
@@ -35,6 +161,7 @@ const infoProducts = {
       isVegetarian: true,
       isNoSpacy: true,
       isLowColorie: false,
+      key: 'PS-1-1-3',
     },
     {
       name: 'Greek',
@@ -47,6 +174,7 @@ const infoProducts = {
       isVegetarian: true,
       isNoSpacy: true,
       isLowColorie: false,
+      key: 'PS-1-1-4',
     },
     {
       name: 'Cheese & Meat',
@@ -58,6 +186,7 @@ const infoProducts = {
       isVegetarian: false,
       isNoSpacy: true,
       isLowColorie: false,
+      key: 'PS-1-1-5',
     },
     {
       name: 'Mushroom',
@@ -70,6 +199,7 @@ const infoProducts = {
       isVegetarian: true,
       isNoSpacy: true,
       isLowColorie: true,
+      key: 'PS-1-1-6',
     },
     {
       name: 'Vegetable',
@@ -82,6 +212,7 @@ const infoProducts = {
       isVegetarian: true,
       isNoSpacy: true,
       isLowColorie: true,
+      key: 'PS-1-1-7',
     },
     {
       name: 'Original',
@@ -94,6 +225,7 @@ const infoProducts = {
       isVegetarian: false,
       isNoSpacy: true,
       isLowColorie: false,
+      key: 'PS-1-1-8',
     },
     {
       name: 'Tomato',
@@ -106,6 +238,7 @@ const infoProducts = {
       isVegetarian: true,
       isNoSpacy: true,
       isLowColorie: false,
+      key: 'PS-1-1-9',
     },
     {
       name: 'Vegetarian',
@@ -118,6 +251,7 @@ const infoProducts = {
       isVegetarian: true,
       isNoSpacy: true,
       isLowColorie: true,
+      key: 'PS-1-1-10',
     },
     {
       name: 'Bacon',
@@ -129,6 +263,7 @@ const infoProducts = {
       isVegetarian: false,
       isNoSpacy: true,
       isLowColorie: false,
+      key: 'PS-1-1-11',
     },
     {
       name: 'Broccoli',
@@ -140,6 +275,7 @@ const infoProducts = {
       isVegetarian: true,
       isNoSpacy: true,
       isLowColorie: true,
+      key: 'PS-1-1-12',
     },
     {
       name: 'Hunting',
@@ -152,6 +288,7 @@ const infoProducts = {
       isVegetarian: false,
       isNoSpacy: true,
       isLowColorie: false,
+      key: 'PS-1-1-13',
     },
     {
       name: 'Forest',
@@ -164,6 +301,7 @@ const infoProducts = {
       isVegetarian: true,
       isNoSpacy: true,
       isLowColorie: false,
+      key: 'PS-1-1-14',
     },
     {
       name: 'Spicy',
@@ -175,6 +313,7 @@ const infoProducts = {
       isVegetarian: false,
       isNoSpacy: false,
       isLowColorie: false,
+      key: 'PS-1-1-15',
     },
   ],
   sauces: [
@@ -188,6 +327,7 @@ const infoProducts = {
       isNoSpicy: false,
       isVegan: true,
       isGlutenFree: true,
+      key: 'PS-1-2-1',
     },
     {
       name: 'Ketchup',
@@ -199,6 +339,7 @@ const infoProducts = {
       isNoSpicy: true,
       isVegan: true,
       isGlutenFree: true,
+      key: 'PS-1-2-2',
     },
     {
       name: 'Tomato Sauce',
@@ -210,6 +351,7 @@ const infoProducts = {
       isNoSpicy: true,
       isVegan: true,
       isGlutenFree: true,
+      key: 'PS-1-2-3',
     },
     {
       name: 'Onion',
@@ -220,6 +362,7 @@ const infoProducts = {
       isNoSpicy: true,
       isVegan: true,
       isGlutenFree: true,
+      key: 'PS-1-2-4',
     },
     {
       name: 'Sweet',
@@ -231,6 +374,7 @@ const infoProducts = {
       isNoSpicy: true,
       isVegan: false,
       isGlutenFree: false,
+      key: 'PS-1-2-5',
     },
     {
       name: 'Garlic',
@@ -242,6 +386,7 @@ const infoProducts = {
       isNoSpicy: true,
       isVegan: true,
       isGlutenFree: true,
+      key: 'PS-1-2-6',
     },
     {
       name: 'Sour Cream',
@@ -252,6 +397,7 @@ const infoProducts = {
       isNoSpicy: true,
       isVegan: false,
       isGlutenFree: true,
+      key: 'PS-1-2-7',
     },
     {
       name: 'Barbecue',
@@ -263,6 +409,7 @@ const infoProducts = {
       isNoSpicy: 'true',
       isVegan: 'false',
       isGlutenFree: 'true',
+      key: 'PS-1-2-8',
     },
   ],
   drinks: [
@@ -271,6 +418,7 @@ const infoProducts = {
       description: `Coca-Cola is a classic carbonated soft drink with an iconic and refreshing taste. It's enjoyed across generations, offering a perfect balance of sweetness and fizziness that complements various meals and occasions.`,
       isCarbonated: true,
       isZeroSugar: false,
+      key: 'DR-1-1',
     },
     {
       name: 'Fanta',
@@ -278,6 +426,7 @@ const infoProducts = {
         'Fanta is a vibrant and fruity carbonated soft drink that delivers a burst of flavors. Its lively and refreshing taste makes it a popular choice for those seeking a colorful and zesty beverage.',
       isCarbonated: true,
       isZeroSugar: false,
+      key: 'DR-1-2',
     },
     {
       name: 'Sprite',
@@ -285,6 +434,7 @@ const infoProducts = {
         'Sprite is a crisp and citrusy carbonated soft drink that provides a refreshing and tangy flavor. Known for its clear and effervescent appearance, Sprite is a popular choice for those seeking a zesty and thirst-quenching beverage.',
       isCarbonated: true,
       isZeroSugar: false,
+      key: 'DR-1-3',
     },
     {
       name: 'Pepsi',
@@ -292,6 +442,7 @@ const infoProducts = {
         'Pepsi is a well-known carbonated soft drink with a bold and satisfying taste. Its unique blend of flavors offers a delicious and invigorating beverage option. Enjoyed by many, Pepsi is a versatile choice for various occasions.',
       isCarbonated: true,
       isZeroSugar: false,
+      key: 'DR-1-4',
     },
     {
       name: 'Bonaqua',
@@ -299,6 +450,7 @@ const infoProducts = {
         'Bonaqua is a refreshing and crisp bottled water, providing pure hydration without any added flavors or sugars. With its clean and natural taste, Bonaqua is a popular choice for staying refreshed throughout the day.',
       isCarbonated: false,
       isZeroSugar: true,
+      key: 'DR-1-5',
     },
     {
       name: 'GOOD Juicery',
@@ -306,6 +458,7 @@ const infoProducts = {
         'GOOD Juicery offers a range of cold-pressed juices, bursting with natural flavors and nutrients. Made from fresh fruits and vegetables, these juices provide a delicious and wholesome way to boost your health and vitality.',
       isCarbonated: false,
       isZeroSugar: true,
+      key: 'DR-1-6',
     },
   ],
 };

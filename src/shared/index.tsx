@@ -141,7 +141,7 @@ export const loginClient = async (email: string, password: string) => {
 export const getProducts = async () => {
   if (!localStorage.getItem('Catalog info')) {
     const products = await apiRoot.productProjections().get().execute();
-    // localStorage.setItem('Catalog info', JSON.stringify(products));
-    return products;
+    localStorage.setItem('Catalog info', JSON.stringify(products.body));
+    return JSON.parse(localStorage.getItem('Catalog info')!);
   } else return JSON.parse(localStorage.getItem('Catalog info')!);
 };

@@ -10,11 +10,11 @@ import Inputs from './components/inputs/inputs';
 
 import { ProductsType } from '../../types/types';
 
-const CatalogPage = (props: { products: Promise<ProductsType> }) => {
+const CatalogPage = (props: { products: ProductsType | null }) => {
   return (
     <main className={s.catalog_wrapper}>
       <Inputs />
-      <CatalogPizzas />
+      <CatalogPizzas products={props.products} />
       <CatalogSauces />
       <CatalogDrinks />
       {/* <CatalogPizzas sortBy={sortBy} findBy={findBy} filterBy={filterBy} /> */}

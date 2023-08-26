@@ -2,11 +2,18 @@ import Pizza from './catalog-pizza/pizza';
 
 import s from './pizzas.module.scss';
 
-import infoProducts from '../../../../entities/product';
+import infoProducts, { productsKeys } from '../../../../entities/product';
 
 import state from '../../../../state/state';
+import { ProductsType } from '../../../../types/types';
 
-const CatalogPizzas = () => {
+const CatalogPizzas = (props: { products: ProductsType | null }) => {
+  if (props.products) {
+    const pizzasItems = props.products.results.filter((el) =>
+      productsKeys.pizzas.find((item) => item.key === el.key),
+    );
+    console.log(JSON.stringify(pizzasItems));
+  }
   const visiblePizzas = [];
 
   for (let i = 0; i < state.mainPage.pizzas.length; i++) {
@@ -15,7 +22,7 @@ const CatalogPizzas = () => {
   }
   const pizzas = visiblePizzas.map((pizza) => (
     <Pizza
-      key={pizza.index}
+      key={infoProducts.pizzas[pizza.index].key}
       link={pizza.link}
       name={pizza.name}
       cost={pizza.cost}

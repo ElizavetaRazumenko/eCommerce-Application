@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
@@ -17,7 +17,13 @@ import { getProducts } from '../shared';
 import { ProductsType } from '../types/types';
 
 const App = () => {
-  const products = getProducts() as Promise<ProductsType>;
+  const [productsData, setProducts] = useState<ProductsType | null>(null);
+  const products = async () => {
+    await getProducts().then((data) => setProducts(data));
+  };
+  useEffect(() => {
+    products();
+  }, []);
   const [userState, setUserState] = useState<string>(
     localStorage.getItem('userState') === 'Logout' ? 'Logout' : 'Login',
   );
@@ -40,7 +46,7 @@ const App = () => {
             <Route path='/login' element={loginRedirection()} />
             <Route path='/registration' element={registratironRedirection()} />
             <Route index element={<Main />} />
-            <Route path='/catalog' element={<CatalogPage products={products} />} />
+            <Route path='/catalog' element={<CatalogPage products={productsData} />} />
             <Route path='/details' element={<DetailedPage />} />
             <Route path='/profile' element={<ProfilePage userState={userState} />} />
             <Route path='/cart' element={<BasketPage userState={userState} />} />
