@@ -1,142 +1,74 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, ChangeEvent, useRef } from 'react';
 
 import s from './inputs.module.scss';
 
 const Inputs = () => {
-  const [sortBy, setSortBy] = useState('');
+  const sortRef = useRef<HTMLDivElement>(null);
+  const sortMenuRef = useRef<HTMLDivElement>(null);
+  const filterRef = useRef<HTMLDivElement>(null);
+  const [sortBy, setSortBy] = useState('Sort by');
   const [findBy, setFindBy] = useState('');
   const [filterBy, setFilterBy] = useState('');
-  const [isSortOpen, setIsSortOpen] = useState(false);
 
-  const sortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSortBy(event.target.value);
+  const sortChange = (event: React.MouseEvent<HTMLParagraphElement, MouseEvent>) => {
+    const target = event.target as HTMLParagraphElement;
+    setSortBy(target.textContent!);
+    sortMenuRef.current!.classList.add(s.hidden);
+    sortRef.current!.classList.remove(s.open);
   };
-  const findChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+
+  const findChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFindBy(event.target.value);
   };
-  const filterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+
+  const filterChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFilterBy(event.target.value);
   };
 
-  const toggleSort = () => {
-    setIsSortOpen(!isSortOpen);
-  };
-
-  const handleSortClick = (value: string) => {
-    setSortBy(value);
-    setIsSortOpen(false);
+  const openMenu = (ref: React.RefObject<HTMLDivElement>) => {
+    ref.current!.classList.toggle(s.open);
+    ref.current!.classList.contains(s.open)
+      ? sortMenuRef.current!.classList.remove(s.hidden)
+      : sortMenuRef.current!.classList.add(s.hidden);
   };
 
   return (
     <div className={s.inputs_wrapper}>
-      <div
-        onClick={toggleSort}
-        className={`${s.input} ${s.input_sort} ${isSortOpen ? s.open_sort_select : ''}`}
-      >
-        <div className={s.sort_title}> {sortBy ? sortBy : 'Sort by'}</div>
-        {isSortOpen && (
-          <ul className={s.sort_list}>
-            <li
-              className={`${s.sort_line} ${s.sort_line_up}`}
-              onClick={() => handleSortClick('Low to High')}
-            >
-              price (Low to High)
-            </li>
-            <li
-              className={`${s.sort_line} ${s.sort_line_down}`}
-              onClick={() => handleSortClick('High to Low')}
-            >
-              price (High to Low)
-            </li>
-            <li className={`${s.sort_line} ${s.sort_az}`} onClick={() => handleSortClick('A to Z')}>
-              alphabet (A to Z)
-            </li>
-            <li className={`${s.sort_line} ${s.sort_za}`} onClick={() => handleSortClick('Z to A')}>
-              alphabet (Z to A)
-            </li>
-          </ul>
-        )}
+      <div className={s.sort_menu}>
+        <div className={s.div_sort} onClick={() => openMenu(sortRef)} ref={sortRef}>
+          <span>{sortBy}</span>
+          <div className={s.sort_arrow}></div>
+        </div>
+        <div className={s.sort_menu_choise + ' ' + s.hidden} ref={sortMenuRef}>
+          <p className={s.sort_item} onClick={(e) => sortChange(e)}>
+            From low to high price
+          </p>
+          <p className={s.sort_item} onClick={(e) => sortChange(e)}>
+            From high to low price
+          </p>
+          <p className={s.sort_item} onClick={(e) => sortChange(e)}>
+            Alphabetically (A-Z)
+          </p>
+          <p className={s.sort_item} onClick={(e) => sortChange(e)}>
+            Alphabetically (Z-A)
+          </p>
+        </div>
       </div>
-
-      {/* <div className={s.input_wrapper}> */}
-      {/* <div className={`${s.input} ${s.input_find}`}> */}
-      <input
-        type='text'
-        placeholder='Find'
-        value={findBy}
-        onChange={findChange}
-        className={`${s.input} ${s.input_find}`}
-      />
-      <input
-        type='text'
-        placeholder='Filter by'
-        value={filterBy}
-        onChange={filterChange}
-        className={`${s.input} ${s.input_filter}`}
-      />
+      <div className={s.input_wrapper}>
+        <input
+          type='text'
+          placeholder='Find'
+          value={findBy}
+          onChange={findChange}
+          className={s.input_find}
+        />
+      </div>
+      <div className={s.div_filter} ref={filterRef} onClick={() => openMenu(filterRef)}>
+        <span>Filter by</span>
+        <div className={s.sort_arrow}></div>
+      </div>
     </div>
   );
 };
 
 export default Inputs;
-
-// import React, { useState, ChangeEvent } from 'react';
-
-// import s from './inputs.module.scss';
-
-// const Inputs = () => {
-//   const [sortBy, setSortBy] = useState('');
-//   const [findBy, setFindBy] = useState('');
-//   const [filterBy, setFilterBy] = useState('');
-
-//   const sortChange = (event: ChangeEvent<HTMLSelectElement>) => {
-//     setSortBy(event.target.value);
-//   };
-
-//   const findChange = (event: ChangeEvent<HTMLInputElement>) => {
-//     setFindBy(event.target.value);
-//   };
-
-//   const filterChange = (event: ChangeEvent<HTMLInputElement>) => {
-//     setFilterBy(event.target.value);
-//   };
-
-//   return (
-//     <div className={s.inputs_wrapper}>
-//       <div className={s.inputs}>
-//         <select value={sortBy} onChange={sortChange} className={s.input + ' ' + s.input_sort}>
-//           <option value=''>Sort by</option>
-//           <option value='price-asc'> &#x25B2; Price (Low to High)</option>
-//           <option value='price-desc'>
-//             <img src={require('../../../../assets/png/sort-arrow.png')} alt='Down Arrow' />
-//             Price (High to Low)
-//           </option>
-//         </select>
-
-//         <div className={s.input_wrapper}>
-//           <input
-//             type='text'
-//             placeholder='Find'
-//             value={findBy}
-//             onChange={findChange}
-//             className={s.input + ' ' + s.input_find}
-//           />
-//         </div>
-//         {/* <div className={s.input_find_after}></div> */}
-
-//         <div className={s.input_wrapper}>
-//           <input
-//             type='text'
-//             placeholder='Filter by'
-//             value={filterBy}
-//             onChange={filterChange}
-//             className={s.input + ' ' + s.input_filter}
-//           />
-//           <div className={s.input_filter_after}></div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Inputs;
