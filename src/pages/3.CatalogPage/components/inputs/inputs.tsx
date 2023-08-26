@@ -8,15 +8,15 @@ const Inputs = () => {
   const [filterBy, setFilterBy] = useState('');
   const [isSortOpen, setIsSortOpen] = useState(false);
 
-  // const sortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-  //   setSortBy(event.target.value);
-  // };
-  // const findChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setFindBy(event.target.value);
-  // };
-  // const filterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setFilterBy(event.target.value);
-  // };
+  const sortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSortBy(event.target.value);
+  };
+  const findChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFindBy(event.target.value);
+  };
+  const filterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFilterBy(event.target.value);
+  };
 
   const toggleSort = () => {
     setIsSortOpen(!isSortOpen);
