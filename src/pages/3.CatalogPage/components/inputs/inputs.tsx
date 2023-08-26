@@ -11,9 +11,7 @@ const Inputs = () => {
   const hightPrice = useRef<HTMLParagraphElement>(null);
   const a_z = useRef<HTMLParagraphElement>(null);
   const z_a = useRef<HTMLParagraphElement>(null);
-  const [sortBy, setSortBy] = useState('Sort by');
   const [findBy, setFindBy] = useState('');
-  const [filterBy, setFilterBy] = useState('');
 
   const sortChange = (ref: React.RefObject<HTMLParagraphElement>, type: string) => {
     ref.current!.classList.toggle(s.selected);
@@ -37,10 +35,6 @@ const Inputs = () => {
     setFindBy(event.target.value);
   };
 
-  const filterChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setFilterBy(event.target.value);
-  };
-
   const openMenuSort = (ref: React.RefObject<HTMLDivElement>, type: string) => {
     ref.current!.classList.toggle(s.open);
     if (type === 'sort') {
@@ -52,6 +46,11 @@ const Inputs = () => {
         ? filterMenuRef.current!.classList.remove(s.hidden)
         : filterMenuRef.current!.classList.add(s.hidden);
     }
+  };
+
+  const changeChouse = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const target = e.target as HTMLParagraphElement;
+    target.classList.toggle(s.selected);
   };
 
   return (
@@ -102,7 +101,11 @@ const Inputs = () => {
           <span>Filter by</span>
           <div className={s.sort_arrow}></div>
         </div>
-        <div className={s.filter_menu_choise + ' ' + s.hidden} ref={filterMenuRef}>
+        <div
+          className={s.filter_menu_choise + ' ' + s.hidden}
+          ref={filterMenuRef}
+          onClick={(e) => changeChouse(e)}
+        >
           <p className={s.sort_item}>Vegetarian food</p>
           <p className={s.sort_item}>Not spicy food</p>
           <p className={s.sort_item}>Low calorie food</p>

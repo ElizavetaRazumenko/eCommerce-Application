@@ -137,3 +137,11 @@ export const loginClient = async (email: string, password: string) => {
   // setToken();
   localStorage.setItem('userInfo', JSON.stringify(response.body));
 };
+
+export const getProducts = async () => {
+  if (!localStorage.getItem('Catalog info')) {
+    const products = await apiRoot.productProjections().get().execute();
+    // localStorage.setItem('Catalog info', JSON.stringify(products));
+    return products;
+  } else return JSON.parse(localStorage.getItem('Catalog info')!);
+};

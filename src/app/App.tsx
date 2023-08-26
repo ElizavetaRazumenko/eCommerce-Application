@@ -13,8 +13,11 @@ import ProfilePage from '../pages/5.UserProfile/profile';
 import BasketPage from '../pages/6.BasketPage/basket';
 import ErrorPage from '../pages/7.ErrorPage/error';
 import Layout from '../pages/globalComponents/layout/layout';
+import { getProducts } from '../shared';
+import { ProductsType } from '../types/types';
 
 const App = () => {
+  const products = getProducts() as Promise<ProductsType>;
   const [userState, setUserState] = useState<string>(
     localStorage.getItem('userState') === 'Logout' ? 'Logout' : 'Login',
   );
@@ -37,7 +40,7 @@ const App = () => {
             <Route path='/login' element={loginRedirection()} />
             <Route path='/registration' element={registratironRedirection()} />
             <Route index element={<Main />} />
-            <Route path='/catalog' element={<CatalogPage />} />
+            <Route path='/catalog' element={<CatalogPage products={products} />} />
             <Route path='/details' element={<DetailedPage />} />
             <Route path='/profile' element={<ProfilePage userState={userState} />} />
             <Route path='/cart' element={<BasketPage userState={userState} />} />
