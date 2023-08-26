@@ -13,10 +13,8 @@
     max-width: 303px;
     background-position: center;
     padding-bottom: 20px;
-
-    &.blurred {
-        filter: blur(4px);
-      }
+    cursor: pointer;
+    transition: .5s;
 
     @media (max-width: 465px) {
         font-size: 1rem;
@@ -25,7 +23,6 @@
     @media (max-width: 340px) {
        padding: 0 auto;
        margin: 0 -10px;
-
     }
 }
 
@@ -56,17 +53,26 @@
     cursor: pointer;
 }
 
+
 .size_links{
-    width: 70px;
-    position: absolute;
     display: flex;
+    position: absolute;
     flex-direction: column;
-    margin: 25px auto;
+    padding-top: 20px;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    border-radius: 25px;
-    filter: none; 
+    height: 63%;
+    opacity: 0;
+    background-color: $main-light;
+    width: 100%;
+    border-radius: 15px;
+    transition: 0.5s;
+    cursor: pointer;
+   
+    &:hover{
+        opacity: .7;
+    }
 }
 
 .size_link {
@@ -76,31 +82,12 @@
     margin: 30px auto;
     text-decoration: none;
     text-align: center;
+    transition: .5s;
+
     &:hover {
-        border-bottom: .5px solid $color-green;
+        color:$color-green;
+        border-bottom: 1px solid $color-green;
+
     }
 }
-
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 67%;
-    background-color: $main-light;
-    border-radius: 15px;
-    opacity: 0;
-    transition: 0.5s;
-  }
-  
-  .hovered .overlay {
-    opacity: .7;
-    border: .2px solid $color-green;
-  }
-  
-  
-  
-  
-  
-  
 
