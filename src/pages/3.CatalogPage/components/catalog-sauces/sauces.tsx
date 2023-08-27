@@ -11,7 +11,13 @@ const CatalogSauces = () => {
         <h2 className={s.title_section}>Sauces</h2>
         <div className={s.select_sauce_catalog}>
           {state.mainPage.souces.map((sauce, index) => (
-            <Sauce link={sauce.link} name={sauce.name} key={index} />
+            <Sauce
+              link={sauce.link}
+              name={sauce.name}
+              key={index}
+              price={'0.60$'}
+              description={'Blablablablablabl bla bla bla'}
+            />
           ))}
         </div>
       </section>

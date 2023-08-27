@@ -18,6 +18,13 @@ export type SauceType = {
   name: string;
 };
 
+export type SauceTypeCatalog = {
+  link: string;
+  name: string;
+  price: string;
+  description: string;
+};
+
 export type DrinkType = {
   link: string;
   price: string;
