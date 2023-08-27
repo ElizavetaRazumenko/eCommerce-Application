@@ -80,7 +80,7 @@ const infoProducts = {
   ],
   sauces: [
     {
-      name: 'Curry',
+      name: 'Carry',
       PFCK: [1.8, 4.6, 5.2, 61],
       key: 'PS-1-2-1',
     },

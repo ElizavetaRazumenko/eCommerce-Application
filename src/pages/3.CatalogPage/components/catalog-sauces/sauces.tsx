@@ -14,14 +14,14 @@ const CatalogSauces = (props: {
   );
   const sauceArray = saucesItems.map((sauce) => {
     let sauceCost = (sauce.masterVariant.prices[0].value.centAmount / 100).toFixed(2) + '$';
-    const mainIngredientsStartIndex = sauce.description['en-US'].indexOf('Main ingredients');
     return (
       <Sauce
         key={sauce.key}
-        link={sauce.masterVariant.images[0].url}
+        link={sauce.masterVariant.images}
         name={sauce.name['en-US']}
         price={sauceCost}
-        description={sauce.description['en-US'].slice(mainIngredientsStartIndex + 18)}
+        description={sauce.description['en-US']}
+        setProductDetailes={props.setProductDetailes}
       />
     );
   });

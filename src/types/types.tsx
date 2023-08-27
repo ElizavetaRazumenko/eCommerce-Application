@@ -33,10 +33,17 @@ export type SauceType = {
 };
 
 export type SauceTypeCatalog = {
-  link: string;
+  link: {
+    dimensions: {
+      h: number;
+      w: number;
+    };
+    url: string;
+  }[];
   name: string;
   price: string;
   description: string;
+  setProductDetailes: SetProductDetailsType;
 };
 
 export type DrinkType = {

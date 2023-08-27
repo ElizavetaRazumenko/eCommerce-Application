@@ -12,10 +12,9 @@ const Drink = (props: DrinkTypeCatalog) => {
   };
 
   const setDetailes = () => {
-    console.log(props.name);
     props.setProductDetailes.setProductName(props.name);
     props.setProductDetailes.setProductDescription(props.description);
-    setPriceAndWeigth(props.price, '40gr');
+    setPriceAndWeigth(props.price, '950gr');
     props.setProductDetailes.setProductImg(props.link.map((img) => img.url));
     props.setProductDetailes.setProductType('drinks');
     const productItem = infoProducts['drinks'].find(
