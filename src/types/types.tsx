@@ -45,10 +45,17 @@ export type DrinkType = {
 };
 
 export type DrinkTypeCatalog = {
-  link: string;
+  link: {
+    dimensions: {
+      h: number;
+      w: number;
+    };
+    url: string;
+  }[];
   price: string;
   name: string;
   description: string;
+  setProductDetailes: SetProductDetailsType;
 };
 
 export type stateTypeMain = {
@@ -247,6 +254,7 @@ export type SetProductDetailsType = {
   setProductImg: React.Dispatch<React.SetStateAction<string[]>>;
   setProductType: React.Dispatch<React.SetStateAction<'pizzas' | 'sauces' | 'drinks'>>;
   setProductWeigth: React.Dispatch<React.SetStateAction<string>>;
+  setProductPFCK: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
 export type ProductDetailsType = {
@@ -256,6 +264,7 @@ export type ProductDetailsType = {
   productImg: string[];
   productType: 'pizzas' | 'sauces' | 'drinks';
   productWeigth: string;
+  productPFCK: number[];
 };
 
 export type ProductItemType = {

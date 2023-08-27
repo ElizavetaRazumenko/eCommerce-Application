@@ -19,12 +19,13 @@ import { ProductsType } from '../types/types';
 
 const App = () => {
   const [productsData, setProducts] = useState<ProductsType>(startProductObject);
-  const [productName, setProductName] = useState<string>('Pizza');
-  const [productDescription, setProductDescription] = useState<string>('Lalalla');
-  const [productPrice, setProductPrice] = useState<string>('300');
+  const [productName, setProductName] = useState<string>('');
+  const [productDescription, setProductDescription] = useState<string>('');
+  const [productPrice, setProductPrice] = useState<string>('');
   const [productImg, setProductImg] = useState<string[]>(['']);
   const [productType, setProductType] = useState<'pizzas' | 'sauces' | 'drinks'>('pizzas');
   const [productWeigth, setProductWeigth] = useState<string>('');
+  const [productPFCK, setProductPFCK] = useState<number[]>([0, 0, 0, 0]);
   const setProductDetailes = {
     setProductName,
     setProductDescription,
@@ -32,6 +33,7 @@ const App = () => {
     setProductImg,
     setProductType,
     setProductWeigth,
+    setProductPFCK,
   };
   const productDetailes = {
     productName,
@@ -40,6 +42,7 @@ const App = () => {
     productImg,
     productType,
     productWeigth,
+    productPFCK,
   };
   const products = async () => {
     await getProducts().then((data) => setProducts(data));

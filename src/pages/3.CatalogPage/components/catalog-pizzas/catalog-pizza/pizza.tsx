@@ -3,7 +3,8 @@ import { NavLink } from 'react-router-dom';
 
 import s from './pizza.module.scss';
 
-import { PizzaCatalogType } from '../../../../../types/types';
+import infoProducts from '../../../../../entities/product';
+import { PizzaCatalogType, ProductItemType } from '../../../../../types/types';
 
 import PizzaParams from '../catalog-pizzaParams/pizzaParams';
 
@@ -42,6 +43,10 @@ const Pizza = (props: PizzaCatalogType) => {
       : setPriceAndWeigth(props.cost[2], '210gr');
     props.setProductDetailes.setProductImg(props.link.map((img) => img.url));
     props.setProductDetailes.setProductType('pizzas');
+    const productItem = infoProducts['pizzas'].find(
+      (el) => el.name === props.name,
+    ) as ProductItemType;
+    props.setProductDetailes.setProductPFCK(productItem.PFCK);
   };
 
   return (

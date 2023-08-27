@@ -16,10 +16,11 @@ const CatalogDrinks = (props: {
     return (
       <Drink
         key={drink.key}
-        link={drink.masterVariant.images[0].url}
+        link={drink.masterVariant.images}
         name={drink.name['en-US']}
         price={drinkCost}
         description={drink.description['en-US']}
+        setProductDetailes={props.setProductDetailes}
       />
     );
   });

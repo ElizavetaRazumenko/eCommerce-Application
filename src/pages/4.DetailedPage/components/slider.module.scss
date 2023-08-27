@@ -75,6 +75,11 @@
    background-size: contain;
 }
 
+.one_pic {
+   display: flex;
+   justify-content: center;
+}
+
 .image {
     max-width: 100%;
     max-height: 100%;
