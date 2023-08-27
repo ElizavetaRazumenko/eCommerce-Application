@@ -3,11 +3,11 @@ import { NavLink } from 'react-router-dom';
 
 import s from './pizza.module.scss';
 
-import { PizzaType } from '../../../../../types/types';
+import { PizzaCatalogType } from '../../../../../types/types';
 
 import PizzaParams from '../catalog-pizzaParams/pizzaParams';
 
-const Pizza = (props: PizzaType) => {
+const Pizza = (props: PizzaCatalogType) => {
   const arrayPizzaParams = [
     {
       size: 'L',
@@ -26,20 +26,22 @@ const Pizza = (props: PizzaType) => {
     },
   ];
 
-  const pizzaSizes = ['L', 'M', 'S'];
-
   return (
-    <div className={s.pizza_item_catalog}>
+    <div className={s.pizza_item}>
       <div className={s.pizza_content}>
         <img src={props.link} className={s.pizza_img} alt='pizza' />
         <h3 className={s.pizza_name}>{props.name}</h3>
         <div className={s.pizza_ingredients}>{props.mainIngredients || ''}</div>
         <div className={s.size_links}>
-          {pizzaSizes.map((_, index) => (
-            <NavLink to='/details' className={s.size_link} key={index}>
-              {pizzaSizes[index]}
-            </NavLink>
-          ))}
+          <NavLink to='/details' className={s.size_link}>
+            L
+          </NavLink>
+          <NavLink to='/details' className={s.size_link}>
+            M
+          </NavLink>
+          <NavLink to='/details' className={s.size_link}>
+            S
+          </NavLink>
         </div>
       </div>
       <div className={s.pizza_params}>

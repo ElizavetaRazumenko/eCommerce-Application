@@ -3,9 +3,12 @@ import Sauce from './components/sauce';
 import s from './sauces.module.scss';
 
 import { productsKeys } from '../../../../entities/product';
-import { ProductsType } from '../../../../types/types';
+import { ProductsType, SetProductDetailsType } from '../../../../types/types';
 
-const CatalogSauces = (props: { products: ProductsType }) => {
+const CatalogSauces = (props: {
+  products: ProductsType;
+  setProductDetailes: SetProductDetailsType;
+}) => {
   const saucesItems = props.products.results.filter((el) =>
     productsKeys.sauces.find((item) => item.key === el.key),
   );

@@ -163,7 +163,7 @@ export const sortByLowerPrice = async () => {
     .productProjections()
     .get({
       queryArgs: {
-        sort: ['masterVariant.key'],
+        sort: ['masterVariant.price'],
       },
     })
     .execute();

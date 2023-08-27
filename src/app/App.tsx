@@ -19,6 +19,25 @@ import { ProductsType } from '../types/types';
 
 const App = () => {
   const [productsData, setProducts] = useState<ProductsType>(startProductObject);
+  const [productName, setProductName] = useState<string>('Pizza');
+  const [productDescription, setProductDescription] = useState<string>('Lalalla');
+  const [productPrice, setProductPrice] = useState<string>('300');
+  const [productImg, setProductImg] = useState<string[]>(['']);
+  const [productType, setProductType] = useState<'pizzas' | 'sauces' | 'drinks'>('pizzas');
+  const setProductDetailes = {
+    setProductName,
+    setProductDescription,
+    setProductPrice,
+    setProductImg,
+    setProductType,
+  };
+  const productDetailes = {
+    productName,
+    productDescription,
+    productPrice,
+    productImg,
+    productType,
+  };
   const products = async () => {
     await getProducts().then((data) => setProducts(data));
   };
@@ -49,9 +68,15 @@ const App = () => {
             <Route index element={<Main />} />
             <Route
               path='/catalog'
-              element={<CatalogPage products={productsData} setProducts={setProducts} />}
+              element={
+                <CatalogPage
+                  products={productsData}
+                  setProducts={setProducts}
+                  setProductDetailes={setProductDetailes}
+                />
+              }
             />
-            <Route path='/details' element={<DetailedPage />} />
+            <Route path='/details' element={<DetailedPage productDetailes={productDetailes} />} />
             <Route path='/profile' element={<ProfilePage userState={userState} />} />
             <Route path='/cart' element={<BasketPage userState={userState} />} />
             <Route path='*' element={<ErrorPage />} />

@@ -1,11 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import Slider from './components/slider';
 import s from './detailedPage.module.scss';
 
-const DetailedPage = () => {
-  const [imageCount, setImageCount] = useState<number>(1);
+import { ProductDetailsType } from '../../types/types';
+
+const DetailedPage = (props: { productDetailes: ProductDetailsType }) => {
+  const [imageCount, _] = useState<number>(props.productDetailes.productImg.length);
   return (
     <div className={s.page_wrapper}>
       <NavLink to='/catalog' className={s.nav_link}>
@@ -17,14 +20,9 @@ const DetailedPage = () => {
       <div className={s.details_wrapper}>
         <Slider imageCount={imageCount} />
         <div className={s.description_wrapper}>
-          <p className={s.name}>Pepperoni</p>
-          <p className={s.description}>
-            Pepperoni is a variety of spicy salami made from cured pork and beef seasoned with
-            paprika or other chili pepper
-          </p>
-          <p className={s.description}>
-            Main ingredients: salami, beef, cheese, tomato paste, mushrooms
-          </p>
+          <p className={s.name}>{props.productDetailes.productName}</p>
+          <p className={s.description}>{props.productDetailes.productDescription}</p>
+          <p className={s.description}>{props.productDetailes.productDescription}</p>
           <div className='s.pfc'>
             <p className={s.info_string}>Proteins: 10.4gr</p>
             <p className={s.info_string}>Fats: 12.8gr</p>

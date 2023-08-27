@@ -79,8 +79,10 @@
 
 .sort_menu_choise,
 .filter_menu_choise {
+  user-select: none;
   border-bottom: 1px solid $main-grey;
   box-sizing: border-box;
+  font-size: .9rem;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   position: absolute;

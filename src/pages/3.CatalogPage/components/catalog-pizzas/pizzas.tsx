@@ -4,9 +4,12 @@ import s from './pizzas.module.scss';
 
 import { productsKeys } from '../../../../entities/product';
 
-import { ProductsType } from '../../../../types/types';
+import { ProductsType, SetProductDetailsType } from '../../../../types/types';
 
-const CatalogPizzas = (props: { products: ProductsType }) => {
+const CatalogPizzas = (props: {
+  products: ProductsType;
+  setProductDetailes: SetProductDetailsType;
+}) => {
   const pizzasItems = props.products.results.filter((el) =>
     productsKeys.pizzas.find((item) => item.key === el.key),
   );
@@ -29,6 +32,7 @@ const CatalogPizzas = (props: { products: ProductsType }) => {
         name={pizza.name['en-US']}
         cost={pizzasCost}
         mainIngredients={pizza.description['en-US'].slice(mainIngredientsStartIndex)}
+        setProductDetailes={props.setProductDetailes}
       />
     );
   });
