@@ -20,6 +20,23 @@
   position: relative;
 }
 
+.sort_menu {
+  z-index: 3;
+  @media (max-width: 1000px) { 
+    margin-bottom: 25px;
+}
+  @media (max-width: 860px) { 
+    margin-bottom: 10px;
+}
+}
+
+.filter_menu {
+  z-index: 2;
+  @media (max-width: 1000px) { 
+    margin-top: 25px;
+  }
+}
+
 .div_sort,
 .div_filter {
     box-sizing: border-box;
@@ -62,6 +79,7 @@
 
 .sort_menu_choise,
 .filter_menu_choise {
+  border-bottom: 1px solid $main-grey;
   box-sizing: border-box;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
@@ -80,6 +98,10 @@
 
     &:hover{
       color: $main-grey;
+    }
+
+    @media (max-width: 1000px) { 
+      font-size: 1rem;
     }
   }
 
@@ -100,6 +122,8 @@
   padding: 0;
   height: 0;
   overflow: hidden;
+  border-bottom: none;
+
   .sort_item {
     color: $background_from;
   }
@@ -118,6 +142,7 @@
 }
 
 .input_find {
+    box-sizing: border-box;
     background-image: url('../../../../assets/png/find.png');
     background-position: center left 10px;
     background-size: 5%;
@@ -125,7 +150,7 @@
     height: 30px;
     background-color: $unactive-register-grey;
     color: $white;
-    width: 350px;
+    width: 250px;
     border-radius: 15px;
     border: none;
     padding-left: 40px;
@@ -134,7 +159,5 @@
     &::placeholder {
         color: $main-light;
     }
-    @media (max-width: 740px) {
-        margin: 10px 0;
-    }
+
 }
