@@ -157,3 +157,27 @@ export const getProduct = async () => {
   const products = await apiRoot.products().withKey({ key: 'PS-1-1-1' }).get().execute();
   console.log(products.body);
 };
+
+export const sortByLowerPrice = async () => {
+  const products = await apiRoot
+    .productProjections()
+    .get({
+      queryArgs: {
+        sort: ['masterVariant.key'],
+      },
+    })
+    .execute();
+  return products.body;
+};
+
+export const seach = async (value: string) => {
+  const products = await apiRoot
+    .productProjections()
+    .get({
+      queryArgs: {
+        where: `name(en-US="${value}")`,
+      },
+    })
+    .execute();
+  return products.body;
+};

@@ -1,5 +1,3 @@
-import { NavLink } from 'react-router-dom';
-
 import Drink from './components/drink';
 import s from './drinks.module.scss';
 

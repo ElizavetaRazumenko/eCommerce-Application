@@ -10,10 +10,13 @@ import Inputs from './components/inputs/inputs';
 
 import { ProductsType } from '../../types/types';
 
-const CatalogPage = (props: { products: ProductsType }) => {
+const CatalogPage = (props: {
+  products: ProductsType;
+  setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
+}) => {
   return (
     <main className={s.catalog_wrapper}>
-      <Inputs />
+      <Inputs setProducts={props.setProducts} />
       <CatalogPizzas products={props.products} />
       <CatalogSauces products={props.products} />
       <CatalogDrinks products={props.products} />

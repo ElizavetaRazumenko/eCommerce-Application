@@ -47,7 +47,10 @@ const App = () => {
             <Route path='/login' element={loginRedirection()} />
             <Route path='/registration' element={registratironRedirection()} />
             <Route index element={<Main />} />
-            <Route path='/catalog' element={<CatalogPage products={productsData} />} />
+            <Route
+              path='/catalog'
+              element={<CatalogPage products={productsData} setProducts={setProducts} />}
+            />
             <Route path='/details' element={<DetailedPage />} />
             <Route path='/profile' element={<ProfilePage userState={userState} />} />
             <Route path='/cart' element={<BasketPage userState={userState} />} />

@@ -2,7 +2,10 @@ import React, { useState, ChangeEvent, useRef } from 'react';
 
 import s from './inputs.module.scss';
 
-const Inputs = () => {
+import { sortByLowerPrice, seach } from '../../../../shared/index';
+import { ProductsType } from '../../../../types/types';
+
+const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<ProductsType>> }) => {
   const sortRef = useRef<HTMLDivElement>(null);
   const sortMenuRef = useRef<HTMLDivElement>(null);
   const filterRef = useRef<HTMLDivElement>(null);
@@ -33,6 +36,7 @@ const Inputs = () => {
 
   const findChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFindBy(event.target.value);
+    seach(event.target.value);
   };
 
   const openMenuSort = (ref: React.RefObject<HTMLDivElement>, type: string) => {
@@ -66,14 +70,14 @@ const Inputs = () => {
             onClick={() => sortChange(lowPrice, 'low-price')}
             ref={lowPrice}
           >
-            From low to high price
+            From low to high average price
           </p>
           <p
             className={s.sort_item}
             onClick={() => sortChange(hightPrice, 'high-price')}
             ref={hightPrice}
           >
-            From high to low price
+            From high to low average price
           </p>
           <p className={s.sort_item} onClick={() => sortChange(a_z, 'az')} ref={a_z}>
             Alphabetically (A-Z)
