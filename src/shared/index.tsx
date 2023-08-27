@@ -140,7 +140,14 @@ export const loginClient = async (email: string, password: string) => {
 
 export const getProducts = async () => {
   if (!localStorage.getItem('Catalog info')) {
-    const products = await apiRoot.productProjections().get().execute();
+    const products = await apiRoot
+      .productProjections()
+      .get({
+        queryArgs: {
+          limit: 30,
+        },
+      })
+      .execute();
     localStorage.setItem('Catalog info', JSON.stringify(products.body));
     return JSON.parse(localStorage.getItem('Catalog info')!);
   } else return JSON.parse(localStorage.getItem('Catalog info')!);

@@ -15,9 +15,8 @@ const CatalogPage = (props: { products: ProductsType }) => {
     <main className={s.catalog_wrapper}>
       <Inputs />
       <CatalogPizzas products={props.products} />
-      <CatalogSauces />
+      <CatalogSauces products={props.products} />
       <CatalogDrinks />
-      {/* <CatalogPizzas sortBy={sortBy} findBy={findBy} filterBy={filterBy} /> */}
     </main>
   );
 };
