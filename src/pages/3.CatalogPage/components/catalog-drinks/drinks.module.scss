@@ -38,7 +38,14 @@
     justify-content: center;
 
     @media (max-width: 990px) {
+        // padding: 0 100px;
         gap: auto;
+       column-gap: 30px;
+        width: 90%;
+        // justify-content: space-between;
+
+
+
     }
     @media (max-width: 720px) {
         row-gap: 50px;
