@@ -14,10 +14,16 @@ export type PizzaType = {
 };
 
 export type PizzaCatalogType = {
-  link: string;
+  link: {
+    dimensions: {
+      h: number;
+      w: number;
+    };
+    url: string;
+  }[];
   name: string;
   cost: string[];
-  mainIngredients?: string;
+  description: string;
   setProductDetailes: SetProductDetailsType;
 };
 
@@ -232,7 +238,7 @@ export type AddressType = {
 
 export type CustomerAddressesType = AddressType[] | null;
 
-//                                                                  DEATILES TYPE
+//                                                                  DETAILS PAGE
 
 export type SetProductDetailsType = {
   setProductName: React.Dispatch<React.SetStateAction<string>>;
@@ -240,6 +246,7 @@ export type SetProductDetailsType = {
   setProductPrice: React.Dispatch<React.SetStateAction<string>>;
   setProductImg: React.Dispatch<React.SetStateAction<string[]>>;
   setProductType: React.Dispatch<React.SetStateAction<'pizzas' | 'sauces' | 'drinks'>>;
+  setProductWeigth: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export type ProductDetailsType = {
@@ -248,6 +255,13 @@ export type ProductDetailsType = {
   productPrice: string;
   productImg: string[];
   productType: 'pizzas' | 'sauces' | 'drinks';
+  productWeigth: string;
+};
+
+export type ProductItemType = {
+  name: string;
+  PFCK: number[];
+  key: string;
 };
 
 //                                                                    ERROR PAGE

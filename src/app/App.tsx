@@ -24,12 +24,14 @@ const App = () => {
   const [productPrice, setProductPrice] = useState<string>('300');
   const [productImg, setProductImg] = useState<string[]>(['']);
   const [productType, setProductType] = useState<'pizzas' | 'sauces' | 'drinks'>('pizzas');
+  const [productWeigth, setProductWeigth] = useState<string>('');
   const setProductDetailes = {
     setProductName,
     setProductDescription,
     setProductPrice,
     setProductImg,
     setProductType,
+    setProductWeigth,
   };
   const productDetailes = {
     productName,
@@ -37,6 +39,7 @@ const App = () => {
     productPrice,
     productImg,
     productType,
+    productWeigth,
   };
   const products = async () => {
     await getProducts().then((data) => setProducts(data));

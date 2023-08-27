@@ -2,12 +2,8 @@ import { useState } from 'react';
 
 import s from './slider.module.scss';
 
-import urlPizza from '../../../assets/details/1.png';
-import urlProducts from '../../../assets/details/2.png';
-import urlBox from '../../../assets/details/box.png';
-
-const Slider = (props: { imageCount: number }) => {
-  const urlArray = [urlPizza, urlProducts, urlBox];
+const Slider = (props: { imageCount: number; imagesURL: string[] }) => {
+  const urlArray = [props.imagesURL[0], props.imagesURL[1] || '', props.imagesURL[2] || ''];
   const [firstLink, setFirstLink] = useState<string>(urlArray[0]);
   const [secondLink, setSecondLink] = useState<string>(urlArray[1]);
   const [thirdLink, setThirdLink] = useState<string>(urlArray[2]);

@@ -2,7 +2,7 @@ import Pizza from './catalog-pizza/pizza';
 
 import s from './pizzas.module.scss';
 
-import { productsKeys } from '../../../../entities/product';
+import infoProducts from '../../../../entities/product';
 
 import { ProductsType, SetProductDetailsType } from '../../../../types/types';
 
@@ -11,7 +11,7 @@ const CatalogPizzas = (props: {
   setProductDetailes: SetProductDetailsType;
 }) => {
   const pizzasItems = props.products.results.filter((el) =>
-    productsKeys.pizzas.find((item) => item.key === el.key),
+    infoProducts.pizzas.find((item) => item.key === el.key),
   );
   const pizzasArray = pizzasItems.map((pizza) => {
     let pizzasCost = pizza.masterVariant.prices.map(
@@ -24,14 +24,13 @@ const CatalogPizzas = (props: {
       );
       pizzasCost = pizzasCost.concat(variantPrices);
     }
-    const mainIngredientsStartIndex = pizza.description['en-US'].indexOf('Main ingredients');
     return (
       <Pizza
         key={pizza.key}
-        link={pizza.masterVariant.images[0].url}
+        link={pizza.masterVariant.images}
         name={pizza.name['en-US']}
         cost={pizzasCost}
-        mainIngredients={pizza.description['en-US'].slice(mainIngredientsStartIndex)}
+        description={pizza.description['en-US']}
         setProductDetailes={props.setProductDetailes}
       />
     );

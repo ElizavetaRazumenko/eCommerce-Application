@@ -1,7 +1,7 @@
 import Drink from './components/drink';
 import s from './drinks.module.scss';
 
-import { productsKeys } from '../../../../entities/product';
+import infoProducts from '../../../../entities/product';
 import { ProductsType, SetProductDetailsType } from '../../../../types/types';
 
 const CatalogDrinks = (props: {
@@ -9,7 +9,7 @@ const CatalogDrinks = (props: {
   setProductDetailes: SetProductDetailsType;
 }) => {
   const drinksItems = props.products.results.filter((el) =>
-    productsKeys.drinks.find((item) => item.key === el.key),
+    infoProducts.drinks.find((item) => item.key === el.key),
   );
   const drinksArray = drinksItems.map((drink) => {
     let drinkCost = (drink.masterVariant.prices[0].value.centAmount / 100).toFixed(2) + '$';

@@ -2,7 +2,7 @@ import Sauce from './components/sauce';
 
 import s from './sauces.module.scss';
 
-import { productsKeys } from '../../../../entities/product';
+import infoProducts from '../../../../entities/product';
 import { ProductsType, SetProductDetailsType } from '../../../../types/types';
 
 const CatalogSauces = (props: {
@@ -10,7 +10,7 @@ const CatalogSauces = (props: {
   setProductDetailes: SetProductDetailsType;
 }) => {
   const saucesItems = props.products.results.filter((el) =>
-    productsKeys.sauces.find((item) => item.key === el.key),
+    infoProducts.sauces.find((item) => item.key === el.key),
   );
   const sauceArray = saucesItems.map((sauce) => {
     let sauceCost = (sauce.masterVariant.prices[0].value.centAmount / 100).toFixed(2) + '$';
