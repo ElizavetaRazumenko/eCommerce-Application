@@ -1,20 +1,12 @@
-import React from 'react';
-
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import s from './sauce.module.scss';
 
 import { SauceTypeCatalog } from '../../../../../types/types';
 
 const Sauce = (props: SauceTypeCatalog) => {
-  const navigateDetailed = useNavigate();
-
-  const navigateItemClick = () => {
-    navigateDetailed('/details');
-  };
-
   return (
-    <div className={s.item_sauce} onClick={navigateItemClick}>
+    <div className={s.item_sauce}>
       <img src={props.link} className={s.sauce_img} alt='souce' />
       <div className={s.hover_link}>
         <NavLink to='/details' className={s.details_link}>

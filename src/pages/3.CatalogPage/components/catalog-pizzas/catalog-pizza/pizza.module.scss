@@ -16,6 +16,10 @@
     cursor: pointer;
     transition: .5s;
 
+    &:hover .size_links{
+        opacity: .7;
+    }
+
     @media (max-width: 465px) {
         font-size: 1rem;
 
@@ -26,7 +30,7 @@
     }
 }
 
-.pizza_ingredients{
+.pizza_ingredients {
     margin-top: -20px;
     margin-bottom: 20px;
     text-align: center;
@@ -53,7 +57,7 @@
 }
 
 
-.size_links{
+.size_links {
     display: flex;
     position: absolute;
     flex-direction: column;
@@ -69,9 +73,6 @@
     transition: 0.5s;
     cursor: pointer;
    
-    &:hover{
-        opacity: .7;
-    }
 }
 
 .size_link {

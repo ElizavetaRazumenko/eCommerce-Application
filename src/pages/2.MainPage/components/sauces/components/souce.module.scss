@@ -44,8 +44,6 @@
     cursor: pointer;
     transition: .5s;
     &:hover {
-        background: $main-light;
-        color: $main-grey ;
-        border: .1px solid $main-grey;
+        background: $grey-hover;
     }
 }

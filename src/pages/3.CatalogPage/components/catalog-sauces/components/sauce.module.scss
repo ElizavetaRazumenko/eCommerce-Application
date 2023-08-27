@@ -45,6 +45,10 @@
     &:hover {
         color: $color-green;
     }
+
+    @media (max-width: 860px) {
+        font-size: 1rem;
+    }
 }
 
 .sauce_info {
@@ -88,8 +92,6 @@
     cursor: pointer;
     transition: .5s;
     &:hover {
-        background: $main-light;
-        color: $main-grey ;
-        border: .1px solid $main-grey;
+        background: $grey-hover;
     }
 }
