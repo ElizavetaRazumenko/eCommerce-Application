@@ -33,7 +33,7 @@ const Pizza = (props: PizzaType) => {
       <div className={s.pizza_content}>
         <img src={props.link} className={s.pizza_img} alt='pizza' />
         <h3 className={s.pizza_name}>{props.name}</h3>
-        <div className={s.pizza_ingredients}>{props.mainIngredients}</div>
+        <div className={s.pizza_ingredients}>{props.mainIngredients || ''}</div>
         <div className={s.size_links}>
           {pizzaSizes.map((_, index) => (
             <NavLink to='/details' className={s.size_link} key={index}>

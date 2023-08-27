@@ -145,3 +145,8 @@ export const getProducts = async () => {
     return JSON.parse(localStorage.getItem('Catalog info')!);
   } else return JSON.parse(localStorage.getItem('Catalog info')!);
 };
+
+export const getProduct = async () => {
+  const products = await apiRoot.products().withKey({ key: 'PS-1-1-1' }).get().execute();
+  console.log(products.body);
+};

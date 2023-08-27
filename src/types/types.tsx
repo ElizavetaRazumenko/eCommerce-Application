@@ -238,8 +238,8 @@ export type ProductsType = {
     key: string;
     lastModifiedAt: string;
     masterVariant: {
-      assets: [];
-      attributes: [];
+      assets?: [];
+      attributes?: [];
       id: number;
       images: {
         dimensions: {

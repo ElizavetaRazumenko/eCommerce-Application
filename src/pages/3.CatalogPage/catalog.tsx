@@ -10,7 +10,7 @@ import Inputs from './components/inputs/inputs';
 
 import { ProductsType } from '../../types/types';
 
-const CatalogPage = (props: { products: ProductsType | null }) => {
+const CatalogPage = (props: { products: ProductsType }) => {
   return (
     <main className={s.catalog_wrapper}>
       <Inputs />

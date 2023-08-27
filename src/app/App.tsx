@@ -4,6 +4,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import s from './App.module.scss';
 
+import { startProductObject } from '../entities/product';
 import LoginPage from '../pages/1.LoginPage/login/login';
 import RegisterPage from '../pages/1.LoginPage/register/register';
 import Main from '../pages/2.MainPage/main';
@@ -17,7 +18,7 @@ import { getProducts } from '../shared';
 import { ProductsType } from '../types/types';
 
 const App = () => {
-  const [productsData, setProducts] = useState<ProductsType | null>(null);
+  const [productsData, setProducts] = useState<ProductsType>(startProductObject);
   const products = async () => {
     await getProducts().then((data) => setProducts(data));
   };

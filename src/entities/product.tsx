@@ -464,3 +464,76 @@ const infoProducts = {
 };
 
 export default infoProducts;
+
+export const startProductObject = {
+  count: 0,
+  limit: 0,
+  offset: 0,
+  results: [
+    {
+      categories: [
+        {
+          typeId: '',
+          id: '',
+        },
+      ],
+      categoryOrderHints: {},
+      createdAt: '',
+      description: {
+        'en-US': '',
+      },
+      hasStagedChanges: true,
+      id: '',
+      key: '',
+      lastModifiedAt: '',
+      masterVariant: {
+        id: 0,
+        images: [
+          {
+            dimensions: {
+              h: 0,
+              w: 0,
+            },
+            url: '',
+          },
+        ],
+        key: '',
+        prices: [
+          {
+            id: '',
+            key: '',
+            value: {
+              centAmount: 1,
+              currencyCode: '',
+              fractionDigits: 1,
+              type: '',
+            },
+          },
+        ],
+        sku: '',
+      },
+      metaDescription: {
+        'en-US': '',
+      },
+      metaTitle: {
+        'en-US': '',
+      },
+      name: {
+        'en-US': '',
+      },
+      priceMode: '',
+      productType: {
+        typeId: '',
+        id: '',
+      },
+      published: false,
+      searchKeywords: {},
+      slug: {
+        'en-US': '',
+      },
+      variants: [],
+      version: 0,
+    },
+  ],
+  total: 1,
+};
