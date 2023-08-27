@@ -30,6 +30,13 @@ export type DrinkType = {
   price: string;
 };
 
+export type DrinkTypeCatalog = {
+  link: string;
+  price: string;
+  name: string;
+  description: string;
+};
+
 export type stateTypeMain = {
   stateMain: {
     drinks: DrinkType[];

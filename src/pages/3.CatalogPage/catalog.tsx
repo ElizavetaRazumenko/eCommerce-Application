@@ -16,7 +16,7 @@ const CatalogPage = (props: { products: ProductsType }) => {
       <Inputs />
       <CatalogPizzas products={props.products} />
       <CatalogSauces products={props.products} />
-      <CatalogDrinks />
+      <CatalogDrinks products={props.products} />
     </main>
   );
 };

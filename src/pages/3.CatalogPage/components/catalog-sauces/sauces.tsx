@@ -3,7 +3,6 @@ import Sauce from './components/sauce';
 import s from './sauces.module.scss';
 
 import { productsKeys } from '../../../../entities/product';
-import state from '../../../../state/state';
 import { ProductsType } from '../../../../types/types';
 
 const CatalogSauces = (props: { products: ProductsType }) => {

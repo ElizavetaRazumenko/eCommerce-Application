@@ -9,6 +9,9 @@
     border-radius: 15px;
     display: flex;
     flex-direction: row;
+    &:hover .hover_link {
+        opacity: 1;
+    }
 }
 
 .sauce_img {
@@ -31,9 +34,6 @@
     background-color: rgba($main-light, 0.6);
     opacity: 0;
     transition: .5s;
-    &:hover {
-        opacity: 1;
-    }
 }
 
 .details_link {
@@ -74,7 +74,7 @@
 
 .sauce_description {
     margin: 0;
-    font-size: .6rem;
+    font-size: .7rem;
 }
 .btn_add_sauce{
     font-weight: 700;
