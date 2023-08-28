@@ -2,7 +2,12 @@ import React, { useState, ChangeEvent, useRef } from 'react';
 
 import s from './inputs.module.scss';
 
-import { sortByLowerPrice, seach } from '../../../../shared/index';
+import {
+  sortByAlphabet,
+  sortByLowerPrice,
+  sortByHigherPrice,
+  search,
+} from '../../../../shared/index';
 import { ProductsType } from '../../../../types/types';
 
 const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<ProductsType>> }) => {
@@ -36,7 +41,7 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
 
   const findChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFindBy(event.target.value);
-    seach(event.target.value);
+    search(event.target.value);
   };
 
   const openMenuSort = (ref: React.RefObject<HTMLDivElement>, type: string) => {
@@ -67,19 +72,44 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
         <div className={s.sort_menu_choise + ' ' + s.hidden} ref={sortMenuRef}>
           <p
             className={s.sort_item}
-            onClick={() => sortChange(lowPrice, 'low-price')}
-            ref={lowPrice}
+            onClick={async () => {
+              sortByLowerPrice();
+              // const result = await sortByLowerPrice();
+              // // setSortedResult(result);
+              // return result;
+            }}
           >
             From low to high average price
           </p>
           <p
             className={s.sort_item}
-            onClick={() => sortChange(hightPrice, 'high-price')}
-            ref={hightPrice}
+            onClick={async () => {
+              sortByHigherPrice();
+              // const result = await sortByHigherPrice();
+              // // setSortedResult(result);
+              // return result;
+            }}
           >
             From high to low average price
           </p>
-          <p className={s.sort_item} onClick={() => sortChange(a_z, 'az')} ref={a_z}>
+
+          {/* <p
+            className={s.sort_item}
+            onClick={() => sortChange(sortByHigherPrice, 'high-price')}
+            ref={hightPrice}
+          >
+            From high to low average price
+          </p> */}
+          <p
+            className={s.sort_item}
+            onClick={async () => {
+              sortByAlphabet();
+              // const result = await sortByAlphabet();
+              // return result;
+              // setSortedProducts(result);
+            }}
+            ref={a_z}
+          >
             Alphabetically (A-Z)
           </p>
           <p className={s.sort_item} onClick={() => sortChange(z_a, 'za')} ref={z_a}>
