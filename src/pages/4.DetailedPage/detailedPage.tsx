@@ -9,6 +9,7 @@ import { ProductDetailsType } from '../../types/types';
 
 const DetailedPage = (props: { productDetailes: ProductDetailsType }) => {
   const [imageCount, _] = useState<number>(props.productDetailes.productImg.length);
+  localStorage.setItem('ProductDetailes', JSON.stringify(props.productDetailes));
   return (
     <div className={s.page_wrapper}>
       <NavLink to='/catalog' className={s.nav_link}>

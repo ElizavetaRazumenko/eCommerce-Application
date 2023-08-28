@@ -15,17 +15,35 @@ import BasketPage from '../pages/6.BasketPage/basket';
 import ErrorPage from '../pages/7.ErrorPage/error';
 import Layout from '../pages/globalComponents/layout/layout';
 import { getProducts } from '../shared';
-import { ProductsType } from '../types/types';
+import { ProductDetailsType, ProductsType } from '../types/types';
 
 const App = () => {
   const [productsData, setProducts] = useState<ProductsType>(startProductObject);
-  const [productName, setProductName] = useState<string>('');
-  const [productDescription, setProductDescription] = useState<string>('');
-  const [productPrice, setProductPrice] = useState<string>('');
-  const [productImg, setProductImg] = useState<string[]>(['']);
-  const [productType, setProductType] = useState<'pizzas' | 'sauces' | 'drinks'>('pizzas');
-  const [productWeigth, setProductWeigth] = useState<string>('');
-  const [productPFCK, setProductPFCK] = useState<number[]>([0, 0, 0, 0]);
+  const savedProductDetailesStringify = localStorage.getItem('ProductDetailes');
+  const savedDetailes: ProductDetailsType | null = savedProductDetailesStringify
+    ? JSON.parse(savedProductDetailesStringify)
+    : null;
+  const [productName, setProductName] = useState<string>(
+    savedDetailes ? savedDetailes.productName : '',
+  );
+  const [productDescription, setProductDescription] = useState<string>(
+    savedDetailes ? savedDetailes.productDescription : '',
+  );
+  const [productPrice, setProductPrice] = useState<string>(
+    savedDetailes ? savedDetailes.productPrice : '',
+  );
+  const [productImg, setProductImg] = useState<string[]>(
+    savedDetailes ? savedDetailes.productImg : [''],
+  );
+  const [productType, setProductType] = useState<'pizzas' | 'sauces' | 'drinks'>(
+    savedDetailes ? savedDetailes.productType : 'pizzas',
+  );
+  const [productWeigth, setProductWeigth] = useState<string>(
+    savedDetailes ? savedDetailes.productWeigth : '',
+  );
+  const [productPFCK, setProductPFCK] = useState<number[]>(
+    savedDetailes ? savedDetailes.productPFCK : [0, 0, 0, 0],
+  );
   const setProductDetailes = {
     setProductName,
     setProductDescription,

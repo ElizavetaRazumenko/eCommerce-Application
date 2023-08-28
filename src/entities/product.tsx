@@ -23,7 +23,7 @@ const infoProducts = {
       key: 'PS-1-1-4',
     },
     {
-      name: 'Cheese&Meat',
+      name: 'Cheese&meat',
       PFCK: [18.6, 22.4, 15.8, 348],
       key: 'PS-1-1-5',
     },
@@ -110,7 +110,7 @@ const infoProducts = {
       key: 'PS-1-2-6',
     },
     {
-      name: 'Sour Cream',
+      name: 'Sour cream',
       PFCK: [2.2, 21.0, 3.0, 213],
       key: 'PS-1-2-7',
     },
@@ -122,7 +122,7 @@ const infoProducts = {
   ],
   drinks: [
     {
-      name: 'Coca-Cola',
+      name: 'Coca-cola',
       PFCK: [0.0, 0.2, 10.7, 42],
       key: 'DR-1-1',
     },
