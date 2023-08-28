@@ -280,6 +280,19 @@ export type ProductItemType = {
   key: string;
 };
 
+export type SliderPropsType = {
+  imageCount: number;
+  imagesURL: string[];
+  setIsOpenPopUp: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export type PopUpPropsType = {
+  isOpenPopUp: boolean;
+  imageCount: number;
+  setIsOpenPopUp: React.Dispatch<React.SetStateAction<boolean>>;
+  imgURL: string[];
+};
+
 //                                                                    ERROR PAGE
 
 export type ButtonRedirectType = {

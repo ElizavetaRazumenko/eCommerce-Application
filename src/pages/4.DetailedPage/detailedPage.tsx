@@ -2,24 +2,36 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import Slider from './components/slider';
+import PopUp from './components/popUp/popUp';
+import Slider from './components/slider/slider';
 import s from './detailedPage.module.scss';
 
 import { ProductDetailsType } from '../../types/types';
 
 const DetailedPage = (props: { productDetailes: ProductDetailsType }) => {
   const [imageCount, _] = useState<number>(props.productDetailes.productImg.length);
+  const [isOpenPopUp, setIsOpenPopUp] = useState<boolean>(false);
   localStorage.setItem('ProductDetailes', JSON.stringify(props.productDetailes));
   return (
     <div className={s.page_wrapper}>
-      <NavLink to='/catalog' className={s.nav_link}>
+      <NavLink to='/catalog' className={s.nav_link} onClick={() => setIsOpenPopUp(false)}>
         <div className={s.button_back}>
           <div className={s.arrow_back}></div>
           <span>Back to the catalog</span>
         </div>
       </NavLink>
       <div className={s.details_wrapper}>
-        <Slider imageCount={imageCount} imagesURL={props.productDetailes.productImg} />
+        <PopUp
+          isOpenPopUp={isOpenPopUp}
+          imageCount={imageCount}
+          setIsOpenPopUp={setIsOpenPopUp}
+          imgURL={props.productDetailes.productImg}
+        />
+        <Slider
+          imageCount={imageCount}
+          imagesURL={props.productDetailes.productImg}
+          setIsOpenPopUp={setIsOpenPopUp}
+        />
         <div className={s.description_wrapper}>
           <p className={s.name}>{props.productDetailes.productName}</p>
           <p className={s.description}>
