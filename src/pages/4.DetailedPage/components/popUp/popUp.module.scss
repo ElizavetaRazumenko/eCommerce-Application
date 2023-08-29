@@ -14,7 +14,42 @@
     left:50%;
     transform: translate(-50%, -50%);
     background-color: $main-light;
+    box-shadow: 0 0 30px $main-grey;
     border-radius: 20px;
+    @media (max-width: 1535px) {
+        width: 1000px;
+        height: 580px;
+    }
+
+    @media (max-width: 1270px) {
+        width: 800px;
+        height: 490px;
+    }
+
+    @media (max-width: 1000px) {
+        width: 750px;
+        height: 480px;
+    }
+
+    @media (max-width: 880px) {
+        width: 550px;
+        height: 450px;
+    }
+
+    @media (max-width: 670px) {
+        width: 480px;
+        height: 380px;
+    }
+
+    @media (max-width: 540px) {
+        width: 370px;
+        height: 320px;
+    }
+
+    @media (max-width: 425px) {
+        width: 320px;
+        height: 270px;
+    }
 }
 
 .arror_left,
