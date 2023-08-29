@@ -22,22 +22,12 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
   const z_a = useRef<HTMLParagraphElement>(null);
   const [findBy, setFindBy] = useState('');
 
-  const sortChange = (ref: React.RefObject<HTMLParagraphElement>, type: string) => {
+  const sortChange = (ref: React.RefObject<HTMLParagraphElement>) => {
+    hightPrice.current!.classList.remove(s.selected);
+    lowPrice.current!.classList.remove(s.selected);
+    z_a.current!.classList.remove(s.selected);
+    a_z.current!.classList.remove(s.selected);
     ref.current!.classList.toggle(s.selected);
-    switch (type) {
-      case 'low-price':
-        hightPrice.current!.classList.remove(s.selected);
-        break;
-      case 'high-price':
-        lowPrice.current!.classList.remove(s.selected);
-        break;
-      case 'az':
-        z_a.current!.classList.remove(s.selected);
-        break;
-      case 'za':
-        a_z.current!.classList.remove(s.selected);
-        break;
-    }
   };
 
   const findChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -75,7 +65,7 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
             className={s.sort_item}
             onClick={async () => {
               sortByLowerPrice();
-              sortChange(lowPrice, 'low-price');
+              sortChange(lowPrice);
             }}
             ref={lowPrice}
           >
@@ -85,7 +75,7 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
             className={s.sort_item}
             onClick={async () => {
               sortByHigherPrice();
-              sortChange(hightPrice, 'high-price');
+              sortChange(hightPrice);
             }}
             ref={hightPrice}
           >
@@ -95,7 +85,7 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
             className={s.sort_item}
             onClick={async () => {
               sortByAlphabetAZ();
-              sortChange(a_z, 'az');
+              sortChange(a_z);
             }}
             ref={a_z}
           >
@@ -105,7 +95,7 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
             className={s.sort_item}
             onClick={async () => {
               sortByAlphabetZA();
-              sortChange(z_a, 'za');
+              sortChange(z_a);
             }}
             ref={z_a}
           >

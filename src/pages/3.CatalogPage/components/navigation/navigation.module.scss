@@ -1,0 +1,84 @@
+@import '../../../../globalVariables.scss';
+
+
+.wrapper {
+    margin-top: 25px;
+    width: 100%;
+}
+
+.cathegory_selection {
+    height: 0px;
+    overflow: hidden;
+    transition: 1s;
+}
+
+.navigation_wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 250px;
+    height: 70px;
+    background-color: $unactive-register-grey;
+    color: $main-light;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 35px 15px 35px;
+    font-size: 1rem;
+    transition: 1s;
+
+    &:hover {
+        height: 270px;
+    }
+
+    &:hover .cathegory_selection {
+        height: 210px;
+    }
+}
+
+.cathegory {
+    display: flex;
+    justify-content: space-between;
+    color: $main-grey;
+    font-weight: 700;
+}
+
+.title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: $main-light;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.link {
+    color: $main-grey;
+    text-decoration: none;
+    font-weight: 700;
+    transition: .5s;
+
+    &:hover {
+    color: $main-light;
+    }
+}
+
+.no_active_link {
+    color: $color-green;
+
+    &:hover {
+    color: $color-green;
+
+    }
+}
+
+.road {
+    font-weight: 700;
+    color: $color-green;
+}
+
+.sec_level {
+    margin-left: 30px;
+}
+.thind_level {
+    margin-left: 70px;
+}
