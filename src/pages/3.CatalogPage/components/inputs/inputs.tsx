@@ -75,10 +75,9 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
             className={s.sort_item}
             onClick={async () => {
               sortByLowerPrice();
-              // const result = await sortByLowerPrice();
-              // // setSortedResult(result);
-              // return result;
+              sortChange(lowPrice, 'low-price');
             }}
+            ref={lowPrice}
           >
             From low to high average price
           </p>
@@ -86,30 +85,19 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
             className={s.sort_item}
             onClick={async () => {
               sortByHigherPrice();
-              // const result = await sortByHigherPrice();
-              // // setSortedResult(result);
-              // return result;
+              sortChange(hightPrice, 'high-price');
             }}
-          >
-            From high to low average price
-          </p>
-
-          {/* <p
-            className={s.sort_item}
-            onClick={() => sortChange(sortByHigherPrice, 'high-price')}
             ref={hightPrice}
           >
             From high to low average price
-          </p> */}
+          </p>
           <p
             className={s.sort_item}
             onClick={async () => {
               sortByAlphabetAZ();
-              // const result = await sortByAlphabet();
-              // return result;
-              // setSortedProducts(result);
+              sortChange(a_z, 'az');
             }}
-            // ref={a_z}
+            ref={a_z}
           >
             Alphabetically (A-Z)
           </p>
@@ -117,7 +105,9 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
             className={s.sort_item}
             onClick={async () => {
               sortByAlphabetZA();
+              sortChange(z_a, 'za');
             }}
+            ref={z_a}
           >
             Alphabetically (Z-A)
           </p>

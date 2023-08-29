@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 import s from './popUp.module.scss';
 
-import imgUrl from '../../../../assets/pizzas/broccoli.png';
 import { PopUpPropsType } from '../../../../types/types';
 
 const PopUp = (props: PopUpPropsType) => {
