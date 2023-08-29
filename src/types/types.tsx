@@ -13,14 +13,56 @@ export type PizzaType = {
   mainIngredients?: string;
 };
 
+export type PizzaCatalogType = {
+  link: {
+    dimensions: {
+      h: number;
+      w: number;
+    };
+    url: string;
+  }[];
+  name: string;
+  cost: string[];
+  description: string;
+  setProductDetailes: SetProductDetailsType;
+};
+
 export type SauceType = {
   link: string;
   name: string;
 };
 
+export type SauceTypeCatalog = {
+  link: {
+    dimensions: {
+      h: number;
+      w: number;
+    };
+    url: string;
+  }[];
+  name: string;
+  price: string;
+  description: string;
+  setProductDetailes: SetProductDetailsType;
+};
+
 export type DrinkType = {
   link: string;
   price: string;
+};
+
+export type DrinkTypeCatalog = {
+  link: {
+    dimensions: {
+      h: number;
+      w: number;
+    };
+    url: string;
+  }[];
+  price: string;
+  name: string;
+  description: string;
+  setProductDetailes: SetProductDetailsType;
 };
 
 export type stateTypeMain = {
@@ -210,9 +252,145 @@ export type AddressType = {
 
 export type CustomerAddressesType = AddressType[] | null;
 
+//                                                                  DETAILS PAGE
+
+export type SetProductDetailsType = {
+  setProductName: React.Dispatch<React.SetStateAction<string>>;
+  setProductDescription: React.Dispatch<React.SetStateAction<string>>;
+  setProductPrice: React.Dispatch<React.SetStateAction<string>>;
+  setProductImg: React.Dispatch<React.SetStateAction<string[]>>;
+  setProductType: React.Dispatch<React.SetStateAction<'pizzas' | 'sauces' | 'drinks'>>;
+  setProductWeigth: React.Dispatch<React.SetStateAction<string>>;
+  setProductPFCK: React.Dispatch<React.SetStateAction<number[]>>;
+};
+
+export type ProductDetailsType = {
+  productName: string;
+  productDescription: string;
+  productPrice: string;
+  productImg: string[];
+  productType: 'pizzas' | 'sauces' | 'drinks';
+  productWeigth: string;
+  productPFCK: number[];
+};
+
+export type ProductItemType = {
+  name: string;
+  PFCK: number[];
+  key: string;
+};
+
+export type SliderPropsType = {
+  imageCount: number;
+  imagesURL: string[];
+  setIsOpenPopUp: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export type PopUpPropsType = {
+  isOpenPopUp: boolean;
+  imageCount: number;
+  setIsOpenPopUp: React.Dispatch<React.SetStateAction<boolean>>;
+  imgURL: string[];
+};
+
 //                                                                    ERROR PAGE
 
 export type ButtonRedirectType = {
   content: string;
   to: To;
+};
+
+//                                                      COMMERCE TOOLS
+
+export type ProductsType = {
+  count: number;
+  limit: number;
+  offset: number;
+  results: {
+    categories: {
+      typeId: string;
+      id: string;
+    }[];
+    categoryOrderHints: {};
+    createdAt: string;
+    description: {
+      'en-US': string;
+    };
+    hasStagedChanges: boolean;
+    id: string;
+    key: string;
+    lastModifiedAt: string;
+    masterVariant: {
+      assets?: [];
+      attributes?: [];
+      id: number;
+      images: {
+        dimensions: {
+          h: number;
+          w: number;
+        };
+        url: string;
+      }[];
+      key: string;
+      prices: {
+        country?: string;
+        id: string;
+        key: string;
+        value: {
+          centAmount: number;
+          currencyCode: string;
+          fractionDigits: number;
+          type: string;
+        };
+      }[];
+      sku: string;
+    };
+    metaDescription: {
+      'en-US': string;
+    };
+    metaTitle: {
+      'en-US': string;
+    };
+    name: {
+      'en-US': string;
+    };
+    priceMode: string;
+    productType: {
+      typeId: string;
+      id: string;
+    };
+    published: boolean;
+    searchKeywords: {};
+    slug: {
+      'en-US': string;
+    };
+    variants:
+      | {
+          assets: [];
+          attributes: [];
+          id: number;
+          images: {
+            dimensions: {
+              h: number;
+              w: number;
+            };
+            url: string;
+          }[];
+          key: string;
+          prices: {
+            id: string;
+            key: string;
+            value: {
+              centAmount: number;
+              currencyCode: string;
+              fractionDigits: number;
+              type: string;
+            };
+          }[];
+          sku: string;
+        }[]
+      | [];
+    version: number;
+  }[];
+  total: number;
 };

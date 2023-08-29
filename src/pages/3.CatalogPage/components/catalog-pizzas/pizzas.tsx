@@ -4,30 +4,43 @@ import s from './pizzas.module.scss';
 
 import infoProducts from '../../../../entities/product';
 
-import state from '../../../../state/state';
+import { ProductsType, SetProductDetailsType } from '../../../../types/types';
 
-const CatalogPizzas = () => {
-  const visiblePizzas = [];
-
-  for (let i = 0; i < state.mainPage.pizzas.length; i++) {
-    const pizzaIndex = i % state.mainPage.pizzas.length;
-    visiblePizzas.push({ ...state.mainPage.pizzas[pizzaIndex], index: i });
-  }
-  const pizzas = visiblePizzas.map((pizza) => (
-    <Pizza
-      key={pizza.index}
-      link={pizza.link}
-      name={pizza.name}
-      cost={pizza.cost}
-      mainIngredients={infoProducts.pizzas[pizza.index].mainIngredients}
-    />
-  ));
+const CatalogPizzas = (props: {
+  products: ProductsType;
+  setProductDetailes: SetProductDetailsType;
+}) => {
+  const pizzasItems = props.products.results.filter((el) =>
+    infoProducts.pizzas.find((item) => item.key === el.key),
+  );
+  const pizzasArray = pizzasItems.map((pizza) => {
+    let pizzasCost = pizza.masterVariant.prices.map(
+      (el) => (el.value.centAmount / 100).toFixed(2) + '$',
+    );
+    const variants = pizza.variants;
+    if (variants.length > 0) {
+      const variantPrices = variants.map(
+        (el) => (el.prices[0].value.centAmount / 100).toFixed(2) + '$',
+      );
+      pizzasCost = pizzasCost.concat(variantPrices);
+    }
+    return (
+      <Pizza
+        key={pizza.key}
+        link={pizza.masterVariant.images}
+        name={pizza.name['en-US']}
+        cost={pizzasCost}
+        description={pizza.description['en-US']}
+        setProductDetailes={props.setProductDetailes}
+      />
+    );
+  });
   return (
     <>
       <div className={s.smoke_b}></div>
       <section className={s.section_offer}>
         <h3 className={s.title_section + ' ' + s.title_center}> Pizzas</h3>
-        <div className={s.pizza_collection_catalog}>{pizzas} </div>
+        <div className={s.pizza_collection_catalog}>{pizzasArray} </div>
       </section>
     </>
   );

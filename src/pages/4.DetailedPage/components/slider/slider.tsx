@@ -2,12 +2,10 @@ import { useState } from 'react';
 
 import s from './slider.module.scss';
 
-import urlPizza from '../../../assets/details/1.png';
-import urlProducts from '../../../assets/details/2.png';
-import urlBox from '../../../assets/details/box.png';
+import { SliderPropsType } from '../../../../types/types';
 
-const Slider = (props: { imageCount: number }) => {
-  const urlArray = [urlPizza, urlProducts, urlBox];
+const Slider = (props: SliderPropsType) => {
+  const urlArray = [props.imagesURL[0], props.imagesURL[1] || '', props.imagesURL[2] || ''];
   const [firstLink, setFirstLink] = useState<string>(urlArray[0]);
   const [secondLink, setSecondLink] = useState<string>(urlArray[1]);
   const [thirdLink, setThirdLink] = useState<string>(urlArray[2]);
@@ -70,13 +68,13 @@ const Slider = (props: { imageCount: number }) => {
       <div className={s.slider_wrapper}>
         <div className={s.arrow_left} onClick={toLeft}></div>
         <div className={s.picture_wrapper}>
-          <div className={s.pic}>
+          <div className={s.pic} onClick={() => props.setIsOpenPopUp(true)}>
             <img src={firstLink} alt='big_pic' className={s.image} />
           </div>
-          <div className={s.pic_small_left}>
+          <div className={s.pic_small_left} onClick={() => props.setIsOpenPopUp(true)}>
             <img src={secondLink} alt='left_pic' className={s.image} />
           </div>
-          <div className={s.pic_small_right}>
+          <div className={s.pic_small_right} onClick={() => props.setIsOpenPopUp(true)}>
             <img src={thirdLink} alt='right_pic' className={s.image} />
           </div>
         </div>
@@ -88,10 +86,10 @@ const Slider = (props: { imageCount: number }) => {
       <div className={s.slider_wrapper}>
         <div className={s.arrow_left} onClick={toLeftTwo}></div>
         <div className={s.picture_wrapper_two_img}>
-          <div className={s.pic_two_img_t}>
+          <div className={s.pic_two_img_t} onClick={() => props.setIsOpenPopUp(true)}>
             <img src={firstLink} alt='big_pic' className={s.image} />
           </div>
-          <div className={s.pic_two_img_b}>
+          <div className={s.pic_two_img_b} onClick={() => props.setIsOpenPopUp(true)}>
             <img src={secondLink} alt='left_pic' className={s.image} />
           </div>
         </div>
@@ -101,7 +99,7 @@ const Slider = (props: { imageCount: number }) => {
   }
   return (
     <div className={s.slider_wrapper}>
-      <div className={s.one_pic}>
+      <div className={s.one_pic} onClick={() => props.setIsOpenPopUp(true)}>
         <img src={firstLink} alt='big_pic' className={s.image} />
       </div>
     </div>

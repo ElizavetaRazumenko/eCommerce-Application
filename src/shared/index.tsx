@@ -137,3 +137,124 @@ export const loginClient = async (email: string, password: string) => {
   // setToken();
   localStorage.setItem('userInfo', JSON.stringify(response.body));
 };
+
+export const getProducts = async () => {
+  if (!localStorage.getItem('Catalog info')) {
+    const products = await apiRoot
+      .productProjections()
+      .get({
+        queryArgs: {
+          limit: 30,
+        },
+      })
+      .execute();
+    localStorage.setItem('Catalog info', JSON.stringify(products.body));
+    return JSON.parse(localStorage.getItem('Catalog info')!);
+  } else return JSON.parse(localStorage.getItem('Catalog info')!);
+};
+
+export const getProduct = async () => {
+  const products = await apiRoot.products().withKey({ key: 'PS-1-1-1' }).get().execute();
+  console.log(products.body);
+};
+
+export const sortByLowerPrice = async () => {
+  const products = await apiRoot
+    .productProjections()
+    .search()
+    .get({
+      queryArgs: {
+        sort: ['price asc'],
+        limit: 29,
+      },
+    })
+    .execute();
+
+  console.log('price to HIGH');
+  console.log(products.body.results);
+  return products.body.results;
+};
+
+export const sortByHigherPrice = async () => {
+  const products = await apiRoot
+    .productProjections()
+    .search()
+    .get({
+      queryArgs: {
+        sort: ['price desc'],
+        limit: 29,
+      },
+    })
+    .execute();
+  console.log('price to LOW');
+  console.log(products.body.results);
+  return products.body.results;
+};
+
+export const sortByAlphabetZA = async () => {
+  const products = await apiRoot
+    .productProjections()
+    .search()
+    .get({
+      queryArgs: {
+        sort: ['name.en-US desc'],
+        limit: 29,
+      },
+    })
+    .execute();
+  console.log(products.body.results);
+  return products.body.results;
+};
+
+export const sortByAlphabetAZ = async () => {
+  const products = await apiRoot
+    .productProjections()
+    .search()
+    .get({
+      queryArgs: {
+        sort: ['name.en-US asc'],
+        limit: 29,
+      },
+    })
+    .execute();
+  console.log(products.body.results);
+  return products.body.results;
+};
+
+// export const seach = async (value: string) => {
+//   const products = await apiRoot
+//     .productProjections()
+//     .get({
+//       queryArgs: {
+//         where: `name(en-US="${value}")`,
+//       },
+//     })
+//     .execute();
+//   return products.body;
+// };
+
+// * search
+export const search = async (value: string) => {
+  try {
+    const products = await apiRoot
+      .productProjections()
+      .search()
+      .get({
+        queryArgs: {
+          // fuzzy: true,
+          where: `name(en-US="${value}")`,
+          limit: 59,
+        },
+      })
+      .execute();
+    console.log(products.body.results);
+    const productsNames = products.body.results
+      .map((result) => result.name['en-US'])
+      .filter((name) => name.toLowerCase().includes(value));
+    console.log(productsNames);
+    return productsNames;
+  } catch (error) {
+    console.error('error searching:', error);
+    throw error;
+  }
+};

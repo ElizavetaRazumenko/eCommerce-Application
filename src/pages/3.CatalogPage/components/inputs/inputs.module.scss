@@ -20,6 +20,23 @@
   position: relative;
 }
 
+.sort_menu {
+  z-index: 3;
+  @media (max-width: 1000px) { 
+    margin-bottom: 25px;
+}
+  @media (max-width: 860px) { 
+    margin-bottom: 10px;
+}
+}
+
+.filter_menu {
+  z-index: 2;
+  @media (max-width: 1000px) { 
+    margin-top: 25px;
+  }
+}
+
 .div_sort,
 .div_filter {
     box-sizing: border-box;
@@ -36,7 +53,7 @@
     background-size: 6%;
     background-repeat: no-repeat;
     font-size: 1rem;
-    transition: .5s;
+    transition: .2s;
 
     .sort_arrow {
         margin-top: 10px;
@@ -45,7 +62,7 @@
         background-image: url('../../../../assets/png/sort-arrow.png'); 
         background-repeat: no-repeat;
         background-size: contain;
-        transition: .5s;
+        transition: .2s;
     }
 }
 
@@ -62,7 +79,11 @@
 
 .sort_menu_choise,
 .filter_menu_choise {
+  user-select: none;
+  border-bottom: 1px solid $main-grey;
   box-sizing: border-box;
+  font-size: .5rem;
+  letter-spacing: .001px;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   position: absolute;
@@ -70,16 +91,20 @@
   width: 100%;
   height: 150px;
   background-color: $white;
-  padding: 10px 15px;
-  transition: .5s;
+  padding: 10px 10px;
+  transition: .2s;
 
   .sort_item {
     cursor: pointer;
     margin: 10px 0 0;
-    transition: color .5s;
+    transition: color .2s;
 
     &:hover{
       color: $main-grey;
+    }
+
+    @media (max-width: 1000px) { 
+      font-size: 1rem;
     }
   }
 
@@ -100,6 +125,8 @@
   padding: 0;
   height: 0;
   overflow: hidden;
+  border-bottom: none;
+
   .sort_item {
     color: $background_from;
   }
@@ -118,6 +145,7 @@
 }
 
 .input_find {
+    box-sizing: border-box;
     background-image: url('../../../../assets/png/find.png');
     background-position: center left 10px;
     background-size: 5%;
@@ -125,7 +153,7 @@
     height: 30px;
     background-color: $unactive-register-grey;
     color: $white;
-    width: 350px;
+    width: 250px;
     border-radius: 15px;
     border: none;
     padding-left: 40px;
@@ -134,7 +162,5 @@
     &::placeholder {
         color: $main-light;
     }
-    @media (max-width: 740px) {
-        margin: 10px 0;
-    }
+
 }
