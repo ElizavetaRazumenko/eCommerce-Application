@@ -161,23 +161,100 @@ export const getProduct = async () => {
 export const sortByLowerPrice = async () => {
   const products = await apiRoot
     .productProjections()
+    .search()
     .get({
       queryArgs: {
-        sort: ['masterVariant.price'],
+        sort: ['price asc'],
+        limit: 29,
       },
     })
     .execute();
-  return products.body;
+
+  console.log('price to HIGH');
+  console.log(products.body.results);
+  return products.body.results;
 };
 
-export const seach = async (value: string) => {
+export const sortByHigherPrice = async () => {
   const products = await apiRoot
     .productProjections()
+    .search()
     .get({
       queryArgs: {
-        where: `name(en-US="${value}")`,
+        sort: ['price desc'],
+        limit: 29,
       },
     })
     .execute();
-  return products.body;
+  console.log('price to LOW');
+  console.log(products.body.results);
+  return products.body.results;
+};
+
+export const sortByAlphabetZA = async () => {
+  const products = await apiRoot
+    .productProjections()
+    .search()
+    .get({
+      queryArgs: {
+        sort: ['name.en-US desc'],
+        limit: 29,
+      },
+    })
+    .execute();
+  console.log(products.body.results);
+  return products.body.results;
+};
+
+export const sortByAlphabetAZ = async () => {
+  const products = await apiRoot
+    .productProjections()
+    .search()
+    .get({
+      queryArgs: {
+        sort: ['name.en-US asc'],
+        limit: 29,
+      },
+    })
+    .execute();
+  console.log(products.body.results);
+  return products.body.results;
+};
+
+// export const seach = async (value: string) => {
+//   const products = await apiRoot
+//     .productProjections()
+//     .get({
+//       queryArgs: {
+//         where: `name(en-US="${value}")`,
+//       },
+//     })
+//     .execute();
+//   return products.body;
+// };
+
+// * search
+export const search = async (value: string) => {
+  try {
+    const products = await apiRoot
+      .productProjections()
+      .search()
+      .get({
+        queryArgs: {
+          // fuzzy: true,
+          where: `name(en-US="${value}")`,
+          limit: 59,
+        },
+      })
+      .execute();
+    console.log(products.body.results);
+    const productsNames = products.body.results
+      .map((result) => result.name['en-US'])
+      .filter((name) => name.toLowerCase().includes(value));
+    console.log(productsNames);
+    return productsNames;
+  } catch (error) {
+    console.error('error searching:', error);
+    throw error;
+  }
 };
