@@ -191,30 +191,33 @@ export const sortByHigherPrice = async () => {
   return products.body.results;
 };
 
-// export const sortByAlphabet = async () => {
-//   const products = await apiRoot
-//     .productProjections()
-//     .get({
-//       queryArgs: {
-//         sort: ['name.en desc'],
-//       },
-//     })
-//     .execute();
-
-//   return products.body.results;
-// };
-export const sortByAlphabet = async () => {
+export const sortByAlphabetZA = async () => {
   const products = await apiRoot
     .productProjections()
     .search()
     .get({
       queryArgs: {
-        sort: ['name.en asc'],
+        sort: ['name.en-US desc'],
         limit: 29,
       },
     })
     .execute();
+  console.log(products.body.results);
+  return products.body.results;
+};
 
+export const sortByAlphabetAZ = async () => {
+  const products = await apiRoot
+    .productProjections()
+    .search()
+    .get({
+      queryArgs: {
+        sort: ['name.en-US asc'],
+        limit: 29,
+      },
+    })
+    .execute();
+  console.log(products.body.results);
   return products.body.results;
 };
 

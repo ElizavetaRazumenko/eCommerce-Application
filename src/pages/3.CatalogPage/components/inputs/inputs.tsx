@@ -3,7 +3,8 @@ import React, { useState, ChangeEvent, useRef } from 'react';
 import s from './inputs.module.scss';
 
 import {
-  sortByAlphabet,
+  sortByAlphabetAZ,
+  sortByAlphabetZA,
   sortByLowerPrice,
   sortByHigherPrice,
   search,
@@ -103,16 +104,21 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
           <p
             className={s.sort_item}
             onClick={async () => {
-              sortByAlphabet();
+              sortByAlphabetAZ();
               // const result = await sortByAlphabet();
               // return result;
               // setSortedProducts(result);
             }}
-            ref={a_z}
+            // ref={a_z}
           >
             Alphabetically (A-Z)
           </p>
-          <p className={s.sort_item} onClick={() => sortChange(z_a, 'za')} ref={z_a}>
+          <p
+            className={s.sort_item}
+            onClick={async () => {
+              sortByAlphabetZA();
+            }}
+          >
             Alphabetically (Z-A)
           </p>
         </div>
