@@ -14,16 +14,19 @@ const Pizza = (props: PizzaCatalogType) => {
       size: 'L',
       length: '45cm',
       price: props.cost[0],
+      discount: props.discounts[0] || '',
     },
     {
       size: 'M',
       length: '30cm',
       price: props.cost[1],
+      discount: props.discounts[1] || '',
     },
     {
       size: 'S',
       length: '25cm',
       price: props.cost[2],
+      discount: props.discounts[2] || '',
     },
   ];
   const mainIngredientsStartIndex = props.description.indexOf('Main ingredients');
@@ -71,7 +74,13 @@ const Pizza = (props: PizzaCatalogType) => {
       </div>
       <div className={s.pizza_params}>
         {arrayPizzaParams.map((pizza, index) => (
-          <PizzaParams size={pizza.size} length={pizza.length} price={pizza.price} key={index} />
+          <PizzaParams
+            size={pizza.size}
+            length={pizza.length}
+            price={pizza.price}
+            key={index}
+            discount={pizza.discount}
+          />
         ))}
       </div>
     </div>

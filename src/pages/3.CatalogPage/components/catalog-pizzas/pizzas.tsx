@@ -24,6 +24,18 @@ const CatalogPizzas = (props: {
       );
       pizzasCost = pizzasCost.concat(variantPrices);
     }
+    let discountInfo: string[] = [];
+    if (pizza.masterVariant.prices[0].discounted) {
+      const currentDiscounts =
+        (pizza.masterVariant.prices[0].discounted.value.centAmount / 100).toFixed(2) + '$';
+      discountInfo.push(currentDiscounts);
+      if (variants.length > 0) {
+        const variantDiscounts = variants.map(
+          (el) => (el.prices[0].discounted!.value.centAmount / 100).toFixed(2) + '$',
+        );
+        discountInfo = discountInfo.concat(variantDiscounts);
+      }
+    }
     return (
       <Pizza
         key={pizza.key}
@@ -32,6 +44,7 @@ const CatalogPizzas = (props: {
         cost={pizzasCost}
         description={pizza.description['en-US']}
         setProductDetailes={props.setProductDetailes}
+        discounts={discountInfo}
       />
     );
   });

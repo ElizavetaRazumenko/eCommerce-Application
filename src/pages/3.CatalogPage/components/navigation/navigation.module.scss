@@ -28,11 +28,11 @@
     transition: 1s;
 
     &:hover {
-        height: 270px;
+        height: 430px;
     }
 
     &:hover .cathegory_selection {
-        height: 210px;
+        height: 340px;
     }
 
     @media (max-width: 1000px) {
@@ -82,8 +82,12 @@
 }
 
 .sec_level {
-    margin-left: 30px;
+    margin-left: 20px;
 }
 .thind_level {
-    margin-left: 70px;
+    margin-left: 40px;
+}
+
+.fourd_level {
+    margin-left: 60px;
 }

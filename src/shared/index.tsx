@@ -157,6 +157,14 @@ export const getProducts = async () => {
   }
 };
 
+export const getFood = async () => {
+  try {
+    const categories = apiRoot.categories().get().execute();
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const sortByLowerPrice = async () => {
   try {
     const products = await apiRoot

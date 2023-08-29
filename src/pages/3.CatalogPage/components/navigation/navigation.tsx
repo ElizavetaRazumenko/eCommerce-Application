@@ -55,7 +55,39 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
                 localStorage.setItem('Cathegory', 'All > Food > Pizzas');
               }}
             >
-              Pizzas
+              Pizzas:
+            </NavLink>
+          </p>
+          <p className={s.cathegory_type}>
+            <NavLink
+              to='/catalog/food/no-spicy'
+              className={({ isActive }) =>
+                isActive
+                  ? s.link + ' ' + s.no_active_link + ' ' + s.fourd_level
+                  : s.link + ' ' + s.fourd_level
+              }
+              onClick={() => {
+                props.setCurrentCathegory('All > Food > Pizzas');
+                localStorage.setItem('Cathegory', 'All > Food > Pizzas');
+              }}
+            >
+              Non-spicy
+            </NavLink>
+          </p>
+          <p className={s.cathegory_type}>
+            <NavLink
+              to='/catalog/food/vegetarian'
+              className={({ isActive }) =>
+                isActive
+                  ? s.link + ' ' + s.no_active_link + ' ' + s.fourd_level
+                  : s.link + ' ' + s.fourd_level
+              }
+              onClick={() => {
+                props.setCurrentCathegory('All > Food > Pizzas');
+                localStorage.setItem('Cathegory', 'All > Food > Pizzas');
+              }}
+            >
+              Vegetarian
             </NavLink>
           </p>
           <p className={s.cathegory_type}>
@@ -87,7 +119,39 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
                 localStorage.setItem('Cathegory', 'All > Drinks');
               }}
             >
-              Drinks
+              Drinks:
+            </NavLink>
+          </p>
+          <p className={s.cathegory_type}>
+            <NavLink
+              to='/catalog/drinks/carbonated'
+              className={({ isActive }) =>
+                isActive
+                  ? s.link + ' ' + s.no_active_link + ' ' + s.thind_level
+                  : s.link + ' ' + s.thind_level
+              }
+              onClick={() => {
+                props.setCurrentCathegory('All > Food > Pizzas');
+                localStorage.setItem('Cathegory', 'All > Food > Pizzas');
+              }}
+            >
+              Carbonated
+            </NavLink>
+          </p>
+          <p className={s.cathegory_type}>
+            <NavLink
+              to='/catalog/drinks/no-carbonated'
+              className={({ isActive }) =>
+                isActive
+                  ? s.link + ' ' + s.no_active_link + ' ' + s.thind_level
+                  : s.link + ' ' + s.thind_level
+              }
+              onClick={() => {
+                props.setCurrentCathegory('All > Food > Pizzas');
+                localStorage.setItem('Cathegory', 'All > Food > Pizzas');
+              }}
+            >
+              Non-carbonated
             </NavLink>
           </p>
         </div>

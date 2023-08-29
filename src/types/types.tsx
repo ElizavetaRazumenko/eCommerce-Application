@@ -25,6 +25,7 @@ export type PizzaCatalogType = {
   cost: string[];
   description: string;
   setProductDetailes: SetProductDetailsType;
+  discounts: string[];
 };
 
 export type SauceType = {
@@ -91,6 +92,13 @@ export type PizzaParamsType = {
   size: string;
   length: string;
   price: string;
+};
+
+export type PizzaParamsCatalogType = {
+  size: string;
+  length: string;
+  price: string;
+  discount: string;
 };
 
 //                                                      LOGIN / REGISTER PAGE
@@ -356,6 +364,18 @@ export type ProductsType = {
       key: string;
       prices: {
         country?: string;
+        discounted?: {
+          discount: {
+            id: string;
+            typeId: string;
+          };
+          value: {
+            centAmount: number;
+            currencyCode: string;
+            fractionDigits: number;
+            type: string;
+          };
+        };
         id: string;
         key: string;
         value: {
@@ -400,6 +420,18 @@ export type ProductsType = {
           }[];
           key: string;
           prices: {
+            discounted?: {
+              discount: {
+                id: string;
+                typeId: string;
+              };
+              value: {
+                centAmount: number;
+                currencyCode: string;
+                fractionDigits: number;
+                type: string;
+              };
+            };
             id: string;
             key: string;
             value: {
