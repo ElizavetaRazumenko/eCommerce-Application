@@ -1,24 +1,24 @@
-import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import s from './navigation.module.scss';
 
-const CatalogNavigation = () => {
-  const [currentCathegory, setCurrentCathegory] = useState<string>('All');
+import { CatalogNavPropsType } from '../../../../types/types';
+
+const CatalogNavigation = (props: CatalogNavPropsType) => {
   return (
     <div className={s.wrapper}>
       <div className={s.navigation_wrapper}>
         <p className={s.title}>Select category</p>
         <div className={s.cathegory}>
           <span>Current: </span>
-          <span className={s.road}>{currentCathegory}</span>
+          <span className={s.road}>{props.currentCathegory}</span>
         </div>
         <div className={s.cathegory_selection}>
           <p className={s.cathegory_type}>
             <NavLink
               to='/catalog'
               className={({ isActive }) => (isActive ? s.link + ' ' + s.no_active_link : s.link)}
-              onClick={() => setCurrentCathegory('All')}
+              onClick={() => props.setCurrentCathegory('All')}
             >
               All:
             </NavLink>
@@ -31,7 +31,7 @@ const CatalogNavigation = () => {
                   ? s.link + ' ' + s.no_active_link + ' ' + s.sec_level
                   : s.link + ' ' + s.sec_level
               }
-              onClick={() => setCurrentCathegory('All > Food')}
+              onClick={() => props.setCurrentCathegory('All > Food')}
             >
               Food:
             </NavLink>
@@ -44,7 +44,7 @@ const CatalogNavigation = () => {
                   ? s.link + ' ' + s.no_active_link + ' ' + s.thind_level
                   : s.link + ' ' + s.thind_level
               }
-              onClick={() => setCurrentCathegory('All > Food > Pizzas')}
+              onClick={() => props.setCurrentCathegory('All > Food > Pizzas')}
             >
               Pizzas
             </NavLink>
@@ -57,7 +57,7 @@ const CatalogNavigation = () => {
                   ? s.link + ' ' + s.no_active_link + ' ' + s.thind_level
                   : s.link + ' ' + s.thind_level
               }
-              onClick={() => setCurrentCathegory('All > Food > Sauces')}
+              onClick={() => props.setCurrentCathegory('All > Food > Sauces')}
             >
               Sauces
             </NavLink>
@@ -70,7 +70,7 @@ const CatalogNavigation = () => {
                   ? s.link + ' ' + s.no_active_link + ' ' + s.sec_level
                   : s.link + ' ' + s.sec_level
               }
-              onClick={() => setCurrentCathegory('All > Drinks')}
+              onClick={() => props.setCurrentCathegory('All > Drinks')}
             >
               Drinks
             </NavLink>

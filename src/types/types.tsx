@@ -252,6 +252,28 @@ export type AddressType = {
 
 export type CustomerAddressesType = AddressType[] | null;
 
+//                                                                   CATALOG PAGE
+
+export type CatalogPropsType = {
+  products: ProductsType;
+  setProductDetailes: SetProductDetailsType;
+};
+
+export type CatalogFoodType = CatalogPropsType;
+
+export type CatalogDrinksType = CatalogFoodType;
+
+export type CatalogLayuotPropsType = {
+  setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
+  currentCathegory: string;
+  setCurrentCathegory: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export type CatalogNavPropsType = {
+  currentCathegory: string;
+  setCurrentCathegory: React.Dispatch<React.SetStateAction<string>>;
+};
+
 //                                                                  DETAILS PAGE
 
 export type SetProductDetailsType = {

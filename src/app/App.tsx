@@ -9,6 +9,11 @@ import LoginPage from '../pages/1.LoginPage/login/login';
 import RegisterPage from '../pages/1.LoginPage/register/register';
 import Main from '../pages/2.MainPage/main';
 import CatalogPage from '../pages/3.CatalogPage/catalog';
+import Drinks from '../pages/3.CatalogPage/categotiesRoutes/Drinks/drinks';
+import Food from '../pages/3.CatalogPage/categotiesRoutes/Food/food';
+import CatalogNavToPizzas from '../pages/3.CatalogPage/categotiesRoutes/Food/Pizzas/pizzas';
+import CatalogNavToSauces from '../pages/3.CatalogPage/categotiesRoutes/Food/Sauces/sauces';
+import CatalogPageLayout from '../pages/3.CatalogPage/Layout/catalogLayuot';
 import DetailedPage from '../pages/4.DetailedPage/detailedPage';
 import ProfilePage from '../pages/5.UserProfile/profile';
 import BasketPage from '../pages/6.BasketPage/basket';
@@ -81,6 +86,7 @@ const App = () => {
       <RegisterPage setUserState={setUserState} />
     );
   };
+  const [currentCathegory, setCurrentCathegory] = useState<string>('All');
 
   return (
     <BrowserRouter>
@@ -93,13 +99,46 @@ const App = () => {
             <Route
               path='/catalog'
               element={
-                <CatalogPage
-                  products={productsData}
+                <CatalogPageLayout
                   setProducts={setProducts}
-                  setProductDetailes={setProductDetailes}
+                  currentCathegory={currentCathegory}
+                  setCurrentCathegory={setCurrentCathegory}
                 />
               }
-            />
+            >
+              <Route
+                index
+                element={
+                  <CatalogPage products={productsData} setProductDetailes={setProductDetailes} />
+                }
+              />
+              <Route
+                path='/catalog/food'
+                element={<Food products={productsData} setProductDetailes={setProductDetailes} />}
+              />
+              <Route
+                path='/catalog/drinks'
+                element={<Drinks products={productsData} setProductDetailes={setProductDetailes} />}
+              />
+              <Route
+                path='/catalog/food/pizzas'
+                element={
+                  <CatalogNavToPizzas
+                    products={productsData}
+                    setProductDetailes={setProductDetailes}
+                  />
+                }
+              />
+              <Route
+                path='/catalog/food/sauses'
+                element={
+                  <CatalogNavToSauces
+                    products={productsData}
+                    setProductDetailes={setProductDetailes}
+                  />
+                }
+              />
+            </Route>
             <Route path='/details' element={<DetailedPage productDetailes={productDetailes} />} />
             <Route path='/profile' element={<ProfilePage userState={userState} />} />
             <Route path='/cart' element={<BasketPage userState={userState} />} />
