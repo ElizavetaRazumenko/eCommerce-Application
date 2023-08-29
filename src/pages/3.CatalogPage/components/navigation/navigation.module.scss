@@ -34,6 +34,10 @@
     &:hover .cathegory_selection {
         height: 210px;
     }
+
+    @media (max-width: 1000px) {
+        margin: 0px;
+    }
 }
 
 .cathegory {

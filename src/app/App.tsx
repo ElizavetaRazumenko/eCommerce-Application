@@ -86,7 +86,8 @@ const App = () => {
       <RegisterPage setUserState={setUserState} />
     );
   };
-  const [currentCathegory, setCurrentCathegory] = useState<string>('All');
+  const cathegory = localStorage.getItem('Cathegory');
+  const [currentCathegory, setCurrentCathegory] = useState<string>(cathegory ? cathegory : 'All');
 
   return (
     <BrowserRouter>

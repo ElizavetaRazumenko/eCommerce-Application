@@ -8,7 +8,7 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
   return (
     <div className={s.wrapper}>
       <div className={s.navigation_wrapper}>
-        <p className={s.title}>Select category</p>
+        <p className={s.title}>Select a category</p>
         <div className={s.cathegory}>
           <span>Current: </span>
           <span className={s.road}>{props.currentCathegory}</span>
@@ -18,7 +18,10 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
             <NavLink
               to='/catalog'
               className={({ isActive }) => (isActive ? s.link + ' ' + s.no_active_link : s.link)}
-              onClick={() => props.setCurrentCathegory('All')}
+              onClick={() => {
+                props.setCurrentCathegory('All');
+                localStorage.setItem('Cathegory', 'All');
+              }}
             >
               All:
             </NavLink>
@@ -31,7 +34,10 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
                   ? s.link + ' ' + s.no_active_link + ' ' + s.sec_level
                   : s.link + ' ' + s.sec_level
               }
-              onClick={() => props.setCurrentCathegory('All > Food')}
+              onClick={() => {
+                props.setCurrentCathegory('All > Food');
+                localStorage.setItem('Cathegory', 'All > Food');
+              }}
             >
               Food:
             </NavLink>
@@ -44,7 +50,10 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
                   ? s.link + ' ' + s.no_active_link + ' ' + s.thind_level
                   : s.link + ' ' + s.thind_level
               }
-              onClick={() => props.setCurrentCathegory('All > Food > Pizzas')}
+              onClick={() => {
+                props.setCurrentCathegory('All > Food > Pizzas');
+                localStorage.setItem('Cathegory', 'All > Food > Pizzas');
+              }}
             >
               Pizzas
             </NavLink>
@@ -57,7 +66,10 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
                   ? s.link + ' ' + s.no_active_link + ' ' + s.thind_level
                   : s.link + ' ' + s.thind_level
               }
-              onClick={() => props.setCurrentCathegory('All > Food > Sauces')}
+              onClick={() => {
+                props.setCurrentCathegory('All > Food > Sauces');
+                localStorage.setItem('Cathegory', 'All > Food > Sauces');
+              }}
             >
               Sauces
             </NavLink>
@@ -70,14 +82,16 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
                   ? s.link + ' ' + s.no_active_link + ' ' + s.sec_level
                   : s.link + ' ' + s.sec_level
               }
-              onClick={() => props.setCurrentCathegory('All > Drinks')}
+              onClick={() => {
+                props.setCurrentCathegory('All > Drinks');
+                localStorage.setItem('Cathegory', 'All > Drinks');
+              }}
             >
               Drinks
             </NavLink>
           </p>
         </div>
       </div>
-      <div className={s.navigation_road}>All</div>
     </div>
   );
 };
