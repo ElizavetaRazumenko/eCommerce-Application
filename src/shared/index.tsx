@@ -297,7 +297,7 @@ export const filterVegetarian = async () => {
       .search()
       .get({
         queryArgs: {
-          filter: ['attributes.Vegetarian.key:"YES"'],
+          filter: ['variants.attributes.Vegetarian.key:"YES"'],
         },
       })
       .execute();

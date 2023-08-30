@@ -9,6 +9,7 @@ import {
   sortByHigherPrice,
   search,
   filterVegetarian,
+  getProducts,
 } from '../../../../shared/index';
 import { ProductsType } from '../../../../types/types';
 
@@ -21,6 +22,7 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
   const hightPrice = useRef<HTMLParagraphElement>(null);
   const a_z = useRef<HTMLParagraphElement>(null);
   const z_a = useRef<HTMLParagraphElement>(null);
+  const reset = useRef<HTMLParagraphElement>(null);
   const [findBy, setFindBy] = useState('');
 
   const sortChange = (ref: React.RefObject<HTMLParagraphElement>) => {
@@ -28,6 +30,7 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
     lowPrice.current!.classList.remove(s.selected);
     z_a.current!.classList.remove(s.selected);
     a_z.current!.classList.remove(s.selected);
+    reset.current!.classList.remove(s.selected);
     ref.current!.classList.toggle(s.selected);
     openMenuSort(sortRef, 'sort');
   };
@@ -107,6 +110,17 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
           >
             Alphabetically (Z-A)
           </p>
+          <p
+            className={s.sort_item}
+            onClick={async () => {
+              const catalogState = await getProducts();
+              if (catalogState) props.setProducts(catalogState);
+              sortChange(reset);
+            }}
+            ref={reset}
+          >
+            Reset
+          </p>
         </div>
       </div>
       <div className={s.input_wrapper}>
@@ -143,6 +157,16 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
           </p>
           <p className={s.sort_item}>Not spicy food</p>
           <p className={s.sort_item}>Low calorie food</p>
+          <p
+            className={s.sort_item}
+            onClick={async () => {
+              const catalogState = await getProducts();
+              if (catalogState) props.setProducts(catalogState);
+            }}
+            ref={reset}
+          >
+            Reset
+          </p>
         </div>
       </div>
     </div>
