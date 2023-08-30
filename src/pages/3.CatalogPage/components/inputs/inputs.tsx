@@ -8,7 +8,7 @@ import {
   sortByLowerPrice,
   sortByHigherPrice,
   search,
-  filterVegetarian,
+  filter,
   getProducts,
 } from '../../../../shared/index';
 import { ProductsType } from '../../../../types/types';
@@ -57,7 +57,7 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
   };
 
   const changeChouse = (ref: React.RefObject<HTMLParagraphElement>) => {
-    ref.current!.classList.toggle(s.selected);
+    ref.current!.classList.add(s.selected);
   };
 
   const resetFilters = () => {
@@ -143,18 +143,40 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
           <p
             className={s.sort_item}
             onClick={async () => {
-              const filteredItems = await filterVegetarian();
-              console.log(filteredItems);
+              if (!vegetarian.current!.classList.contains(s.selected)) {
+                const filteredItems = await filter('vf');
+                if (filteredItems) props.setProducts(filteredItems);
+              }
               changeChouse(vegetarian);
             }}
             ref={vegetarian}
           >
             Vegetarian food
           </p>
-          <p className={s.sort_item} ref={children} onClick={() => changeChouse(children)}>
+          <p
+            className={s.sort_item}
+            ref={children}
+            onClick={async () => {
+              if (!children.current!.classList.contains(s.selected)) {
+                const filteredItems = await filter('fc');
+                if (filteredItems) props.setProducts(filteredItems);
+              }
+              changeChouse(children);
+            }}
+          >
             Food for children
           </p>
-          <p className={s.sort_item} ref={lowCalorie} onClick={() => changeChouse(lowCalorie)}>
+          <p
+            className={s.sort_item}
+            ref={lowCalorie}
+            onClick={async () => {
+              if (!lowCalorie.current!.classList.contains(s.selected)) {
+                const filteredItems = await filter('lc');
+                if (filteredItems) props.setProducts(filteredItems);
+              }
+              changeChouse(lowCalorie);
+            }}
+          >
             Low calorie food
           </p>
           <p

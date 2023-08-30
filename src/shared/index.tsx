@@ -313,18 +313,18 @@ export const search = async (value: string) => {
 //   }
 // };
 
-export const filterVegetarian = async () => {
+export const filter = async (id: string) => {
   try {
     const products = await apiRoot
       .productProjections()
       .search()
       .get({
         queryArgs: {
-          filter: ['variants.attributes.Vegetarian.key:"YES"'],
+          filter: [`variants.attributes.${id}:"yes"`],
         },
       })
       .execute();
-    return products.body;
+    return products.body.results as ProductsType;
   } catch (e) {
     console.log(e);
   }
