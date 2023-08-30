@@ -50,6 +50,33 @@ export type PizzaParamsType = {
   price: string;
 };
 
+//......................................................PROFIL PAGE TYPE / INTERFACE
+
+export type HideModalType = {
+  onHideModal: () => void;
+  customerData: CustomerDataType;
+};
+export type CustomerDataType = {
+  addresses: CustomerAddressType[];
+  defaultBillingAddressId: string | null;
+  shippingAddressIds: string[];
+  firstName: string | null;
+  lastName: string | null;
+  email: string | null;
+  dateBirth: string | null;
+  id: string | null;
+  version: number | null;
+};
+
+export type CustomerAddressType = {
+  city: string;
+  country: string;
+  id: string;
+  key: string;
+  postalCode: string;
+  streetName: string;
+};
+
 //                                                      LOGIN / REGISTER PAGE
 
 export type FieldType = {
