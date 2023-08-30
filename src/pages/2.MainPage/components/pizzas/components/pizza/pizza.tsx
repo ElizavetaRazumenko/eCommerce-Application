@@ -26,6 +26,7 @@ const Pizza = (props: PizzaType) => {
     <div className={s.pizza_item}>
       <img src={props.link} className={s.pizza_img} alt='pizza' />
       <h3 className={s.pizza_name}>{props.name}</h3>
+      <div className={s.pizza_ingredients}>Ingredients</div>
       {arrayPizzaParams.map((pizza, index) => (
         <PizzaParams size={pizza.size} length={pizza.length} price={pizza.price} key={index} />
       ))}

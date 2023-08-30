@@ -1,10 +1,18 @@
-import s from './catalog.module.scss';
+import CatalogDrinks from './components/catalog-drinks/drinks';
 
-const CatalogPage = () => {
+import CatalogPizzas from './components/catalog-pizzas/pizzas';
+
+import CatalogSauces from './components/catalog-sauces/sauces';
+
+import { CatalogPropsType } from '../../types/types';
+
+const CatalogPage = (props: CatalogPropsType) => {
   return (
-    <div className={s.catalog_wrapper}>
-      <p className={s.welcome}>Welcome to the Catalog Page!</p>
-    </div>
+    <main>
+      <CatalogPizzas products={props.products} setProductDetailes={props.setProductDetailes} />
+      <CatalogSauces products={props.products} setProductDetailes={props.setProductDetailes} />
+      <CatalogDrinks products={props.products} setProductDetailes={props.setProductDetailes} />
+    </main>
   );
 };
 

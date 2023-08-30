@@ -1,0 +1,74 @@
+@import './../../../../../globalVariables.scss';
+
+
+.pizza_title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 30px;
+    padding: 3px 25px;
+    border-bottom: 1px solid $main-grey; 
+}
+
+
+.span_line,
+.span_price,
+.span_size {
+    height: 30px;
+    font-size: 1.2rem;
+    color: $main-grey;
+    color: $main-dark-color;
+    line-height: 40px;
+    width: 30px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.span_line { 
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.span_price {
+    display: inline-block;
+    padding-right: 5px;
+    margin-bottom: 0;
+}
+
+.span_price,
+.span_size {
+    width: 60px;
+}
+.size_wrapper,
+.price_wrapper {
+    height: 30px;
+    line-height: 30px;
+}
+
+.shopping_cart {
+    cursor: pointer;
+    position: relative;
+    top: 4px;
+    width: 25px;
+    height: 25px;
+}
+
+.price_wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.non_actual {
+    text-decoration: line-through;
+}
+
+.sale {
+    color: red;
+    font-weight: 700;
+}
+
+.hidden {
+    opacity: 0;
+}
