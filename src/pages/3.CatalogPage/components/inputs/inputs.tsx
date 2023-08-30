@@ -64,7 +64,9 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
           <p
             className={s.sort_item}
             onClick={async () => {
-              sortByLowerPrice();
+              const data = (await sortByLowerPrice()) as unknown as ProductsType;
+              const catalogState = data as ProductsType;
+              props.setProducts(catalogState);
               sortChange(lowPrice);
             }}
             ref={lowPrice}
@@ -74,7 +76,9 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
           <p
             className={s.sort_item}
             onClick={async () => {
-              sortByHigherPrice();
+              const data = (await sortByHigherPrice()) as unknown as ProductsType;
+              const catalogState = data as ProductsType;
+              props.setProducts(catalogState);
               sortChange(hightPrice);
             }}
             ref={hightPrice}
@@ -84,7 +88,9 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
           <p
             className={s.sort_item}
             onClick={async () => {
-              sortByAlphabetAZ();
+              const data = (await sortByAlphabetAZ()) as unknown as ProductsType;
+              const catalogState = data as ProductsType;
+              props.setProducts(catalogState);
               sortChange(a_z);
             }}
             ref={a_z}
@@ -94,7 +100,9 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
           <p
             className={s.sort_item}
             onClick={async () => {
-              sortByAlphabetZA();
+              const data = (await sortByAlphabetZA()) as unknown as ProductsType;
+              const catalogState = data as ProductsType;
+              props.setProducts(catalogState);
               sortChange(z_a);
             }}
             ref={z_a}

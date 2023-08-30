@@ -1,3 +1,4 @@
+import { Address } from '@commercetools/platform-sdk';
 import { useState } from 'react';
 
 import ModalAddressEdit from './components/modal/modalAddressInfo/modalAddressEdit';
@@ -182,7 +183,7 @@ const ProfilePage = (props: UserPropsType) => {
       const id: string | undefined = data.addresses[data.addresses.length - 1].id;
       addBillingAddressId(id ? id : '');
       localStorage.setItem('userInfo', JSON.stringify(resultData));
-      setAddresses(data.addresses);
+      // setAddresses(data.addresses);
       hideModal();
     } catch (error) {
       console.error('Error updating customer:', error);
