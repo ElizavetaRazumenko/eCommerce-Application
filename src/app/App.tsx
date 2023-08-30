@@ -68,7 +68,10 @@ const App = () => {
     productPFCK,
   };
   const products = async () => {
-    await getProducts().then((data) => setProducts(data));
+    const productsCollection = await getProducts();
+    if (productsCollection) {
+      setProducts(productsCollection);
+    }
   };
   useEffect(() => {
     products();
@@ -110,12 +113,22 @@ const App = () => {
               <Route
                 index
                 element={
-                  <CatalogPage products={productsData} setProductDetailes={setProductDetailes} />
+                  <CatalogPage
+                    products={productsData}
+                    setProducts={setProducts}
+                    setProductDetailes={setProductDetailes}
+                  />
                 }
               />
               <Route
                 path='/catalog/food'
-                element={<Food products={productsData} setProductDetailes={setProductDetailes} />}
+                element={
+                  <Food
+                    products={productsData}
+                    setProducts={setProducts}
+                    setProductDetailes={setProductDetailes}
+                  />
+                }
               />
               <Route
                 path='/catalog/drinks'
@@ -127,6 +140,41 @@ const App = () => {
                   <CatalogNavToPizzas
                     products={productsData}
                     setProductDetailes={setProductDetailes}
+                    page={'pizzas'}
+                    setProducts={setProducts}
+                  />
+                }
+              />
+              <Route
+                path='/catalog/food/pizzas/non-spicy'
+                element={
+                  <CatalogNavToPizzas
+                    products={productsData}
+                    setProductDetailes={setProductDetailes}
+                    setProducts={setProducts}
+                    page={'non-spicy'}
+                  />
+                }
+              />
+              <Route
+                path='/catalog/food/pizzas/vegetarian'
+                element={
+                  <CatalogNavToPizzas
+                    products={productsData}
+                    setProductDetailes={setProductDetailes}
+                    setProducts={setProducts}
+                    page={'vegetarian'}
+                  />
+                }
+              />
+              <Route
+                path='/catalog/food/pizzas/low-calorie'
+                element={
+                  <CatalogNavToPizzas
+                    products={productsData}
+                    setProductDetailes={setProductDetailes}
+                    setProducts={setProducts}
+                    page={'low-calorie'}
                   />
                 }
               />
@@ -136,6 +184,7 @@ const App = () => {
                   <CatalogNavToSauces
                     products={productsData}
                     setProductDetailes={setProductDetailes}
+                    setProducts={setProducts}
                   />
                 }
               />

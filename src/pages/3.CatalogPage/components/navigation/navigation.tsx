@@ -2,7 +2,8 @@ import { NavLink } from 'react-router-dom';
 
 import s from './navigation.module.scss';
 
-import { CatalogNavPropsType } from '../../../../types/types';
+import { getCategoryProduct, getProducts } from '../../../../shared';
+import { CatalogNavPropsType, ProductsType } from '../../../../types/types';
 
 const CatalogNavigation = (props: CatalogNavPropsType) => {
   return (
@@ -50,7 +51,11 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
                   ? s.link + ' ' + s.no_active_link + ' ' + s.thind_level
                   : s.link + ' ' + s.thind_level
               }
-              onClick={() => {
+              onClick={async () => {
+                const productsData = await getProducts();
+                if (productsData) {
+                  props.setProducts(productsData);
+                }
                 props.setCurrentCathegory('All > Food > Pizzas');
                 localStorage.setItem('Cathegory', 'All > Food > Pizzas');
               }}
@@ -60,13 +65,18 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
           </p>
           <p className={s.cathegory_type}>
             <NavLink
-              to='/catalog/food/no-spicy'
+              to='/catalog/food/pizzas/non-spicy'
               className={({ isActive }) =>
                 isActive
                   ? s.link + ' ' + s.no_active_link + ' ' + s.fourd_level
                   : s.link + ' ' + s.fourd_level
               }
-              onClick={() => {
+              onClick={async () => {
+                const category = await getCategoryProduct('PS-1-P-NSF');
+                if (category) {
+                  const productsData = category.body as unknown as ProductsType;
+                  props.setProducts(productsData);
+                }
                 props.setCurrentCathegory('All > Food > Pizzas');
                 localStorage.setItem('Cathegory', 'All > Food > Pizzas');
               }}
@@ -76,18 +86,44 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
           </p>
           <p className={s.cathegory_type}>
             <NavLink
-              to='/catalog/food/vegetarian'
+              to='/catalog/food/pizzas/vegetarian'
               className={({ isActive }) =>
                 isActive
                   ? s.link + ' ' + s.no_active_link + ' ' + s.fourd_level
                   : s.link + ' ' + s.fourd_level
               }
-              onClick={() => {
+              onClick={async () => {
+                const category = await getCategoryProduct('PS-1-P-VF');
+                if (category) {
+                  const productsData = category.body as unknown as ProductsType;
+                  props.setProducts(productsData);
+                }
                 props.setCurrentCathegory('All > Food > Pizzas');
                 localStorage.setItem('Cathegory', 'All > Food > Pizzas');
               }}
             >
               Vegetarian
+            </NavLink>
+          </p>
+          <p className={s.cathegory_type}>
+            <NavLink
+              to='/catalog/food/pizzas/low-calorie'
+              className={({ isActive }) =>
+                isActive
+                  ? s.link + ' ' + s.no_active_link + ' ' + s.fourd_level
+                  : s.link + ' ' + s.fourd_level
+              }
+              onClick={async () => {
+                const category = await getCategoryProduct('PS-1-P-LCF');
+                if (category) {
+                  const productsData = category.body as unknown as ProductsType;
+                  props.setProducts(productsData);
+                }
+                props.setCurrentCathegory('All > Food > Pizzas');
+                localStorage.setItem('Cathegory', 'All > Food > Pizzas');
+              }}
+            >
+              Low calorie
             </NavLink>
           </p>
           <p className={s.cathegory_type}>
@@ -103,7 +139,55 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
                 localStorage.setItem('Cathegory', 'All > Food > Sauces');
               }}
             >
-              Sauces
+              Sauces:
+            </NavLink>
+          </p>
+          <p className={s.cathegory_type}>
+            <NavLink
+              to='/catalog/food/sauses/non-spicy'
+              className={({ isActive }) =>
+                isActive
+                  ? s.link + ' ' + s.no_active_link + ' ' + s.fourd_level
+                  : s.link + ' ' + s.fourd_level
+              }
+              onClick={() => {
+                props.setCurrentCathegory('All > Food > Pizzas');
+                localStorage.setItem('Cathegory', 'All > Food > Pizzas');
+              }}
+            >
+              Non-spicy
+            </NavLink>
+          </p>
+          <p className={s.cathegory_type}>
+            <NavLink
+              to='/catalog/food/sauses/vegetarian'
+              className={({ isActive }) =>
+                isActive
+                  ? s.link + ' ' + s.no_active_link + ' ' + s.fourd_level
+                  : s.link + ' ' + s.fourd_level
+              }
+              onClick={() => {
+                props.setCurrentCathegory('All > Food > Pizzas');
+                localStorage.setItem('Cathegory', 'All > Food > Pizzas');
+              }}
+            >
+              Vegetarian
+            </NavLink>
+          </p>
+          <p className={s.cathegory_type}>
+            <NavLink
+              to='/catalog/food/sauses/low-calorie'
+              className={({ isActive }) =>
+                isActive
+                  ? s.link + ' ' + s.no_active_link + ' ' + s.fourd_level
+                  : s.link + ' ' + s.fourd_level
+              }
+              onClick={() => {
+                props.setCurrentCathegory('All > Food > Pizzas');
+                localStorage.setItem('Cathegory', 'All > Food > Pizzas');
+              }}
+            >
+              Low calorie
             </NavLink>
           </p>
           <p className={s.cathegory_type}>
@@ -140,7 +224,7 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
           </p>
           <p className={s.cathegory_type}>
             <NavLink
-              to='/catalog/drinks/no-carbonated'
+              to='/catalog/drinks/non-carbonated'
               className={({ isActive }) =>
                 isActive
                   ? s.link + ' ' + s.no_active_link + ' ' + s.thind_level

@@ -12,6 +12,8 @@ import {
   // ExistingTokenMiddlewareOptions, // Required for sending HTTP requests
 } from '@commercetools/sdk-client-v2';
 
+import { ProductsType } from '../types/types';
+
 const fetch = require('node-fetch');
 
 const scopes = [
@@ -153,26 +155,43 @@ export const getApiRoot = () => {
 
 export const getProducts = async () => {
   try {
-    if (!localStorage.getItem('Catalog info')) {
-      const products = await apiRoot
-        .productProjections()
-        .get({
-          queryArgs: {
-            limit: 30,
-          },
-        })
-        .execute();
-      localStorage.setItem('Catalog info', JSON.stringify(products.body));
-      return JSON.parse(localStorage.getItem('Catalog info')!);
-    } else return JSON.parse(localStorage.getItem('Catalog info')!);
+    const products = await apiRoot
+      .productProjections()
+      .get({
+        queryArgs: {
+          limit: 30,
+        },
+      })
+      .execute();
+    const productsCollection = products.body as unknown as ProductsType;
+    return productsCollection;
   } catch (e) {
     console.log(e);
   }
 };
 
-export const getFood = async () => {
+export const getCategoryID = async (key: string) => {
   try {
-    apiRoot.categories().get().execute();
+    const categories = await apiRoot.categories().get().execute();
+    return categories.body.results.find((el) => el.key === key)!.id;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getCategoryProduct = async (key: string) => {
+  try {
+    const id = await getCategoryID(key);
+    const product = await apiRoot
+      .productProjections()
+      .search()
+      .get({
+        queryArgs: {
+          filter: `categories.id:"${id}"`,
+        },
+      })
+      .execute();
+    return product;
   } catch (e) {
     console.log(e);
   }

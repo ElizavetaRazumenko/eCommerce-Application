@@ -289,14 +289,36 @@ export type CustomerAddressesType = AddressType[] | null;
 
 //                                                                   CATALOG PAGE
 
+export type CatalogPizzasProps = {
+  products: ProductsType;
+  setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
+  setProductDetailes: SetProductDetailsType;
+  page: 'pizzas' | 'low-calorie' | 'non-spicy' | 'vegetarian';
+};
+
 export type CatalogPropsType = {
   products: ProductsType;
+  setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
   setProductDetailes: SetProductDetailsType;
 };
 
-export type CatalogFoodType = CatalogPropsType;
+export type CatalogFoodType = {
+  products: ProductsType;
+  setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
+  setProductDetailes: SetProductDetailsType;
+};
 
-export type CatalogDrinksType = CatalogFoodType;
+export type CatalogFoodNamedType = {
+  products: ProductsType;
+  setProductDetailes: SetProductDetailsType;
+  setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
+  page: 'pizzas' | 'low-calorie' | 'non-spicy' | 'vegetarian';
+};
+
+export type CatalogDrinksType = {
+  products: ProductsType;
+  setProductDetailes: SetProductDetailsType;
+};
 
 export type CatalogLayuotPropsType = {
   setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
@@ -307,6 +329,7 @@ export type CatalogLayuotPropsType = {
 export type CatalogNavPropsType = {
   currentCathegory: string;
   setCurrentCathegory: React.Dispatch<React.SetStateAction<string>>;
+  setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
 };
 
 //                                                                  DETAILS PAGE

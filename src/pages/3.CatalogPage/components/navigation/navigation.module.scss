@@ -28,11 +28,11 @@
     transition: 1s;
 
     &:hover {
-        height: 430px;
+        height: 560px;
     }
 
     &:hover .cathegory_selection {
-        height: 340px;
+        height: 490px;
     }
 
     @media (max-width: 1000px) {
@@ -43,7 +43,7 @@
 .cathegory {
     display: flex;
     justify-content: space-between;
-    color: $main-grey;
+    color: $main-dark-color;
     font-weight: 700;
     font-size: .9rem;
 }

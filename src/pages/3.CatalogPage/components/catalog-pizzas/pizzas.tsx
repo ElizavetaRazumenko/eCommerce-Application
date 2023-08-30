@@ -4,12 +4,9 @@ import s from './pizzas.module.scss';
 
 import infoProducts from '../../../../entities/product';
 
-import { ProductsType, SetProductDetailsType } from '../../../../types/types';
+import { CatalogPizzasProps } from '../../../../types/types';
 
-const CatalogPizzas = (props: {
-  products: ProductsType;
-  setProductDetailes: SetProductDetailsType;
-}) => {
+const CatalogPizzas = (props: CatalogPizzasProps) => {
   const pizzasItems = props.products.results.filter((el) =>
     infoProducts.pizzas.find((item) => item.key === el.key),
   );
