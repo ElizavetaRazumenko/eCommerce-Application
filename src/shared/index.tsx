@@ -30,6 +30,17 @@ const scopes = [
 
 const projectKey = 'ecommece-application';
 
+const authMiddlewareOptions: AuthMiddlewareOptions = {
+  host: `https://auth.europe-west1.gcp.commercetools.com`,
+  projectKey: projectKey,
+  credentials: {
+    clientId: 'HgTug4REahFA11dVfXfn2FW3',
+    clientSecret: 'vdT50e1NqbdNH6Z2NhExia6lqwFfC8OT',
+  },
+  scopes,
+  fetch,
+};
+
 const httpMiddlewareOptions: HttpMiddlewareOptions = {
   host: `https://api.europe-west1.gcp.commercetools.com`,
   fetch,
@@ -52,17 +63,6 @@ class MyTokenCache implements TokenCache {
 }
 
 export const myTokenCache = new MyTokenCache();
-
-const authMiddlewareOptions: AuthMiddlewareOptions = {
-  host: `https://auth.europe-west1.gcp.commercetools.com`,
-  projectKey: projectKey,
-  credentials: {
-    clientId: 'HgTug4REahFA11dVfXfn2FW3',
-    clientSecret: 'vdT50e1NqbdNH6Z2NhExia6lqwFfC8OT',
-  },
-  scopes,
-  fetch,
-};
 
 const defaultClient = new ClientBuilder()
   .withProjectKey(projectKey)
@@ -138,6 +138,18 @@ export const loginClient = async (email: string, password: string) => {
   localStorage.setItem('userInfo', JSON.stringify(response.body));
 };
 
+const client = new ClientBuilder()
+  .withProjectKey(projectKey)
+  .withClientCredentialsFlow(authMiddlewareOptions)
+  .withHttpMiddleware(httpMiddlewareOptions)
+  .withLoggerMiddleware()
+  .build();
+
+export const getApiRoot = () => {
+  return createApiBuilderFromCtpClient(client).withProjectKey({
+    projectKey: 'ecommece-application',
+  });
+=======
 export const getProducts = async () => {
   try {
     if (!localStorage.getItem('Catalog info')) {
