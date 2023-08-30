@@ -292,3 +292,20 @@ export const search = async (value: string) => {
     throw error;
   }
 };
+
+export const filterVegetarian = async () => {
+  try {
+    const products = await apiRoot
+      .productProjections()
+      .search()
+      .get({
+        queryArgs: {
+          filter: ['attributes.Vegetarian.key:"YES"'],
+        },
+      })
+      .execute();
+    return products.body;
+  } catch (e) {
+    console.log(e);
+  }
+};

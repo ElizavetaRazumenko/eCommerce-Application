@@ -8,6 +8,7 @@ import {
   sortByLowerPrice,
   sortByHigherPrice,
   search,
+  filterVegetarian,
 } from '../../../../shared/index';
 import { ProductsType } from '../../../../types/types';
 
@@ -134,7 +135,15 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
           ref={filterMenuRef}
           onClick={(e) => changeChouse(e)}
         >
-          <p className={s.sort_item}>Vegetarian food</p>
+          <p
+            className={s.sort_item}
+            onClick={async () => {
+              const filteredItems = await filterVegetarian();
+              console.log(filteredItems);
+            }}
+          >
+            Vegetarian food
+          </p>
           <p className={s.sort_item}>Not spicy food</p>
           <p className={s.sort_item}>Low calorie food</p>
         </div>
