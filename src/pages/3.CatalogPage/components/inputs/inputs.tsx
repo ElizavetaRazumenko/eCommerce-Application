@@ -29,11 +29,12 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
     z_a.current!.classList.remove(s.selected);
     a_z.current!.classList.remove(s.selected);
     ref.current!.classList.toggle(s.selected);
+    openMenuSort(sortRef, 'sort');
   };
 
-  const findChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const findChange = async (event: ChangeEvent<HTMLInputElement>) => {
     setFindBy(event.target.value);
-    search(event.target.value);
+    await search(event.target.value);
   };
 
   const openMenuSort = (ref: React.RefObject<HTMLDivElement>, type: string) => {
@@ -65,9 +66,8 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
           <p
             className={s.sort_item}
             onClick={async () => {
-              const data = (await sortByLowerPrice()) as unknown as ProductsType;
-              const catalogState = data as ProductsType;
-              props.setProducts(catalogState);
+              const catalogState = await sortByLowerPrice();
+              if (catalogState) props.setProducts(catalogState);
               sortChange(lowPrice);
             }}
             ref={lowPrice}
@@ -77,9 +77,8 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
           <p
             className={s.sort_item}
             onClick={async () => {
-              const data = (await sortByHigherPrice()) as unknown as ProductsType;
-              const catalogState = data as ProductsType;
-              props.setProducts(catalogState);
+              const catalogState = await sortByHigherPrice();
+              if (catalogState) props.setProducts(catalogState);
               sortChange(hightPrice);
             }}
             ref={hightPrice}
@@ -89,9 +88,8 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
           <p
             className={s.sort_item}
             onClick={async () => {
-              const data = (await sortByAlphabetAZ()) as unknown as ProductsType;
-              const catalogState = data as ProductsType;
-              props.setProducts(catalogState);
+              const catalogState = await sortByAlphabetAZ();
+              if (catalogState) props.setProducts(catalogState);
               sortChange(a_z);
             }}
             ref={a_z}
@@ -101,9 +99,8 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
           <p
             className={s.sort_item}
             onClick={async () => {
-              const data = (await sortByAlphabetZA()) as unknown as ProductsType;
-              const catalogState = data as ProductsType;
-              props.setProducts(catalogState);
+              const catalogState = await sortByAlphabetZA();
+              if (catalogState) props.setProducts(catalogState);
               sortChange(z_a);
             }}
             ref={z_a}

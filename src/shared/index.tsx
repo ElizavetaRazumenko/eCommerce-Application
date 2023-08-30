@@ -163,8 +163,7 @@ export const getProducts = async () => {
         },
       })
       .execute();
-    const productsCollection = products.body as unknown as ProductsType;
-    return productsCollection;
+    return products.body.results as ProductsType;
   } catch (e) {
     console.log(e);
   }
@@ -191,7 +190,7 @@ export const getCategoryProduct = async (key: string) => {
         },
       })
       .execute();
-    return product;
+    return product.body.results as ProductsType;
   } catch (e) {
     console.log(e);
   }
@@ -209,7 +208,7 @@ export const sortByLowerPrice = async () => {
         },
       })
       .execute();
-    return products.body;
+    return products.body.results as ProductsType;
   } catch (e) {
     console.log(e);
   }
@@ -227,7 +226,7 @@ export const sortByHigherPrice = async () => {
         },
       })
       .execute();
-    return products.body;
+    return products.body.results as ProductsType;
   } catch (e) {
     console.log(e);
   }
@@ -245,7 +244,7 @@ export const sortByAlphabetZA = async () => {
         },
       })
       .execute();
-    return products.body;
+    return products.body.results as ProductsType;
   } catch (e) {
     console.log(e);
   }
@@ -263,7 +262,7 @@ export const sortByAlphabetAZ = async () => {
         },
       })
       .execute();
-    return products.body;
+    return products.body.results as ProductsType;
   } catch (e) {
     console.log(e);
   }
@@ -281,12 +280,10 @@ export const search = async (value: string) => {
         },
       })
       .execute();
-    console.log(products.body.results);
-    const productsNames = products.body.results
-      .map((result) => result.name['en-US'])
-      .filter((name) => name.toLowerCase().includes(value));
-    console.log(productsNames);
-    return productsNames;
+    const searchProducts = products.body.results.filter((result) =>
+      result.name['en-US'].toLowerCase().includes(value.toLowerCase()),
+    );
+    return searchProducts as ProductsType;
   } catch (error) {
     console.error('error searching:', error);
     throw error;

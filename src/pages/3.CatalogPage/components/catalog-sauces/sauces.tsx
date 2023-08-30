@@ -9,7 +9,7 @@ const CatalogSauces = (props: {
   products: ProductsType;
   setProductDetailes: SetProductDetailsType;
 }) => {
-  const saucesItems = props.products.results.filter((el) =>
+  const saucesItems = props.products.filter((el) =>
     infoProducts.sauces.find((item) => item.key === el.key),
   );
   const sauceArray = saucesItems.map((sauce) => {

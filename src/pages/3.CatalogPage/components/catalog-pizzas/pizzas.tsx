@@ -7,7 +7,7 @@ import infoProducts from '../../../../entities/product';
 import { CatalogPizzasProps } from '../../../../types/types';
 
 const CatalogPizzas = (props: CatalogPizzasProps) => {
-  const pizzasItems = props.products.results.filter((el) =>
+  const pizzasItems = props.products.filter((el) =>
     infoProducts.pizzas.find((item) => item.key === el.key),
   );
   const pizzasArray = pizzasItems.map((pizza) => {

@@ -8,7 +8,7 @@ const CatalogDrinks = (props: {
   products: ProductsType;
   setProductDetailes: SetProductDetailsType;
 }) => {
-  const drinksItems = props.products.results.filter((el) =>
+  const drinksItems = props.products.filter((el) =>
     infoProducts.drinks.find((item) => item.key === el.key),
   );
   const drinksArray = drinksItems.map((drink) => {

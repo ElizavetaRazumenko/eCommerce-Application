@@ -72,9 +72,8 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
                   : s.link + ' ' + s.fourd_level
               }
               onClick={async () => {
-                const category = await getCategoryProduct('PS-1-P-NSF');
-                if (category) {
-                  const productsData = category.body as unknown as ProductsType;
+                const productsData = await getCategoryProduct('PS-1-P-NSF');
+                if (productsData) {
                   props.setProducts(productsData);
                 }
                 props.setCurrentCathegory('All > Food > Pizzas');
@@ -93,9 +92,8 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
                   : s.link + ' ' + s.fourd_level
               }
               onClick={async () => {
-                const category = await getCategoryProduct('PS-1-P-VF');
-                if (category) {
-                  const productsData = category.body as unknown as ProductsType;
+                const productsData = await getCategoryProduct('PS-1-P-VF');
+                if (productsData) {
                   props.setProducts(productsData);
                 }
                 props.setCurrentCathegory('All > Food > Pizzas');
@@ -114,9 +112,8 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
                   : s.link + ' ' + s.fourd_level
               }
               onClick={async () => {
-                const category = await getCategoryProduct('PS-1-P-LCF');
-                if (category) {
-                  const productsData = category.body as unknown as ProductsType;
+                const productsData = await getCategoryProduct('PS-1-P-LCF');
+                if (productsData) {
                   props.setProducts(productsData);
                 }
                 props.setCurrentCathegory('All > Food > Pizzas');
