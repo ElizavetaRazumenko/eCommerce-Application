@@ -22,7 +22,10 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
   const hightPrice = useRef<HTMLParagraphElement>(null);
   const a_z = useRef<HTMLParagraphElement>(null);
   const z_a = useRef<HTMLParagraphElement>(null);
-  const reset = useRef<HTMLParagraphElement>(null);
+  const vegetarian = useRef<HTMLParagraphElement>(null);
+  const children = useRef<HTMLParagraphElement>(null);
+  const lowCalorie = useRef<HTMLParagraphElement>(null);
+  const resetFilter = useRef<HTMLParagraphElement>(null);
   const [findBy, setFindBy] = useState('');
 
   const sortChange = (ref: React.RefObject<HTMLParagraphElement>) => {
@@ -30,14 +33,14 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
     lowPrice.current!.classList.remove(s.selected);
     z_a.current!.classList.remove(s.selected);
     a_z.current!.classList.remove(s.selected);
-    reset.current!.classList.remove(s.selected);
     ref.current!.classList.toggle(s.selected);
     openMenuSort(sortRef, 'sort');
   };
 
   const findChange = async (event: ChangeEvent<HTMLInputElement>) => {
     setFindBy(event.target.value);
-    await search(event.target.value);
+    const value = await search(event.target.value);
+    console.log(value);
   };
 
   const openMenuSort = (ref: React.RefObject<HTMLDivElement>, type: string) => {
@@ -53,9 +56,15 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
     }
   };
 
-  const changeChouse = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const target = e.target as HTMLParagraphElement;
-    target.classList.toggle(s.selected);
+  const changeChouse = (ref: React.RefObject<HTMLParagraphElement>) => {
+    ref.current!.classList.toggle(s.selected);
+  };
+
+  const resetFilters = () => {
+    vegetarian.current!.classList.remove(s.selected);
+    children.current!.classList.remove(s.selected);
+    lowCalorie.current!.classList.remove(s.selected);
+    openMenuSort(filterRef, 'filter');
   };
 
   return (
@@ -110,17 +119,6 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
           >
             Alphabetically (Z-A)
           </p>
-          <p
-            className={s.sort_item}
-            onClick={async () => {
-              const catalogState = await getProducts();
-              if (catalogState) props.setProducts(catalogState);
-              sortChange(reset);
-            }}
-            ref={reset}
-          >
-            Reset
-          </p>
         </div>
       </div>
       <div className={s.input_wrapper}>
@@ -141,29 +139,32 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
           <span>Filter by</span>
           <div className={s.sort_arrow}></div>
         </div>
-        <div
-          className={s.filter_menu_choise + ' ' + s.hidden}
-          ref={filterMenuRef}
-          onClick={(e) => changeChouse(e)}
-        >
+        <div className={s.filter_menu_choise + ' ' + s.hidden} ref={filterMenuRef}>
           <p
             className={s.sort_item}
             onClick={async () => {
               const filteredItems = await filterVegetarian();
               console.log(filteredItems);
+              changeChouse(vegetarian);
             }}
+            ref={vegetarian}
           >
             Vegetarian food
           </p>
-          <p className={s.sort_item}>Not spicy food</p>
-          <p className={s.sort_item}>Low calorie food</p>
+          <p className={s.sort_item} ref={children} onClick={() => changeChouse(children)}>
+            Food for children
+          </p>
+          <p className={s.sort_item} ref={lowCalorie} onClick={() => changeChouse(lowCalorie)}>
+            Low calorie food
+          </p>
           <p
             className={s.sort_item}
             onClick={async () => {
               const catalogState = await getProducts();
               if (catalogState) props.setProducts(catalogState);
+              resetFilters();
             }}
-            ref={reset}
+            ref={resetFilter}
           >
             Reset
           </p>

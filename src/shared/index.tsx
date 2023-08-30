@@ -275,20 +275,43 @@ export const search = async (value: string) => {
       .search()
       .get({
         queryArgs: {
-          where: `name(en-US="${value}")`,
-          limit: 59,
+          'text.en-US': value,
+          limit: 29,
+          fuzzy: true,
         },
       })
       .execute();
-    const searchProducts = products.body.results.filter((result) =>
-      result.name['en-US'].toLowerCase().includes(value.toLowerCase()),
-    );
-    return searchProducts as ProductsType;
+    // const searchProducts = products.body.results.filter((result) =>
+    //   result.name['en-US'].toLowerCase().includes(value.toLowerCase()),
+    // );
+    return products.body.results as ProductsType;
   } catch (error) {
     console.error('error searching:', error);
     throw error;
   }
 };
+
+// export const search = async (value: string) => {
+//   try {
+//     const products = await apiRoot
+//       .productProjections()
+//       .search()
+//       .get({
+//         queryArgs: {
+//           where: `name(en-US="${value}")`,
+//           limit: 59,
+//         },
+//       })
+//       .execute();
+//     const searchProducts = products.body.results.filter((result) =>
+//       result.name['en-US'].toLowerCase().includes(value.toLowerCase()),
+//     );
+//     return searchProducts as ProductsType;
+//   } catch (error) {
+//     console.error('error searching:', error);
+//     throw error;
+//   }
+// };
 
 export const filterVegetarian = async () => {
   try {

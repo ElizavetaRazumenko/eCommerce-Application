@@ -1,20 +1,31 @@
+import { useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import s from './navigation.module.scss';
 
 import { getCategoryProduct, getProducts } from '../../../../shared';
-import { CatalogNavPropsType, ProductsType } from '../../../../types/types';
+import { CatalogNavPropsType } from '../../../../types/types';
 
 const CatalogNavigation = (props: CatalogNavPropsType) => {
+  const navRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+  const toggleNav = () => {
+    navRef.current!.classList.toggle(s.opened);
+    listRef.current!.classList.toggle(s.opened);
+  };
   return (
-    <div className={s.wrapper}>
-      <div className={s.navigation_wrapper}>
-        <p className={s.title}>Select a category</p>
+    <div className={s.wrapper} ref={navRef}>
+      <div className={s.navigation_wrapper} onClick={toggleNav}>
+        <div className={s.category_selection_wrapper}>
+          <p className={s.title}>Select a category</p>
+          <div className={s.arrow_down}></div>
+        </div>
+
         <div className={s.cathegory}>
           <span>Current: </span>
           <span className={s.road}>{props.currentCathegory}</span>
         </div>
-        <div className={s.cathegory_selection}>
+        <div className={s.cathegory_selection} ref={listRef}>
           <p className={s.cathegory_type}>
             <NavLink
               to='/catalog'

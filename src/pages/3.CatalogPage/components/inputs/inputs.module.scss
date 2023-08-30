@@ -42,7 +42,7 @@
     box-sizing: border-box;
     cursor: pointer;
     height: 30px;
-    background-color: $unactive-register-grey;
+    background-color: rgba($unactive-register-grey, .6);
     color: $main-light;
     border-radius: 15px;
     display: flex;
@@ -151,7 +151,7 @@
     background-size: 5%;
     background-repeat: no-repeat;
     height: 30px;
-    background-color: $unactive-register-grey;
+    background-color: rgba($unactive-register-grey, .6);
     color: $white;
     width: 250px;
     border-radius: 15px;
