@@ -12,9 +12,6 @@
     transition: .6s;
 }
 
-.cathegory_selection.opened {
-    height: 490px;
-}
 
 .category_selection_wrapper {
     display: flex;
@@ -45,10 +42,6 @@
     padding: 0 15px 15px 35px;
     font-size: 1rem;
     transition: .6s;
-
-    &.opened {
-        height: 560px;
-    }
 
     @media (max-width: 1000px) {
         margin: 0px;
@@ -105,4 +98,11 @@
 
 .fourd_level {
     margin-left: 60px;
+}
+
+.navigation_wrapper.opened {
+    height: 560px;
+}
+.cathegory_selection.unhidden {
+    height: 490px;
 }
