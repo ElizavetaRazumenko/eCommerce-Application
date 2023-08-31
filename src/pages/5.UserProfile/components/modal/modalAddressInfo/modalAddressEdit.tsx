@@ -4,10 +4,15 @@ import address from './modalAddressEdit.module.scss';
 
 import closeIcon from '../../../../../assets/svg/close.svg';
 import { getApiRoot } from '../../../../../shared';
-import { HideModalType } from '../../../../../types/types';
+import { AddressType, HideModalType } from '../../../../../types/types';
 import modal from '../modal.module.scss';
 
-const ModalAddressEdit: React.FC<HideModalType> = ({ onHideModal, customerData }) => {
+const ModalAddressEdit: React.FC<HideModalType> = ({
+  onHideModal,
+  customerData,
+  setNewAddress,
+  setNewAddress2,
+}) => {
   const [customerBillingAddressCity, setCustomerBillingAddressCity] = useState(
     customerData.addresses[0].city,
   );
@@ -67,6 +72,15 @@ const ModalAddressEdit: React.FC<HideModalType> = ({ onHideModal, customerData }
       const data = response.body;
       const resultData = { customer: { ...data } };
       localStorage.setItem('userInfo', JSON.stringify(resultData));
+      if (setNewAddress && setNewAddress2) {
+        const updateAddressesList = resultData.customer.addresses as AddressType[];
+        const shippId = resultData.customer.shippingAddressIds;
+        const billId = resultData.customer.billingAddressIds;
+        const updateShippingList = updateAddressesList.filter((el) => shippId?.includes(el.id));
+        const updateBillingList = updateAddressesList.filter((el) => billId?.includes(el.id));
+        setNewAddress(updateBillingList);
+        setNewAddress2(updateShippingList);
+      }
       onHideModal();
     } catch (error) {
       console.error('Error updating customer:', error);

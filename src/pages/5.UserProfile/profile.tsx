@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import ModalAddNewAddress from './components/modal/modalAddNewAddress/modalAddNewAddress';
 import ModalAddressEdit from './components/modal/modalAddressInfo/modalAddressEdit';
 import ModalPersonalDataEdit from './components/modal/modalPersonInfo/ModalPersonalDataEdit';
 import s from './profile.module.scss';
@@ -112,9 +113,9 @@ const ProfilePage = (props: UserPropsType) => {
     }
   }
 
-  const [addresses, setAddresses] = useState<AddressType[]>(billingAddress);
-  console.log(addresses);
-
+  const [addresses, setAddresses] = useState(billingAddress);
+  const [addresses2, setAddresses2] = useState(shippingAddress);
+  console.log(addresses, addresses2);
   const showModalPersnal = () => {
     setCurrentModal('ModalPersonalDataEdit');
     setModalVisible(true);
@@ -125,37 +126,16 @@ const ProfilePage = (props: UserPropsType) => {
     const updatedCustomerData: CustomerDataType = { ...customerData, addresses };
     setSelectedAddress(updatedCustomerData);
   };
+  const showModalAddNewAddress = () => {
+    setCurrentModal('ModalAddNewAddress');
+    setModalVisible(true);
+  };
 
   const hideModal = () => {
     setModalVisible(false);
   };
 
-  const addBillingAddressId = async (id: string) => {
-    try {
-      const response = await getApiRoot()
-        .customers()
-        .withId({ ID: customerData.id ? customerData.id : '' })
-        .post({
-          body: {
-            version: customerData.version ? customerData.version + 1 : 0,
-            actions: [
-              {
-                action: 'addBillingAddressId',
-                addressId: id,
-              },
-            ],
-          },
-        })
-        .execute();
-      const data = response.body;
-      const resultData = { customer: { ...data } };
-      localStorage.setItem('userInfo', JSON.stringify(resultData));
-    } catch (error) {
-      console.error('Error updating customer:', error);
-    }
-  };
-
-  const checkSubmit = async () => {
+  const deleteAddress = async (id: string) => {
     try {
       const response = await getApiRoot()
         .customers()
@@ -165,13 +145,8 @@ const ProfilePage = (props: UserPropsType) => {
             version: customerData.version ? customerData.version : 0,
             actions: [
               {
-                action: 'addAddress',
-                address: {
-                  streetName: 'customer',
-                  postalCode: '6202',
-                  city: 'customerB',
-                  country: 'IT',
-                },
+                action: 'removeAddress',
+                addressId: id ? id : '',
               },
             ],
           },
@@ -179,11 +154,7 @@ const ProfilePage = (props: UserPropsType) => {
         .execute();
       const data = response.body;
       const resultData = { customer: { ...data } };
-      const id: string | undefined = data.addresses[data.addresses.length - 1].id;
-      addBillingAddressId(id ? id : '');
       localStorage.setItem('userInfo', JSON.stringify(resultData));
-      setAddresses(data.addresses);
-      hideModal();
     } catch (error) {
       console.error('Error updating customer:', error);
     }
@@ -195,8 +166,22 @@ const ProfilePage = (props: UserPropsType) => {
         ? modalVisible && (
             <ModalPersonalDataEdit onHideModal={hideModal} customerData={customerData} />
           )
+        : currentModal === 'ModalAddNewAddress'
+        ? modalVisible && (
+            <ModalAddNewAddress
+              onHideModal={hideModal}
+              customerData={customerData}
+              setNewAddress={setAddresses}
+              setNewAddress2={setAddresses2}
+            />
+          )
         : modalVisible && (
-            <ModalAddressEdit onHideModal={hideModal} customerData={selectedAddress} />
+            <ModalAddressEdit
+              onHideModal={hideModal}
+              customerData={selectedAddress}
+              setNewAddress={setAddresses}
+              setNewAddress2={setAddresses2}
+            />
           )}
       <div className={s.profile_wrapper}>
         <h1 className={s.welcome_title}>User Profile</h1>
@@ -232,12 +217,15 @@ const ProfilePage = (props: UserPropsType) => {
                       className={s.edit_icon}
                       onClick={() => showModalAddress([billAddress])}
                     ></span>
-                    <span className={s.delete_icon}></span>
+                    <span
+                      className={s.delete_icon}
+                      onClick={() => deleteAddress(billAddress.id)}
+                    ></span>
                   </p>
                 );
               })}
 
-              {shippingAddress.map((shippAddress) => {
+              {addresses2.map((shippAddress) => {
                 return (
                   <p
                     key={shippAddress.id}
@@ -247,47 +235,76 @@ const ProfilePage = (props: UserPropsType) => {
                     {` ${shippAddress.country === 'IT' ? 'Italy' : 'Spain'} ${
                       shippAddress.city
                     } st.${shippAddress.streetName}, ${shippAddress.postalCode}`}
+                    <span
+                      className={s.edit_icon}
+                      onClick={() => showModalAddress([shippAddress])}
+                    ></span>
+                    <span
+                      className={s.delete_icon}
+                      onClick={() => deleteAddress(shippAddress.id)}
+                    ></span>
                   </p>
                 );
               })}
 
-              {defaultBilling.map((defBillAddress) => {
-                return (
-                  <p
-                    key={defBillAddress.id}
-                    className={
-                      props.userState === 'Login' ? s.hidden : s.welcome_content + ' ' + s.default
-                    }
-                  >
-                    <span className={s.span}>Default Billing address:</span>
-                    {defaultBillingAddressId
-                      ? ` ${defBillAddress.country === 'IT' ? 'Italy' : 'Spain'} ${
-                          defBillAddress.city
-                        } st.${defBillAddress.streetName}, ${defBillAddress.postalCode}`
-                      : ' was not selected'}
-                  </p>
-                );
-              })}
+              {defaultBilling.length === 0 ? (
+                defaultBilling.map((defBillAddress) => {
+                  return (
+                    <p
+                      key={defBillAddress.id}
+                      className={
+                        props.userState === 'Login' ? s.hidden : s.welcome_content + ' ' + s.default
+                      }
+                    >
+                      <span className={s.span}>Default Billing address:</span>
+                      {defaultBillingAddressId
+                        ? ` ${defBillAddress.country === 'IT' ? 'Italy' : 'Spain'} ${
+                            defBillAddress.city
+                          } st.${defBillAddress.streetName}, ${defBillAddress.postalCode}`
+                        : ' was not selected'}
+                    </p>
+                  );
+                })
+              ) : (
+                <p
+                  className={
+                    props.userState === 'Login' ? s.hidden : s.welcome_content + ' ' + s.default
+                  }
+                >
+                  <span className={s.span}>Default Billing address:</span>was not selected
+                </p>
+              )}
 
-              {defaultShipping.map((defShippAddress) => {
-                return (
-                  <p
-                    key={defShippAddress.id}
-                    className={
-                      props.userState === 'Login' ? s.hidden : s.welcome_content + ' ' + s.default
-                    }
-                  >
-                    <span className={s.span}>Default Shipping address:</span>
-                    {defaultShippingAddressId
-                      ? ` ${defShippAddress.country === 'IT' ? 'Italy' : 'Spain'} ${
-                          defShippAddress.city
-                        } st.${defShippAddress.streetName}, ${defShippAddress.postalCode}`
-                      : ' was not selected'}
-                  </p>
-                );
-              })}
+              {defaultShipping.length === 0 ? (
+                defaultShipping.map((defShippAddress) => {
+                  return (
+                    <p
+                      key={defShippAddress.id}
+                      className={
+                        props.userState === 'Login' ? s.hidden : s.welcome_content + ' ' + s.default
+                      }
+                    >
+                      <span className={s.span}>Default Shipping address:</span>
+                      {defaultShippingAddressId
+                        ? ` ${defShippAddress.country === 'IT' ? 'Italy' : 'Spain'} ${
+                            defShippAddress.city
+                          } st.${defShippAddress.streetName}, ${defShippAddress.postalCode}`
+                        : ' was not selected'}
+                    </p>
+                  );
+                })
+              ) : (
+                <p
+                  className={
+                    props.userState === 'Login' ? s.hidden : s.welcome_content + ' ' + s.default
+                  }
+                >
+                  <span className={s.span}>Default Shipping address:</span>
+                  was not selected
+                </p>
+              )}
 
-              <button onClick={checkSubmit}>Add Address</button>
+              <button onClick={showModalAddNewAddress}>Add Address</button>
             </div>
           </div>
         </div>
