@@ -18,6 +18,13 @@
         background-position: right -10px top 0px;
     }
 
+    @media (max-width: 720px) {
+        background: none;
+        // min-height: 250px;
+    }
+
+
+
     @media (max-width: 670px) {
         background: none;
         min-height: 250px;
