@@ -8,26 +8,24 @@ import CatalogPizzas from '../../../components/catalog-pizzas/pizzas';
 
 const CatalogNavToPizzas = (props: CatalogFoodNamedType) => {
   const sentRequest = async () => {
-    const keys = ['PS-1-P'];
-    const categoryIds = await Promise.all(keys.map(async (key) => await getCategoryID(key)));
-    const params = categoryIds.map((id) => `categories.id:"${id}"`);
+    const categoryId = await getCategoryID('PS-1-P');
+    const params = `categories.id:"${categoryId}"`;
     if (Array.isArray(requestsCatalogParams.filter)) {
       requestsCatalogParams.filter = params;
       const catalogState = await requestToCommerceForRender(requestsCatalogParams);
       if (catalogState) props.setProducts(catalogState);
+      requestsCatalogParams.filter = [];
     }
   };
   useEffect(() => {
     sentRequest();
   }, []);
   return (
-    <main>
-      <CatalogPizzas
-        products={props.products}
-        setProducts={props.setProducts}
-        setProductDetailes={props.setProductDetailes}
-      />
-    </main>
+    <CatalogPizzas
+      products={props.products}
+      setProducts={props.setProducts}
+      setProductDetailes={props.setProductDetailes}
+    />
   );
 };
 

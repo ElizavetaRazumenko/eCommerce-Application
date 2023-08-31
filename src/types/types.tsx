@@ -346,6 +346,7 @@ export type CatalogFoodNamedType = {
 export type CatalogDrinksType = {
   products: ProductsType;
   setProductDetailes: SetProductDetailsType;
+  setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
 };
 
 export type CatalogLayuotPropsType = {

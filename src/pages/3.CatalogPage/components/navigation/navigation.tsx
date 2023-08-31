@@ -141,38 +141,6 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
             </p>
             <p className={s.cathegory_type}>
               <NavLink
-                to='/catalog/food/sauses/non-spicy'
-                className={({ isActive }) =>
-                  isActive
-                    ? s.link + ' ' + s.no_active_link + ' ' + s.fourd_level
-                    : s.link + ' ' + s.fourd_level
-                }
-                onClick={() => {
-                  props.setCurrentCathegory('All > Food > Pizzas');
-                  localStorage.setItem('Cathegory', 'All > Food > Pizzas');
-                }}
-              >
-                Non-spicy
-              </NavLink>
-            </p>
-            <p className={s.cathegory_type}>
-              <NavLink
-                to='/catalog/food/sauses/vegetarian'
-                className={({ isActive }) =>
-                  isActive
-                    ? s.link + ' ' + s.no_active_link + ' ' + s.fourd_level
-                    : s.link + ' ' + s.fourd_level
-                }
-                onClick={() => {
-                  props.setCurrentCathegory('All > Food > Pizzas');
-                  localStorage.setItem('Cathegory', 'All > Food > Pizzas');
-                }}
-              >
-                Vegetarian
-              </NavLink>
-            </p>
-            <p className={s.cathegory_type}>
-              <NavLink
                 to='/catalog/food/sauses/low-calorie'
                 className={({ isActive }) =>
                   isActive

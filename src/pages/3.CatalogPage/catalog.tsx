@@ -21,6 +21,7 @@ const CatalogPage = (props: CatalogPropsType) => {
       const catalogState = await requestToCommerceForRender(requestsCatalogParams);
       console.log(catalogState);
       if (catalogState) props.setProducts(catalogState);
+      requestsCatalogParams.filter = [];
     }
   };
   useEffect(() => {

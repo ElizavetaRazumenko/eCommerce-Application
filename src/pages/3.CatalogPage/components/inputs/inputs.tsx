@@ -76,7 +76,8 @@ const Inputs = (props: CatalogInputsPropsType) => {
   };
 
   const removeFromRequetsFilter = async () => {
-    requestsCatalogParams.filter = [];
+    const info = localStorage.getItem('filter_params');
+    requestsCatalogParams.filter = info ? JSON.parse(info) : [];
     const catalogState = await requestToCommerce(requestsCatalogParams);
     if (catalogState) props.setProducts(catalogState);
   };

@@ -9,13 +9,13 @@ import CatalogSauces from '../../components/catalog-sauces/sauces';
 
 const Food = (props: CatalogFoodType) => {
   const sentRequest = async () => {
-    const keys = ['PS-1'];
-    const categoryIds = await Promise.all(keys.map(async (key) => await getCategoryID(key)));
-    const params = categoryIds.map((id) => `categories.id:"${id}"`);
+    const categoryId = await getCategoryID('PS-1');
+    const params = `categories.id:"${categoryId}"`;
     if (Array.isArray(requestsCatalogParams.filter)) {
       requestsCatalogParams.filter = params;
       const catalogState = await requestToCommerceForRender(requestsCatalogParams);
       if (catalogState) props.setProducts(catalogState);
+      requestsCatalogParams.filter = [];
     }
   };
   useEffect(() => {

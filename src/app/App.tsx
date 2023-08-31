@@ -9,9 +9,15 @@ import LoginPage from '../pages/1.LoginPage/login/login';
 import RegisterPage from '../pages/1.LoginPage/register/register';
 import Main from '../pages/2.MainPage/main';
 import CatalogPage from '../pages/3.CatalogPage/catalog';
+import CatalogNavCarbo from '../pages/3.CatalogPage/categotiesRoutes/Drinks/components/carb';
+import CatalogNavNonCarbo from '../pages/3.CatalogPage/categotiesRoutes/Drinks/components/nonCarb';
 import Drinks from '../pages/3.CatalogPage/categotiesRoutes/Drinks/drinks';
 import Food from '../pages/3.CatalogPage/categotiesRoutes/Food/food';
+import CatalogNavLowCalorie from '../pages/3.CatalogPage/categotiesRoutes/Food/Pizzas/component/lowCalorie';
+import CatalogNavNonSpicy from '../pages/3.CatalogPage/categotiesRoutes/Food/Pizzas/component/non_spicy';
+import CatalogNavVegetarian from '../pages/3.CatalogPage/categotiesRoutes/Food/Pizzas/component/vegetarian';
 import CatalogNavToPizzas from '../pages/3.CatalogPage/categotiesRoutes/Food/Pizzas/pizzas';
+import CatalogNavSauceLowCalorie from '../pages/3.CatalogPage/categotiesRoutes/Food/Sauces/components/sauceLowCalorie';
 import CatalogNavToSauces from '../pages/3.CatalogPage/categotiesRoutes/Food/Sauces/sauces';
 import CatalogPageLayout from '../pages/3.CatalogPage/Layout/catalogLayuot';
 import DetailedPage from '../pages/4.DetailedPage/detailedPage';
@@ -136,11 +142,109 @@ const App = () => {
               <Route
                 path='/catalog/food/pizzas'
                 element={
-                  <CatalogNavToPizzas
-                    products={productsData}
-                    setProductDetailes={setProductDetailes}
-                    setProducts={setProducts}
-                  />
+                  <main>
+                    <CatalogNavToPizzas
+                      products={productsData}
+                      setProductDetailes={setProductDetailes}
+                      setProducts={setProducts}
+                    />
+                  </main>
+                }
+              />
+              <Route
+                path='/catalog/food/pizzas/low-calorie'
+                element={
+                  <main>
+                    <CatalogNavLowCalorie
+                      products={productsData}
+                      setProductDetailes={setProductDetailes}
+                      setProducts={setProducts}
+                    />
+                  </main>
+                }
+              />
+              <Route
+                path='/catalog/food/pizzas/vegetarian'
+                element={
+                  <main>
+                    <CatalogNavVegetarian
+                      products={productsData}
+                      setProductDetailes={setProductDetailes}
+                      setProducts={setProducts}
+                    />
+                  </main>
+                }
+              />
+              <Route
+                path='/catalog/food/pizzas/non-spicy'
+                element={
+                  <main>
+                    <CatalogNavNonSpicy
+                      products={productsData}
+                      setProductDetailes={setProductDetailes}
+                      setProducts={setProducts}
+                    />
+                  </main>
+                }
+              />
+              <Route
+                path='/catalog/food/sauses'
+                element={
+                  <main>
+                    <CatalogNavToSauces
+                      products={productsData}
+                      setProductDetailes={setProductDetailes}
+                      setProducts={setProducts}
+                    />
+                  </main>
+                }
+              />
+              <Route
+                path='/catalog/food/sauses/low-calorie'
+                element={
+                  <main>
+                    <CatalogNavSauceLowCalorie
+                      products={productsData}
+                      setProductDetailes={setProductDetailes}
+                      setProducts={setProducts}
+                    />
+                  </main>
+                }
+              />
+              <Route
+                path='/catalog/drinks'
+                element={
+                  <main>
+                    <Drinks
+                      products={productsData}
+                      setProductDetailes={setProductDetailes}
+                      setProducts={setProducts}
+                    />
+                  </main>
+                }
+              />
+              <Route
+                path='/catalog/drinks/non-carbonated'
+                element={
+                  <main>
+                    <CatalogNavNonCarbo
+                      products={productsData}
+                      setProductDetailes={setProductDetailes}
+                      setProducts={setProducts}
+                    />
+                  </main>
+                }
+              />
+              <Route
+                path='/catalog/drinks/carbonated'
+                element={
+                  <main>
+                    <CatalogNavCarbo
+                      products={productsData}
+                      setProductDetailes={setProductDetailes}
+                      setProducts={setProducts}
+                    />
+                  </main>
                 }
               />
               {/* 
