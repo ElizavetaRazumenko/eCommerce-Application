@@ -19,7 +19,6 @@ const CatalogPage = (props: CatalogPropsType) => {
     if (Array.isArray(requestsCatalogParams.filter)) {
       requestsCatalogParams.filter = params;
       const catalogState = await requestToCommerceForRender(requestsCatalogParams);
-      console.log(catalogState);
       if (catalogState) props.setProducts(catalogState);
       requestsCatalogParams.filter = [];
       localStorage.removeItem('filter_params');
