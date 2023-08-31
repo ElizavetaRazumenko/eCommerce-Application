@@ -2,16 +2,8 @@ import React, { useState, ChangeEvent, useRef } from 'react';
 
 import s from './inputs.module.scss';
 
-import {
-  sortByAlphabetAZ,
-  sortByAlphabetZA,
-  sortByLowerPrice,
-  sortByHigherPrice,
-  search,
-  filter,
-  getProducts,
-  requestToCommerce,
-} from '../../../../shared/index';
+import { search, requestToCommerce } from '../../../../shared/index';
+import requestsCatalogParams from '../../../../state/requestObj';
 import { CatalogInputsPropsType } from '../../../../types/types';
 
 const Inputs = (props: CatalogInputsPropsType) => {
@@ -71,27 +63,21 @@ const Inputs = (props: CatalogInputsPropsType) => {
   };
 
   const sentRequetsSort = async (condition: string) => {
-    const requestObj = props.requestsCatalogParams;
-    requestObj.sort! = [condition];
-    props.setRequestsCatalogParams(requestObj);
-    const catalogState = await requestToCommerce(requestObj);
+    requestsCatalogParams.sort! = [condition];
+    const catalogState = await requestToCommerce(requestsCatalogParams);
     if (catalogState) props.setProducts(catalogState);
   };
   const sentRequetsFilter = async (id: string) => {
-    const requestObj = props.requestsCatalogParams;
-    if (Array.isArray(requestObj.filter)) {
-      requestObj.filter!.push(`variants.attributes.${id}:"yes"`);
-      props.setRequestsCatalogParams(requestObj);
-      const catalogState = await requestToCommerce(requestObj);
+    if (Array.isArray(requestsCatalogParams.filter)) {
+      requestsCatalogParams.filter!.push(`variants.attributes.${id}:"yes"`);
+      const catalogState = await requestToCommerce(requestsCatalogParams);
       if (catalogState) props.setProducts(catalogState);
     }
   };
 
   const removeFromRequetsFilter = async () => {
-    const requestObj = props.requestsCatalogParams;
-    requestObj.filter = [''];
-    props.setRequestsCatalogParams(requestObj);
-    const catalogState = await requestToCommerce(requestObj);
+    requestsCatalogParams.filter = [];
+    const catalogState = await requestToCommerce(requestsCatalogParams);
     if (catalogState) props.setProducts(catalogState);
   };
 

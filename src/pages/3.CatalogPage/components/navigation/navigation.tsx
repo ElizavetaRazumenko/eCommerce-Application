@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import s from './navigation.module.scss';
 
-import { getCategoryProduct, getProducts } from '../../../../shared';
+import { getProducts } from '../../../../shared';
 import { CatalogNavPropsType } from '../../../../types/types';
 
 const CatalogNavigation = (props: CatalogNavPropsType) => {
@@ -84,10 +84,6 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
                     : s.link + ' ' + s.fourd_level
                 }
                 onClick={async () => {
-                  const productsData = await getCategoryProduct('PS-1-P-NSF');
-                  if (productsData) {
-                    props.setProducts(productsData);
-                  }
                   props.setCurrentCathegory('All > Food > Pizzas');
                   localStorage.setItem('Cathegory', 'All > Food > Pizzas');
                 }}
@@ -104,10 +100,6 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
                     : s.link + ' ' + s.fourd_level
                 }
                 onClick={async () => {
-                  const productsData = await getCategoryProduct('PS-1-P-VF');
-                  if (productsData) {
-                    props.setProducts(productsData);
-                  }
                   props.setCurrentCathegory('All > Food > Pizzas');
                   localStorage.setItem('Cathegory', 'All > Food > Pizzas');
                 }}
@@ -124,10 +116,6 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
                     : s.link + ' ' + s.fourd_level
                 }
                 onClick={async () => {
-                  const productsData = await getCategoryProduct('PS-1-P-LCF');
-                  if (productsData) {
-                    props.setProducts(productsData);
-                  }
                   props.setCurrentCathegory('All > Food > Pizzas');
                   localStorage.setItem('Cathegory', 'All > Food > Pizzas');
                 }}

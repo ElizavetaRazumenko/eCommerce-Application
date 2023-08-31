@@ -334,8 +334,6 @@ export type CatalogPropsType = {
 export type CatalogFoodType = {
   products: ProductsType;
   setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
-  productsUpdate: ProductsType;
-  setUpdateProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
   setProductDetailes: SetProductDetailsType;
 };
 
@@ -354,22 +352,16 @@ export type CatalogLayuotPropsType = {
   setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
   currentCathegory: string;
   setCurrentCathegory: React.Dispatch<React.SetStateAction<string>>;
-  requestsCatalogParams: requestCatalogParamsType;
-  setRequestsCatalogParams: React.Dispatch<React.SetStateAction<requestCatalogParamsType>>;
 };
 
 export type CatalogInputsPropsType = {
   setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
-  requestsCatalogParams: requestCatalogParamsType;
-  setRequestsCatalogParams: React.Dispatch<React.SetStateAction<requestCatalogParamsType>>;
 };
 
 export type CatalogNavPropsType = {
   currentCathegory: string;
   setCurrentCathegory: React.Dispatch<React.SetStateAction<string>>;
   setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
-  requestsCatalogParams: requestCatalogParamsType;
-  setRequestsCatalogParams: React.Dispatch<React.SetStateAction<requestCatalogParamsType>>;
 };
 
 //                                                                  DETAILS PAGE
