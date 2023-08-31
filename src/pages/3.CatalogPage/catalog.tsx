@@ -22,6 +22,7 @@ const CatalogPage = (props: CatalogPropsType) => {
       console.log(catalogState);
       if (catalogState) props.setProducts(catalogState);
       requestsCatalogParams.filter = [];
+      localStorage.removeItem('filter_params');
     }
   };
   useEffect(() => {

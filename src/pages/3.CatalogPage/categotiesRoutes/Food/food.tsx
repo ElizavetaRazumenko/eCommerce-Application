@@ -16,6 +16,7 @@ const Food = (props: CatalogFoodType) => {
       const catalogState = await requestToCommerceForRender(requestsCatalogParams);
       if (catalogState) props.setProducts(catalogState);
       requestsCatalogParams.filter = [];
+      localStorage.removeItem('filter_params');
     }
   };
   useEffect(() => {
