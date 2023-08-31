@@ -4,6 +4,10 @@
 .wrapper {
     margin-top: 25px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .cathegory_selection {
@@ -38,13 +42,13 @@
     box-sizing: border-box;
     cursor: pointer;
     width: 250px;
-    height: 70px;
+    height: 30px;
     background-color: rgba($unactive-register-grey, .6);
     color: $main-light;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
-    padding: 0 15px 15px 35px;
+    padding: 0 15px 5px 35px;
     font-size: 1rem;
     transition: .6s;
 
@@ -56,17 +60,21 @@
 .cathegory {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     color: $main-light;
     font-weight: 700;
-    font-size: .9rem;
+    width: 250px;
+    height: 20px;
+    padding: 0 15px 5px 35px;
+    font-size: .8rem;
+    margin-bottom: 10px;
 }
 
 .title {
     font-size: 1rem;
-    font-weight: 700;
     color: $main-light;
     margin-top: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .link {
@@ -106,7 +114,7 @@
 }
 
 .navigation_wrapper.opened {
-    height: 560px;
+    height: 540px;
 }
 .cathegory_selection.unhidden {
     height: 490px;
