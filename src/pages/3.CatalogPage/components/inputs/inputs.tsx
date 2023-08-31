@@ -10,10 +10,11 @@ import {
   search,
   filter,
   getProducts,
+  requestToCommerce,
 } from '../../../../shared/index';
-import { ProductsType } from '../../../../types/types';
+import { CatalogInputsPropsType } from '../../../../types/types';
 
-const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<ProductsType>> }) => {
+const Inputs = (props: CatalogInputsPropsType) => {
   const sortRef = useRef<HTMLDivElement>(null);
   const sortMenuRef = useRef<HTMLDivElement>(null);
   const filterRef = useRef<HTMLDivElement>(null);
@@ -26,6 +27,7 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
   const children = useRef<HTMLParagraphElement>(null);
   const lowCalorie = useRef<HTMLParagraphElement>(null);
   const resetFilter = useRef<HTMLParagraphElement>(null);
+  const [sortBy, setSortBy] = useState('Sort by');
   const [findBy, setFindBy] = useState('');
 
   const sortChange = (ref: React.RefObject<HTMLParagraphElement>) => {
@@ -34,13 +36,14 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
     z_a.current!.classList.remove(s.selected);
     a_z.current!.classList.remove(s.selected);
     ref.current!.classList.toggle(s.selected);
+    setSortBy(ref.current!.textContent || '');
     openMenuSort(sortRef, 'sort');
   };
 
   const findChange = async (event: ChangeEvent<HTMLInputElement>) => {
     setFindBy(event.target.value);
-    const value = await search(event.target.value);
-    console.log(value);
+    const catalogState = await search(event.target.value);
+    if (catalogState) props.setProducts(catalogState);
   };
 
   const openMenuSort = (ref: React.RefObject<HTMLDivElement>, type: string) => {
@@ -67,41 +70,63 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
     openMenuSort(filterRef, 'filter');
   };
 
+  const sentRequetsSort = async (condition: string) => {
+    const requestObj = props.requestsCatalogParams;
+    requestObj.sort! = [condition];
+    props.setRequestsCatalogParams(requestObj);
+    const catalogState = await requestToCommerce(requestObj);
+    if (catalogState) props.setProducts(catalogState);
+  };
+  const sentRequetsFilter = async (id: string) => {
+    const requestObj = props.requestsCatalogParams;
+    if (Array.isArray(requestObj.filter)) {
+      requestObj.filter!.push(`variants.attributes.${id}:"yes"`);
+      props.setRequestsCatalogParams(requestObj);
+      const catalogState = await requestToCommerce(requestObj);
+      if (catalogState) props.setProducts(catalogState);
+    }
+  };
+
+  const removeFromRequetsFilter = async () => {
+    const requestObj = props.requestsCatalogParams;
+    requestObj.filter = [''];
+    props.setRequestsCatalogParams(requestObj);
+    const catalogState = await requestToCommerce(requestObj);
+    if (catalogState) props.setProducts(catalogState);
+  };
+
   return (
     <div className={s.inputs_wrapper}>
       <div className={s.sort_menu}>
         <div className={s.div_sort} onClick={() => openMenuSort(sortRef, 'sort')} ref={sortRef}>
-          <span>Sort by</span>
+          <span>{sortBy}</span>
           <div className={s.sort_arrow}></div>
         </div>
         <div className={s.sort_menu_choise + ' ' + s.hidden} ref={sortMenuRef}>
           <p
             className={s.sort_item}
             onClick={async () => {
-              const catalogState = await sortByLowerPrice();
-              if (catalogState) props.setProducts(catalogState);
+              await sentRequetsSort('price asc');
               sortChange(lowPrice);
             }}
             ref={lowPrice}
           >
-            From low to high average price
+            From low to high price
           </p>
           <p
             className={s.sort_item}
             onClick={async () => {
-              const catalogState = await sortByHigherPrice();
-              if (catalogState) props.setProducts(catalogState);
+              await sentRequetsSort('price desc');
               sortChange(hightPrice);
             }}
             ref={hightPrice}
           >
-            From high to low average price
+            From high to low price
           </p>
           <p
             className={s.sort_item}
             onClick={async () => {
-              const catalogState = await sortByAlphabetAZ();
-              if (catalogState) props.setProducts(catalogState);
+              await sentRequetsSort('name.en-US asc');
               sortChange(a_z);
             }}
             ref={a_z}
@@ -111,8 +136,7 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
           <p
             className={s.sort_item}
             onClick={async () => {
-              const catalogState = await sortByAlphabetZA();
-              if (catalogState) props.setProducts(catalogState);
+              await sentRequetsSort('name.en-US desc');
               sortChange(z_a);
             }}
             ref={z_a}
@@ -144,8 +168,7 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
             className={s.sort_item}
             onClick={async () => {
               if (!vegetarian.current!.classList.contains(s.selected)) {
-                const filteredItems = await filter('vf');
-                if (filteredItems) props.setProducts(filteredItems);
+                await sentRequetsFilter('vf');
               }
               changeChouse(vegetarian);
             }}
@@ -158,8 +181,7 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
             ref={children}
             onClick={async () => {
               if (!children.current!.classList.contains(s.selected)) {
-                const filteredItems = await filter('fc');
-                if (filteredItems) props.setProducts(filteredItems);
+                await sentRequetsFilter('fc');
               }
               changeChouse(children);
             }}
@@ -171,8 +193,7 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
             ref={lowCalorie}
             onClick={async () => {
               if (!lowCalorie.current!.classList.contains(s.selected)) {
-                const filteredItems = await filter('lc');
-                if (filteredItems) props.setProducts(filteredItems);
+                await sentRequetsFilter('lc');
               }
               changeChouse(lowCalorie);
             }}
@@ -182,8 +203,7 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
           <p
             className={s.sort_item}
             onClick={async () => {
-              const catalogState = await getProducts();
-              if (catalogState) props.setProducts(catalogState);
+              await removeFromRequetsFilter();
               resetFilters();
             }}
             ref={resetFilter}

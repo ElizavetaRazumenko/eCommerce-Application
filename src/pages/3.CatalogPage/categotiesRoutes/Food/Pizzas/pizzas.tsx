@@ -8,7 +8,6 @@ const CatalogNavToPizzas = (props: CatalogFoodNamedType) => {
         products={props.products}
         setProducts={props.setProducts}
         setProductDetailes={props.setProductDetailes}
-        page={props.page}
       />
     </main>
   );

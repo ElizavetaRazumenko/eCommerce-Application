@@ -20,10 +20,18 @@ import BasketPage from '../pages/6.BasketPage/basket';
 import ErrorPage from '../pages/7.ErrorPage/error';
 import Layout from '../pages/globalComponents/layout/layout';
 import { getProducts } from '../shared';
-import { ProductDetailsType, ProductsType } from '../types/types';
+import { ProductDetailsType, ProductsType, requestCatalogParamsType } from '../types/types';
 
 const App = () => {
+  // Two states of the object, which will be compared and,
+  // depending on the conditions that have arrived in the updated object,
+  // the current one will change.
   const [productsData, setProducts] = useState<ProductsType>(startProductObject);
+  const [requestsCatalogParams, setRequestsCatalogParams] = useState<requestCatalogParamsType>({
+    limit: 30,
+    sort: [''],
+    filter: [''],
+  });
   const savedProductDetailesStringify = localStorage.getItem('ProductDetailes');
   const savedDetailes: ProductDetailsType | null = savedProductDetailesStringify
     ? JSON.parse(savedProductDetailesStringify)
@@ -107,6 +115,8 @@ const App = () => {
                   setProducts={setProducts}
                   currentCathegory={currentCathegory}
                   setCurrentCathegory={setCurrentCathegory}
+                  requestsCatalogParams={requestsCatalogParams}
+                  setRequestsCatalogParams={setRequestsCatalogParams}
                 />
               }
             >
@@ -120,12 +130,14 @@ const App = () => {
                   />
                 }
               />
-              <Route
+              {/* <Route
                 path='/catalog/food'
                 element={
                   <Food
                     products={productsData}
                     setProducts={setProducts}
+                    productsUpdate={updateProductsData}
+                    setUpdateProducts={setUpdateProducts}
                     setProductDetailes={setProductDetailes}
                   />
                 }
@@ -187,7 +199,7 @@ const App = () => {
                     setProducts={setProducts}
                   />
                 }
-              />
+              /> */}
             </Route>
             <Route path='/details' element={<DetailedPage productDetailes={productDetailes} />} />
             <Route path='/profile' element={<ProfilePage userState={userState} />} />

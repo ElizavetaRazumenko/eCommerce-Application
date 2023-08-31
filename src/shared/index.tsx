@@ -12,7 +12,7 @@ import {
   // ExistingTokenMiddlewareOptions, // Required for sending HTTP requests
 } from '@commercetools/sdk-client-v2';
 
-import { ProductsType } from '../types/types';
+import { ProductsType, requestCatalogParamsType } from '../types/types';
 
 const fetch = require('node-fetch');
 
@@ -268,29 +268,6 @@ export const sortByAlphabetAZ = async () => {
   }
 };
 
-export const search = async (value: string) => {
-  try {
-    const products = await apiRoot
-      .productProjections()
-      .search()
-      .get({
-        queryArgs: {
-          'text.en-US': value,
-          limit: 29,
-          fuzzy: true,
-        },
-      })
-      .execute();
-    // const searchProducts = products.body.results.filter((result) =>
-    //   result.name['en-US'].toLowerCase().includes(value.toLowerCase()),
-    // );
-    return products.body.results as ProductsType;
-  } catch (error) {
-    console.error('error searching:', error);
-    throw error;
-  }
-};
-
 // export const search = async (value: string) => {
 //   try {
 //     const products = await apiRoot
@@ -298,20 +275,43 @@ export const search = async (value: string) => {
 //       .search()
 //       .get({
 //         queryArgs: {
-//           where: `name(en-US="${value}")`,
-//           limit: 59,
+//           'text.en-US': value,
+//           limit: 29,
+//           fuzzy: true,
 //         },
 //       })
 //       .execute();
 //     const searchProducts = products.body.results.filter((result) =>
 //       result.name['en-US'].toLowerCase().includes(value.toLowerCase()),
 //     );
-//     return searchProducts as ProductsType;
+//     return products.body.results as ProductsType;
 //   } catch (error) {
 //     console.error('error searching:', error);
 //     throw error;
 //   }
 // };
+
+export const search = async (value: string) => {
+  try {
+    const products = await apiRoot
+      .productProjections()
+      .search()
+      .get({
+        queryArgs: {
+          where: `name(en-US="${value}")`,
+          limit: 59,
+        },
+      })
+      .execute();
+    const searchProducts = products.body.results.filter((result) =>
+      result.name['en-US'].toLowerCase().includes(value.toLowerCase()),
+    );
+    return searchProducts as ProductsType;
+  } catch (error) {
+    console.error('error searching:', error);
+    throw error;
+  }
+};
 
 export const filter = async (id: string) => {
   try {
@@ -322,6 +322,21 @@ export const filter = async (id: string) => {
         queryArgs: {
           filter: [`variants.attributes.${id}:"yes"`],
         },
+      })
+      .execute();
+    return products.body.results as ProductsType;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const requestToCommerce = async (data: requestCatalogParamsType) => {
+  try {
+    const products = await apiRoot
+      .productProjections()
+      .search()
+      .get({
+        queryArgs: data,
       })
       .execute();
     return products.body.results as ProductsType;

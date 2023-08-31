@@ -10,7 +10,6 @@ const Food = (props: CatalogFoodType) => {
         products={props.products}
         setProducts={props.setProducts}
         setProductDetailes={props.setProductDetailes}
-        page='pizzas'
       />
     </main>
   );

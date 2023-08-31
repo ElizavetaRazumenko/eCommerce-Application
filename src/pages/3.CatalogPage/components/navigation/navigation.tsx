@@ -16,7 +16,7 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
       >
         <div className={s.category_selection_wrapper}>
           <p className={s.title}>Select a category</p>
-          <div className={s.arrow_down}></div>
+          <div className={openMenu ? s.arrow_down + ' ' + s.arrow_up : s.arrow_down}></div>
         </div>
         <div className={s.cathegory}>
           <span>Current: </span>

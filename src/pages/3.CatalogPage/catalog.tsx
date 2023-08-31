@@ -13,7 +13,6 @@ const CatalogPage = (props: CatalogPropsType) => {
         products={props.products}
         setProducts={props.setProducts}
         setProductDetailes={props.setProductDetailes}
-        page={'pizzas'}
       />
       <CatalogSauces products={props.products} setProductDetailes={props.setProductDetailes} />
       <CatalogDrinks products={props.products} setProductDetailes={props.setProductDetailes} />

@@ -2,12 +2,9 @@ import Drink from './components/drink';
 import s from './drinks.module.scss';
 
 import infoProducts from '../../../../entities/product';
-import { ProductsType, SetProductDetailsType } from '../../../../types/types';
+import { CatalogDrinksProps } from '../../../../types/types';
 
-const CatalogDrinks = (props: {
-  products: ProductsType;
-  setProductDetailes: SetProductDetailsType;
-}) => {
+const CatalogDrinks = (props: CatalogDrinksProps) => {
   const drinksItems = props.products.filter((el) =>
     infoProducts.drinks.find((item) => item.key === el.key),
   );

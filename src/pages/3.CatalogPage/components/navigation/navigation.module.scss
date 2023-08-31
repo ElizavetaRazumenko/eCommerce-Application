@@ -25,6 +25,11 @@
         background-image: url('../../../../assets/png/downArrow.png');
         background-repeat: no-repeat;
         background-size: contain;
+        transition: .6s;
+    }
+
+    .arrow_up {
+        transform: rotate(180deg);
     }
 }
 

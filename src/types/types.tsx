@@ -1,3 +1,4 @@
+import { QueryParam } from '@commercetools/platform-sdk';
 import { To } from 'react-router-dom';
 export interface IFooterProps {
   className?: string;
@@ -289,11 +290,39 @@ export type CustomerAddressesType = AddressType[] | null;
 
 //                                                                   CATALOG PAGE
 
+export type requestCatalogParamsType = {
+  fuzzy?: boolean;
+  fuzzyLevel?: number;
+  markMatchingVariants?: boolean;
+  filter?: string | string[];
+  'filter.facets'?: string | string[];
+  'filter.query'?: string | string[];
+  facet?: string | string[];
+  sort?: string | string[];
+  limit?: number;
+  offset?: number;
+  withTotal?: boolean;
+  staged?: boolean;
+  priceCurrency?: string;
+  priceCountry?: string;
+  priceCustomerGroup?: string;
+  priceChannel?: string;
+  localeProjection?: string | string[];
+  storeProjection?: string;
+  expand?: string | string[];
+  [key: string]: QueryParam;
+};
+export type CatalogSaucesProps = {
+  products: ProductsType;
+  setProductDetailes: SetProductDetailsType;
+};
+
+export type CatalogDrinksProps = CatalogSaucesProps;
+
 export type CatalogPizzasProps = {
   products: ProductsType;
   setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
   setProductDetailes: SetProductDetailsType;
-  page: 'pizzas' | 'low-calorie' | 'non-spicy' | 'vegetarian';
 };
 
 export type CatalogPropsType = {
@@ -305,6 +334,8 @@ export type CatalogPropsType = {
 export type CatalogFoodType = {
   products: ProductsType;
   setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
+  productsUpdate: ProductsType;
+  setUpdateProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
   setProductDetailes: SetProductDetailsType;
 };
 
@@ -312,7 +343,6 @@ export type CatalogFoodNamedType = {
   products: ProductsType;
   setProductDetailes: SetProductDetailsType;
   setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
-  page: 'pizzas' | 'low-calorie' | 'non-spicy' | 'vegetarian';
 };
 
 export type CatalogDrinksType = {
@@ -324,12 +354,22 @@ export type CatalogLayuotPropsType = {
   setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
   currentCathegory: string;
   setCurrentCathegory: React.Dispatch<React.SetStateAction<string>>;
+  requestsCatalogParams: requestCatalogParamsType;
+  setRequestsCatalogParams: React.Dispatch<React.SetStateAction<requestCatalogParamsType>>;
+};
+
+export type CatalogInputsPropsType = {
+  setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
+  requestsCatalogParams: requestCatalogParamsType;
+  setRequestsCatalogParams: React.Dispatch<React.SetStateAction<requestCatalogParamsType>>;
 };
 
 export type CatalogNavPropsType = {
   currentCathegory: string;
   setCurrentCathegory: React.Dispatch<React.SetStateAction<string>>;
   setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
+  requestsCatalogParams: requestCatalogParamsType;
+  setRequestsCatalogParams: React.Dispatch<React.SetStateAction<requestCatalogParamsType>>;
 };
 
 //                                                                  DETAILS PAGE
