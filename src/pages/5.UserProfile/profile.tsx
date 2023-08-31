@@ -20,7 +20,7 @@ const ProfilePage = (props: UserPropsType) => {
 
   const customer = localStorage.getItem('userInfo');
   let customerAddresses: CustomerAddressesType = null;
-  let defaultBillingAddressId: string | null = null;
+  let defaultBillingAddressId: string | null | undefined = null;
   let defaultShippingAddressId: string | null = null;
   let firstName: string | null = null;
   let lastName: string | null = null;
@@ -91,9 +91,11 @@ const ProfilePage = (props: UserPropsType) => {
 
   let shippingAddress: AddressType[] = Object.assign({}, billingAddress);
 
-  let defaultBilling: AddressType[] = Object.assign({}, billingAddress);
+  // let defaultBilling: AddressType[] = Object.assign({}, billingAddress);
+  let defaultBilling: AddressType[] = [];
 
-  let defaultShipping: AddressType[] = Object.assign({}, billingAddress);
+  // let defaultShipping: AddressType[] = Object.assign({}, billingAddress);
+  let defaultShipping: AddressType[] = [];
 
   if (customerAddresses) {
     const billingAddressId: string = JSON.parse(localStorage.getItem('userInfo') || '').customer
@@ -105,7 +107,7 @@ const ProfilePage = (props: UserPropsType) => {
     shippingAddress = customerAddresses.filter((el) => shippingAddressId.includes(el.id))!;
 
     if (defaultBillingAddressId) {
-      defaultBilling = customerAddresses.filter((el) => defaultBillingAddressId?.includes(el.id))!;
+      defaultBilling = customerAddresses.filter((el) => defaultBillingAddressId?.includes(el.id));
     }
 
     if (defaultShippingAddressId) {
@@ -115,7 +117,11 @@ const ProfilePage = (props: UserPropsType) => {
 
   const [addresses, setAddresses] = useState(billingAddress);
   const [addresses2, setAddresses2] = useState(shippingAddress);
-  console.log(addresses, addresses2);
+  const [defBillAddress, setDefBillAddress] = useState(defaultBilling);
+  const [defShipping, setShippingAddress] = useState(defaultShipping);
+  const [isCheckedDefBillAddress, setIsCheckedDefBillAddress] = useState('');
+  const [isCheckedDefShippAddress, setIsCheckedDefShippAddress] = useState('');
+
   const showModalPersnal = () => {
     setCurrentModal('ModalPersonalDataEdit');
     setModalVisible(true);
@@ -133,6 +139,83 @@ const ProfilePage = (props: UserPropsType) => {
 
   const hideModal = () => {
     setModalVisible(false);
+  };
+  const hendleCheckboxChangeDefaultBillingAddress = (
+    id: string,
+    updateAddressList: AddressType[],
+  ) => {
+    const defBillingAddress = updateAddressList?.find((address) => address.id === id);
+    if (defBillingAddress) {
+      setDefBillAddress([defBillingAddress]);
+    }
+    setIsCheckedDefBillAddress(id);
+  };
+
+  const hendleCheckboxChangeDefaultShippingAddress = (
+    id: string,
+    updateAddressList: AddressType[],
+  ) => {
+    const defBillingAddress = updateAddressList?.find((address) => address.id === id);
+    if (defBillingAddress) {
+      setShippingAddress([defBillingAddress]);
+    }
+    setIsCheckedDefShippAddress(id);
+  };
+
+  const addDefBillingAddressId = async (id: string) => {
+    try {
+      const response = await getApiRoot()
+        .customers()
+        .withId({ ID: customerData.id ? customerData.id : '' })
+        .post({
+          body: {
+            version: customerData.version ? customerData.version : 0,
+            actions: [
+              {
+                action: 'setDefaultBillingAddress',
+                addressId: id,
+              },
+            ],
+          },
+        })
+        .execute();
+      const data = response.body;
+      const resultData = { customer: { ...data } };
+      localStorage.setItem('userInfo', JSON.stringify(resultData));
+      const updateAddressList = data.addresses as AddressType[];
+      hendleCheckboxChangeDefaultBillingAddress(id, updateAddressList);
+      return data;
+    } catch (error) {
+      console.error('Error updating customer:', error);
+    }
+  };
+
+  const addDefShippingAddressId = async (id: string) => {
+    try {
+      const response = await getApiRoot()
+        .customers()
+        .withId({ ID: customerData.id ? customerData.id : '' })
+        .post({
+          body: {
+            version: customerData.version ? customerData.version : 0,
+            actions: [
+              {
+                action: 'setDefaultShippingAddress',
+                addressId: id,
+              },
+            ],
+          },
+        })
+        .execute();
+      const data = response.body;
+      const resultData = { customer: { ...data } };
+      localStorage.setItem('userInfo', JSON.stringify(resultData));
+      const updateAddressList = data.addresses as AddressType[];
+      hendleCheckboxChangeDefaultShippingAddress(id, updateAddressList);
+      return data;
+    } catch (error) {
+      console.error('Error updating customer:', error);
+    }
   };
 
   const deleteAddress = async (id: string) => {
@@ -155,6 +238,15 @@ const ProfilePage = (props: UserPropsType) => {
       const data = response.body;
       const resultData = { customer: { ...data } };
       localStorage.setItem('userInfo', JSON.stringify(resultData));
+      if (setAddresses && setAddresses2) {
+        const updateAddressesList = resultData.customer.addresses as AddressType[];
+        const shippId = resultData.customer.shippingAddressIds;
+        const billId = resultData.customer.billingAddressIds;
+        const updateShippingList = updateAddressesList.filter((el) => shippId?.includes(el.id));
+        const updateBillingList = updateAddressesList.filter((el) => billId?.includes(el.id));
+        setAddresses(updateBillingList);
+        setAddresses2(updateShippingList);
+      }
     } catch (error) {
       console.error('Error updating customer:', error);
     }
@@ -221,6 +313,12 @@ const ProfilePage = (props: UserPropsType) => {
                       className={s.delete_icon}
                       onClick={() => deleteAddress(billAddress.id)}
                     ></span>
+                    <input
+                      type='checkbox'
+                      checked={isCheckedDefBillAddress === billAddress.id}
+                      value={billAddress.id}
+                      onChange={() => addDefBillingAddressId(billAddress.id)}
+                    />
                   </p>
                 );
               })}
@@ -243,12 +341,18 @@ const ProfilePage = (props: UserPropsType) => {
                       className={s.delete_icon}
                       onClick={() => deleteAddress(shippAddress.id)}
                     ></span>
+                    <input
+                      type='checkbox'
+                      checked={isCheckedDefShippAddress === shippAddress.id}
+                      value={shippAddress.id}
+                      onChange={() => addDefShippingAddressId(shippAddress.id)}
+                    />
                   </p>
                 );
               })}
 
-              {defaultBilling.length === 0 ? (
-                defaultBilling.map((defBillAddress) => {
+              {defBillAddress.length !== 0 ? (
+                defBillAddress.map((defBillAddress) => {
                   return (
                     <p
                       key={defBillAddress.id}
@@ -275,8 +379,8 @@ const ProfilePage = (props: UserPropsType) => {
                 </p>
               )}
 
-              {defaultShipping.length === 0 ? (
-                defaultShipping.map((defShippAddress) => {
+              {defShipping.length !== 0 ? (
+                defShipping.map((defShippAddress) => {
                   return (
                     <p
                       key={defShippAddress.id}

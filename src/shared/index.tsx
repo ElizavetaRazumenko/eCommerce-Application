@@ -149,7 +149,7 @@ export const getApiRoot = () => {
   return createApiBuilderFromCtpClient(client).withProjectKey({
     projectKey: 'ecommece-application',
   });
-=======
+};
 export const getProducts = async () => {
   try {
     if (!localStorage.getItem('Catalog info')) {

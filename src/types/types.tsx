@@ -95,7 +95,6 @@ export type PizzaParamsType = {
   price: string;
 };
 
-
 //......................................................PROFIL PAGE TYPE / INTERFACE
 
 export type Customer = {
@@ -154,7 +153,8 @@ export type CustomerAddressType = {
   key: string;
   postalCode: string;
   streetName: string;
-=======
+};
+
 export type PizzaParamsCatalogType = {
   size: string;
   length: string;
