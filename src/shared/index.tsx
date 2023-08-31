@@ -169,33 +169,6 @@ export const getProducts = async () => {
   }
 };
 
-export const getCategoryID = async (key: string) => {
-  try {
-    const categories = await apiRoot.categories().get().execute();
-    return categories.body.results.find((el) => el.key === key)!.id;
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-export const getCategoryProduct = async (key: string) => {
-  try {
-    const id = await getCategoryID(key);
-    const product = await apiRoot
-      .productProjections()
-      .search()
-      .get({
-        queryArgs: {
-          filter: `categories.id:"${id}"`,
-        },
-      })
-      .execute();
-    return product.body.results as ProductsType;
-  } catch (e) {
-    console.log(e);
-  }
-};
-
 export const sortByLowerPrice = async () => {
   try {
     const products = await apiRoot
@@ -340,6 +313,47 @@ export const requestToCommerce = async (data: requestCatalogParamsType) => {
       })
       .execute();
     return products.body.results as ProductsType;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const requestToCommerceForRender = async (data: requestCatalogParamsType) => {
+  try {
+    const products = await apiRoot
+      .productProjections()
+      .get({
+        queryArgs: data,
+      })
+      .execute();
+    return products.body.results as ProductsType;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getCategoryID = async (key: string) => {
+  try {
+    const categories = await apiRoot.categories().get().execute();
+    return categories.body.results.find((el) => el.key === key)!.id;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getCategoryProduct = async (key: string) => {
+  try {
+    const id = await getCategoryID(key);
+    const product = await apiRoot
+      .productProjections()
+      .search()
+      .get({
+        queryArgs: {
+          filter: `categories.id:"${id}"`,
+        },
+      })
+      .execute();
+    return product.body.results as ProductsType;
   } catch (e) {
     console.log(e);
   }
