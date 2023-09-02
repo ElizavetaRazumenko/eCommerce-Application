@@ -32,12 +32,6 @@ const Inputs = (props: CatalogInputsPropsType) => {
     openMenuSort(sortRef, 'sort');
   };
 
-  const findChange = async (event: ChangeEvent<HTMLInputElement>) => {
-    setFindBy(event.target.value);
-    const catalogState = await search(event.target.value);
-    if (catalogState) props.setProducts(catalogState);
-  };
-
   const openMenuSort = (ref: React.RefObject<HTMLDivElement>, type: string) => {
     ref.current!.classList.toggle(s.open);
     if (type === 'sort') {
@@ -73,6 +67,19 @@ const Inputs = (props: CatalogInputsPropsType) => {
       const catalogState = await requestToCommerce(requestsCatalogParams);
       if (catalogState) props.setProducts(catalogState);
     }
+  };
+
+  const findChange = async (event: ChangeEvent<HTMLInputElement>) => {
+    setFindBy(event.target.value);
+    if (event.target.value === '') {
+      delete requestsCatalogParams['text.en-US'];
+      delete requestsCatalogParams.fuzzy;
+    } else {
+      requestsCatalogParams['text.en-US'] = event.target.value;
+      requestsCatalogParams.fuzzy = true;
+    }
+    const catalogState = await requestToCommerce(requestsCatalogParams);
+    if (catalogState) props.setProducts(catalogState);
   };
 
   const removeFromRequetsFilter = async () => {
@@ -155,37 +162,37 @@ const Inputs = (props: CatalogInputsPropsType) => {
             className={s.sort_item}
             onClick={async () => {
               if (!vegetarian.current!.classList.contains(s.selected)) {
-                await sentRequetsFilter('vf');
+                await sentRequetsFilter('lf');
               }
               changeChouse(vegetarian);
             }}
             ref={vegetarian}
           >
-            Vegetarian food
+            Lactose Free Ingredients
           </p>
           <p
             className={s.sort_item}
             ref={children}
             onClick={async () => {
               if (!children.current!.classList.contains(s.selected)) {
-                await sentRequetsFilter('fc');
+                await sentRequetsFilter('nt');
               }
               changeChouse(children);
             }}
           >
-            Food for children
+            No tomatoes
           </p>
           <p
             className={s.sort_item}
             ref={lowCalorie}
             onClick={async () => {
               if (!lowCalorie.current!.classList.contains(s.selected)) {
-                await sentRequetsFilter('lc');
+                await sentRequetsFilter('no');
               }
               changeChouse(lowCalorie);
             }}
           >
-            Low calorie food
+            No onion
           </p>
           <p
             className={s.sort_item}

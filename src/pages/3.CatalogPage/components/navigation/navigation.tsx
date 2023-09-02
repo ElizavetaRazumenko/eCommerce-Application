@@ -61,9 +61,6 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
             className={openMenu ? s.cathegory_selection + ' ' + s.unhidden : s.cathegory_selection}
             onClick={() => setOpenMenu(!openMenu)}
           >
-            <div>
-              <p className={s.path_link}>Current Path: {currentPath}</p>
-            </div>
             <p className={s.cathegory_type}>
               <NavLink
                 to='/catalog'
@@ -73,7 +70,7 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
                   // localStorage.setItem('Cathegory', 'All');
                 }}
               >
-                All:
+                Catalog:
               </NavLink>
             </p>
             <p className={s.cathegory_type}>
