@@ -261,28 +261,6 @@ export const search = async (value: string) => {
   }
 };
 
-// export const search = async (value: string) => {
-//   try {
-//     const products = await apiRoot
-//       .productProjections()
-//       .search()
-//       .get({
-//         queryArgs: {
-//           where: `name(en-US="${value}")`,
-//           limit: 59,
-//         },
-//       })
-//       .execute();
-//     const searchProducts = products.body.results.filter((result) =>
-//       result.name['en-US'].toLowerCase().includes(value.toLowerCase()),
-//     );
-//     return searchProducts as ProductsType;
-//   } catch (error) {
-//     console.error('error searching:', error);
-//     throw error;
-//   }
-// };
-
 export const filter = async (id: string) => {
   try {
     const products = await apiRoot
@@ -351,6 +329,15 @@ export const getCategoryProduct = async (key: string) => {
       })
       .execute();
     return product.body.results as ProductsType;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getProduct = async (key: string) => {
+  try {
+    const product = await apiRoot.productProjections().withKey({ key: key }).get().execute();
+    return product.body;
   } catch (e) {
     console.log(e);
   }

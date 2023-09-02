@@ -13,13 +13,8 @@ interface Category {
 
 const CatalogNavigation = (props: CatalogNavPropsType) => {
   const [openMenu, setOpenMenu] = useState<boolean>(false);
-  const [currentPath, setCurrentPath] = useState<string>('');
   const location = useLocation();
   const [currentCategory, setCurrentCategory] = useState<Category[]>([]);
-
-  useEffect(() => {
-    setCurrentPath(location.pathname);
-  }, [location.pathname]);
 
   useEffect(() => {
     const pathElements = location.pathname.split('/').filter((element) => element !== '');
@@ -67,7 +62,6 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
                 className={({ isActive }) => (isActive ? s.link + ' ' + s.no_active_link : s.link)}
                 onClick={() => {
                   props.setCurrentCathegory('All');
-                  // localStorage.setItem('Cathegory', 'All');
                 }}
               >
                 Catalog:
@@ -83,7 +77,6 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
                 }
                 onClick={() => {
                   props.setCurrentCathegory('All > Food');
-                  // localStorage.setItem('Cathegory', 'All > Food');
                 }}
               >
                 Food:
@@ -103,7 +96,6 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
                     props.setProducts(productsData);
                   }
                   props.setCurrentCathegory('All > Food > Pizzas');
-                  // localStorage.setItem('Cathegory', 'All > Food > Pizzas');
                 }}
               >
                 Pizzas:
@@ -119,7 +111,6 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
                 }
                 onClick={async () => {
                   props.setCurrentCathegory('All > Food > Pizzas');
-                  // localStorage.setItem('Cathegory', 'All > Food > Pizzas');
                 }}
               >
                 Non-spicy
@@ -135,7 +126,6 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
                 }
                 onClick={async () => {
                   props.setCurrentCathegory('All > Food > Pizzas');
-                  // localStorage.setItem('Cathegory', 'All > Food > Pizzas');
                 }}
               >
                 Vegetarian
@@ -151,7 +141,6 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
                 }
                 onClick={async () => {
                   props.setCurrentCathegory('All > Food > Pizzas');
-                  // localStorage.setItem('Cathegory', 'All > Food > Pizzas');
                 }}
               >
                 Low calorie
@@ -167,7 +156,6 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
                 }
                 onClick={() => {
                   props.setCurrentCathegory('All > Food > Sauces');
-                  // localStorage.setItem('Cathegory', 'All > Food > Sauces');
                 }}
               >
                 Sauces:
@@ -183,7 +171,6 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
                 }
                 onClick={() => {
                   props.setCurrentCathegory('All > Food > Pizzas');
-                  // localStorage.setItem('Cathegory', 'All > Food > Pizzas');
                 }}
               >
                 Low calorie
@@ -199,7 +186,6 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
                 }
                 onClick={() => {
                   props.setCurrentCathegory('All > Drinks');
-                  // localStorage.setItem('Cathegory', 'All > Drinks');
                 }}
               >
                 Drinks:
@@ -215,7 +201,6 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
                 }
                 onClick={() => {
                   props.setCurrentCathegory('All > Food > Pizzas');
-                  // localStorage.setItem('Cathegory', 'All > Food > Pizzas');
                 }}
               >
                 Carbonated
@@ -231,7 +216,6 @@ const CatalogNavigation = (props: CatalogNavPropsType) => {
                 }
                 onClick={() => {
                   props.setCurrentCathegory('All > Food > Pizzas');
-                  // localStorage.setItem('Cathegory', 'All > Food > Pizzas');
                 }}
               >
                 Non-carbonated

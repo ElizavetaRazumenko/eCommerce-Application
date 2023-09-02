@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent, useRef } from 'react';
 
 import s from './inputs.module.scss';
 
-import { search, requestToCommerce } from '../../../../shared/index';
+import { requestToCommerce } from '../../../../shared/index';
 import requestsCatalogParams from '../../../../state/requestObj';
 import { CatalogInputsPropsType } from '../../../../types/types';
 

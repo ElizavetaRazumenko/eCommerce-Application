@@ -1,14 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
 import PopUp from './components/popUp/popUp';
 import Slider from './components/slider/slider';
 import s from './detailedPage.module.scss';
 
+import { getProduct } from '../../shared';
 import { ProductDetailsType } from '../../types/types';
 
 const DetailedPage = (props: { productDetailes: ProductDetailsType }) => {
+  const { key, size } = useParams();
+  const product = async () => {
+    const info = await getProduct('PS-1-1-1');
+    console.log(info);
+  };
   const [imageCount, _] = useState<number>(props.productDetailes.productImg.length);
   const [isOpenPopUp, setIsOpenPopUp] = useState<boolean>(false);
   localStorage.setItem('ProductDetailes', JSON.stringify(props.productDetailes));

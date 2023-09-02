@@ -29,9 +29,6 @@ import { getProducts } from '../shared';
 import { ProductDetailsType, ProductsType } from '../types/types';
 
 const App = () => {
-  // Two states of the object, which will be compared and,
-  // depending on the conditions that have arrived in the updated object,
-  // the current one will change.
   const [productsData, setProducts] = useState<ProductsType>(startProductObject);
   const savedProductDetailesStringify = localStorage.getItem('ProductDetailes');
   const savedDetailes: ProductDetailsType | null = savedProductDetailesStringify
@@ -78,6 +75,7 @@ const App = () => {
   };
   const products = async () => {
     const productsCollection = await getProducts();
+    console.log('а теперь в App');
     if (productsCollection) {
       setProducts(productsCollection);
     }
@@ -247,67 +245,16 @@ const App = () => {
                   </main>
                 }
               />
-              {/* 
-              <Route
-                path='/catalog/drinks'
-                element={<Drinks products={productsData} setProductDetailes={setProductDetailes} />}
-              />
-              <Route
-                path='/catalog/food/pizzas'
-                element={
-                  <CatalogNavToPizzas
-                    products={productsData}
-                    setProductDetailes={setProductDetailes}
-                    page={'pizzas'}
-                    setProducts={setProducts}
-                  />
-                }
-              />
-              <Route
-                path='/catalog/food/pizzas/non-spicy'
-                element={
-                  <CatalogNavToPizzas
-                    products={productsData}
-                    setProductDetailes={setProductDetailes}
-                    setProducts={setProducts}
-                    page={'non-spicy'}
-                  />
-                }
-              />
-              <Route
-                path='/catalog/food/pizzas/vegetarian'
-                element={
-                  <CatalogNavToPizzas
-                    products={productsData}
-                    setProductDetailes={setProductDetailes}
-                    setProducts={setProducts}
-                    page={'vegetarian'}
-                  />
-                }
-              />
-              <Route
-                path='/catalog/food/pizzas/low-calorie'
-                element={
-                  <CatalogNavToPizzas
-                    products={productsData}
-                    setProductDetailes={setProductDetailes}
-                    setProducts={setProducts}
-                    page={'low-calorie'}
-                  />
-                }
-              />
-              <Route
-                path='/catalog/food/sauses'
-                element={
-                  <CatalogNavToSauces
-                    products={productsData}
-                    setProductDetailes={setProductDetailes}
-                    setProducts={setProducts}
-                  />
-                }
-              /> */}
             </Route>
-            <Route path='/details' element={<DetailedPage productDetailes={productDetailes} />} />
+            <Route
+              path='details/:key'
+              element={<DetailedPage productDetailes={productDetailes} />}
+            />
+            <Route
+              path='details/:key/:size'
+              element={<DetailedPage productDetailes={productDetailes} />}
+            />
+            {/* <Route path='/details' element={<DetailedPage productDetailes={productDetailes} />} /> */}
             <Route path='/profile' element={<ProfilePage userState={userState} />} />
             <Route path='/cart' element={<BasketPage userState={userState} />} />
             <Route path='*' element={<ErrorPage />} />
