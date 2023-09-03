@@ -29,13 +29,9 @@ const CatalogPage = (props: CatalogPropsType) => {
   }, []);
   return (
     <main>
-      <CatalogSauces products={props.products} setProductDetailes={props.setProductDetailes} />
-      <CatalogPizzas
-        products={props.products}
-        setProducts={props.setProducts}
-        setProductDetailes={props.setProductDetailes}
-      />
-      <CatalogDrinks products={props.products} setProductDetailes={props.setProductDetailes} />
+      <CatalogSauces products={props.products} />
+      <CatalogPizzas products={props.products} setProducts={props.setProducts} />
+      <CatalogDrinks products={props.products} />
     </main>
   );
 };

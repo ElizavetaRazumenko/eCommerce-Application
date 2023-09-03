@@ -17,7 +17,6 @@ const CatalogDrinks = (props: CatalogDrinksProps) => {
         name={drink.name['en-US']}
         price={drinkCost}
         description={drink.description['en-US']}
-        setProductDetailes={props.setProductDetailes}
       />
     );
   });

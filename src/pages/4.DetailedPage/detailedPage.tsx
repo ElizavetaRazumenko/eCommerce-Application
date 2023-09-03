@@ -1,23 +1,93 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 
 import PopUp from './components/popUp/popUp';
 import Slider from './components/slider/slider';
 import s from './detailedPage.module.scss';
 
+import infoProducts, {
+  keysProduct,
+  keysPizza,
+  keysSauces,
+  keysDrinks,
+} from '../../entities/product';
 import { getProduct } from '../../shared';
-import { ProductDetailsType } from '../../types/types';
+import { ProductDetailsType, ProductItemType, ProductType } from '../../types/types';
 
-const DetailedPage = (props: { productDetailes: ProductDetailsType }) => {
+const DetailedPage = () => {
+  const [productName, setProductName] = useState<string>('');
+  const [productDescription, setProductDescription] = useState<string>('');
+  const [productPrice, setProductPrice] = useState<string>('0.00$');
+  const [productImg, setProductImg] = useState<string[]>(['']);
+  const [productWeigth, setProductWeigth] = useState<string>('');
+  const [productPFCK, setProductPFCK] = useState<number[]>([0, 0, 0, 0]);
   const { key, size } = useParams();
-  const product = async () => {
-    const info = await getProduct('PS-1-1-1');
-    console.log(info);
+  const navigate = useNavigate();
+
+  const setPriceAndWeigth = (price: number, weigth: string) => {
+    const priceSet = (price / 100).toFixed(2) + '$';
+    setProductPrice(priceSet);
+    setProductWeigth(weigth);
   };
-  const [imageCount, _] = useState<number>(props.productDetailes.productImg.length);
+
+  const createMainsize = (responce: ProductType, type: 'pizzas' | 'drinks' | 'sauces') => {
+    setProductName(responce.name['en-US']);
+    setProductDescription(responce.description['en-US']);
+    const price = responce.masterVariant.prices[0].discounted
+      ? responce.masterVariant.prices[0].discounted.value.centAmount
+      : responce.masterVariant.prices[0].value.centAmount;
+    const images = responce.masterVariant.images.map((el) => el.url);
+    const weigth = type === 'pizzas' ? '945gr' : type === 'drinks' ? '950gr' : '40gr';
+    setPriceAndWeigth(price, weigth);
+    setProductImg(images);
+    const productItem = infoProducts[type].find(
+      (el) => el.name === responce.name['en-US'],
+    ) as ProductItemType;
+    setProductPFCK(productItem.PFCK);
+  };
+
+  const createVariantSize = (size: string, responce: ProductType) => {
+    setProductName(responce.name['en-US']);
+    setProductDescription(responce.description['en-US']);
+    const index = size === 'm' ? 0 : 1;
+    const price = responce.variants[index].prices[0].discounted
+      ? responce.variants[index].prices[0].discounted!.value.centAmount
+      : responce.variants[index].prices[0].value.centAmount;
+    if (price) size === 'm' ? setPriceAndWeigth(price, '632gr') : setPriceAndWeigth(price, '210gr');
+    const images = responce.variants[index].images.map((el) => el.url);
+    setProductImg(images);
+    const productItem = infoProducts['pizzas'].find(
+      (el) => el.name === responce.name['en-US'],
+    ) as ProductItemType;
+    setProductPFCK(productItem.PFCK);
+  };
+  const getProductInfo = async () => {
+    const currentProduct = keysProduct.find((el) => el.toLowerCase() === key);
+    if (!currentProduct || (keysPizza.includes(key!.toUpperCase()) && !size)) {
+      navigate('/error');
+    } else {
+      const responseProductInfo = (await getProduct(key!.toUpperCase())) as ProductType;
+      if (size) {
+        size === 'l'
+          ? createMainsize(responseProductInfo, 'pizzas')
+          : size === 'm'
+          ? createVariantSize('m', responseProductInfo)
+          : createVariantSize('s', responseProductInfo);
+      }
+      if (keysSauces.includes(key!.toUpperCase())) {
+        createMainsize(responseProductInfo, 'sauces');
+      }
+      if (keysDrinks.includes(key!.toUpperCase())) {
+        createMainsize(responseProductInfo, 'drinks');
+      }
+    }
+  };
+  useEffect(() => {
+    getProductInfo();
+  }, []);
   const [isOpenPopUp, setIsOpenPopUp] = useState<boolean>(false);
-  localStorage.setItem('ProductDetailes', JSON.stringify(props.productDetailes));
   return (
     <div className={s.page_wrapper}>
       <NavLink to='/catalog' className={s.nav_link} onClick={() => setIsOpenPopUp(false)}>
@@ -29,46 +99,40 @@ const DetailedPage = (props: { productDetailes: ProductDetailsType }) => {
       <div className={s.details_wrapper}>
         <PopUp
           isOpenPopUp={isOpenPopUp}
-          imageCount={imageCount}
+          setProductImg={setProductImg}
           setIsOpenPopUp={setIsOpenPopUp}
-          imgURL={props.productDetailes.productImg}
+          imgURL={productImg}
         />
         <Slider
-          imageCount={imageCount}
-          imagesURL={props.productDetailes.productImg}
+          imagesURL={productImg}
+          setProductImg={setProductImg}
           setIsOpenPopUp={setIsOpenPopUp}
         />
         <div className={s.description_wrapper}>
-          <p className={s.name}>{props.productDetailes.productName}</p>
+          <p className={s.name}>{productName}</p>
           <p className={s.description}>
-            {props.productDetailes.productDescription.slice(
+            {productDescription.slice(
               0,
-              props.productDetailes.productDescription.indexOf('Main ingredients') === -1
-                ? props.productDetailes.productDescription.length
-                : props.productDetailes.productDescription.indexOf('Main ingredients'),
+              productDescription.indexOf('Main ingredients') === -1
+                ? productDescription.length
+                : productDescription.indexOf('Main ingredients'),
             )}
           </p>
           <p className={s.description}>
-            {props.productDetailes.productDescription.indexOf('Main ingredients') === -1
+            {productDescription.indexOf('Main ingredients') === -1
               ? ''
-              : props.productDetailes.productDescription.slice(
-                  props.productDetailes.productDescription.indexOf('Main ingredients'),
-                )}
+              : productDescription.slice(productDescription.indexOf('Main ingredients'))}
           </p>
           <div className='s.pfc'>
-            <p className={s.info_string}>{`Proteins: ${props.productDetailes.productPFCK[0]}gr`}</p>
-            <p className={s.info_string}>{`Fats: ${props.productDetailes.productPFCK[1]}gr`}</p>
-            <p
-              className={s.info_string}
-            >{`Carbohydrates: ${props.productDetailes.productPFCK[2]}gr`}</p>
+            <p className={s.info_string}>{`Proteins: ${productPFCK[0]}gr`}</p>
+            <p className={s.info_string}>{`Fats: ${productPFCK[1]}gr`}</p>
+            <p className={s.info_string}>{`Carbohydrates: ${productPFCK[2]}gr`}</p>
           </div>
           <div className={s.call_weight}>
-            <p
-              className={s.info_string}
-            >{`Calories per 100 gr: ${props.productDetailes.productPFCK[3]}`}</p>
-            <p className={s.info_string}>{`Weight: ${props.productDetailes.productWeigth}`}</p>
+            <p className={s.info_string}>{`Calories per 100 gr: ${productPFCK[3]}`}</p>
+            <p className={s.info_string}>{`Weight: ${productWeigth}`}</p>
           </div>
-          <p className={s.price}>{props.productDetailes.productPrice}</p>
+          <p className={s.price}>{productPrice}</p>
           <NavLink to='/cart' className={s.nav_link}>
             <div className={s.button}>
               <span>Add to backet</span>

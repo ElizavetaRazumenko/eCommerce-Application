@@ -18,13 +18,7 @@ const CatalogNavVegetarian = (props: CatalogFoodNamedType) => {
   useEffect(() => {
     sentRequest();
   }, []);
-  return (
-    <CatalogPizzas
-      products={props.products}
-      setProducts={props.setProducts}
-      setProductDetailes={props.setProductDetailes}
-    />
-  );
+  return <CatalogPizzas products={props.products} setProducts={props.setProducts} />;
 };
 
 export default CatalogNavVegetarian;

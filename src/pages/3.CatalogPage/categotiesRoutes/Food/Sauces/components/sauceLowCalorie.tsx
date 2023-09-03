@@ -19,7 +19,7 @@ const CatalogNavSauceLowCalorie = (props: CatalogFoodNamedType) => {
   useEffect(() => {
     sentRequest();
   }, []);
-  return <CatalogSauces products={props.products} setProductDetailes={props.setProductDetailes} />;
+  return <CatalogSauces products={props.products} />;
 };
 
 export default CatalogNavSauceLowCalorie;

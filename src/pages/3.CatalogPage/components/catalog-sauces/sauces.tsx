@@ -18,7 +18,6 @@ const CatalogSauces = (props: CatalogSaucesProps) => {
         name={sauce.name['en-US']}
         price={sauceCost}
         description={sauce.description['en-US']}
-        setProductDetailes={props.setProductDetailes}
       />
     );
   });

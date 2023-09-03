@@ -40,7 +40,6 @@ const CatalogPizzas = (props: CatalogPizzasProps) => {
         name={pizza.name['en-US']}
         cost={pizzasCost}
         description={pizza.description['en-US']}
-        setProductDetailes={props.setProductDetailes}
         discounts={discountInfo}
       />
     );

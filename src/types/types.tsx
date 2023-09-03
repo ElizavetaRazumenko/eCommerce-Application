@@ -25,7 +25,6 @@ export type PizzaCatalogType = {
   name: string;
   cost: string[];
   description: string;
-  setProductDetailes: SetProductDetailsType;
   discounts: string[];
 };
 
@@ -45,7 +44,6 @@ export type SauceTypeCatalog = {
   name: string;
   price: string;
   description: string;
-  setProductDetailes: SetProductDetailsType;
 };
 
 export type DrinkType = {
@@ -64,7 +62,6 @@ export type DrinkTypeCatalog = {
   price: string;
   name: string;
   description: string;
-  setProductDetailes: SetProductDetailsType;
 };
 
 export type stateTypeMain = {
@@ -314,7 +311,6 @@ export type requestCatalogParamsType = {
 };
 export type CatalogSaucesProps = {
   products: ProductsType;
-  setProductDetailes: SetProductDetailsType;
 };
 
 export type CatalogDrinksProps = CatalogSaucesProps;
@@ -322,30 +318,25 @@ export type CatalogDrinksProps = CatalogSaucesProps;
 export type CatalogPizzasProps = {
   products: ProductsType;
   setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
-  setProductDetailes: SetProductDetailsType;
 };
 
 export type CatalogPropsType = {
   products: ProductsType;
   setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
-  setProductDetailes: SetProductDetailsType;
 };
 
 export type CatalogFoodType = {
   products: ProductsType;
   setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
-  setProductDetailes: SetProductDetailsType;
 };
 
 export type CatalogFoodNamedType = {
   products: ProductsType;
-  setProductDetailes: SetProductDetailsType;
   setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
 };
 
 export type CatalogDrinksType = {
   products: ProductsType;
-  setProductDetailes: SetProductDetailsType;
   setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
 };
 
@@ -394,14 +385,14 @@ export type ProductItemType = {
 };
 
 export type SliderPropsType = {
-  imageCount: number;
   imagesURL: string[];
+  setProductImg: React.Dispatch<React.SetStateAction<string[]>>;
   setIsOpenPopUp: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type PopUpPropsType = {
   isOpenPopUp: boolean;
-  imageCount: number;
+  setProductImg: React.Dispatch<React.SetStateAction<string[]>>;
   setIsOpenPopUp: React.Dispatch<React.SetStateAction<boolean>>;
   imgURL: string[];
 };
@@ -414,6 +405,117 @@ export type ButtonRedirectType = {
 };
 
 //                                                      COMMERCE TOOLS
+
+export type ProductType = {
+  categories: {
+    typeId: string;
+    id: string;
+  }[];
+  categoryOrderHints: {};
+  createdAt: string;
+  description: {
+    'en-US': string;
+  };
+  hasStagedChanges: boolean;
+  id: string;
+  key: string;
+  lastModifiedAt: string;
+  masterVariant: {
+    assets?: [];
+    attributes?: [];
+    id: number;
+    images: {
+      dimensions: {
+        h: number;
+        w: number;
+      };
+      url: string;
+    }[];
+    key: string;
+    prices: {
+      country?: string;
+      discounted?: {
+        discount: {
+          id: string;
+          typeId: string;
+        };
+        value: {
+          centAmount: number;
+          currencyCode: string;
+          fractionDigits: number;
+          type: string;
+        };
+      };
+      id: string;
+      key: string;
+      value: {
+        centAmount: number;
+        currencyCode: string;
+        fractionDigits: number;
+        type: string;
+      };
+    }[];
+    sku: string;
+  };
+  metaDescription: {
+    'en-US': string;
+  };
+  metaTitle: {
+    'en-US': string;
+  };
+  name: {
+    'en-US': string;
+  };
+  priceMode: string;
+  productType: {
+    typeId: string;
+    id: string;
+  };
+  published: boolean;
+  searchKeywords: {};
+  slug: {
+    'en-US': string;
+  };
+  variants:
+    | {
+        assets: [];
+        attributes: [];
+        id: number;
+        images: {
+          dimensions: {
+            h: number;
+            w: number;
+          };
+          url: string;
+        }[];
+        key: string;
+        prices: {
+          discounted?: {
+            discount: {
+              id: string;
+              typeId: string;
+            };
+            value: {
+              centAmount: number;
+              currencyCode: string;
+              fractionDigits: number;
+              type: string;
+            };
+          };
+          id: string;
+          key: string;
+          value: {
+            centAmount: number;
+            currencyCode: string;
+            fractionDigits: number;
+            type: string;
+          };
+        }[];
+        sku: string;
+      }[]
+    | [];
+  version: number;
+};
 
 export type ProductsType = {
   categories: {

@@ -8,7 +8,6 @@ import CatalogDrinks from '../../../components/catalog-drinks/drinks';
 
 const CatalogNavCarbo = (props: CatalogFoodNamedType) => {
   const sentRequest = async () => {
-    console.log('зашли сюда');
     if (Array.isArray(requestsCatalogParams.filter)) {
       requestsCatalogParams.filter = [`variants.attributes.fc:"no"`];
       const catalogState = await requestToCommerce(requestsCatalogParams);
@@ -19,7 +18,7 @@ const CatalogNavCarbo = (props: CatalogFoodNamedType) => {
   useEffect(() => {
     sentRequest();
   }, []);
-  return <CatalogDrinks products={props.products} setProductDetailes={props.setProductDetailes} />;
+  return <CatalogDrinks products={props.products} />;
 };
 
 export default CatalogNavCarbo;

@@ -24,12 +24,8 @@ const Food = (props: CatalogFoodType) => {
   }, []);
   return (
     <main>
-      <CatalogSauces products={props.products} setProductDetailes={props.setProductDetailes} />
-      <CatalogPizzas
-        products={props.products}
-        setProducts={props.setProducts}
-        setProductDetailes={props.setProductDetailes}
-      />
+      <CatalogSauces products={props.products} />
+      <CatalogPizzas products={props.products} setProducts={props.setProducts} />
     </main>
   );
 };

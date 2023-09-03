@@ -18,7 +18,7 @@ const CatalogNavNonCarbo = (props: CatalogFoodNamedType) => {
   useEffect(() => {
     sentRequest();
   }, []);
-  return <CatalogDrinks products={props.products} setProductDetailes={props.setProductDetailes} />;
+  return <CatalogDrinks products={props.products} />;
 };
 
 export default CatalogNavNonCarbo;

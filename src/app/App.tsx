@@ -26,53 +26,10 @@ import BasketPage from '../pages/6.BasketPage/basket';
 import ErrorPage from '../pages/7.ErrorPage/error';
 import Layout from '../pages/globalComponents/layout/layout';
 import { getProducts } from '../shared';
-import { ProductDetailsType, ProductsType } from '../types/types';
+import { ProductsType } from '../types/types';
 
 const App = () => {
   const [productsData, setProducts] = useState<ProductsType>(startProductObject);
-  const savedProductDetailesStringify = localStorage.getItem('ProductDetailes');
-  const savedDetailes: ProductDetailsType | null = savedProductDetailesStringify
-    ? JSON.parse(savedProductDetailesStringify)
-    : null;
-  const [productName, setProductName] = useState<string>(
-    savedDetailes ? savedDetailes.productName : '',
-  );
-  const [productDescription, setProductDescription] = useState<string>(
-    savedDetailes ? savedDetailes.productDescription : '',
-  );
-  const [productPrice, setProductPrice] = useState<string>(
-    savedDetailes ? savedDetailes.productPrice : '',
-  );
-  const [productImg, setProductImg] = useState<string[]>(
-    savedDetailes ? savedDetailes.productImg : [''],
-  );
-  const [productType, setProductType] = useState<'pizzas' | 'sauces' | 'drinks'>(
-    savedDetailes ? savedDetailes.productType : 'pizzas',
-  );
-  const [productWeigth, setProductWeigth] = useState<string>(
-    savedDetailes ? savedDetailes.productWeigth : '',
-  );
-  const [productPFCK, setProductPFCK] = useState<number[]>(
-    savedDetailes ? savedDetailes.productPFCK : [0, 0, 0, 0],
-  );
-  const setProductDetailes = {
-    setProductName,
-    setProductDescription,
-    setProductPrice,
-    setProductImg,
-    setProductType,
-    setProductWeigth,
-    setProductPFCK,
-  };
-  const productDetailes = {
-    productName,
-    productDescription,
-    productPrice,
-    productImg,
-    productType,
-    productWeigth,
-    productPFCK,
-  };
   const products = async () => {
     const productsCollection = await getProducts();
     console.log('а теперь в App');
@@ -119,33 +76,17 @@ const App = () => {
             >
               <Route
                 index
-                element={
-                  <CatalogPage
-                    products={productsData}
-                    setProducts={setProducts}
-                    setProductDetailes={setProductDetailes}
-                  />
-                }
+                element={<CatalogPage products={productsData} setProducts={setProducts} />}
               />
               <Route
                 path='/catalog/food'
-                element={
-                  <Food
-                    products={productsData}
-                    setProducts={setProducts}
-                    setProductDetailes={setProductDetailes}
-                  />
-                }
+                element={<Food products={productsData} setProducts={setProducts} />}
               />
               <Route
                 path='/catalog/food/pizzas'
                 element={
                   <main>
-                    <CatalogNavToPizzas
-                      products={productsData}
-                      setProductDetailes={setProductDetailes}
-                      setProducts={setProducts}
-                    />
+                    <CatalogNavToPizzas products={productsData} setProducts={setProducts} />
                   </main>
                 }
               />
@@ -153,11 +94,7 @@ const App = () => {
                 path='/catalog/food/pizzas/low-calorie'
                 element={
                   <main>
-                    <CatalogNavLowCalorie
-                      products={productsData}
-                      setProductDetailes={setProductDetailes}
-                      setProducts={setProducts}
-                    />
+                    <CatalogNavLowCalorie products={productsData} setProducts={setProducts} />
                   </main>
                 }
               />
@@ -165,11 +102,7 @@ const App = () => {
                 path='/catalog/food/pizzas/vegetarian'
                 element={
                   <main>
-                    <CatalogNavVegetarian
-                      products={productsData}
-                      setProductDetailes={setProductDetailes}
-                      setProducts={setProducts}
-                    />
+                    <CatalogNavVegetarian products={productsData} setProducts={setProducts} />
                   </main>
                 }
               />
@@ -177,11 +110,7 @@ const App = () => {
                 path='/catalog/food/pizzas/non-spicy'
                 element={
                   <main>
-                    <CatalogNavNonSpicy
-                      products={productsData}
-                      setProductDetailes={setProductDetailes}
-                      setProducts={setProducts}
-                    />
+                    <CatalogNavNonSpicy products={productsData} setProducts={setProducts} />
                   </main>
                 }
               />
@@ -189,11 +118,7 @@ const App = () => {
                 path='/catalog/food/sauses'
                 element={
                   <main>
-                    <CatalogNavToSauces
-                      products={productsData}
-                      setProductDetailes={setProductDetailes}
-                      setProducts={setProducts}
-                    />
+                    <CatalogNavToSauces products={productsData} setProducts={setProducts} />
                   </main>
                 }
               />
@@ -201,11 +126,7 @@ const App = () => {
                 path='/catalog/food/sauses/low-calorie'
                 element={
                   <main>
-                    <CatalogNavSauceLowCalorie
-                      products={productsData}
-                      setProductDetailes={setProductDetailes}
-                      setProducts={setProducts}
-                    />
+                    <CatalogNavSauceLowCalorie products={productsData} setProducts={setProducts} />
                   </main>
                 }
               />
@@ -213,11 +134,7 @@ const App = () => {
                 path='/catalog/drinks'
                 element={
                   <main>
-                    <Drinks
-                      products={productsData}
-                      setProductDetailes={setProductDetailes}
-                      setProducts={setProducts}
-                    />
+                    <Drinks products={productsData} setProducts={setProducts} />
                   </main>
                 }
               />
@@ -225,11 +142,7 @@ const App = () => {
                 path='/catalog/drinks/non-carbonated'
                 element={
                   <main>
-                    <CatalogNavNonCarbo
-                      products={productsData}
-                      setProductDetailes={setProductDetailes}
-                      setProducts={setProducts}
-                    />
+                    <CatalogNavNonCarbo products={productsData} setProducts={setProducts} />
                   </main>
                 }
               />
@@ -237,24 +150,13 @@ const App = () => {
                 path='/catalog/drinks/carbonated'
                 element={
                   <main>
-                    <CatalogNavCarbo
-                      products={productsData}
-                      setProductDetailes={setProductDetailes}
-                      setProducts={setProducts}
-                    />
+                    <CatalogNavCarbo products={productsData} setProducts={setProducts} />
                   </main>
                 }
               />
             </Route>
-            <Route
-              path='details/:key'
-              element={<DetailedPage productDetailes={productDetailes} />}
-            />
-            <Route
-              path='details/:key/:size'
-              element={<DetailedPage productDetailes={productDetailes} />}
-            />
-            {/* <Route path='/details' element={<DetailedPage productDetailes={productDetailes} />} /> */}
+            <Route path='details/:key' element={<DetailedPage />} />
+            <Route path='details/:key/:size' element={<DetailedPage />} />
             <Route path='/profile' element={<ProfilePage userState={userState} />} />
             <Route path='/cart' element={<BasketPage userState={userState} />} />
             <Route path='*' element={<ErrorPage />} />

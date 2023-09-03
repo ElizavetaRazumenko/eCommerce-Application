@@ -21,7 +21,7 @@ const Drinks = (props: CatalogDrinksType) => {
   useEffect(() => {
     sentRequest();
   }, []);
-  return <CatalogDrinks products={props.products} setProductDetailes={props.setProductDetailes} />;
+  return <CatalogDrinks products={props.products} />;
 };
 
 export default Drinks;

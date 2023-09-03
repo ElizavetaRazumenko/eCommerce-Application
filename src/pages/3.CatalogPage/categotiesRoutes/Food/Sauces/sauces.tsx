@@ -23,7 +23,7 @@ const CatalogNavToSauces = (props: CatalogFoodType) => {
   }, []);
   return (
     <main>
-      <CatalogSauces products={props.products} setProductDetailes={props.setProductDetailes} />
+      <CatalogSauces products={props.products} />
     </main>
   );
 };
