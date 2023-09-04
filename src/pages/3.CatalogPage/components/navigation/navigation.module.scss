@@ -4,12 +4,40 @@
 .wrapper {
     margin-top: 25px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @media (max-width: 1000px) {
+        align-items: flex-start;
+    }
 }
 
 .cathegory_selection {
     height: 0px;
     overflow: hidden;
-    transition: 1s;
+    transition: .6s;
+}
+
+
+.category_selection_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .arrow_down {
+        margin-top: 5px;
+        width: 20px;
+        height: 20px;
+        background-image: url('../../../../assets/png/downArrow.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        transition: .6s;
+    }
+
+    .arrow_up {
+        transform: rotate(180deg);
+    }
 }
 
 .navigation_wrapper {
@@ -17,23 +45,15 @@
     box-sizing: border-box;
     cursor: pointer;
     width: 250px;
-    height: 70px;
-    background-color: $unactive-register-grey;
+    height: 30px;
+    background-color: rgba($unactive-register-grey, .6);
     color: $main-light;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
-    padding: 0 15px 15px 35px;
+    padding: 0 15px 10px 35px;
     font-size: 1rem;
-    transition: 1s;
-
-    &:hover {
-        height: 430px;
-    }
-
-    &:hover .cathegory_selection {
-        height: 340px;
-    }
+    transition: .6s;
 
     @media (max-width: 1000px) {
         margin: 0px;
@@ -43,42 +63,57 @@
 .cathegory {
     display: flex;
     justify-content: space-between;
-    color: $main-grey;
+    align-items: center;
+    color: $main-light;
     font-weight: 700;
-    font-size: .9rem;
+    // width: 250px;
+    height: 20px;
+    padding: 0 5px;
+    font-size: .8rem;
+    margin-bottom: 10px;
+}
+
+.path_link{
+    // color: $color-green;
+    font-size: .5rem;
+
+
 }
 
 .title {
     font-size: 1rem;
-    font-weight: 700;
     color: $main-light;
-    margin-top: 5px;
-    margin-bottom: 10px;
+    margin-top: 3px;
+    margin-bottom: 5px;
 }
 
 .link {
-    color: $main-grey;
+    color: $main-light;
     text-decoration: none;
     font-weight: 700;
     transition: .5s;
 
     &:hover {
-    color: $main-light;
+    color: $white;
     }
+}
+.link_hierarchy{
+        padding-left: 5px;
+            color: $ligth-green;
 }
 
 .no_active_link {
-    color: $color-green;
+    color: $ligth-green;
 
     &:hover {
-    color: $color-green;
+    color: $ligth-green;
 
     }
 }
 
 .road {
     font-weight: 700;
-    color: $color-green;
+    color: $ligth-green;
 }
 
 .sec_level {
@@ -90,4 +125,11 @@
 
 .fourd_level {
     margin-left: 60px;
+}
+
+.navigation_wrapper.opened {
+    height: 460px;
+}
+.cathegory_selection.unhidden {
+    height: 430px;
 }

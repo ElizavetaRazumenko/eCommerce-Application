@@ -156,75 +156,132 @@ const infoProducts = {
 
 export default infoProducts;
 
-export const startProductObject = {
-  count: 0,
-  limit: 0,
-  offset: 0,
-  results: [
-    {
-      categories: [
-        {
-          typeId: '',
-          id: '',
-        },
-      ],
-      categoryOrderHints: {},
-      createdAt: '',
-      description: {
-        'en-US': '',
-      },
-      hasStagedChanges: true,
-      id: '',
-      key: '',
-      lastModifiedAt: '',
-      masterVariant: {
-        id: 0,
-        images: [
-          {
-            dimensions: {
-              h: 0,
-              w: 0,
-            },
-            url: '',
-          },
-        ],
-        key: '',
-        prices: [
-          {
-            id: '',
-            key: '',
-            value: {
-              centAmount: 1,
-              currencyCode: '',
-              fractionDigits: 1,
-              type: '',
-            },
-          },
-        ],
-        sku: '',
-      },
-      metaDescription: {
-        'en-US': '',
-      },
-      metaTitle: {
-        'en-US': '',
-      },
-      name: {
-        'en-US': '',
-      },
-      priceMode: '',
-      productType: {
+export const keysProduct = [
+  'PS-1-1-1',
+  'PS-1-1-2',
+  'PS-1-1-3',
+  'PS-1-1-4',
+  'PS-1-1-5',
+  'PS-1-1-6',
+  'PS-1-1-7',
+  'PS-1-1-8',
+  'PS-1-1-9',
+  'PS-1-1-10',
+  'PS-1-1-11',
+  'PS-1-1-12',
+  'PS-1-1-13',
+  'PS-1-1-14',
+  'PS-1-1-15',
+  'PS-1-2-1',
+  'PS-1-2-2',
+  'PS-1-2-3',
+  'PS-1-2-4',
+  'PS-1-2-5',
+  'PS-1-2-6',
+  'PS-1-2-7',
+  'PS-1-2-8',
+  'DR-1-1',
+  'DR-1-2',
+  'DR-1-3',
+  'DR-1-4',
+  'DR-1-5',
+  'DR-1-6',
+];
+
+export const keysPizza = [
+  'PS-1-1-1',
+  'PS-1-1-2',
+  'PS-1-1-3',
+  'PS-1-1-4',
+  'PS-1-1-5',
+  'PS-1-1-6',
+  'PS-1-1-7',
+  'PS-1-1-8',
+  'PS-1-1-9',
+  'PS-1-1-10',
+  'PS-1-1-11',
+  'PS-1-1-12',
+  'PS-1-1-13',
+  'PS-1-1-14',
+  'PS-1-1-15',
+];
+
+export const keysSauces = [
+  'PS-1-2-1',
+  'PS-1-2-2',
+  'PS-1-2-3',
+  'PS-1-2-4',
+  'PS-1-2-5',
+  'PS-1-2-6',
+  'PS-1-2-7',
+  'PS-1-2-8',
+];
+
+export const keysDrinks = ['DR-1-1', 'DR-1-2', 'DR-1-3', 'DR-1-4', 'DR-1-5', 'DR-1-6'];
+
+export const startProductObject = [
+  {
+    categories: [
+      {
         typeId: '',
         id: '',
       },
-      published: false,
-      searchKeywords: {},
-      slug: {
-        'en-US': '',
-      },
-      variants: [],
-      version: 0,
+    ],
+    categoryOrderHints: {},
+    createdAt: '',
+    description: {
+      'en-US': '',
     },
-  ],
-  total: 1,
-};
+    hasStagedChanges: true,
+    id: '',
+    key: '',
+    lastModifiedAt: '',
+    masterVariant: {
+      id: 0,
+      images: [
+        {
+          dimensions: {
+            h: 0,
+            w: 0,
+          },
+          url: '',
+        },
+      ],
+      key: '',
+      prices: [
+        {
+          id: '',
+          key: '',
+          value: {
+            centAmount: 1,
+            currencyCode: '',
+            fractionDigits: 1,
+            type: '',
+          },
+        },
+      ],
+      sku: '',
+    },
+    metaDescription: {
+      'en-US': '',
+    },
+    metaTitle: {
+      'en-US': '',
+    },
+    name: {
+      'en-US': '',
+    },
+    priceMode: '',
+    productType: {
+      typeId: '',
+      id: '',
+    },
+    published: false,
+    searchKeywords: {},
+    slug: {
+      'en-US': '',
+    },
+    variants: [],
+    version: 0,
+  },
+];

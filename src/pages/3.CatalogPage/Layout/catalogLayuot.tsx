@@ -13,6 +13,7 @@ const CatalogPageLayout = (props: CatalogLayuotPropsType) => {
       <CatalogNavigation
         currentCathegory={props.currentCathegory}
         setCurrentCathegory={props.setCurrentCathegory}
+        setProducts={props.setProducts}
       />
       <Outlet />
     </main>

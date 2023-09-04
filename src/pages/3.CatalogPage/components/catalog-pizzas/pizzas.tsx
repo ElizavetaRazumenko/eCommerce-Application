@@ -4,13 +4,10 @@ import s from './pizzas.module.scss';
 
 import infoProducts from '../../../../entities/product';
 
-import { ProductsType, SetProductDetailsType } from '../../../../types/types';
+import { CatalogPizzasProps } from '../../../../types/types';
 
-const CatalogPizzas = (props: {
-  products: ProductsType;
-  setProductDetailes: SetProductDetailsType;
-}) => {
-  const pizzasItems = props.products.results.filter((el) =>
+const CatalogPizzas = (props: CatalogPizzasProps) => {
+  const pizzasItems = props.products.filter((el) =>
     infoProducts.pizzas.find((item) => item.key === el.key),
   );
   const pizzasArray = pizzasItems.map((pizza) => {
@@ -43,7 +40,6 @@ const CatalogPizzas = (props: {
         name={pizza.name['en-US']}
         cost={pizzasCost}
         description={pizza.description['en-US']}
-        setProductDetailes={props.setProductDetailes}
         discounts={discountInfo}
       />
     );

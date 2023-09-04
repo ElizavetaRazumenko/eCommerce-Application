@@ -12,6 +12,8 @@ import {
   // ExistingTokenMiddlewareOptions, // Required for sending HTTP requests
 } from '@commercetools/sdk-client-v2';
 
+import { ProductsType, requestCatalogParamsType } from '../types/types';
+
 const fetch = require('node-fetch');
 
 const scopes = [
@@ -150,28 +152,18 @@ export const getApiRoot = () => {
     projectKey: 'ecommece-application',
   });
 };
+
 export const getProducts = async () => {
   try {
-    if (!localStorage.getItem('Catalog info')) {
-      const products = await apiRoot
-        .productProjections()
-        .get({
-          queryArgs: {
-            limit: 30,
-          },
-        })
-        .execute();
-      localStorage.setItem('Catalog info', JSON.stringify(products.body));
-      return JSON.parse(localStorage.getItem('Catalog info')!);
-    } else return JSON.parse(localStorage.getItem('Catalog info')!);
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-export const getFood = async () => {
-  try {
-    const categories = apiRoot.categories().get().execute();
+    const products = await apiRoot
+      .productProjections()
+      .get({
+        queryArgs: {
+          limit: 30,
+        },
+      })
+      .execute();
+    return products.body.results as ProductsType;
   } catch (e) {
     console.log(e);
   }
@@ -189,7 +181,7 @@ export const sortByLowerPrice = async () => {
         },
       })
       .execute();
-    return products.body;
+    return products.body.results as ProductsType;
   } catch (e) {
     console.log(e);
   }
@@ -207,7 +199,7 @@ export const sortByHigherPrice = async () => {
         },
       })
       .execute();
-    return products.body;
+    return products.body.results as ProductsType;
   } catch (e) {
     console.log(e);
   }
@@ -225,7 +217,7 @@ export const sortByAlphabetZA = async () => {
         },
       })
       .execute();
-    return products.body;
+    return products.body.results as ProductsType;
   } catch (e) {
     console.log(e);
   }
@@ -243,7 +235,7 @@ export const sortByAlphabetAZ = async () => {
         },
       })
       .execute();
-    return products.body;
+    return products.body.results as ProductsType;
   } catch (e) {
     console.log(e);
   }
@@ -256,19 +248,97 @@ export const search = async (value: string) => {
       .search()
       .get({
         queryArgs: {
-          where: `name(en-US="${value}")`,
-          limit: 59,
+          'text.en-US': value,
+          limit: 29,
+          fuzzy: true,
         },
       })
       .execute();
-    console.log(products.body.results);
-    const productsNames = products.body.results
-      .map((result) => result.name['en-US'])
-      .filter((name) => name.toLowerCase().includes(value));
-    console.log(productsNames);
-    return productsNames;
+    return products.body.results as ProductsType;
   } catch (error) {
     console.error('error searching:', error);
     throw error;
+  }
+};
+
+export const filter = async (id: string) => {
+  try {
+    const products = await apiRoot
+      .productProjections()
+      .search()
+      .get({
+        queryArgs: {
+          filter: [`variants.attributes.${id}:"yes"`],
+        },
+      })
+      .execute();
+    return products.body.results as ProductsType;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const requestToCommerce = async (data: requestCatalogParamsType) => {
+  try {
+    const products = await apiRoot
+      .productProjections()
+      .search()
+      .get({
+        queryArgs: data,
+      })
+      .execute();
+    return products.body.results as ProductsType;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const requestToCommerceForRender = async (data: requestCatalogParamsType) => {
+  try {
+    const products = await apiRoot
+      .productProjections()
+      .get({
+        queryArgs: data,
+      })
+      .execute();
+    return products.body.results as ProductsType;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getCategoryID = async (key: string) => {
+  try {
+    const categories = await apiRoot.categories().get().execute();
+    return categories.body.results.find((el) => el.key === key)!.id;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getCategoryProduct = async (key: string) => {
+  try {
+    const id = await getCategoryID(key);
+    const product = await apiRoot
+      .productProjections()
+      .search()
+      .get({
+        queryArgs: {
+          filter: `categories.id:"${id}"`,
+        },
+      })
+      .execute();
+    return product.body.results as ProductsType;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getProduct = async (key: string) => {
+  try {
+    const product = await apiRoot.productProjections().withKey({ key: key }).get().execute();
+    return product.body;
+  } catch (e) {
+    console.log(e);
   }
 };

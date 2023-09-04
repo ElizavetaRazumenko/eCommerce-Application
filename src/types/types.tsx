@@ -1,4 +1,8 @@
+
 import { Dispatch, SetStateAction } from 'react';
+
+import { QueryParam } from '@commercetools/platform-sdk';
+
 import { To } from 'react-router-dom';
 export interface IFooterProps {
   className?: string;
@@ -25,7 +29,6 @@ export type PizzaCatalogType = {
   name: string;
   cost: string[];
   description: string;
-  setProductDetailes: SetProductDetailsType;
   discounts: string[];
 };
 
@@ -45,7 +48,6 @@ export type SauceTypeCatalog = {
   name: string;
   price: string;
   description: string;
-  setProductDetailes: SetProductDetailsType;
 };
 
 export type DrinkType = {
@@ -64,7 +66,6 @@ export type DrinkTypeCatalog = {
   price: string;
   name: string;
   description: string;
-  setProductDetailes: SetProductDetailsType;
 };
 
 export type stateTypeMain = {
@@ -323,14 +324,58 @@ export type CustomerAddressesType = AddressType[] | null;
 
 //                                                                   CATALOG PAGE
 
-export type CatalogPropsType = {
+export type requestCatalogParamsType = {
+  fuzzy?: boolean;
+  fuzzyLevel?: number;
+  markMatchingVariants?: boolean;
+  filter?: string | string[];
+  'filter.facets'?: string | string[];
+  'filter.query'?: string | string[];
+  facet?: string | string[];
+  sort?: string | string[];
+  limit?: number;
+  offset?: number;
+  withTotal?: boolean;
+  staged?: boolean;
+  priceCurrency?: string;
+  priceCountry?: string;
+  priceCustomerGroup?: string;
+  priceChannel?: string;
+  localeProjection?: string | string[];
+  storeProjection?: string;
+  expand?: string | string[];
+  [key: string]: QueryParam;
+};
+export type CatalogSaucesProps = {
   products: ProductsType;
-  setProductDetailes: SetProductDetailsType;
 };
 
-export type CatalogFoodType = CatalogPropsType;
+export type CatalogDrinksProps = CatalogSaucesProps;
 
-export type CatalogDrinksType = CatalogFoodType;
+export type CatalogPizzasProps = {
+  products: ProductsType;
+  setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
+};
+
+export type CatalogPropsType = {
+  products: ProductsType;
+  setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
+};
+
+export type CatalogFoodType = {
+  products: ProductsType;
+  setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
+};
+
+export type CatalogFoodNamedType = {
+  products: ProductsType;
+  setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
+};
+
+export type CatalogDrinksType = {
+  products: ProductsType;
+  setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
+};
 
 export type CatalogLayuotPropsType = {
   setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
@@ -338,9 +383,14 @@ export type CatalogLayuotPropsType = {
   setCurrentCathegory: React.Dispatch<React.SetStateAction<string>>;
 };
 
+export type CatalogInputsPropsType = {
+  setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
+};
+
 export type CatalogNavPropsType = {
   currentCathegory: string;
   setCurrentCathegory: React.Dispatch<React.SetStateAction<string>>;
+  setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
 };
 
 //                                                                  DETAILS PAGE
@@ -372,14 +422,14 @@ export type ProductItemType = {
 };
 
 export type SliderPropsType = {
-  imageCount: number;
   imagesURL: string[];
+  setProductImg: React.Dispatch<React.SetStateAction<string[]>>;
   setIsOpenPopUp: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type PopUpPropsType = {
   isOpenPopUp: boolean;
-  imageCount: number;
+  setProductImg: React.Dispatch<React.SetStateAction<string[]>>;
   setIsOpenPopUp: React.Dispatch<React.SetStateAction<boolean>>;
   imgURL: string[];
 };
@@ -393,7 +443,229 @@ export type ButtonRedirectType = {
 
 //                                                      COMMERCE TOOLS
 
+export type ProductType = {
+  categories: {
+    typeId: string;
+    id: string;
+  }[];
+  categoryOrderHints: {};
+  createdAt: string;
+  description: {
+    'en-US': string;
+  };
+  hasStagedChanges: boolean;
+  id: string;
+  key: string;
+  lastModifiedAt: string;
+  masterVariant: {
+    assets?: [];
+    attributes?: [];
+    id: number;
+    images: {
+      dimensions: {
+        h: number;
+        w: number;
+      };
+      url: string;
+    }[];
+    key: string;
+    prices: {
+      country?: string;
+      discounted?: {
+        discount: {
+          id: string;
+          typeId: string;
+        };
+        value: {
+          centAmount: number;
+          currencyCode: string;
+          fractionDigits: number;
+          type: string;
+        };
+      };
+      id: string;
+      key: string;
+      value: {
+        centAmount: number;
+        currencyCode: string;
+        fractionDigits: number;
+        type: string;
+      };
+    }[];
+    sku: string;
+  };
+  metaDescription: {
+    'en-US': string;
+  };
+  metaTitle: {
+    'en-US': string;
+  };
+  name: {
+    'en-US': string;
+  };
+  priceMode: string;
+  productType: {
+    typeId: string;
+    id: string;
+  };
+  published: boolean;
+  searchKeywords: {};
+  slug: {
+    'en-US': string;
+  };
+  variants:
+    | {
+        assets: [];
+        attributes: [];
+        id: number;
+        images: {
+          dimensions: {
+            h: number;
+            w: number;
+          };
+          url: string;
+        }[];
+        key: string;
+        prices: {
+          discounted?: {
+            discount: {
+              id: string;
+              typeId: string;
+            };
+            value: {
+              centAmount: number;
+              currencyCode: string;
+              fractionDigits: number;
+              type: string;
+            };
+          };
+          id: string;
+          key: string;
+          value: {
+            centAmount: number;
+            currencyCode: string;
+            fractionDigits: number;
+            type: string;
+          };
+        }[];
+        sku: string;
+      }[]
+    | [];
+  version: number;
+};
+
 export type ProductsType = {
+  categories: {
+    typeId: string;
+    id: string;
+  }[];
+  categoryOrderHints: {};
+  createdAt: string;
+  description: {
+    'en-US': string;
+  };
+  hasStagedChanges: boolean;
+  id: string;
+  key: string;
+  lastModifiedAt: string;
+  masterVariant: {
+    assets?: [];
+    attributes?: [];
+    id: number;
+    images: {
+      dimensions: {
+        h: number;
+        w: number;
+      };
+      url: string;
+    }[];
+    key: string;
+    prices: {
+      country?: string;
+      discounted?: {
+        discount: {
+          id: string;
+          typeId: string;
+        };
+        value: {
+          centAmount: number;
+          currencyCode: string;
+          fractionDigits: number;
+          type: string;
+        };
+      };
+      id: string;
+      key: string;
+      value: {
+        centAmount: number;
+        currencyCode: string;
+        fractionDigits: number;
+        type: string;
+      };
+    }[];
+    sku: string;
+  };
+  metaDescription: {
+    'en-US': string;
+  };
+  metaTitle: {
+    'en-US': string;
+  };
+  name: {
+    'en-US': string;
+  };
+  priceMode: string;
+  productType: {
+    typeId: string;
+    id: string;
+  };
+  published: boolean;
+  searchKeywords: {};
+  slug: {
+    'en-US': string;
+  };
+  variants:
+    | {
+        assets: [];
+        attributes: [];
+        id: number;
+        images: {
+          dimensions: {
+            h: number;
+            w: number;
+          };
+          url: string;
+        }[];
+        key: string;
+        prices: {
+          discounted?: {
+            discount: {
+              id: string;
+              typeId: string;
+            };
+            value: {
+              centAmount: number;
+              currencyCode: string;
+              fractionDigits: number;
+              type: string;
+            };
+          };
+          id: string;
+          key: string;
+          value: {
+            centAmount: number;
+            currencyCode: string;
+            fractionDigits: number;
+            type: string;
+          };
+        }[];
+        sku: string;
+      }[]
+    | [];
+  version: number;
+}[];
+
+export type requestType = {
   count: number;
   limit: number;
   offset: number;
