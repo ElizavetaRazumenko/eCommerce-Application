@@ -1,4 +1,8 @@
+
+import { Dispatch, SetStateAction } from 'react';
+
 import { QueryParam } from '@commercetools/platform-sdk';
+
 import { To } from 'react-router-dom';
 export interface IFooterProps {
   className?: string;
@@ -94,9 +98,42 @@ export type PizzaParamsType = {
 
 //......................................................PROFIL PAGE TYPE / INTERFACE
 
+export type Customer = {
+  addresses: CustomerAddressType[];
+  authenticationMode: string;
+  billingAddressIds: string[];
+  createdAt: string;
+  createdBy: {
+    clientId: string;
+    isPlatformClient: boolean;
+    anonymousId: string;
+  };
+  dateOfBirth: string;
+  defaultBillingAddressId: string;
+  defaultShippingAddressId: string;
+  email: string;
+  firstName: string;
+  id: string;
+  isEmailVerified: boolean;
+  lastMessageSequenceNumber: number;
+  lastModifiedAt: string;
+  lastModifiedBy: {
+    clientId: string;
+    isPlatformClient: boolean;
+  };
+  lastName: string;
+  password: string;
+  shippingAddressIds: string[];
+  stores: string[];
+  version: number;
+  versionModifiedAt: string;
+};
+
 export type HideModalType = {
   onHideModal: () => void;
   customerData: CustomerDataType;
+  setNewAddress?: Dispatch<SetStateAction<AddressType[]>>;
+  setNewAddress2?: Dispatch<SetStateAction<AddressType[]>>;
 };
 export type CustomerDataType = {
   addresses: CustomerAddressType[];

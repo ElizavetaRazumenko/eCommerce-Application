@@ -53,6 +53,10 @@ const App = () => {
       <RegisterPage setUserState={setUserState} />
     );
   };
+
+  const profileRedirection = () => {
+    return userState === 'Login' ? <Navigate to='/login' /> : <ProfilePage userState={userState} />;
+  };
   const cathegory = localStorage.getItem('Cathegory');
   const [currentCathegory, setCurrentCathegory] = useState<string>(cathegory ? cathegory : 'All');
 
@@ -155,9 +159,10 @@ const App = () => {
                 }
               />
             </Route>
+            <Route path='/profile' element={profileRedirection()} />
             <Route path='details/:key' element={<DetailedPage />} />
             <Route path='details/:key/:size' element={<DetailedPage />} />
-            <Route path='/profile' element={<ProfilePage userState={userState} />} />
+            <Route path='/profile' element={profileRedirection()} />} />
             <Route path='/cart' element={<BasketPage userState={userState} />} />
             <Route path='*' element={<ErrorPage />} />
           </Route>
