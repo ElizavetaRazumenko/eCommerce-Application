@@ -308,7 +308,7 @@ const ProfilePage = (props: UserPropsType) => {
                     {` ${billAddress.country === 'IT' ? 'Italy' : 'Spain'} ${billAddress.city} st.${
                       billAddress.streetName
                     }, ${billAddress.postalCode}`}
-                    <div className={s.settings}>
+                    <span className={s.settings}>
                       <span
                         className={s.edit_icon}
                         onClick={() => showModalAddress([billAddress])}
@@ -324,7 +324,7 @@ const ProfilePage = (props: UserPropsType) => {
                         onChange={() => addDefBillingAddressId(billAddress.id)}
                         className={s.input_profile}
                       />
-                    </div>
+                    </span>
                   </p>
                 );
               })}
@@ -339,7 +339,7 @@ const ProfilePage = (props: UserPropsType) => {
                     {` ${shippAddress.country === 'IT' ? 'Italy' : 'Spain'} ${
                       shippAddress.city
                     } st.${shippAddress.streetName}, ${shippAddress.postalCode}`}
-                    <div className={s.settings}>
+                    <span className={s.settings}>
                       <span
                         className={s.edit_icon}
                         onClick={() => showModalAddress([shippAddress])}
@@ -355,7 +355,7 @@ const ProfilePage = (props: UserPropsType) => {
                         onChange={() => addDefShippingAddressId(shippAddress.id)}
                         className={s.input_profile}
                       />
-                    </div>
+                    </span>
                   </p>
                 );
               })}
