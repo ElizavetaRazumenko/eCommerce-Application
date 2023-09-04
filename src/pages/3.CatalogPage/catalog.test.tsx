@@ -1,13 +1,38 @@
-// import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
-// import React from 'react';
+import CatalogPage from './catalog';
 
-// import '@testing-library/jest-dom/extend-expect';
-// import CatalogPage from './catalog';
+import { CatalogPropsType, SetProductDetailsType } from '../../types/types';
 
-// test('CatalogPage component', () => {
-//   render(<CatalogPage />);
-//   const welcomeMessage = screen.getByText('Welcome to the Catalog Page!');
-//   expect(welcomeMessage).toBeInTheDocument();
-// });
-export const a = 1;
+jest.mock('../../shared', () => ({
+  getCategoryID: jest.fn(() => Promise.resolve('category-id')),
+  requestToCommerceForRender: jest.fn(() => Promise.resolve([])),
+}));
+
+// Создайте моки, которые соответствуют ожидаемому типу SetProductDetailsType
+const mockSetProductDetails: SetProductDetailsType = {
+  setProductName: jest.fn(),
+  setProductDescription: jest.fn(),
+  setProductPrice: jest.fn(),
+  setProductImg: jest.fn(),
+  setProductType: jest.fn(),
+  setProductWeigth: jest.fn(),
+  setProductPFCK: jest.fn(),
+};
+
+const mockProps: CatalogPropsType = {
+  products: [],
+  setProducts: jest.fn(),
+  setProductDetailes: mockSetProductDetails,
+};
+
+describe('CatalogPage', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    localStorage.removeItem('filter_params');
+  });
+
+  it('renders without errors', async () => {
+    render(<CatalogPage {...mockProps} />);
+  });
+});

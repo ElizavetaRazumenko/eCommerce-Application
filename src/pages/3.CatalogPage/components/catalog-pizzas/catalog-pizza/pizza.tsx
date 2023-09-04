@@ -4,50 +4,33 @@ import { NavLink } from 'react-router-dom';
 import s from './pizza.module.scss';
 
 import infoProducts from '../../../../../entities/product';
-import { PizzaCatalogType, ProductItemType } from '../../../../../types/types';
+import { PizzaCatalogType } from '../../../../../types/types';
 
 import PizzaParams from '../catalog-pizzaParams/pizzaParams';
 
 const Pizza = (props: PizzaCatalogType) => {
+  const key = infoProducts.pizzas.find((el) => el.name === props.name)?.key;
   const arrayPizzaParams = [
     {
       size: 'L',
       length: '45cm',
       price: props.cost[0],
+      discount: props.discounts[0] || '',
     },
     {
       size: 'M',
       length: '30cm',
       price: props.cost[1],
+      discount: props.discounts[1] || '',
     },
     {
       size: 'S',
       length: '25cm',
       price: props.cost[2],
+      discount: props.discounts[2] || '',
     },
   ];
   const mainIngredientsStartIndex = props.description.indexOf('Main ingredients');
-
-  const setPriceAndWeigth = (price: string, weigth: string) => {
-    props.setProductDetailes.setProductPrice(price);
-    props.setProductDetailes.setProductWeigth(weigth);
-  };
-
-  const setDetailes = (size: string) => {
-    props.setProductDetailes.setProductName(props.name);
-    props.setProductDetailes.setProductDescription(props.description);
-    size === 'l'
-      ? setPriceAndWeigth(props.cost[0], '945gr')
-      : size === 'm'
-      ? setPriceAndWeigth(props.cost[1], '632gr')
-      : setPriceAndWeigth(props.cost[2], '210gr');
-    props.setProductDetailes.setProductImg(props.link.map((img) => img.url));
-    props.setProductDetailes.setProductType('pizzas');
-    const productItem = infoProducts['pizzas'].find(
-      (el) => el.name === props.name,
-    ) as ProductItemType;
-    props.setProductDetailes.setProductPFCK(productItem.PFCK);
-  };
 
   return (
     <div className={s.pizza_item}>
@@ -58,20 +41,26 @@ const Pizza = (props: PizzaCatalogType) => {
           {props.description.slice(mainIngredientsStartIndex)}
         </div>
         <div className={s.size_links}>
-          <NavLink to='/details' className={s.size_link} onClick={() => setDetailes('l')}>
+          <NavLink to={`/details/${key?.toLowerCase()}/l`} className={s.size_link}>
             L
           </NavLink>
-          <NavLink to='/details' className={s.size_link} onClick={() => setDetailes('m')}>
+          <NavLink to={`/details/${key?.toLowerCase()}/m`} className={s.size_link}>
             M
           </NavLink>
-          <NavLink to='/details' className={s.size_link} onClick={() => setDetailes('s')}>
+          <NavLink to={`/details/${key?.toLowerCase()}/s`} className={s.size_link}>
             S
           </NavLink>
         </div>
       </div>
       <div className={s.pizza_params}>
         {arrayPizzaParams.map((pizza, index) => (
-          <PizzaParams size={pizza.size} length={pizza.length} price={pizza.price} key={index} />
+          <PizzaParams
+            size={pizza.size}
+            length={pizza.length}
+            price={pizza.price}
+            key={index}
+            discount={pizza.discount}
+          />
         ))}
       </div>
     </div>

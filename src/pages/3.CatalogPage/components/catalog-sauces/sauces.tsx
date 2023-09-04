@@ -3,13 +3,10 @@ import Sauce from './components/sauce';
 import s from './sauces.module.scss';
 
 import infoProducts from '../../../../entities/product';
-import { ProductsType, SetProductDetailsType } from '../../../../types/types';
+import { CatalogSaucesProps } from '../../../../types/types';
 
-const CatalogSauces = (props: {
-  products: ProductsType;
-  setProductDetailes: SetProductDetailsType;
-}) => {
-  const saucesItems = props.products.results.filter((el) =>
+const CatalogSauces = (props: CatalogSaucesProps) => {
+  const saucesItems = props.products.filter((el) =>
     infoProducts.sauces.find((item) => item.key === el.key),
   );
   const sauceArray = saucesItems.map((sauce) => {
@@ -21,7 +18,6 @@ const CatalogSauces = (props: {
         name={sauce.name['en-US']}
         price={sauceCost}
         description={sauce.description['en-US']}
-        setProductDetailes={props.setProductDetailes}
       />
     );
   });

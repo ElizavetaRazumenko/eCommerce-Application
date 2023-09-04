@@ -252,17 +252,22 @@ describe('checkTextLocationField', () => {
     const testField = {
       value: 'Milan123',
       isValid: true,
+      errorMessage: '',
     } as FieldLocationType;
     checkTextLocationField(testField);
     expect(testField.isValid).toBe(false);
+    expect(testField.errorMessage).toBe('must not contain numbers');
   });
 
   test('should not contain special characters', () => {
     const testField = {
-      value: '@Mil#an!',
+      value: '@Mil#an',
       isValid: true,
+      errorMessage: '',
+      type: 'city',
     } as FieldLocationType;
     checkTextLocationField(testField);
     expect(testField.isValid).toBe(false);
+    expect(testField.errorMessage).toBe('must not contain special characters');
   });
 });

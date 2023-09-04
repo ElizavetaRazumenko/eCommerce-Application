@@ -6,6 +6,8 @@ import Field from './field';
 
 import '@testing-library/jest-dom/extend-expect';
 
+import '@testing-library/jest-dom/extend-expect';
+
 describe('Field component', () => {
   it('should render with correct input type and value', () => {
     const props = {

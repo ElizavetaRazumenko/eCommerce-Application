@@ -1,0 +1,12 @@
+.catalog_wrapper {
+    position: relative;
+    width: 100%;
+    height: max-content;
+    padding: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+ 
+         @media (max-width: 860px) {
+             font-size: 2rem;
+          }  
+ }

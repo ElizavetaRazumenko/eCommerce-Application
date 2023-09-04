@@ -1,0 +1,100 @@
+@import '../../../../globalVariables.scss';
+
+.modalBackground {
+  position: fixed;
+  width: 100%;
+  max-width: 1280px;
+  height: 100%;
+  cursor: pointer;
+  z-index: 2;
+
+  .modalActive {
+    position: absolute;
+    width: 350px;
+    height: 495px;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    background-color: $white;
+    cursor: default;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+
+    @media (max-width: 520px) {
+      width: 310px;
+  }
+
+  @media (max-width: 430px) {
+    width: 270px;
+}
+
+    .modalClose {
+      font-family: var(--font-regular);
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+
+      img {
+          margin: 3px;
+          width: 24px;
+          height: 24px;
+      }
+    }
+
+    .modalWindow {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      margin: 0 15px;
+    }
+  }
+}
+
+.btn_save {
+  cursor: pointer;
+  margin-top: 20px;
+  box-sizing: border-box;
+  padding: 10px 25px;
+  background-color: rgba($main-grey, .3);
+  border-radius: 15px;
+  border: 1px solid $main-grey;
+  transition: .5s;
+  font-weight: 700;
+
+  &:hover {
+    background-color: rgba($main-grey, .2);
+  }
+}
+
+
+label {
+  margin-bottom: 10px;
+}
+
+input {
+  width: 100%;
+  font-style: italic;
+  box-sizing: border-box;
+  padding: 10px 15px;
+  border: none;
+  font-size: .9rem;
+  border-radius: 15px;
+  background-color: rgba($main-grey, .3);
+  transition: .5s;
+
+  &:focus {
+    box-shadow: 0 0 20px $main-grey;
+  }
+}
+.error_message {
+  min-height: 14px;
+  margin-left: 10px;
+  color: #ff0000;
+}

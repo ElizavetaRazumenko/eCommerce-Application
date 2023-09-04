@@ -12,6 +12,8 @@ import {
   // ExistingTokenMiddlewareOptions, // Required for sending HTTP requests
 } from '@commercetools/sdk-client-v2';
 
+import { ProductsType, requestCatalogParamsType } from '../types/types';
+
 const fetch = require('node-fetch');
 
 const scopes = [
@@ -29,6 +31,17 @@ const scopes = [
 ];
 
 const projectKey = 'ecommece-application';
+
+const authMiddlewareOptions: AuthMiddlewareOptions = {
+  host: `https://auth.europe-west1.gcp.commercetools.com`,
+  projectKey: projectKey,
+  credentials: {
+    clientId: 'HgTug4REahFA11dVfXfn2FW3',
+    clientSecret: 'vdT50e1NqbdNH6Z2NhExia6lqwFfC8OT',
+  },
+  scopes,
+  fetch,
+};
 
 const httpMiddlewareOptions: HttpMiddlewareOptions = {
   host: `https://api.europe-west1.gcp.commercetools.com`,
@@ -52,17 +65,6 @@ class MyTokenCache implements TokenCache {
 }
 
 export const myTokenCache = new MyTokenCache();
-
-const authMiddlewareOptions: AuthMiddlewareOptions = {
-  host: `https://auth.europe-west1.gcp.commercetools.com`,
-  projectKey: projectKey,
-  credentials: {
-    clientId: 'HgTug4REahFA11dVfXfn2FW3',
-    clientSecret: 'vdT50e1NqbdNH6Z2NhExia6lqwFfC8OT',
-  },
-  scopes,
-  fetch,
-};
 
 const defaultClient = new ClientBuilder()
   .withProjectKey(projectKey)
@@ -138,8 +140,21 @@ export const loginClient = async (email: string, password: string) => {
   localStorage.setItem('userInfo', JSON.stringify(response.body));
 };
 
+const client = new ClientBuilder()
+  .withProjectKey(projectKey)
+  .withClientCredentialsFlow(authMiddlewareOptions)
+  .withHttpMiddleware(httpMiddlewareOptions)
+  .withLoggerMiddleware()
+  .build();
+
+export const getApiRoot = () => {
+  return createApiBuilderFromCtpClient(client).withProjectKey({
+    projectKey: 'ecommece-application',
+  });
+};
+
 export const getProducts = async () => {
-  if (!localStorage.getItem('Catalog info')) {
+  try {
     const products = await apiRoot
       .productProjections()
       .get({
@@ -148,92 +163,84 @@ export const getProducts = async () => {
         },
       })
       .execute();
-    localStorage.setItem('Catalog info', JSON.stringify(products.body));
-    return JSON.parse(localStorage.getItem('Catalog info')!);
-  } else return JSON.parse(localStorage.getItem('Catalog info')!);
-};
-
-export const getProduct = async () => {
-  const products = await apiRoot.products().withKey({ key: 'PS-1-1-1' }).get().execute();
-  console.log(products.body);
+    return products.body.results as ProductsType;
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const sortByLowerPrice = async () => {
-  const products = await apiRoot
-    .productProjections()
-    .search()
-    .get({
-      queryArgs: {
-        sort: ['price asc'],
-        limit: 29,
-      },
-    })
-    .execute();
-
-  console.log('price to HIGH');
-  console.log(products.body.results);
-  return products.body.results;
+  try {
+    const products = await apiRoot
+      .productProjections()
+      .search()
+      .get({
+        queryArgs: {
+          sort: ['price asc'],
+          limit: 29,
+        },
+      })
+      .execute();
+    return products.body.results as ProductsType;
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const sortByHigherPrice = async () => {
-  const products = await apiRoot
-    .productProjections()
-    .search()
-    .get({
-      queryArgs: {
-        sort: ['price desc'],
-        limit: 29,
-      },
-    })
-    .execute();
-  console.log('price to LOW');
-  console.log(products.body.results);
-  return products.body.results;
+  try {
+    const products = await apiRoot
+      .productProjections()
+      .search()
+      .get({
+        queryArgs: {
+          sort: ['price desc'],
+          limit: 29,
+        },
+      })
+      .execute();
+    return products.body.results as ProductsType;
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const sortByAlphabetZA = async () => {
-  const products = await apiRoot
-    .productProjections()
-    .search()
-    .get({
-      queryArgs: {
-        sort: ['name.en-US desc'],
-        limit: 29,
-      },
-    })
-    .execute();
-  console.log(products.body.results);
-  return products.body.results;
+  try {
+    const products = await apiRoot
+      .productProjections()
+      .search()
+      .get({
+        queryArgs: {
+          sort: ['name.en-US desc'],
+          limit: 29,
+        },
+      })
+      .execute();
+    return products.body.results as ProductsType;
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const sortByAlphabetAZ = async () => {
-  const products = await apiRoot
-    .productProjections()
-    .search()
-    .get({
-      queryArgs: {
-        sort: ['name.en-US asc'],
-        limit: 29,
-      },
-    })
-    .execute();
-  console.log(products.body.results);
-  return products.body.results;
+  try {
+    const products = await apiRoot
+      .productProjections()
+      .search()
+      .get({
+        queryArgs: {
+          sort: ['name.en-US asc'],
+          limit: 29,
+        },
+      })
+      .execute();
+    return products.body.results as ProductsType;
+  } catch (e) {
+    console.log(e);
+  }
 };
 
-// export const seach = async (value: string) => {
-//   const products = await apiRoot
-//     .productProjections()
-//     .get({
-//       queryArgs: {
-//         where: `name(en-US="${value}")`,
-//       },
-//     })
-//     .execute();
-//   return products.body;
-// };
-
-// * search
 export const search = async (value: string) => {
   try {
     const products = await apiRoot
@@ -241,20 +248,97 @@ export const search = async (value: string) => {
       .search()
       .get({
         queryArgs: {
-          // fuzzy: true,
-          where: `name(en-US="${value}")`,
-          limit: 59,
+          'text.en-US': value,
+          limit: 29,
+          fuzzy: true,
         },
       })
       .execute();
-    console.log(products.body.results);
-    const productsNames = products.body.results
-      .map((result) => result.name['en-US'])
-      .filter((name) => name.toLowerCase().includes(value));
-    console.log(productsNames);
-    return productsNames;
+    return products.body.results as ProductsType;
   } catch (error) {
     console.error('error searching:', error);
     throw error;
+  }
+};
+
+export const filter = async (id: string) => {
+  try {
+    const products = await apiRoot
+      .productProjections()
+      .search()
+      .get({
+        queryArgs: {
+          filter: [`variants.attributes.${id}:"yes"`],
+        },
+      })
+      .execute();
+    return products.body.results as ProductsType;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const requestToCommerce = async (data: requestCatalogParamsType) => {
+  try {
+    const products = await apiRoot
+      .productProjections()
+      .search()
+      .get({
+        queryArgs: data,
+      })
+      .execute();
+    return products.body.results as ProductsType;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const requestToCommerceForRender = async (data: requestCatalogParamsType) => {
+  try {
+    const products = await apiRoot
+      .productProjections()
+      .get({
+        queryArgs: data,
+      })
+      .execute();
+    return products.body.results as ProductsType;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getCategoryID = async (key: string) => {
+  try {
+    const categories = await apiRoot.categories().get().execute();
+    return categories.body.results.find((el) => el.key === key)!.id;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getCategoryProduct = async (key: string) => {
+  try {
+    const id = await getCategoryID(key);
+    const product = await apiRoot
+      .productProjections()
+      .search()
+      .get({
+        queryArgs: {
+          filter: `categories.id:"${id}"`,
+        },
+      })
+      .execute();
+    return product.body.results as ProductsType;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getProduct = async (key: string) => {
+  try {
+    const product = await apiRoot.productProjections().withKey({ key: key }).get().execute();
+    return product.body;
+  } catch (e) {
+    console.log(e);
   }
 };
