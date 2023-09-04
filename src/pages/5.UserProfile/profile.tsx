@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 import ModalAddNewAddress from './components/modal/modalAddNewAddress/modalAddNewAddress';
 import ModalAddressEdit from './components/modal/modalAddressInfo/modalAddressEdit';
@@ -115,12 +115,32 @@ const ProfilePage = (props: UserPropsType) => {
     }
   }
 
+  const initialState = {
+    checkboxBill: localStorage.getItem('checkboxBill') as string,
+    checkboxShipp: localStorage.getItem('checkboxShipp') as string,
+  };
+
   const [addresses, setAddresses] = useState(billingAddress);
   const [addresses2, setAddresses2] = useState(shippingAddress);
   const [defBillAddress, setDefBillAddress] = useState(defaultBilling);
   const [defShipping, setShippingAddress] = useState(defaultShipping);
-  const [isCheckedDefBillAddress, setIsCheckedDefBillAddress] = useState('');
-  const [isCheckedDefShippAddress, setIsCheckedDefShippAddress] = useState('');
+  const [checkboxes, setCheckboxes] = useState(initialState);
+
+  useEffect(() => {
+    Object.entries(checkboxes).forEach(([key, value]) => {
+      localStorage.setItem(key, value);
+    });
+  }, [checkboxes]);
+
+  const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setCheckboxes((prevState) => {
+      return {
+        ...prevState,
+        [name]: value,
+      };
+    });
+  };
 
   const showModalPersnal = () => {
     setCurrentModal('ModalPersonalDataEdit');
@@ -149,7 +169,6 @@ const ProfilePage = (props: UserPropsType) => {
     if (defBillingAddress) {
       setDefBillAddress([defBillingAddress]);
     }
-    setIsCheckedDefBillAddress(id);
   };
 
   const hendleCheckboxChangeDefaultShippingAddress = (
@@ -160,10 +179,9 @@ const ProfilePage = (props: UserPropsType) => {
     if (defBillingAddress) {
       setShippingAddress([defBillingAddress]);
     }
-    setIsCheckedDefShippAddress(id);
   };
 
-  const addDefBillingAddressId = async (id: string) => {
+  const addDefBillingAddressId = async (event: React.ChangeEvent<HTMLInputElement>, id: string) => {
     try {
       const response = await getApiRoot()
         .customers()
@@ -185,13 +203,17 @@ const ProfilePage = (props: UserPropsType) => {
       localStorage.setItem('userInfo', JSON.stringify(resultData));
       const updateAddressList = data.addresses as AddressType[];
       hendleCheckboxChangeDefaultBillingAddress(id, updateAddressList);
+      handleCheckboxChange(event);
       return data;
     } catch (error) {
       console.error('Error updating customer:', error);
     }
   };
 
-  const addDefShippingAddressId = async (id: string) => {
+  const addDefShippingAddressId = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+    id: string,
+  ) => {
     try {
       const response = await getApiRoot()
         .customers()
@@ -213,6 +235,7 @@ const ProfilePage = (props: UserPropsType) => {
       localStorage.setItem('userInfo', JSON.stringify(resultData));
       const updateAddressList = data.addresses as AddressType[];
       hendleCheckboxChangeDefaultShippingAddress(id, updateAddressList);
+      handleCheckboxChange(event);
       return data;
     } catch (error) {
       console.error('Error updating customer:', error);
@@ -316,9 +339,10 @@ const ProfilePage = (props: UserPropsType) => {
                     ></span>
                     <input
                       type='checkbox'
-                      checked={isCheckedDefBillAddress === billAddress.id}
+                      checked={checkboxes.checkboxBill === billAddress.id}
+                      name='checkboxBill'
                       value={billAddress.id}
-                      onChange={() => addDefBillingAddressId(billAddress.id)}
+                      onChange={(event) => addDefBillingAddressId(event, billAddress.id)}
                     />
                   </p>
                 );
@@ -344,9 +368,10 @@ const ProfilePage = (props: UserPropsType) => {
                     ></span>
                     <input
                       type='checkbox'
-                      checked={isCheckedDefShippAddress === shippAddress.id}
+                      name='checkboxShipp'
+                      checked={checkboxes.checkboxShipp === shippAddress.id}
                       value={shippAddress.id}
-                      onChange={() => addDefShippingAddressId(shippAddress.id)}
+                      onChange={(event) => addDefShippingAddressId(event, shippAddress.id)}
                     />
                   </p>
                 );
