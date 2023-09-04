@@ -19,9 +19,6 @@ describe('Nav component', () => {
     );
     expect(screen.getByText('Main')).toBeInTheDocument();
     expect(screen.getByText('Catalog')).toBeInTheDocument();
-    expect(screen.getByText('Details')).toBeInTheDocument();
-    expect(screen.getByText('Profile')).toBeInTheDocument();
-    expect(screen.getByText('Cart')).toBeInTheDocument();
-    expect(screen.getByText('Login')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Login/Register' })).toBeInTheDocument();
   });
 });
