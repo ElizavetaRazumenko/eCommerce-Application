@@ -118,10 +118,14 @@
          background-image: url('../../assets/png/pensil.png');
          background-repeat: no-repeat;
          background-size: contain;
-         width: 24px;
-         height: 24px;
+         width: 30px;
+         height: 30px;
          cursor: pointer;
          margin-right: 15px;
+         @media (max-width: 520px) {
+            width: 20px;
+            height: 20px;
+         }
       }
       .delete_icon {
          display: block;
@@ -129,9 +133,13 @@
          background-repeat: no-repeat;
          background-size: contain;
          width: 30px;
-         height: 26px;
+         height: 30px;
          cursor: pointer;
          margin-right: 15px;
+         @media (max-width: 520px) {
+            width: 20px;
+            height: 20px;
+         }
       }
     }
     .welcome_title,
@@ -180,8 +188,13 @@
    }
 }
 
+.input_profile {
+   max-width: 25px;
+}
+
 .settings {
    display: flex;
+   justify-content: flex-start;
    margin-left: 15px;
    @media (max-width: 520px) {
       margin-left: 0;

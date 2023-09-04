@@ -322,6 +322,7 @@ const ProfilePage = (props: UserPropsType) => {
                         checked={isCheckedDefBillAddress === billAddress.id}
                         value={billAddress.id}
                         onChange={() => addDefBillingAddressId(billAddress.id)}
+                        className={s.input_profile}
                       />
                     </div>
                   </p>
@@ -352,6 +353,7 @@ const ProfilePage = (props: UserPropsType) => {
                         checked={isCheckedDefShippAddress === shippAddress.id}
                         value={shippAddress.id}
                         onChange={() => addDefShippingAddressId(shippAddress.id)}
+                        className={s.input_profile}
                       />
                     </div>
                   </p>
