@@ -1,6 +1,4 @@
-
 import { ChangeEvent, useEffect, useState } from 'react';
-import { useState } from 'react';
 
 import ModalAddNewAddress from './components/modal/modalAddNewAddress/modalAddNewAddress';
 import ModalAddressEdit from './components/modal/modalAddressInfo/modalAddressEdit';
@@ -344,9 +342,9 @@ const ProfilePage = (props: UserPropsType) => {
                       ></span>
                       <input
                         type='checkbox'
-                        checked={isCheckedDefBillAddress === billAddress.id}
+                        // checked={isCheckedDefBillAddress === billAddress.id}
                         value={billAddress.id}
-                        onChange={() => addDefBillingAddressId(billAddress.id)}
+                        // onChange={() => addDefBillingAddressId(billAddress.id)}
                         className={s.input_profile}
                       />
                     </span>
@@ -375,9 +373,9 @@ const ProfilePage = (props: UserPropsType) => {
                       ></span>
                       <input
                         type='checkbox'
-                        checked={isCheckedDefShippAddress === shippAddress.id}
+                        // checked={isCheckedDefShippAddress === shippAddress.id}
                         value={shippAddress.id}
-                        onChange={() => addDefShippingAddressId(shippAddress.id)}
+                        // onChange={() => addDefShippingAddressId(shippAddress.id)}
                         className={s.input_profile}
                       />
                     </span>
