@@ -140,6 +140,7 @@ const ProfilePage = (props: UserPropsType) => {
   const hideModal = () => {
     setModalVisible(false);
   };
+
   const hendleCheckboxChangeDefaultBillingAddress = (
     id: string,
     updateAddressList: AddressType[],
