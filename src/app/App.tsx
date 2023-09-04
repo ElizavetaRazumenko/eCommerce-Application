@@ -32,7 +32,6 @@ const App = () => {
   const [productsData, setProducts] = useState<ProductsType>(startProductObject);
   const products = async () => {
     const productsCollection = await getProducts();
-    console.log('а теперь в App');
     if (productsCollection) {
       setProducts(productsCollection);
     }
@@ -162,7 +161,7 @@ const App = () => {
             <Route path='/profile' element={profileRedirection()} />
             <Route path='details/:key' element={<DetailedPage />} />
             <Route path='details/:key/:size' element={<DetailedPage />} />
-            <Route path='/profile' element={profileRedirection()} />} />
+            <Route path='/profile' element={profileRedirection()} />
             <Route path='/cart' element={<BasketPage userState={userState} />} />
             <Route path='*' element={<ErrorPage />} />
           </Route>
