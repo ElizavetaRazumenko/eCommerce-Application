@@ -132,7 +132,6 @@ const ModalAddNewAddress: React.FC<HideModalType> = ({
           const addressList = actualData.addresses as AddressType[];
           const shippingId = actualData.shippingAddressIds as string[];
           const shippingAddress = addressList.filter((el) => shippingId.includes(el.id))!;
-          console.log(actualData);
           setNewAddress2(shippingAddress);
         }
       }

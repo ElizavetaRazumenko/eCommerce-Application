@@ -108,7 +108,9 @@ const ModalPersonalDataEditWindow: React.FC<HideModalType> = ({ onHideModal, cus
               onChange={handChangeEmail}
             />
           </div>
-          <button onClick={checkSubmit}>Save</button>
+          <button onClick={checkSubmit} className={modal.btn_save}>
+            Save
+          </button>
         </div>
       </div>
     </div>
