@@ -150,31 +150,75 @@ const ModalAddNewAddress: React.FC<HideModalType> = ({
         </div>
         <div className={modal.modalWindow}>
           <div className={newAddress.address_info}>
-            <h3 className={newAddress.address_info_title}> Address Billing</h3>
+            <h3 className={newAddress.address_info_title}> Billing</h3>
             <label htmlFor='bilingAddressCity'>City: </label>
-            <input id='bilingAddressCity' type='text' onChange={handAddCity} />
+            <input
+              id='bilingAddressCity'
+              type='text'
+              onChange={handAddCity}
+              className={newAddress.input}
+            />
             <label htmlFor='bilingAddressCountry'>Country: </label>
-            <input id='bilingAddressCountry' type='text' onChange={handAddCountry} />
+            <input
+              id='bilingAddressCountry'
+              type='text'
+              onChange={handAddCountry}
+              className={newAddress.input}
+            />
             <label htmlFor='bilingAddressStreetName'>Street name: </label>
-            <input id='bilingAddressStreetName' type='text' onChange={handAddStreetName} />
+            <input
+              id='bilingAddressStreetName'
+              type='text'
+              onChange={handAddStreetName}
+              className={newAddress.input}
+            />
             <label htmlFor='bilingAddressPostalCode'>Postal code: </label>
-            <input id='bilingAddressPostalCode' type='text' onChange={handAddPostalCode} />
+            <input
+              id='bilingAddressPostalCode'
+              type='text'
+              onChange={handAddPostalCode}
+              className={newAddress.input}
+            />
           </div>
-          <button onClick={() => checkSubmit('billing')}>Save Billing</button>
+          <button onClick={() => checkSubmit('billing')} className={newAddress.btn_save}>
+            Save Billing
+          </button>
         </div>
         <div className={modal.modalWindow}>
           <div className={newAddress.address_info}>
-            <h3 className={newAddress.address_info_title}> Address Shipping</h3>
+            <h3 className={newAddress.address_info_title}> Shipping</h3>
             <label htmlFor='bilingAddressCity'>City: </label>
-            <input id='bilingAddressCity' type='text' onChange={handAddCity} />
+            <input
+              id='bilingAddressCity'
+              type='text'
+              onChange={handAddCity}
+              className={newAddress.input}
+            />
             <label htmlFor='bilingAddressCountry'>Country: </label>
-            <input id='bilingAddressCountry' type='text' onChange={handAddCountry} />
+            <input
+              id='bilingAddressCountry'
+              type='text'
+              onChange={handAddCountry}
+              className={newAddress.input}
+            />
             <label htmlFor='bilingAddressStreetName'>Street name: </label>
-            <input id='bilingAddressStreetName' type='text' onChange={handAddStreetName} />
+            <input
+              id='bilingAddressStreetName'
+              type='text'
+              onChange={handAddStreetName}
+              className={newAddress.input}
+            />
             <label htmlFor='bilingAddressPostalCode'>Postal code: </label>
-            <input id='bilingAddressPostalCode' type='text' onChange={handAddPostalCode} />
+            <input
+              id='bilingAddressPostalCode'
+              type='text'
+              onChange={handAddPostalCode}
+              className={newAddress.input}
+            />
           </div>
-          <button onClick={() => checkSubmit('shipping')}>Save Shipping</button>
+          <button onClick={() => checkSubmit('shipping')} className={newAddress.btn_save}>
+            Save Shipping
+          </button>
         </div>
       </div>
     </div>
