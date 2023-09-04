@@ -2,16 +2,11 @@ import React, { useState, ChangeEvent, useRef } from 'react';
 
 import s from './inputs.module.scss';
 
-import {
-  sortByAlphabetAZ,
-  sortByAlphabetZA,
-  sortByLowerPrice,
-  sortByHigherPrice,
-  search,
-} from '../../../../shared/index';
-import { ProductsType } from '../../../../types/types';
+import { requestToCommerce } from '../../../../shared/index';
+import requestsCatalogParams from '../../../../state/requestObj';
+import { CatalogInputsPropsType } from '../../../../types/types';
 
-const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<ProductsType>> }) => {
+const Inputs = (props: CatalogInputsPropsType) => {
   const sortRef = useRef<HTMLDivElement>(null);
   const sortMenuRef = useRef<HTMLDivElement>(null);
   const filterRef = useRef<HTMLDivElement>(null);
@@ -20,6 +15,11 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
   const hightPrice = useRef<HTMLParagraphElement>(null);
   const a_z = useRef<HTMLParagraphElement>(null);
   const z_a = useRef<HTMLParagraphElement>(null);
+  const vegetarian = useRef<HTMLParagraphElement>(null);
+  const children = useRef<HTMLParagraphElement>(null);
+  const lowCalorie = useRef<HTMLParagraphElement>(null);
+  const resetFilter = useRef<HTMLParagraphElement>(null);
+  const [sortBy, setSortBy] = useState('Sort by');
   const [findBy, setFindBy] = useState('');
 
   const sortChange = (ref: React.RefObject<HTMLParagraphElement>) => {
@@ -28,11 +28,8 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
     z_a.current!.classList.remove(s.selected);
     a_z.current!.classList.remove(s.selected);
     ref.current!.classList.toggle(s.selected);
-  };
-
-  const findChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setFindBy(event.target.value);
-    search(event.target.value);
+    setSortBy(ref.current!.textContent || '');
+    openMenuSort(sortRef, 'sort');
   };
 
   const openMenuSort = (ref: React.RefObject<HTMLDivElement>, type: string) => {
@@ -48,43 +45,82 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
     }
   };
 
-  const changeChouse = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const target = e.target as HTMLParagraphElement;
-    target.classList.toggle(s.selected);
+  const changeChouse = (ref: React.RefObject<HTMLParagraphElement>) => {
+    ref.current!.classList.add(s.selected);
+  };
+
+  const resetFilters = () => {
+    vegetarian.current!.classList.remove(s.selected);
+    children.current!.classList.remove(s.selected);
+    lowCalorie.current!.classList.remove(s.selected);
+    openMenuSort(filterRef, 'filter');
+  };
+
+  const sentRequetsSort = async (condition: string) => {
+    requestsCatalogParams.sort! = [condition];
+    const catalogState = await requestToCommerce(requestsCatalogParams);
+    if (catalogState) props.setProducts(catalogState);
+  };
+  const sentRequetsFilter = async (id: string) => {
+    if (Array.isArray(requestsCatalogParams.filter)) {
+      requestsCatalogParams.filter!.push(`variants.attributes.${id}:"yes"`);
+      const catalogState = await requestToCommerce(requestsCatalogParams);
+      if (catalogState) props.setProducts(catalogState);
+    }
+  };
+
+  const findChange = async (event: ChangeEvent<HTMLInputElement>) => {
+    setFindBy(event.target.value);
+    if (event.target.value === '') {
+      delete requestsCatalogParams['text.en-US'];
+      delete requestsCatalogParams.fuzzy;
+    } else {
+      requestsCatalogParams['text.en-US'] = event.target.value;
+      requestsCatalogParams.fuzzy = true;
+    }
+    const catalogState = await requestToCommerce(requestsCatalogParams);
+    if (catalogState) props.setProducts(catalogState);
+  };
+
+  const removeFromRequetsFilter = async () => {
+    const info = localStorage.getItem('filter_params');
+    requestsCatalogParams.filter = info ? JSON.parse(info) : [];
+    const catalogState = await requestToCommerce(requestsCatalogParams);
+    if (catalogState) props.setProducts(catalogState);
   };
 
   return (
     <div className={s.inputs_wrapper}>
       <div className={s.sort_menu}>
         <div className={s.div_sort} onClick={() => openMenuSort(sortRef, 'sort')} ref={sortRef}>
-          <span>Sort by</span>
+          <span>{sortBy}</span>
           <div className={s.sort_arrow}></div>
         </div>
         <div className={s.sort_menu_choise + ' ' + s.hidden} ref={sortMenuRef}>
           <p
             className={s.sort_item}
             onClick={async () => {
-              sortByLowerPrice();
+              await sentRequetsSort('price asc');
               sortChange(lowPrice);
             }}
             ref={lowPrice}
           >
-            From low to high average price
+            From low to high price
           </p>
           <p
             className={s.sort_item}
             onClick={async () => {
-              sortByHigherPrice();
+              await sentRequetsSort('price desc');
               sortChange(hightPrice);
             }}
             ref={hightPrice}
           >
-            From high to low average price
+            From high to low price
           </p>
           <p
             className={s.sort_item}
             onClick={async () => {
-              sortByAlphabetAZ();
+              await sentRequetsSort('name.en-US asc');
               sortChange(a_z);
             }}
             ref={a_z}
@@ -94,7 +130,7 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
           <p
             className={s.sort_item}
             onClick={async () => {
-              sortByAlphabetZA();
+              await sentRequetsSort('name.en-US desc');
               sortChange(z_a);
             }}
             ref={z_a}
@@ -121,14 +157,53 @@ const Inputs = (props: { setProducts: React.Dispatch<React.SetStateAction<Produc
           <span>Filter by</span>
           <div className={s.sort_arrow}></div>
         </div>
-        <div
-          className={s.filter_menu_choise + ' ' + s.hidden}
-          ref={filterMenuRef}
-          onClick={(e) => changeChouse(e)}
-        >
-          <p className={s.sort_item}>Vegetarian food</p>
-          <p className={s.sort_item}>Not spicy food</p>
-          <p className={s.sort_item}>Low calorie food</p>
+        <div className={s.filter_menu_choise + ' ' + s.hidden} ref={filterMenuRef}>
+          <p
+            className={s.sort_item}
+            onClick={async () => {
+              if (!vegetarian.current!.classList.contains(s.selected)) {
+                await sentRequetsFilter('lf');
+              }
+              changeChouse(vegetarian);
+            }}
+            ref={vegetarian}
+          >
+            Lactose Free Ingredients
+          </p>
+          <p
+            className={s.sort_item}
+            ref={children}
+            onClick={async () => {
+              if (!children.current!.classList.contains(s.selected)) {
+                await sentRequetsFilter('nt');
+              }
+              changeChouse(children);
+            }}
+          >
+            No tomatoes
+          </p>
+          <p
+            className={s.sort_item}
+            ref={lowCalorie}
+            onClick={async () => {
+              if (!lowCalorie.current!.classList.contains(s.selected)) {
+                await sentRequetsFilter('no');
+              }
+              changeChouse(lowCalorie);
+            }}
+          >
+            No onion
+          </p>
+          <p
+            className={s.sort_item}
+            onClick={async () => {
+              await removeFromRequetsFilter();
+              resetFilters();
+            }}
+            ref={resetFilter}
+          >
+            Reset
+          </p>
         </div>
       </div>
     </div>

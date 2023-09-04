@@ -1,3 +1,4 @@
+import { Address } from '@commercetools/platform-sdk';
 import { useState } from 'react';
 
 import ModalAddNewAddress from './components/modal/modalAddNewAddress/modalAddNewAddress';
