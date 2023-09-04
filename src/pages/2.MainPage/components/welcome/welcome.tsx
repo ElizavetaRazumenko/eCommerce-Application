@@ -17,6 +17,12 @@ const SectionWelcome = () => {
           <button className={s.btn_login}>Login/Register</button>
         </NavLink>
       </div>
+      <div className={s.to_profile}>
+        <p className={s.content_to_profile}>To personal data:</p>
+        <NavLink to='/profile' className={s.link}>
+          <button className={s.btn_login}>Profile</button>
+        </NavLink>
+      </div>
     </section>
   );
 };
