@@ -32,7 +32,6 @@ const App = () => {
   const [productsData, setProducts] = useState<ProductsType>(startProductObject);
   const products = async () => {
     const productsCollection = await getProducts();
-    console.log('а теперь в App');
     if (productsCollection) {
       setProducts(productsCollection);
     }
