@@ -3,7 +3,7 @@ import { useState } from 'react';
 import closeIcon from '../../../../../assets/svg/close.svg';
 import { getApiRoot } from '../../../../../shared';
 import { HideModalType } from '../../../../../types/types';
-import { checkPassword } from '../../../profileState/state';
+import { checkPassword } from '../../../profileUtils/utils';
 import modal from '../modal.module.scss';
 import address from '../modalAddNewAddress/modalAddNewAddress.module.scss';
 
@@ -21,12 +21,14 @@ const ModalEditPassword: React.FC<HideModalType> = ({ onHideModal, customerData 
   };
 
   const handleCurrentPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setErrorOfCurrentPass('');
     setErrorOfPage('');
     checkPassword(e.target.value, setErrorOfCurrentPass);
     SetCurrentPasswordState(e.target.value);
   };
 
   const handleNewPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setErrorOfNewPass('');
     setErrorOfPage('');
     checkPassword(e.target.value, setErrorOfNewPass);
     SetNewPasswordState(e.target.value);

@@ -5,7 +5,7 @@ import personal from './ModalPersonalDataEdit.module.scss';
 import closeIcon from '../../../../../assets/svg/close.svg';
 import { getApiRoot } from '../../../../../shared';
 import { HideModalType } from '../../../../../types/types';
-import { checkEmail, checkTextField, checkDate } from '../../../profileState/state';
+import { checkEmail, checkTextField, checkDate } from '../../../profileUtils/utils';
 import modal from '../modal.module.scss';
 
 const ModalPersonalDataEditWindow: React.FC<HideModalType> = ({ onHideModal, customerData }) => {
@@ -20,21 +20,25 @@ const ModalPersonalDataEditWindow: React.FC<HideModalType> = ({ onHideModal, cus
   const [errorOfPage, setErrorOfPage] = useState('');
 
   const handChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setErrorEmail('');
     setErrorOfPage('');
     checkEmail(e.target.value, setErrorEmail);
     setCustomerEmail(e.target.value);
   };
   const handChangeFirstName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setErrorFirstName('');
     setErrorOfPage('');
     checkTextField(e.target.value, setErrorFirstName);
     setFirstName(e.target.value);
   };
   const handChangeLastName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setErrorLastName('');
     setErrorOfPage('');
     checkTextField(e.target.value, setErrorLastName);
     setCustomerLastName(e.target.value);
   };
   const handChangeDateBirth = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setErrorDateOfBirth('');
     setErrorOfPage('');
     checkDate(e.target.value, setErrorDateOfBirth);
     setCustomerDate(e.target.value);
