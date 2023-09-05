@@ -2,6 +2,7 @@ import { ChangeEvent, useEffect, useState } from 'react';
 
 import ModalAddNewAddress from './components/modal/modalAddNewAddress/modalAddNewAddress';
 import ModalAddressEdit from './components/modal/modalAddressInfo/modalAddressEdit';
+import ModalEditPassword from './components/modal/modalEditPassword/modalEditPassword';
 import ModalPersonalDataEdit from './components/modal/modalPersonInfo/ModalPersonalDataEdit';
 import s from './profile.module.scss';
 
@@ -90,11 +91,7 @@ const ProfilePage = (props: UserPropsType) => {
   ];
 
   let shippingAddress: AddressType[] = Object.assign({}, billingAddress);
-
-  // let defaultBilling: AddressType[] = Object.assign({}, billingAddress);
   let defaultBilling: AddressType[] = [];
-
-  // let defaultShipping: AddressType[] = Object.assign({}, billingAddress);
   let defaultShipping: AddressType[] = [];
 
   if (customerAddresses) {
@@ -144,6 +141,10 @@ const ProfilePage = (props: UserPropsType) => {
 
   const showModalPersnal = () => {
     setCurrentModal('ModalPersonalDataEdit');
+    setModalVisible(true);
+  };
+  const showModalEditPasword = () => {
+    setCurrentModal('ModalEditPassword');
     setModalVisible(true);
   };
   const showModalAddress = (addresses: CustomerAddressType[]) => {
@@ -291,6 +292,10 @@ const ProfilePage = (props: UserPropsType) => {
               setNewAddress2={setAddresses2}
             />
           )
+        : currentModal === 'ModalEditPassword'
+        ? modalVisible && (
+            <ModalEditPassword onHideModal={hideModal} customerData={selectedAddress} />
+          )
         : modalVisible && (
             <ModalAddressEdit
               onHideModal={hideModal}
@@ -299,6 +304,7 @@ const ProfilePage = (props: UserPropsType) => {
               setNewAddress2={setAddresses2}
             />
           )}
+      ;
       <div className={s.profile_wrapper}>
         <h1 className={s.welcome_title}>User Profile</h1>
         <div className={s.welcome_container}>
@@ -317,6 +323,9 @@ const ProfilePage = (props: UserPropsType) => {
               </div>
               <button className={s.edit_button} onClick={showModalPersnal}>
                 Edit
+              </button>
+              <button className={s.edit_button} onClick={showModalEditPasword}>
+                Edit Password
               </button>
             </div>
             <div className={s.user_info_address}>
@@ -342,9 +351,10 @@ const ProfilePage = (props: UserPropsType) => {
                       ></span>
                       <input
                         type='checkbox'
-                        // checked={isCheckedDefBillAddress === billAddress.id}
+                        name='checkboxBill'
+                        checked={checkboxes.checkboxBill === billAddress.id}
                         value={billAddress.id}
-                        // onChange={() => addDefBillingAddressId(billAddress.id)}
+                        onChange={(event) => addDefBillingAddressId(event, billAddress.id)}
                         className={s.input_profile}
                       />
                     </span>
@@ -373,9 +383,10 @@ const ProfilePage = (props: UserPropsType) => {
                       ></span>
                       <input
                         type='checkbox'
-                        // checked={isCheckedDefShippAddress === shippAddress.id}
+                        name='checkboxShipp'
+                        checked={checkboxes.checkboxShipp === shippAddress.id}
                         value={shippAddress.id}
-                        // onChange={() => addDefShippingAddressId(shippAddress.id)}
+                        onChange={(event) => addDefShippingAddressId(event, shippAddress.id)}
                         className={s.input_profile}
                       />
                     </span>

@@ -1,4 +1,4 @@
-import { FieldLocationType, FieldType } from '../../../types/types';
+// import { FieldLocationType, FieldType } from '../../../types/types';
 
 const state = {
   profilePage: {

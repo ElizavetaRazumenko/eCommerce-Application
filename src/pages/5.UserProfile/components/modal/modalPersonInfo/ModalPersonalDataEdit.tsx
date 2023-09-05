@@ -5,7 +5,7 @@ import personal from './ModalPersonalDataEdit.module.scss';
 import closeIcon from '../../../../../assets/svg/close.svg';
 import { getApiRoot } from '../../../../../shared';
 import { HideModalType } from '../../../../../types/types';
-import state, { checkEmail, checkTextField, checkDate } from '../../../profileState/state';
+import { checkEmail, checkTextField, checkDate } from '../../../profileState/state';
 import modal from '../modal.module.scss';
 
 const ModalPersonalDataEditWindow: React.FC<HideModalType> = ({ onHideModal, customerData }) => {
