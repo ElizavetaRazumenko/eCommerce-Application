@@ -1,7 +1,5 @@
 import '@testing-library/jest-dom/extend-expect';
-
 import { render } from '@testing-library/react';
-
 import React from 'react';
 
 import CatalogNavVegetarian from './vegetarian';
@@ -17,15 +15,6 @@ describe('CatalogNavVegetarian', () => {
     const props: CatalogFoodNamedType = {
       products: [],
       setProducts: jest.fn(),
-      setProductDetailes: {
-        setProductName: jest.fn(),
-        setProductDescription: jest.fn(),
-        setProductPrice: jest.fn(),
-        setProductImg: jest.fn(),
-        setProductType: jest.fn(),
-        setProductWeigth: jest.fn(),
-        setProductPFCK: jest.fn(),
-      },
     };
     const { container } = render(<CatalogNavVegetarian {...props} />);
     expect(container).toBeInTheDocument();

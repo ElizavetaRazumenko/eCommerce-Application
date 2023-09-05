@@ -15,15 +15,6 @@ describe('CatalogNavNonCarbo', () => {
     const props: CatalogFoodNamedType = {
       products: [],
       setProducts: jest.fn(),
-      setProductDetailes: {
-        setProductName: jest.fn(),
-        setProductDescription: jest.fn(),
-        setProductPrice: jest.fn(),
-        setProductImg: jest.fn(),
-        setProductType: jest.fn(),
-        setProductWeigth: jest.fn(),
-        setProductPFCK: jest.fn(),
-      },
     };
     const { container } = render(<CatalogNavNonCarbo {...props} />);
     expect(container).toBeInTheDocument();
