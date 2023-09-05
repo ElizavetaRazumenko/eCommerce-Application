@@ -5,6 +5,7 @@ import newAddress from './modalAddNewAddress.module.scss';
 import closeIcon from '../../../../../assets/svg/close.svg';
 import { getApiRoot } from '../../../../../shared';
 import { AddressType, HideModalType } from '../../../../../types/types';
+import { checkCity, checkStreet, checkCountry, checkPostalCode } from '../../../profileUtils/utils';
 import modal from '../modal.module.scss';
 
 const ModalAddNewAddress: React.FC<HideModalType> = ({
@@ -17,6 +18,20 @@ const ModalAddNewAddress: React.FC<HideModalType> = ({
   const [city, setCity] = useState('');
   const [country, setCountry] = useState('');
   const [postalCode, setPostalCode] = useState('');
+
+  const [errorOfCountryB, setErrorOfCountryB] = useState('');
+  const [errorOfCityB, setErrorOfCityB] = useState('');
+  const [errorOfStreetB, setErrorOfStreetB] = useState('');
+  const [errorOfPostalB, setErrorOfPostalB] = useState('');
+  const [errorOfPageB, setErrorOfPageB] = useState('');
+  let countryValueB = '';
+
+  const [errorOfCountryS, setErrorOfCountryS] = useState('');
+  const [errorOfCityS, setErrorOfCityS] = useState('');
+  const [errorOfStreetS, setErrorOfStreetS] = useState('');
+  const [errorOfPostalS, setErrorOfPostalS] = useState('');
+  const [errorOfPageS, setErrorOfPageS] = useState('');
+  let countryValueS = '';
 
   const handAddStreetName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setStreetName(e.target.value);
@@ -159,6 +174,7 @@ const ModalAddNewAddress: React.FC<HideModalType> = ({
                 onChange={handAddCity}
                 className={newAddress.input + ' ' + newAddress.input_left}
               />
+              <span className={modal.error_message}>{errorOfCityB}</span>
               <label htmlFor='bilingAddressCountry'>Country: </label>
               <input
                 id='bilingAddressCountry'
@@ -166,6 +182,7 @@ const ModalAddNewAddress: React.FC<HideModalType> = ({
                 onChange={handAddCountry}
                 className={newAddress.input + ' ' + newAddress.input_left}
               />
+              <span className={modal.error_message}>{errorOfCountryB}</span>
               <label htmlFor='bilingAddressStreetName'>Street name: </label>
               <input
                 id='bilingAddressStreetName'
@@ -173,6 +190,7 @@ const ModalAddNewAddress: React.FC<HideModalType> = ({
                 onChange={handAddStreetName}
                 className={newAddress.input + ' ' + newAddress.input_left}
               />
+              <span className={modal.error_message}>{errorOfStreetB}</span>
               <label htmlFor='bilingAddressPostalCode'>Postal code: </label>
               <input
                 id='bilingAddressPostalCode'
@@ -180,7 +198,9 @@ const ModalAddNewAddress: React.FC<HideModalType> = ({
                 onChange={handAddPostalCode}
                 className={newAddress.input + ' ' + newAddress.input_left}
               />
+              <span className={modal.error_message}>{errorOfPostalB}</span>
             </div>
+            <span className={modal.error_message}>{errorOfPageB}</span>
             <button onClick={() => checkSubmit('billing')} className={newAddress.btn_save}>
               Save Billing
             </button>
@@ -195,6 +215,7 @@ const ModalAddNewAddress: React.FC<HideModalType> = ({
                 onChange={handAddCity}
                 className={newAddress.input}
               />
+              <span className={modal.error_message}>{errorOfCityS}</span>
               <label htmlFor='bilingAddressCountry'>Country: </label>
               <input
                 id='bilingAddressCountry'
@@ -202,6 +223,7 @@ const ModalAddNewAddress: React.FC<HideModalType> = ({
                 onChange={handAddCountry}
                 className={newAddress.input}
               />
+              <span className={modal.error_message}>{errorOfCountryS}</span>
               <label htmlFor='bilingAddressStreetName'>Street name: </label>
               <input
                 id='bilingAddressStreetName'
@@ -209,6 +231,7 @@ const ModalAddNewAddress: React.FC<HideModalType> = ({
                 onChange={handAddStreetName}
                 className={newAddress.input}
               />
+              <span className={modal.error_message}>{errorOfStreetS}</span>
               <label htmlFor='bilingAddressPostalCode'>Postal code: </label>
               <input
                 id='bilingAddressPostalCode'
@@ -216,7 +239,9 @@ const ModalAddNewAddress: React.FC<HideModalType> = ({
                 onChange={handAddPostalCode}
                 className={newAddress.input}
               />
+              <span className={modal.error_message}>{errorOfPostalS}</span>
             </div>
+            <span className={modal.error_message}>{errorOfPageS}</span>
             <button onClick={() => checkSubmit('shipping')} className={newAddress.btn_save}>
               Save Shipping
             </button>

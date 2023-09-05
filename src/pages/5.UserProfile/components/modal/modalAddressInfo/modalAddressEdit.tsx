@@ -32,8 +32,8 @@ const ModalAddressEdit: React.FC<HideModalType> = ({
   const [errorOfStreet, setErrorOfStreet] = useState('');
   const [errorOfPostal, setErrorOfPostal] = useState('');
   const [errorOfPage, setErrorOfPage] = useState('');
-  const customerBillingAddressId: string = customerData.addresses[0].id;
   let countryValue = '';
+  const customerBillingAddressId: string = customerData.addresses[0].id;
 
   const handChangeBillingAddressCity = (e: React.ChangeEvent<HTMLInputElement>) => {
     setErrorOfCity('');
