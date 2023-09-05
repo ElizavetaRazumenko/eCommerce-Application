@@ -1,4 +1,30 @@
+@import '../../../../../globalVariables.scss';
+
 .address_info {
   display: flex;
   flex-direction: column;
+}
+
+.address_info_title {
+  font-size: 1rem;
+}
+
+.btn_save {
+  cursor: pointer;
+  margin-top: 20px;
+  box-sizing: border-box;
+  padding: 5px 15px;
+  background-color: rgba($main-grey, .3);
+  border-radius: 15px;
+  border: 1px solid $main-grey;
+  transition: .5s;
+  font-weight: 700;
+
+  &:hover {
+    background-color: rgba($main-grey, .2);
+  }
+}
+
+.input {
+  padding: 5px 15px;
 }

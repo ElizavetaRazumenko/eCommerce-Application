@@ -125,7 +125,9 @@ const ModalAddressEdit: React.FC<HideModalType> = ({
               onChange={handChangeBillingAddressPostalCode}
             />
           </div>
-          <button onClick={checkSubmit}>Save</button>
+          <button onClick={checkSubmit} className={address.btn_submit}>
+            Save
+          </button>
         </div>
       </div>
     </div>

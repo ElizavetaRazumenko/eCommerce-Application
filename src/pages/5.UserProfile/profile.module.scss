@@ -20,26 +20,39 @@
          width: 100%;
          margin: 60px 0 50px 0;
 
-         @media screen and (max-width: 900px) {
+         @media screen and (max-width: 1200px) {
             flex-direction: column;
             align-items: center;
          }
 
          .user_info_personal {
+            box-sizing: border-box;
             display: flex;
-            align-items: center;
-            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            border-radius: 20px;
+            background-color: rgba($main-light, .2);
+            padding: 0 35px;
 
-            @media screen and (max-width: 440px) {
-               flex-direction: column;
+            @media screen and (max-width: 1200px) {
+               padding: 10px 10px 25px;
+               margin-bottom: 25px;
             }
-   
-   
+
+            .user_info_img_name {
+               display: flex;
+            }
+
             .user_image_box {
-               width: 200px;
-               height: 200px;
+               width: 150px;
+               height: 150px;
                border-radius: 50%;
-               background-color: aliceblue;
+
+               @media (max-width: 520px) {
+                  width: 120px;
+                  height: 120px;
+               }
       
                .user_image {
                   background-image: url('../../assets/png/user2.png');
@@ -57,44 +70,76 @@
                margin-left: 20px;
                flex: 1 0 calc(60% - 10px);
    
-               .user_name {
-                  margin-bottom: 10px;
-                  font-size: 3rem;
+               .user_name,
+               .user_last_name {
+                  margin-top: 0;
+                  margin-bottom: 5px;
+                  font-size: 2rem;
+
+                  @media (max-width: 520px) {
+                     font-size: 1.2rem;
+                  }
                }
                .user_email {
                   text-decoration: underline;
                }
             }
          }
-         // .user_info_address {
-            
-         // }
       }
-      .edit_button {
-         width: 150px;
-         height: 40px;
-         border-radius: 30px;
-         text-align: center;
-         letter-spacing: 1px;
+      .edit_button,
+      .btn_add {
          cursor: pointer;
-         flex: 1;
+         text-align: center;
+         display: block;
+         height: 40px;
+         width: 130px;
+         font-weight: 700;
+         font-size: 1rem;
+         border-radius: 35px;
+         margin: 30px auto;
+         transition: .5s;
+         border: none;
+         transition: 1s;
+         background-color: $main-light;
+     
+         &:hover {
+               background-color: $white;
+               background-size: 100%;
+               background-repeat: no-repeat;
+               background-position: left;
+         }
+     
+         @media (max-width: 1199px) {
+           margin: 60px auto 0px;
+       }
       }
       .edit_icon {
          display: block;
-         background-image: url('../../assets/svg/edit.svg');
-         background-repeat: no-repeat;
-         width: 24px;
-         height: 24px;
-         cursor: pointer;
-      }
-      .delete_icon {
-         display: block;
-         background-image: url(../../assets/svg/delete.svg);
+         background-image: url('../../assets/png/pensil.png');
          background-repeat: no-repeat;
          background-size: contain;
          width: 30px;
-         height: 26px;
+         height: 30px;
          cursor: pointer;
+         margin-right: 15px;
+         @media (max-width: 520px) {
+            width: 20px;
+            height: 20px;
+         }
+      }
+      .delete_icon {
+         display: block;
+         background-image: url(../../assets/png/urn.png);
+         background-repeat: no-repeat;
+         background-size: contain;
+         width: 30px;
+         height: 30px;
+         cursor: pointer;
+         margin-right: 15px;
+         @media (max-width: 520px) {
+            width: 20px;
+            height: 20px;
+         }
       }
     }
     .welcome_title,
@@ -103,19 +148,17 @@
         text-align: center;
         letter-spacing: 1px;
         color: $main-light;
-        font-size: 3rem;
+        font-size: 1.2rem;
 
         @media (max-width: 860px) {
-            font-size: 2rem;
+            font-size: 1rem;
          }  
 
-         @media (max-width: 520px) {
-            font-size: 1.5rem;
+
+         @media (max-width: 600px) {
+            font-size: .9rem;
          }  
          
-         @media (max-width: 390px) {
-            font-size: 1.2rem;
-         } 
 
          .span {
             color: $color-parsley;
@@ -126,7 +169,6 @@
     .welcome_content,
     .user_name_box span {
       text-align: left;
-      font-size: 1.1rem;
       display: flex;
       gap: 5px;
       @media (max-width: 390px) {
@@ -139,4 +181,22 @@
     }
  }
 
- 
+.welcome_content {
+   @media (max-width: 520px) {
+      display: flex;
+      flex-direction: column;
+   }
+}
+
+.input_profile {
+   max-width: 25px;
+}
+
+.settings {
+   display: flex;
+   justify-content: flex-start;
+   margin-left: 15px;
+   @media (max-width: 520px) {
+      margin-left: 0;
+   }
+}

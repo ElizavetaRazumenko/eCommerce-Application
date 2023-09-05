@@ -1,4 +1,6 @@
+
 import { ChangeEvent, useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import ModalAddNewAddress from './components/modal/modalAddNewAddress/modalAddNewAddress';
 import ModalAddressEdit from './components/modal/modalAddressInfo/modalAddressEdit';
@@ -300,14 +302,16 @@ const ProfilePage = (props: UserPropsType) => {
         <div className={s.welcome_container}>
           <div className={s.user_info}>
             <div className={s.user_info_personal}>
-              <div className={s.user_image_box}>
-                <div className={s.user_image}></div>
-              </div>
-              <div className={s.user_name_box}>
-                <span className={s.user_name}>{firstName}</span>
-                <span className={s.user_last_name}>{lastName}</span>
-                <span className={s.user_email}>{email}</span>
-                <span className={s.user_birth_day}>{`${getCurrentAge()} y.o.`}</span>
+              <div className={s.user_info_img_name}>
+                <div className={s.user_image_box}>
+                  <div className={s.user_image}></div>
+                </div>
+                <div className={s.user_name_box}>
+                  <span className={s.user_name}>{firstName}</span>
+                  <span className={s.user_last_name}>{lastName}</span>
+                  <span className={s.user_email}>{email}</span>
+                  <span className={s.user_birth_day}>{`${getCurrentAge()} y.o.`}</span>
+                </div>
               </div>
               <button className={s.edit_button} onClick={showModalPersnal}>
                 Edit
@@ -325,21 +329,23 @@ const ProfilePage = (props: UserPropsType) => {
                     {` ${billAddress.country === 'IT' ? 'Italy' : 'Spain'} ${billAddress.city} st.${
                       billAddress.streetName
                     }, ${billAddress.postalCode}`}
-                    <span
-                      className={s.edit_icon}
-                      onClick={() => showModalAddress([billAddress])}
-                    ></span>
-                    <span
-                      className={s.delete_icon}
-                      onClick={() => deleteAddress(billAddress.id)}
-                    ></span>
-                    <input
-                      type='checkbox'
-                      checked={checkboxes.checkboxBill === billAddress.id}
-                      name='checkboxBill'
-                      value={billAddress.id}
-                      onChange={(event) => addDefBillingAddressId(event, billAddress.id)}
-                    />
+                    <span className={s.settings}>
+                      <span
+                        className={s.edit_icon}
+                        onClick={() => showModalAddress([billAddress])}
+                      ></span>
+                      <span
+                        className={s.delete_icon}
+                        onClick={() => deleteAddress(billAddress.id)}
+                      ></span>
+                      <input
+                        type='checkbox'
+                        checked={isCheckedDefBillAddress === billAddress.id}
+                        value={billAddress.id}
+                        onChange={() => addDefBillingAddressId(billAddress.id)}
+                        className={s.input_profile}
+                      />
+                    </span>
                   </p>
                 );
               })}
@@ -354,21 +360,23 @@ const ProfilePage = (props: UserPropsType) => {
                     {` ${shippAddress.country === 'IT' ? 'Italy' : 'Spain'} ${
                       shippAddress.city
                     } st.${shippAddress.streetName}, ${shippAddress.postalCode}`}
-                    <span
-                      className={s.edit_icon}
-                      onClick={() => showModalAddress([shippAddress])}
-                    ></span>
-                    <span
-                      className={s.delete_icon}
-                      onClick={() => deleteAddress(shippAddress.id)}
-                    ></span>
-                    <input
-                      type='checkbox'
-                      name='checkboxShipp'
-                      checked={checkboxes.checkboxShipp === shippAddress.id}
-                      value={shippAddress.id}
-                      onChange={(event) => addDefShippingAddressId(event, shippAddress.id)}
-                    />
+                    <span className={s.settings}>
+                      <span
+                        className={s.edit_icon}
+                        onClick={() => showModalAddress([shippAddress])}
+                      ></span>
+                      <span
+                        className={s.delete_icon}
+                        onClick={() => deleteAddress(shippAddress.id)}
+                      ></span>
+                      <input
+                        type='checkbox'
+                        checked={isCheckedDefShippAddress === shippAddress.id}
+                        value={shippAddress.id}
+                        onChange={() => addDefShippingAddressId(shippAddress.id)}
+                        className={s.input_profile}
+                      />
+                    </span>
                   </p>
                 );
               })}
@@ -430,7 +438,9 @@ const ProfilePage = (props: UserPropsType) => {
                 </p>
               )}
 
-              <button onClick={showModalAddNewAddress}>Add Address</button>
+              <button onClick={showModalAddNewAddress} className={s.btn_add}>
+                Add Address
+              </button>
             </div>
           </div>
         </div>

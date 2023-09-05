@@ -20,9 +20,11 @@ const DetailedPage = () => {
   const [productName, setProductName] = useState<string>('');
   const [productDescription, setProductDescription] = useState<string>('');
   const [productPrice, setProductPrice] = useState<string>('0.00$');
+  const [productDiscountPrice, setProductDiscountPrice] = useState<string>('0.00$');
   const [productImg, setProductImg] = useState<string[]>(['']);
   const [productWeigth, setProductWeigth] = useState<string>('');
   const [productPFCK, setProductPFCK] = useState<number[]>([0, 0, 0, 0]);
+  const [isDiscounted, setIsDiscounted] = useState<boolean>(false);
   const { key, size } = useParams();
   const navigate = useNavigate();
 
@@ -31,13 +33,18 @@ const DetailedPage = () => {
     setProductPrice(priceSet);
     setProductWeigth(weigth);
   };
+  const setDataIfDiscount = (price: number) => {
+    setProductDiscountPrice((price / 100).toFixed(2) + '$');
+    setIsDiscounted(true);
+  };
 
   const createMainsize = (responce: ProductType, type: 'pizzas' | 'drinks' | 'sauces') => {
     setProductName(responce.name['en-US']);
     setProductDescription(responce.description['en-US']);
-    const price = responce.masterVariant.prices[0].discounted
-      ? responce.masterVariant.prices[0].discounted.value.centAmount
-      : responce.masterVariant.prices[0].value.centAmount;
+    const price = responce.masterVariant.prices[0].value.centAmount;
+    responce.masterVariant.prices[0].discounted
+      ? setDataIfDiscount(responce.masterVariant.prices[0].discounted.value.centAmount)
+      : setIsDiscounted(false);
     const images = responce.masterVariant.images.map((el) => el.url);
     const weigth = type === 'pizzas' ? '945gr' : type === 'drinks' ? '950gr' : '40gr';
     setPriceAndWeigth(price, weigth);
@@ -52,9 +59,10 @@ const DetailedPage = () => {
     setProductName(responce.name['en-US']);
     setProductDescription(responce.description['en-US']);
     const index = size === 'm' ? 0 : 1;
-    const price = responce.variants[index].prices[0].discounted
-      ? responce.variants[index].prices[0].discounted!.value.centAmount
-      : responce.variants[index].prices[0].value.centAmount;
+    const price = responce.variants[index].prices[0].value.centAmount;
+    responce.variants[index].prices[0].discounted
+      ? setDataIfDiscount(responce.variants[index].prices[0].discounted!.value.centAmount)
+      : setIsDiscounted(false);
     if (price) size === 'm' ? setPriceAndWeigth(price, '632gr') : setPriceAndWeigth(price, '210gr');
     const images = responce.variants[index].images.map((el) => el.url);
     setProductImg(images);
@@ -132,7 +140,14 @@ const DetailedPage = () => {
             <p className={s.info_string}>{`Calories per 100 gr: ${productPFCK[3]}`}</p>
             <p className={s.info_string}>{`Weight: ${productWeigth}`}</p>
           </div>
-          <p className={s.price}>{productPrice}</p>
+          <div className={s.prices_wrapper}>
+            <p className={isDiscounted ? s.price + ' ' + s.price_on_sale : s.price}>
+              {productPrice}
+            </p>
+            <p className={isDiscounted ? s.price + ' ' + s.price_sale : s.hidden}>
+              {productDiscountPrice}
+            </p>
+          </div>
           <NavLink to='/cart' className={s.nav_link}>
             <div className={s.button}>
               <span>Add to backet</span>
