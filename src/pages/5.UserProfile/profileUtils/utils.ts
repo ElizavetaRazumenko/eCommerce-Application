@@ -1,94 +1,3 @@
-// export const checkTextField = (field: FieldType) => {
-//   if (field.value.length === 0) {
-//     field.errorMessage = 'must be filled';
-//     field.isValid = false;
-//   } else field.isValid = true;
-//   if (['First name', 'Last name'].includes(field.plshldr)) {
-//     if (field.value.match(/[0-9]/)) {
-//       field.errorMessage = 'must not contain numbers';
-//       field.isValid = false;
-//     }
-//     if (field.value.match(/[!@#$&*"'./|/\\+^`~_=]/)) {
-//       field.errorMessage = 'must not contain special characters';
-//       field.isValid = false;
-//     }
-//     if (field.value.trim() !== field.value) {
-//       field.errorMessage = 'must not contain leading or trailing spaces';
-//       field.isValid = false;
-//     }
-//   }
-//   return field;
-// };
-
-// export const addInputValue = (id: string, value: string, inputType: string) => {
-//   const field = findField(+id);
-//   field.value = value;
-//   field.errorMessage = '';
-//   checkTextField(field);
-//   if (field.isValid) {
-//     if (inputType === 'email') {
-//       checkEmail(field);
-//     } else if (inputType === 'password') {
-//       checkPassword(field);
-//     } else if (inputType.startsWith('date of')) {
-//       checkDate(field);
-//     }
-//   }
-// };
-
-// export const checkPostalCode = (field: FieldLocationType, typeAddress: 'billing' | 'shipping') => {
-//   const country = state.profilePage.location[typeAddress].find(
-//     (item) => item.type === 'country',
-//   )!.value;
-//   const reg = /^\d+$/;
-//   if (!reg.test(field.value)) {
-//     field.errorMessage = 'must contain contain only digits';
-//     field.isValid = false;
-//   } else if (country === 'Spain' && field.value.length !== 5) {
-//     field.errorMessage = 'spain postal code must contain 5 digits';
-//     field.isValid = false;
-//   } else if (country === 'Italy' && field.value.length !== 5) {
-//     field.errorMessage = 'italy postal code must contain 5 digits';
-//     field.isValid = false;
-//   }
-// };
-
-// export const checkTextLocationField = (field: FieldLocationType) => {
-//   if (field.value.match(/[0-9]/)) {
-//     field.errorMessage = 'must not contain numbers';
-//     field.isValid = false;
-//   }
-//   if (field.value.match(/[[!@#$&*"'./|/\\+^`~_=]/) && field.type === 'city') {
-//     field.errorMessage = 'must not contain special characters';
-//     field.isValid = false;
-//   }
-//   if (field.value.trim() !== field.value) {
-//     field.errorMessage = 'cannot start/end with a space';
-//     field.isValid = false;
-//   }
-// };
-
-// export const addLocationValue = (
-//   typeAddress: 'billing' | 'shipping',
-//   type: 'city' | 'street' | 'postal',
-//   value: string,
-// ) => {
-//   const field = state.profilePage.location[typeAddress].find((item) => item.type === type)!;
-//   field.value = value;
-//   field.errorMessage = '';
-//   if (field.value.length === 0) {
-//     field.errorMessage = 'must be filled';
-//     field.isValid = false;
-//   } else field.isValid = true;
-//   if (['city', 'street'].includes(field.type)) {
-//     checkTextLocationField(field);
-//   } else {
-//     checkPostalCode(field, typeAddress);
-//   }
-// };
-
-//                                  NEW FUNCTIONS
-
 export const checkEmail = (
   value: string,
   setState: React.Dispatch<React.SetStateAction<string>>,
@@ -131,9 +40,6 @@ export const checkDate = (
   setState: React.Dispatch<React.SetStateAction<string>>,
 ) => {
   const re = /\d{4}(-)\d{2}\1\d{2}/g;
-  if (!re.test(value)) {
-    setState('date must be in the form yyyy-mm-dd');
-  }
   const currentYear = new Date().getFullYear();
   const date = value.slice(8);
   const mounth = value.slice(5, 7);
@@ -143,7 +49,9 @@ export const checkDate = (
   if (new Date() < userBirthday) {
     age = age - 1;
   }
-  if (currentYear - +year < 0) {
+  if (!re.test(value)) {
+    setState('date must be in the form yyyy-mm-dd');
+  } else if (currentYear - +year < 0) {
     setState('you cannot be born in the future');
   } else if (age < 13) {
     setState('registration of users over 13 years old');
@@ -227,6 +135,7 @@ export const checkPostalCode = (
   setState: React.Dispatch<React.SetStateAction<string>>,
   country: string,
 ) => {
+  console.log(country);
   const reg = /^\d+$/;
   if (!reg.test(value)) {
     setState('must contain contain only digits');

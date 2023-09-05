@@ -14,43 +14,86 @@ const ModalAddNewAddress: React.FC<HideModalType> = ({
   setNewAddress,
   setNewAddress2,
 }) => {
-  const [streetName, setStreetName] = useState('');
-  const [city, setCity] = useState('');
-  const [country, setCountry] = useState('');
-  const [postalCode, setPostalCode] = useState('');
+  const handleBackgroundClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (event.target === event.currentTarget) {
+      onHideModal();
+    }
+  };
+  //                                      BILLING REALIZATION
+  const [streetNameB, setStreetNameB] = useState('');
+  const [cityB, setCityB] = useState('');
+  const [countryB, setCountryB] = useState('');
+  const [postalCodeB, setPostalCodeB] = useState('');
 
   const [errorOfCountryB, setErrorOfCountryB] = useState('');
   const [errorOfCityB, setErrorOfCityB] = useState('');
   const [errorOfStreetB, setErrorOfStreetB] = useState('');
   const [errorOfPostalB, setErrorOfPostalB] = useState('');
   const [errorOfPageB, setErrorOfPageB] = useState('');
-  let countryValueB = '';
+
+  const handAddStreetNameB = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setErrorOfStreetB('');
+    setErrorOfPageB('');
+    checkStreet(e.target.value, setErrorOfStreetB);
+    setStreetNameB(e.target.value);
+  };
+  const handAddCityB = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setErrorOfCountryB('');
+    setErrorOfPageB('');
+    checkCity(e.target.value, setErrorOfCityB);
+    setCityB(e.target.value);
+  };
+  const handAddCountryB = (e: React.ChangeEvent<HTMLInputElement>) => {
+    localStorage.setItem('CountryB', e.target.value);
+    setErrorOfCityB('');
+    setErrorOfPageB('');
+    checkCountry(e.target.value, setErrorOfCountryB);
+    setCountryB(e.target.value);
+  };
+  const handAddPostalCodeB = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setErrorOfPostalB('');
+    setErrorOfPageB('');
+    checkPostalCode(e.target.value, setErrorOfPostalB, localStorage.getItem('CountryB') || '');
+    setPostalCodeB(e.target.value);
+  };
+
+  //                                      SHIPPING REALIZATION
+  const [streetNameS, setStreetNameS] = useState('');
+  const [cityS, setCityS] = useState('');
+  const [countryS, setCountryS] = useState('');
+  const [postalCodeS, setPostalCodeS] = useState('');
 
   const [errorOfCountryS, setErrorOfCountryS] = useState('');
   const [errorOfCityS, setErrorOfCityS] = useState('');
   const [errorOfStreetS, setErrorOfStreetS] = useState('');
   const [errorOfPostalS, setErrorOfPostalS] = useState('');
   const [errorOfPageS, setErrorOfPageS] = useState('');
-  let countryValueS = '';
 
-  const handAddStreetName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setStreetName(e.target.value);
+  const handAddStreetNameS = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setErrorOfStreetS('');
+    setErrorOfPageS('');
+    checkStreet(e.target.value, setErrorOfStreetS);
+    setStreetNameS(e.target.value);
   };
-  const handAddCity = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCity(e.target.value);
+  const handAddCityS = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setErrorOfCountryS('');
+    setErrorOfPageS('');
+    checkCity(e.target.value, setErrorOfCityS);
+    setCityS(e.target.value);
   };
-  const handAddCountry = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCountry(e.target.value);
+  const handAddCountryS = (e: React.ChangeEvent<HTMLInputElement>) => {
+    localStorage.setItem('CountryS', e.target.value);
+    setErrorOfCityS('');
+    setErrorOfPageS('');
+    checkCountry(e.target.value, setErrorOfCountryS);
+    setCountryS(e.target.value);
   };
-  const handAddPostalCode = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPostalCode(e.target.value);
+  const handAddPostalCodeS = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setErrorOfPostalS('');
+    setErrorOfPageS('');
+    checkPostalCode(e.target.value, setErrorOfPostalS, localStorage.getItem('CountryS') || '');
+    setPostalCodeS(e.target.value);
   };
-  const handleBackgroundClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (event.target === event.currentTarget) {
-      onHideModal();
-    }
-  };
-
   const addBillingAddressId = async (id: string) => {
     try {
       const response = await getApiRoot()
@@ -105,55 +148,64 @@ const ModalAddNewAddress: React.FC<HideModalType> = ({
     }
   };
 
-  const checkSubmit = async (addressType: string) => {
-    try {
-      const response = await getApiRoot()
-        .customers()
-        .withId({ ID: customerData.id ? customerData.id : '' })
-        .post({
-          body: {
-            version: customerData.version ? customerData.version : 0,
-            actions: [
-              {
-                action: 'addAddress',
-                address: {
-                  streetName: streetName,
-                  postalCode: postalCode,
-                  city: city,
-                  country: country,
+  const checkSubmit = async (addressType: 'billing' | 'shipping') => {
+    const errors =
+      addressType === 'billing'
+        ? [errorOfCountryB, errorOfCityB, errorOfStreetB, errorOfPostalB]
+        : [errorOfCountryS, errorOfCityS, errorOfStreetS, errorOfPostalS];
+    if (errors.every((el) => el === '')) {
+      try {
+        const response = await getApiRoot()
+          .customers()
+          .withId({ ID: customerData.id ? customerData.id : '' })
+          .post({
+            body: {
+              version: customerData.version ? customerData.version : 0,
+              actions: [
+                {
+                  action: 'addAddress',
+                  address: {
+                    streetName: addressType === 'billing' ? streetNameB : streetNameS,
+                    postalCode: addressType === 'billing' ? postalCodeB : postalCodeS,
+                    city: addressType === 'billing' ? cityB : cityS,
+                    country: addressType === 'billing' ? countryB : countryS,
+                  },
                 },
-              },
-            ],
-          },
-        })
-        .execute();
-      const data = response.body;
-      const id: string | undefined = data.addresses[data.addresses.length - 1].id;
-      if (addressType === 'billing') {
-        const actualData: any = await addBillingAddressId(id ? id : '');
-        const resultData = { customer: { ...actualData } };
-        localStorage.setItem('userInfo', JSON.stringify(resultData));
-        if (setNewAddress) {
-          const addressList = actualData.addresses as AddressType[];
-          const billingId = actualData.billingAddressIds as string[];
-          const billingAddress = addressList.filter((el) => billingId.includes(el.id))!;
-          setNewAddress(billingAddress);
+              ],
+            },
+          })
+          .execute();
+        const data = response.body;
+        const id: string | undefined = data.addresses[data.addresses.length - 1].id;
+        if (addressType === 'billing') {
+          const actualData: any = await addBillingAddressId(id ? id : '');
+          const resultData = { customer: { ...actualData } };
+          localStorage.setItem('userInfo', JSON.stringify(resultData));
+          if (setNewAddress) {
+            const addressList = actualData.addresses as AddressType[];
+            const billingId = actualData.billingAddressIds as string[];
+            const billingAddress = addressList.filter((el) => billingId.includes(el.id))!;
+            setNewAddress(billingAddress);
+          }
+        } else {
+          const actualData: any = await addShippingAddressId(id ? id : '');
+          const resultData = { customer: { ...actualData } };
+          localStorage.setItem('userInfo', JSON.stringify(resultData));
+          if (setNewAddress2) {
+            const addressList = actualData.addresses as AddressType[];
+            const shippingId = actualData.shippingAddressIds as string[];
+            const shippingAddress = addressList.filter((el) => shippingId.includes(el.id))!;
+            setNewAddress2(shippingAddress);
+          }
         }
-      } else {
-        const actualData: any = await addShippingAddressId(id ? id : '');
-        const resultData = { customer: { ...actualData } };
-        localStorage.setItem('userInfo', JSON.stringify(resultData));
-        if (setNewAddress2) {
-          const addressList = actualData.addresses as AddressType[];
-          const shippingId = actualData.shippingAddressIds as string[];
-          const shippingAddress = addressList.filter((el) => shippingId.includes(el.id))!;
-          setNewAddress2(shippingAddress);
-        }
+        onHideModal();
+      } catch (error) {
+        console.error('Error updating customer:', error);
       }
-
-      onHideModal();
-    } catch (error) {
-      console.error('Error updating customer:', error);
+    } else {
+      addressType === 'billing'
+        ? setErrorOfPageB('some fields are invalid')
+        : setErrorOfPageS('some fields are invalid');
     }
   };
 
@@ -171,7 +223,7 @@ const ModalAddNewAddress: React.FC<HideModalType> = ({
               <input
                 id='bilingAddressCity'
                 type='text'
-                onChange={handAddCity}
+                onChange={handAddCityB}
                 className={newAddress.input + ' ' + newAddress.input_left}
               />
               <span className={modal.error_message}>{errorOfCityB}</span>
@@ -179,7 +231,7 @@ const ModalAddNewAddress: React.FC<HideModalType> = ({
               <input
                 id='bilingAddressCountry'
                 type='text'
-                onChange={handAddCountry}
+                onChange={handAddCountryB}
                 className={newAddress.input + ' ' + newAddress.input_left}
               />
               <span className={modal.error_message}>{errorOfCountryB}</span>
@@ -187,7 +239,7 @@ const ModalAddNewAddress: React.FC<HideModalType> = ({
               <input
                 id='bilingAddressStreetName'
                 type='text'
-                onChange={handAddStreetName}
+                onChange={handAddStreetNameB}
                 className={newAddress.input + ' ' + newAddress.input_left}
               />
               <span className={modal.error_message}>{errorOfStreetB}</span>
@@ -195,7 +247,7 @@ const ModalAddNewAddress: React.FC<HideModalType> = ({
               <input
                 id='bilingAddressPostalCode'
                 type='text'
-                onChange={handAddPostalCode}
+                onChange={handAddPostalCodeB}
                 className={newAddress.input + ' ' + newAddress.input_left}
               />
               <span className={modal.error_message}>{errorOfPostalB}</span>
@@ -212,7 +264,7 @@ const ModalAddNewAddress: React.FC<HideModalType> = ({
               <input
                 id='bilingAddressCity'
                 type='text'
-                onChange={handAddCity}
+                onChange={handAddCityS}
                 className={newAddress.input}
               />
               <span className={modal.error_message}>{errorOfCityS}</span>
@@ -220,7 +272,7 @@ const ModalAddNewAddress: React.FC<HideModalType> = ({
               <input
                 id='bilingAddressCountry'
                 type='text'
-                onChange={handAddCountry}
+                onChange={handAddCountryS}
                 className={newAddress.input}
               />
               <span className={modal.error_message}>{errorOfCountryS}</span>
@@ -228,7 +280,7 @@ const ModalAddNewAddress: React.FC<HideModalType> = ({
               <input
                 id='bilingAddressStreetName'
                 type='text'
-                onChange={handAddStreetName}
+                onChange={handAddStreetNameS}
                 className={newAddress.input}
               />
               <span className={modal.error_message}>{errorOfStreetS}</span>
@@ -236,7 +288,7 @@ const ModalAddNewAddress: React.FC<HideModalType> = ({
               <input
                 id='bilingAddressPostalCode'
                 type='text'
-                onChange={handAddPostalCode}
+                onChange={handAddPostalCodeS}
                 className={newAddress.input}
               />
               <span className={modal.error_message}>{errorOfPostalS}</span>
