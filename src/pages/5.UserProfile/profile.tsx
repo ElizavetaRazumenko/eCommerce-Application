@@ -90,11 +90,7 @@ const ProfilePage = (props: UserPropsType) => {
   ];
 
   let shippingAddress: AddressType[] = Object.assign({}, billingAddress);
-
-  // let defaultBilling: AddressType[] = Object.assign({}, billingAddress);
   let defaultBilling: AddressType[] = [];
-
-  // let defaultShipping: AddressType[] = Object.assign({}, billingAddress);
   let defaultShipping: AddressType[] = [];
 
   if (customerAddresses) {

@@ -1,7 +1,5 @@
-
-import { Dispatch, SetStateAction } from 'react';
-
 import { QueryParam } from '@commercetools/platform-sdk';
+import { Dispatch, SetStateAction } from 'react';
 
 import { To } from 'react-router-dom';
 export interface IFooterProps {
