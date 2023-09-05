@@ -20,18 +20,22 @@ const ModalPersonalDataEditWindow: React.FC<HideModalType> = ({ onHideModal, cus
   const [errorOfPage, setErrorOfPage] = useState('');
 
   const handChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setErrorOfPage('');
     checkEmail(e.target.value, setErrorEmail);
     setCustomerEmail(e.target.value);
   };
   const handChangeFirstName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setErrorOfPage('');
     checkTextField(e.target.value, setErrorFirstName);
     setFirstName(e.target.value);
   };
   const handChangeLastName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setErrorOfPage('');
     checkTextField(e.target.value, setErrorLastName);
     setCustomerLastName(e.target.value);
   };
   const handChangeDateBirth = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setErrorOfPage('');
     checkDate(e.target.value, setErrorDateOfBirth);
     setCustomerDate(e.target.value);
   };

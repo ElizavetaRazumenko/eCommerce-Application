@@ -350,3 +350,22 @@ export const checkDate = (
     setState('');
   }
 };
+
+export const checkPassword = (
+  value: string,
+  setState: React.Dispatch<React.SetStateAction<string>>,
+) => {
+  if (value.length < 8) {
+    setState('must be at least 8 characters long');
+  } else if (!value.match(/[A-Z]/)) {
+    setState('must contain at least one capital letter (AZ)');
+  } else if (!value.match(/[a-z]/)) {
+    setState('must contain at least one lowercase letter (az)');
+  } else if (!value.match(/\d/)) {
+    setState('must contain at least one number');
+  } else if (!value.match(/[[!@#$&*"'./|/\\+^`~_=]/)) {
+    setState('must contain at least one special character');
+  } else if (value.trim() !== value) {
+    setState('must not contain leading or trailing spaces');
+  }
+};

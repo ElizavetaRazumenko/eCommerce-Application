@@ -27,4 +27,12 @@
 
 .input {
   padding: 5px 15px;
+  max-width: 230px;
+}
+
+.input_left {
+  margin-right: 25px;
+  @media (max-width: 770px) {
+    margin-right: 0;
+    }
 }
