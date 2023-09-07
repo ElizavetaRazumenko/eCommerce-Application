@@ -81,6 +81,9 @@ const ModalPersonalDataEditWindow: React.FC<HideModalType> = ({ onHideModal, cus
         onHideModal();
       } catch (error) {
         console.error('Error updating customer:', error);
+        if (error instanceof Error) {
+          setErrorOfPage(error.message);
+        }
       }
     } else {
       setErrorOfPage('some fields are invalid');

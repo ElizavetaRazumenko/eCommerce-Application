@@ -7,7 +7,6 @@ import { getApiRoot } from '../../../../../shared';
 import { AddressType, HideModalType } from '../../../../../types/types';
 import { checkCity, checkStreet, checkCountry, checkPostalCode } from '../../../profileUtils/utils';
 import modal from '../modal.module.scss';
-
 const ModalAddressEdit: React.FC<HideModalType> = ({
   onHideModal,
   customerData,
@@ -32,7 +31,7 @@ const ModalAddressEdit: React.FC<HideModalType> = ({
   const [errorOfStreet, setErrorOfStreet] = useState('');
   const [errorOfPostal, setErrorOfPostal] = useState('');
   const [errorOfPage, setErrorOfPage] = useState('');
-  let countryValue = '';
+  let countryValue = customerData.addresses[0].country;
   const customerBillingAddressId: string = customerData.addresses[0].id;
 
   const handChangeBillingAddressCity = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,7 +56,7 @@ const ModalAddressEdit: React.FC<HideModalType> = ({
   const handChangeBillingAddressPostalCode = (e: React.ChangeEvent<HTMLInputElement>) => {
     setErrorOfPostal('');
     setErrorOfPage('');
-    checkPostalCode(e.target.value, setErrorOfPostal, countryValue);
+    checkPostalCode(e.target.value, setErrorOfPostal, customerBillingAddressCountry);
     setCustomerBillingAddressPostalCode(e.target.value);
   };
   const handleBackgroundClick = (event: React.MouseEvent<HTMLDivElement>) => {

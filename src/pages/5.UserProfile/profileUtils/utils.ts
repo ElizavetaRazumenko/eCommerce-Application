@@ -135,16 +135,13 @@ export const checkPostalCode = (
   setState: React.Dispatch<React.SetStateAction<string>>,
   country: string,
 ) => {
-  console.log(country);
   const reg = /^\d+$/;
   if (!reg.test(value)) {
     setState('must contain contain only digits');
-  } else if (country !== 'IT' && country !== 'ES') {
-    setState('first fill in the field "country" correctly');
   } else if (country === 'ES' && value.length !== 5) {
     setState('spain postal code must contain 5 digits');
   } else if (country === 'IT' && value.length !== 5) {
-    setState('spain postal code must contain 5 digits');
+    setState('italy postal code must contain 5 digits');
   } else {
     setState('');
   }
