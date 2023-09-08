@@ -12,17 +12,26 @@
     }
     @media (max-width: 950px) {
         background-position: right -10px top 30px;
-        min-height: 450px;
     }
 
     @media (max-width: 860px) {
         background-position: right -10px top 0px;
-        min-height: 350px;
     }
 
-    @media (max-width: 645px) {
+    @media (max-width: 720px) {
+        background: none;
+        // min-height: 250px;
+    }
+
+
+
+    @media (max-width: 670px) {
         background: none;
         min-height: 250px;
+    }
+
+    @media (max-width: 520px) {
+        min-height: 300px;
     }
 
     .title_welcome {
@@ -43,6 +52,8 @@
             padding-top: 40px;
             max-width: 400px;
             letter-spacing: 1px;
+            font-size: 1.5rem;
+
         }
 
         @media (max-width: 645px) {
@@ -90,7 +101,8 @@
     }
 }
 
-.link_wrapper {
+.link_wrapper,
+.to_profile {
     display: flex;
     align-items: center;
     @media (max-width: 860px) {
@@ -102,13 +114,73 @@
     }
 }
 
+
+
+
+
 .welcome_content.member {
-    @media (max-width: 500px) {
+    @media (max-width: 860px) {
+        margin-top: 75px;
+    }
+    @media (max-width: 670px) {
         margin-top: 15px;
+    }
+    @media (max-width: 500px) {
         margin-bottom: 5px;
     }
 }
+.to_profile {
 
+    @media (max-width: 500px) {
+        box-sizing: border-box;
+        padding-right: 25px;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+  
+}
+
+.content_to_profile {
+    margin-top: 50px;
+        font-size: 1.3rem;
+        letter-spacing: 1.8px;
+        line-height: 1.7;
+        text-align: left;
+        color: $main-light;
+        max-width: 650px;
+        font-weight: 600;
+
+        @media (max-width: 1199px) {
+            font-size: 1rem;
+            max-width: 450px;
+        }
+
+        @media (max-width: 860px) {
+            margin-top: 75px;
+            font-size: .8rem;
+            max-width: 350px;
+        }
+
+        @media (max-width: 670px) {
+            margin-top: 15px;
+        }
+
+        @media (max-width: 645px) {
+            margin-top: 30px;
+            font-size: .7rem;
+            max-width: 270px;
+        }
+  
+  
+    @media (max-width: 515px) {
+        margin-top: 10px;
+        margin-right: 25px;
+        max-width: 160px;
+    }
+}
 .btn_login {
     margin-top: 30px;
     margin-left: 35px;
@@ -132,13 +204,22 @@
         font-size: 0.9rem;
         width: 130px;
         height: 25px;
+        margin-top: 75px;
+    }
+
+    @media (max-width: 670px) {
+        margin-top: 15px;
+    }
+
+    @media (max-width: 650px) {
+        margin-top: 15px;
     }
 
     @media (max-width: 500px) {
         font-size: 0.7rem;
         width: 95px;
-        height: 15px;
         margin-top: 5px;
-        margin-left: 5px;
+        margin-left: 0;
     }
 }
+

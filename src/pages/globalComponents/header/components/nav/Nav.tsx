@@ -36,20 +36,17 @@ const Nav = (props: HeaderPropsType) => {
               Catalog
             </NavLink>
           </li>
-          <li className={s.nav_item}>
-            <NavLink
-              to='/details'
-              onClick={() => setIsOpen(false)}
-              className={({ isActive }) => (isActive ? s.link + ' ' + s.no_active_link : s.link)}
-            >
-              Details
-            </NavLink>
-          </li>
-          <li className={s.nav_item}>
+          <li className={props.userState === 'Login' ? s.hidden : s.nav_item}>
             <NavLink
               to='/profile'
               onClick={() => setIsOpen(false)}
-              className={({ isActive }) => (isActive ? s.link + ' ' + s.no_active_link : s.link)}
+              className={({ isActive }) =>
+                isActive
+                  ? s.link + ' ' + s.no_active_link
+                  : props.userState === 'Login'
+                  ? s.hidden
+                  : s.link
+              }
             >
               Profile
             </NavLink>

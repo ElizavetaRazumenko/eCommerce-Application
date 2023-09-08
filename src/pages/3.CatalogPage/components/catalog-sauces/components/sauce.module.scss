@@ -1,0 +1,98 @@
+@import '../../../../../globalVariables.scss';
+
+
+.item_sauce {
+    position: relative;
+    background: $main-light;
+    width: 230px;
+    height: 130px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    &:hover .hover_link {
+        opacity: 1;
+    }
+}
+
+.sauce_img {
+    height: 90px;
+    width: 100px;
+    margin: 10px 0 10px 5px;
+    cursor: pointer;
+    transition: .5s;   
+}
+
+.hover_link {
+    cursor: pointer;
+    border-radius: 15px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    background-color: rgba($main-light, 0.6);
+    opacity: 0;
+    transition: .5s;
+}
+
+.details_link {
+    text-decoration: none;
+    color: $main-dark-color;
+    font-weight: 700;
+    transition: .5s;
+
+    &:hover {
+        color: $color-green;
+    }
+
+    @media (max-width: 860px) {
+        font-size: 1rem;
+    }
+}
+
+.sauce_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sauce_price,
+.sauce_title {
+    text-align: center;
+    margin: 5px auto 0;
+    color: $main-grey;
+}
+
+.sauce_price{
+
+    @media (max-width: 865px) {
+        font-size: 1rem;
+    }
+   
+}
+
+.sauce_title{
+    font-size: 1.3rem;
+}
+
+.sauce_description {
+    margin: 0;
+    font-size: .7rem;
+    text-align: center;
+}
+.btn_add_sauce{
+    font-weight: 700;
+    background: $main-grey;
+    color: $main-light;
+    height: 30px;
+    width: 90px;
+    border-radius: 30px;
+    margin: 5px 10px 10px;
+    border: none;
+    cursor: pointer;
+    transition: .5s;
+    &:hover {
+        background: $grey-hover;
+    }
+}

@@ -1,12 +1,26 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
-import React from 'react';
-
-import '@testing-library/jest-dom/extend-expect';
 import CatalogPage from './catalog';
 
-test('CatalogPage component', () => {
-  render(<CatalogPage />);
-  const welcomeMessage = screen.getByText('Welcome to the Catalog Page!');
-  expect(welcomeMessage).toBeInTheDocument();
+import { CatalogPropsType } from '../../types/types';
+
+jest.mock('../../shared', () => ({
+  getCategoryID: jest.fn(() => Promise.resolve('category-id')),
+  requestToCommerceForRender: jest.fn(() => Promise.resolve([])),
+}));
+
+const mockProps: CatalogPropsType = {
+  products: [],
+  setProducts: jest.fn(),
+};
+
+describe('CatalogPage', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    localStorage.removeItem('filter_params');
+  });
+
+  it('renders without errors', async () => {
+    render(<CatalogPage {...mockProps} />);
+  });
 });
