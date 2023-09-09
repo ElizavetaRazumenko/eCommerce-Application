@@ -55,9 +55,17 @@ const Nav = (props: HeaderPropsType) => {
             <NavLink
               to='/cart'
               onClick={() => setIsOpen(false)}
-              className={({ isActive }) => (isActive ? s.link + ' ' + s.no_active_link : s.link)}
+              className={({ isActive }) =>
+                isActive ? s.link_cart + ' ' + s.no_active_link : s.link_cart
+              }
             >
               Cart
+              <div className={s.cart_wrapper}>
+                <div className={s.cart_img}></div>
+                <div className={s.product_amount_wrap}>
+                  <span className={s.product_amount}>1</span>
+                </div>
+              </div>
             </NavLink>
           </li>
           <li className={s.nav_item}>
