@@ -20,6 +20,15 @@ const Nav = (props: HeaderPropsType) => {
         <ul className={`${s.navigation_list} ${isOpen ? s.burger_menu_open : ''}`}>
           <li className={s.nav_item}>
             <NavLink
+              to='/about-us'
+              onClick={() => setIsOpen(false)}
+              className={({ isActive }) => (isActive ? s.link + ' ' + s.no_active_link : s.link)}
+            >
+              About us
+            </NavLink>
+          </li>
+          <li className={s.nav_item}>
+            <NavLink
               to='/'
               onClick={() => setIsOpen(false)}
               className={({ isActive }) => (isActive ? s.link + ' ' + s.no_active_link : s.link)}
