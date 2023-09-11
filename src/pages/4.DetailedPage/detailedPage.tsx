@@ -150,7 +150,7 @@ const DetailedPage = () => {
           </div>
           <NavLink to='/cart' className={s.nav_link}>
             <div className={s.button}>
-              <span>Add to backet</span>
+              <span>Add to cart</span>
             </div>
           </NavLink>
         </div>

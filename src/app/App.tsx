@@ -24,6 +24,7 @@ import DetailedPage from '../pages/4.DetailedPage/detailedPage';
 import ProfilePage from '../pages/5.UserProfile/profile';
 import BasketPage from '../pages/6.BasketPage/basket';
 import ErrorPage from '../pages/7.ErrorPage/error';
+import AboutUsPage from '../pages/8.AboutUsPage/aboutUs';
 import Layout from '../pages/globalComponents/layout/layout';
 import { getProducts } from '../shared';
 import { ProductsType } from '../types/types';
@@ -163,6 +164,7 @@ const App = () => {
             <Route path='details/:key/:size' element={<DetailedPage />} />
             <Route path='/profile' element={profileRedirection()} />
             <Route path='/cart' element={<BasketPage userState={userState} />} />
+            <Route path='/about-us' element={<AboutUsPage />} />
             <Route path='*' element={<ErrorPage />} />
           </Route>
         </Routes>
