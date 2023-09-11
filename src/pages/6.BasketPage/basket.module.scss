@@ -2,13 +2,13 @@
 
 .basket_wrapper {
    width: 100%;
-   height: max-content;
+   height: 100%;
    display: flex;
    flex-direction: column;
    justify-content: space-between;
 
 
-    .message_empty {
+    .message {
         text-align: center;
         color: $main-light;
         font-size: 3rem;
@@ -26,6 +26,19 @@
             font-size: 1.2rem;
          } 
     }
+}
+
+.full_cart_wrapper {
+   width: 100%;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+}
+
+.header_message {
+   color: $main-light;
+   font-size: 1.5rem;
+   font-weight: 700;
 }
 
 
@@ -60,4 +73,14 @@
 
  .hidden {
    display: none;
+ }
+
+ .products {
+   display: flex;
+   justify-content: space-between;
+ }
+
+ .pizzas {
+   display: flex;
+   flex-direction: column;
  }

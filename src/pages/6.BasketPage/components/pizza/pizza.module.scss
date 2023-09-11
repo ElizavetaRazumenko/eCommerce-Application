@@ -1,0 +1,56 @@
+@import '../../../../globalVariables.scss';
+
+
+.pizza_wrapper {
+    box-sizing: border-box;
+    padding: 15px 25px;
+    background-color: $main-light;
+    border-radius: 20px;
+    width: 350px;
+    height: 240px;
+    display: flex;
+    justify-content: space-between;
+}
+.image {
+    width: 150px;
+    height: 150px;
+    margin-right: 20px;
+}
+
+.name {
+    margin-bottom: 5px;
+}
+
+.name,
+.size,
+.params {
+    margin-top: 0;
+    color: $main-grey;
+    font-weight: 700;
+    font-size: 1.6rem;
+}
+
+.size {
+    font-size: 1.2rem;
+}
+
+.params {
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.btn {
+    font-weight: 700;
+    background: $main-grey;
+    color: $main-light;
+    height: 30px;
+    width: 90px;
+    border-radius: 30px;
+    margin: 15px 0;
+    border: none;
+    cursor: pointer;
+    transition: .5s;
+    &:hover {
+        background: $grey-hover;
+    }
+}
