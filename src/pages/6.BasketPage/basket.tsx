@@ -10,7 +10,9 @@ const BasketPage = (props: CartPropsType) => {
   return (
     <div className={s.basket_wrapper}>
       <div className={s.hidden}>
-        <p className={s.message}>Cart is empty</p>
+        <p className={s.message}>
+          Your cart is currently empty! We suggest going to the catalog page to place an order.
+        </p>
         <div className={s.button_wrapper}>
           <Link to='/catalog' className={s.button}>
             To catalog

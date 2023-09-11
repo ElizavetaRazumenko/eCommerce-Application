@@ -58,3 +58,42 @@
         background: $grey-hover;
     }
 }
+
+
+.count_wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .change_count_wrappper {
+    margin-left: 10px;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .up,
+  .down {
+    cursor: pointer;
+    background-color: $main-grey;
+    width: 15px;
+    height: 12px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: .5s;
+    &:hover {
+        background-color: rgba($main-grey, .8);
+    }
+  }
+
+  .up {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-image: url('../../../../assets/png/upArrowWhite.png');
+  }
+
+  .down {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-image: url('../../../../assets/png/downArrowWhite.png');
+  }
