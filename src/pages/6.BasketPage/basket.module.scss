@@ -33,9 +33,11 @@
    height: 100%;
    display: flex;
    flex-direction: column;
+   align-items: center;
 }
 
-.header_message {
+.header_message,
+.total_cost {
    color: $main-light;
    font-size: 1.5rem;
    font-weight: 700;
@@ -77,10 +79,23 @@
 
  .products {
    display: flex;
-   justify-content: space-between;
+   justify-content: space-around;
+   align-self: normal;
  }
 
  .pizzas {
    display: flex;
    flex-direction: column;
  }
+
+ .total_cost {
+   width: max-content;
+   padding: 10px 15px;
+   background-color: rgba($main-light, .2);
+   border-radius: 20px;
+ }
+
+ .price_wrapper {
+   display: flex;
+ }
+

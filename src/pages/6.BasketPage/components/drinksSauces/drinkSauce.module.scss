@@ -1,20 +1,24 @@
 @import '../../../../globalVariables.scss';
-
-
-.pizza_wrapper {
+.wrapper {
     box-sizing: border-box;
-    padding: 15px 20px;
+    padding: 10px 25px;
     background-color: $main-light;
     border-radius: 20px;
-    width: 360px;
     display: flex;
     justify-content: space-between;
     margin: 25px 0;
 }
-.image {
-    width: 160px;
-    height: 160px;
+
+.img_wrapper {
     margin-right: 20px;
+    width: 130px;
+    height: 130px;
+    display: flex;
+    justify-content: center;
+}
+.image {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .name {
@@ -54,11 +58,3 @@
         background: $grey-hover;
     }
 }
-
-.non_discount {
-    text-decoration: line-through;
-  }
- 
-  .discount {
-    color: $color-red;
-  }
