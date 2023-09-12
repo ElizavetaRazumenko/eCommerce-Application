@@ -57,7 +57,7 @@ const AboutUsPage = () => {
             <p>
               Uladimir was born and grew up in Minsk. Graduated from the Belarusian State Economic
               University. After some time he worked in a bank. Later he became interested in
-              photography and became a reportage photographer. Currently studying front-end
+              photography and became a reportage photographer. Currently he studying front-end
               development at RSSchool.
             </p>
             <a href='https://github.com/uladek'>
