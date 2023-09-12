@@ -5,6 +5,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     height: 30px;
     padding: 3px 25px;
     border-bottom: 1px solid $main-grey; 
@@ -21,7 +22,6 @@
     line-height: 40px;
     width: 30px;
     font-weight: 500;
-    margin-bottom: 10px;
 }
 
 .span_line { 
@@ -34,7 +34,6 @@
 .span_price {
     display: inline-block;
     padding-right: 5px;
-    margin-bottom: 0;
 }
 
 .span_price,
@@ -48,11 +47,18 @@
 }
 
 .shopping_cart {
+    margin-top: 10px;
     cursor: pointer;
-    position: relative;
-    top: 4px;
+    transition: .5s;
     width: 25px;
     height: 25px;
+    background-image: url('../../../../../assets/png/cart.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: .5s;
+    &:hover {
+        background-image: url('../../../../../assets/png/cart_lock.png');
+    }
 }
 
 .price_wrapper {

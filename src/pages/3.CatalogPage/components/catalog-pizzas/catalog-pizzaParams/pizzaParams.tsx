@@ -1,7 +1,5 @@
 import s from './pizzaParams.module.scss';
 
-import cartUrl from '../../../../../assets/png/cart.png';
-
 import { PizzaParamsCatalogType } from '../../../../../types/types';
 
 const PizzaParams = (props: PizzaParamsCatalogType) => {
@@ -20,7 +18,7 @@ const PizzaParams = (props: PizzaParamsCatalogType) => {
         >
           {props.price}
         </div>
-        <img src={cartUrl} className={s.shopping_cart} alt='shopping cart' />
+        <div className={s.shopping_cart}></div>
       </div>
     </div>
   );

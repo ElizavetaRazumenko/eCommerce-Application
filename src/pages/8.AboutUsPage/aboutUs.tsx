@@ -87,7 +87,12 @@ const AboutUsPage = () => {
         <div className={s.profile}>
           <div className={s.description}>
             <p>The third member of our team is Shaihali.</p>
-            <p>Text for Shaihali</p>
+            <p>
+              Shaikhali lives in the city of Makhachkala, studied at the Dagestan State University
+              with a degree in applied computer science. Now he works at the Ministry of Property of
+              the Republic of Dagestan as a cadastral appraiser. In front-end development since July
+              2021.
+            </p>
             <a href='https://github.com/Shaihali'>
               <p>Shaihaly's GitHub</p>
               <div className={s.github_icon}></div>

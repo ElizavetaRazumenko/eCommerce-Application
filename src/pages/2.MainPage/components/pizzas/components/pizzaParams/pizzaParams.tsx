@@ -1,6 +1,5 @@
 import s from './pizzaParams.module.scss';
 
-import cartUrl from '../../../../../../assets/png/cart.png';
 import { PizzaParamsType } from '../../../../../../types/types';
 
 const PizzaParams = (props: PizzaParamsType) => {
