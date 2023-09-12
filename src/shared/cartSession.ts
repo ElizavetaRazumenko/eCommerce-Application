@@ -78,7 +78,7 @@ export const createAnonymousCarts = async () => {
 
 export const getCurrentAnonimousCart = async () => {
   if (localStorage.getItem('idCarts')) {
-    const id = localStorage.getItem('idCarts')!;
+    const id = localStorage.getItem('idCarts')!.slice(1, -1);
     const customer = await apiRoot.carts().withId({ ID: id }).get().execute();
     return customer;
   }
