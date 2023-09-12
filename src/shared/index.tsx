@@ -344,3 +344,171 @@ export const getProduct = async (key: string) => {
 };
 
 // CARTS
+
+export const createNewCart = async () => {
+  try {
+    // Попробуйте получить существующую активную корзину пользователя
+    const existingActiveCart = await apiRoot.me().activeCart().get().execute();
+
+    if (existingActiveCart && existingActiveCart.body && existingActiveCart.body.id) {
+      // Если активная корзина уже существует, выведите ее айди в консоль
+      const cartId = existingActiveCart.body.id;
+      console.log('Активная корзина уже существует с ID:', cartId);
+      return cartId;
+    } else {
+      // Если активной корзины нет, создайте новую
+      const createCartResponse = await apiRoot
+        .me()
+        .carts()
+        .post({
+          body: {
+            currency: 'USD',
+          },
+        })
+        .execute();
+
+      const cartId = createCartResponse.body.id;
+
+      console.log('Создана новая активная корзина с ID:', cartId);
+
+      return cartId;
+    }
+  } catch (error: any) {
+    if (error.statusCode === 404) {
+      // Если запрос возвращает 404 ошибку, это означает, что активной корзины нет, создайте новую
+      const createCartResponse = await apiRoot
+        .me()
+        .carts()
+        .post({
+          body: {
+            currency: 'USD',
+          },
+        })
+        .execute();
+
+      const cartId = createCartResponse.body.id;
+
+      console.log('Создана новая активная корзина с ID:', cartId);
+
+      return cartId;
+    } else {
+      throw error; // Если возникла другая ошибка, выбросьте исключение
+    }
+  }
+};
+
+// export const getActiveCart = async () => {
+//   try {
+//     const activeCartResponse = await apiRoot.me().activeCart().get().execute();
+
+//     if (activeCartResponse.body) {
+//       return activeCartResponse.body.id;
+//     }
+
+//     return null;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
+
+// export const createNewCart = async () => {
+//   try {
+//     const createCartResponse = await apiRoot
+//       .me()
+//       .carts()
+//       .post({
+//         body: {
+//           currency: 'USD',
+//         },
+//       })
+//       .execute();
+
+//     const cartId = createCartResponse.body.id;
+
+//     console.log(cartId);
+
+//     return cartId;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
+
+// export const createCart = async (): Promise<string> => {
+//   try {
+//     const accessToken = myTokenCache.get().token;
+
+//     const response = await apiRoot
+//       .me()
+//       .carts()
+//       .post({
+//         headers: {
+//           Authorization: `Bearer ${accessToken}`, // Убедитесь, что токен правильно форматирован
+//         },
+//         body: {
+//           currency: 'USD',
+//         },
+//       })
+//       .execute();
+
+//     const cartId = response.body.id;
+//     console.log(cartId);
+//     return cartId;
+//   } catch (error) {
+//     console.error('Error creating cart:', error);
+//     throw error;
+//   }
+// };
+
+// export const checkActiveCart = async () => {
+//   try {
+//     const accessToken = myTokenCache.get().token;
+
+//     const response = await apiRoot
+//       .me()
+//       .activeCart()
+//       .get({
+//         headers: {
+//           Authorization: `Bearer ${accessToken}`,
+//         },
+//       })
+//       .execute();
+
+//     if (response.statusCode === 200) {
+//       return response.body;
+//     } else {
+//       return null;
+//     }
+//   } catch (error) {
+//     console.error('Error checking active cart:', error);
+//     throw error;
+//   }
+// };
+
+// export const createCart = async (): Promise<string> => {
+//   try {
+//     const checkResponse = await apiRoot.me().activeCart().get().execute();
+
+//     if (checkResponse.statusCode === 200) {
+//       console.log('!!!');
+//       console.log(checkResponse.body.id);
+//       return checkResponse.body.id;
+//     }
+
+//     const createResponse = await apiRoot
+//       .me()
+//       .carts()
+//       .post({
+//         body: {
+//           currency: 'USD',
+//         },
+//       })
+//       .execute();
+
+//     const cartId = createResponse.body.id;
+//     console.log('Cart created with ID:', cartId);
+//     return cartId;
+//   } catch (error) {
+//     console.error('Error creating or finding cart:', error);
+//     throw error;
+//   }
+// };
