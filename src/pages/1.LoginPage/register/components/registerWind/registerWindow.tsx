@@ -58,7 +58,6 @@ const RegisterWindow = (props: RegisterPagePropsType) => {
         requestSettings.defaultShipping,
       );
       try {
-        console.log(`email: ${requestData.email}, password: ${requestData.password}`);
         await apiRoot
           .customers()
           .post({

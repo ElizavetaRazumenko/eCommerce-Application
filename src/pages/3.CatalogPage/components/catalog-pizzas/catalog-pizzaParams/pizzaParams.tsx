@@ -1,8 +1,18 @@
 import s from './pizzaParams.module.scss';
 
+import {
+  getAnonymousCarts,
+  createAnonymousCarts,
+  getCurrentAnonimousCart,
+} from '../../../../../shared/cartSession';
 import { PizzaParamsCatalogType } from '../../../../../types/types';
 
 const PizzaParams = (props: PizzaParamsCatalogType) => {
+  const getCart = async () => {
+    await createAnonymousCarts();
+    const info = await getCurrentAnonimousCart();
+    console.log(info);
+  };
   return (
     <div className={s.pizza_title}>
       <div className={s.size_wrapper}>
@@ -18,7 +28,7 @@ const PizzaParams = (props: PizzaParamsCatalogType) => {
         >
           {props.price}
         </div>
-        <div className={s.shopping_cart}></div>
+        <div className={s.shopping_cart} onClick={getCart}></div>
       </div>
     </div>
   );

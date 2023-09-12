@@ -17,6 +17,7 @@ import { ProductsType, requestCatalogParamsType } from '../types/types';
 const fetch = require('node-fetch');
 
 const scopes = [
+  'manage_orders:ecommece-application',
   'manage_my_payments:ecommece-application',
   'manage_my_business_units:ecommece-application',
   'manage_my_quote_requests:ecommece-application',
@@ -36,8 +37,8 @@ const authMiddlewareOptions: AuthMiddlewareOptions = {
   host: `https://auth.europe-west1.gcp.commercetools.com`,
   projectKey: projectKey,
   credentials: {
-    clientId: 'HgTug4REahFA11dVfXfn2FW3',
-    clientSecret: 'vdT50e1NqbdNH6Z2NhExia6lqwFfC8OT',
+    clientId: 'oLB6h1y4-7-3C1z5Lvhs0ZVZ',
+    clientSecret: 'JlYVEFhja2Oxqa7AyDxNoxklWvLJq-he',
   },
   scopes,
   fetch,
@@ -73,18 +74,18 @@ const defaultClient = new ClientBuilder()
 
 export const getPasswordFlowClient = (email: string, login: string) => {
   const passwordAuthMiddlewareOptions: PasswordAuthMiddlewareOptions = {
-    host: `https://auth.europe-west1.gcp.commercetools.com/`,
+    host: `https://auth.europe-west1.gcp.commercetools.com`,
     projectKey: projectKey,
     credentials: {
-      clientId: 'HgTug4REahFA11dVfXfn2FW3',
-      clientSecret: 'vdT50e1NqbdNH6Z2NhExia6lqwFfC8OT',
+      clientId: 'oLB6h1y4-7-3C1z5Lvhs0ZVZ',
+      clientSecret: 'JlYVEFhja2Oxqa7AyDxNoxklWvLJq-he',
       user: {
         username: email,
         password: login,
       },
     },
     scopes,
-    // tokenCache: myTokenCache,
+    tokenCache: myTokenCache,
     fetch,
   };
 
