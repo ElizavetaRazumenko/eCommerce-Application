@@ -14,7 +14,7 @@ const AboutUsPage = () => {
           We'd love to meet you!
         </p>
         <p className={s.description}>
-          Our team has three members: Uladimir Hrydzin, Elizaveta Razumenko and Shaihali Saybulaev
+          Our team has three members: Uladimir Hrydzin, Elizaveta Razumenko and Shaihali Saybulaev.
         </p>
         <p className={s.description}>
           Uladimir Hrydzin implemented the Main page, Catalog page, setting up the Commerce Tools
@@ -32,8 +32,16 @@ const AboutUsPage = () => {
         <p className={s.description}>
           Shaihali Saybulaev carried out the basic settings of the project, helped in the
           implementation of sending requests to Commerce Tools, made the Profile page. Carried out
-          the elaboration of the Catalog page and the Detailed page
+          the elaboration of the Catalog page and the Detailed page.
         </p>
+        <p className={`${s.description} ${s.gratitude}`}>
+          On behalf of our entire team, we thank the RSSchool for this incredible opportunity to
+          master such a large amount of knowledge!
+        </p>
+
+        <a href='https://rs.school/' className={s.link}>
+          <span className={s.logo}></span>
+        </a>
 
         <div className={s.profile}>
           <div className={s.description}>
@@ -52,7 +60,7 @@ const AboutUsPage = () => {
           <div className={s.img_uladzimir}></div>
         </div>
 
-        <div className={s.profile}>
+        <div className={`${s.profile} ${s.profile_liza}`}>
           <div className={s.img_elizaveta}></div>
           <div className={s.description}>
             <p>The second member of our team is Elizaveta.</p>
@@ -67,6 +75,17 @@ const AboutUsPage = () => {
               <div className={s.github_icon}></div>
             </a>
           </div>
+        </div>
+        <div className={s.profile}>
+          <div className={s.description}>
+            <p>The third member of our team is Shaihali.</p>
+            <p>Text for Shaihali</p>
+            <a href='https://github.com/Shaihali'>
+              <p>Shaihaly's GitHub</p>
+              <div className={s.github_icon}></div>
+            </a>
+          </div>
+          <div className={s.img_shaihali}></div>
         </div>
       </div>
     </div>
