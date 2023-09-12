@@ -43,6 +43,14 @@ const AboutUsPage = () => {
           <span className={s.logo}></span>
         </a>
 
+        <p className={s.description}>
+          Thanks to the desire to master as much information and additional skills as possible, we
+          decided to write our project in React, although not a single person from the team had
+          worked with it before. The most important key to success was constant interaction with
+          each other. The participants did not concentrate strictly on their tasks. We were always
+          ready to help each other if necessary.
+        </p>
+
         <div className={s.profile}>
           <div className={s.description}>
             <p>The first member of our team is Uladimir.</p>
