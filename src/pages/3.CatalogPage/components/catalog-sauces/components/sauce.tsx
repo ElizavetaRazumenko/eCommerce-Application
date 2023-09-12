@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import s from './sauce.module.scss';
@@ -8,9 +9,20 @@ import { SauceTypeCatalog } from '../../../../../types/types';
 const Sauce = (props: SauceTypeCatalog) => {
   const key = infoProducts.sauces.find((el) => el.name === props.name)?.key;
   const mainIngredientsStartIndex = props.description.indexOf('Main ingredients') + 18;
+
+  const [inCart, setInCart] = useState(false);
+
+  const toggleInCart = () => {
+    setInCart(!inCart);
+  };
+
+  const buttonText = inCart ? 'In Cart' : '';
+
+  const buttonClasses = `${s.btn_add_sauce} ${inCart ? s.in_cart : ''}`;
+
   return (
     <div className={s.item_sauce}>
-      <img src={props.link[0].url} className={s.sauce_img} alt='souce' />
+      <img src={props.link[0].url} className={s.sauce_img} alt='sauce' />
       <div className={s.hover_link}>
         <NavLink to={`/details/${key?.toLowerCase()}`} className={s.details_link}>
           details
@@ -22,7 +34,9 @@ const Sauce = (props: SauceTypeCatalog) => {
           {props.description.slice(mainIngredientsStartIndex)}
         </h4>
         <div className={s.sauce_price}>{props.price}</div>
-        <button className={s.btn_add_sauce}>Add to cart</button>
+        <button className={buttonClasses} onClick={toggleInCart}>
+          {buttonText}
+        </button>
       </div>
     </div>
   );

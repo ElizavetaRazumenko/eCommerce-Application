@@ -78,12 +78,19 @@
 
 .sauce_description {
     margin: 0;
-    font-size: .7rem;
+    font-size: .6rem;
     text-align: center;
+    max-width: 130px;
 }
 .btn_add_sauce{
-    font-weight: 700;
-    background: $main-grey;
+        background-image: url('../../../../../assets/png/cartNav.png');
+
+        background-size: 25%;
+        background-repeat: no-repeat;
+    background-position: center;
+    // font-weight: 700;
+    background-color: $main-grey;
+    // background-color: $color-cart;
     color: $main-light;
     height: 30px;
     width: 90px;
@@ -93,6 +100,23 @@
     cursor: pointer;
     transition: .5s;
     &:hover {
-        background: $grey-hover;
+        // background-image: url('../../../../../assets/png/cartNav.png');
+        // background-color: $color-green;
+
+        // background-color: $grey-hover;
     }
 }
+
+.in_cart {
+    background-image: url('../../../../../assets/png/cartNav.png');
+    background-color: $color-green;
+            // background-color: $grey-hover;
+
+    background-size: 25%;
+    background-position: right 10px center;
+    padding: 0 10px;
+    text-align:left;
+    font-weight: 200;
+
+}
+

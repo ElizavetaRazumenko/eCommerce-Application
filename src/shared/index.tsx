@@ -342,3 +342,5 @@ export const getProduct = async (key: string) => {
     console.log(e);
   }
 };
+
+// CARTS
