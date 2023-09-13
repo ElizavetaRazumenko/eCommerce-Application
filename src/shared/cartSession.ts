@@ -60,7 +60,6 @@ const apiRoot = createApiBuilderFromCtpClient(ctpClient).withProjectKey({
 // };
 
 export const createAnonymousCarts = async () => {
-  // f418c75f-0bbd-4445-87c1-096c77f06dbc
   const cart = await apiRoot
     .me()
     .carts()
@@ -72,26 +71,19 @@ export const createAnonymousCarts = async () => {
     })
     .execute();
   localStorage.setItem('idCarts', JSON.stringify(cart.body.id));
-  console.log(cart.body.id);
-  return cart;
 };
 
 export const getCurrentAnonimousCart = async () => {
   if (localStorage.getItem('idCarts')) {
     const id = localStorage.getItem('idCarts')!.slice(1, -1);
-    const customer = await apiRoot.carts().withId({ ID: id }).get().execute();
-    return customer;
+    const cart = await apiRoot.carts().withId({ ID: id }).get().execute();
+    return cart;
   }
 };
-export const getAnonymousCarts = async () => {
-  const customer = await apiRoot.me().carts().get().execute();
-  return customer;
-};
 
-export const addProductOnCart = async () => {
+export const addProductOnCart = async (version: number, sku: string) => {
   if (localStorage.getItem('idCarts')) {
     const id = localStorage.getItem('idCarts')!.slice(1, -1);
-    const version = 4;
     const customer = await apiRoot
       .carts()
       .withId({
@@ -103,7 +95,7 @@ export const addProductOnCart = async () => {
           actions: [
             {
               action: 'addLineItem',
-              sku: 'Drink-M',
+              sku: sku,
             },
           ],
         },
@@ -111,4 +103,9 @@ export const addProductOnCart = async () => {
       .execute();
     return customer;
   }
+};
+
+export const getAnonymousCarts = async () => {
+  const customer = await apiRoot.me().carts().get().execute();
+  return customer;
 };

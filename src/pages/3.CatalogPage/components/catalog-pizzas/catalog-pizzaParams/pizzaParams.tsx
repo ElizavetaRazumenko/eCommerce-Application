@@ -1,18 +1,30 @@
 import s from './pizzaParams.module.scss';
 
 import {
-  getAnonymousCarts,
   createAnonymousCarts,
   getCurrentAnonimousCart,
+  addProductOnCart,
 } from '../../../../../shared/cartSession';
+import { getProduct } from '../../../../../shared/index';
 import { PizzaParamsCatalogType } from '../../../../../types/types';
 
 const PizzaParams = (props: PizzaParamsCatalogType) => {
-  const getCart = async () => {
-    await createAnonymousCarts();
-    const info = await getCurrentAnonimousCart();
-    console.log(info);
+  const addToCart = async () => {
+    try {
+      if (!localStorage.getItem('idCarts')) {
+        await createAnonymousCarts();
+      }
+      const cart = await getCurrentAnonimousCart();
+      const version = cart!.body.version;
+      const product = await getProduct(props.findData.key!);
+      const sku = product?.masterVariant.sku as string;
+      const info = await addProductOnCart(version, sku);
+      console.log(info);
+    } catch (e) {
+      if (e instanceof Error) console.log(e.message);
+    }
   };
+
   return (
     <div className={s.pizza_title}>
       <div className={s.size_wrapper}>
@@ -28,7 +40,7 @@ const PizzaParams = (props: PizzaParamsCatalogType) => {
         >
           {props.price}
         </div>
-        <div className={s.shopping_cart} onClick={getCart}></div>
+        <div className={s.shopping_cart} onClick={addToCart}></div>
       </div>
     </div>
   );

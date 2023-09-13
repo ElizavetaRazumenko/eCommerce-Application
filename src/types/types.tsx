@@ -159,6 +159,10 @@ export type PizzaParamsCatalogType = {
   length: string;
   price: string;
   discount: string;
+  findData: {
+    key: string | undefined;
+    size: string;
+  };
 };
 
 //                                                      LOGIN / REGISTER PAGE

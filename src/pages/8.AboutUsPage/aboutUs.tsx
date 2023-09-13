@@ -14,10 +14,10 @@ const AboutUsPage = () => {
           We'd love to meet you!
         </p>
         <p className={s.description}>
-          Our team has three members: Uladimir Hrydzin, Elizaveta Razumenko and Shaihali Saybulaev.
+          Our team has three members: Uladzimir Hrydzin, Elizaveta Razumenko and Shaihali Saybulaev.
         </p>
         <p className={s.description}>
-          Uladimir Hrydzin implemented the Main page, Catalog page, setting up the Commerce Tools
+          Uladzimir Hrydzin implemented the Main page, Catalog page, setting up the Commerce Tools
           API, implemented sorting algorithms, breadcrumb navigation, and adaptive layout of each
           page. It also involved writing tests after coding for each sprint and implementing many
           creative ideas.
@@ -55,7 +55,7 @@ const AboutUsPage = () => {
           <div className={s.description}>
             <p>The first member of our team is Uladimir.</p>
             <p>
-              Uladimir was born and grew up in Minsk. Graduated from the Belarusian State Economic
+              Uladzimir was born and grew up in Minsk. Graduated from the Belarusian State Economic
               University. After some time he worked in a bank. Later he became interested in
               photography and became a reportage photographer. Currently he studying front-end
               development at RSSchool.

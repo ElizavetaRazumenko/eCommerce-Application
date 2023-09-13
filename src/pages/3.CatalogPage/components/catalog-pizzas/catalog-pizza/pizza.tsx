@@ -58,8 +58,12 @@ const Pizza = (props: PizzaCatalogType) => {
             size={pizza.size}
             length={pizza.length}
             price={pizza.price}
-            key={index}
+            key={index + 1}
             discount={pizza.discount}
+            findData={{
+              key,
+              size: index === 0 ? 'l' : index === 1 ? 'm' : 's',
+            }}
           />
         ))}
       </div>
