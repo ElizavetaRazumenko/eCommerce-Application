@@ -17,9 +17,11 @@ const PizzaParams = (props: PizzaParamsCatalogType) => {
       const cart = await getCurrentAnonimousCart();
       const version = cart!.body.version;
       const product = await getProduct(props.findData.key!);
-      const sku = product?.masterVariant.sku as string;
-      const info = await addProductOnCart(version, sku);
-      console.log(info);
+      let sku = product?.masterVariant.sku as string;
+      if (props.findData.size === 'm') sku = sku.slice(0, -2) + '-M';
+      if (props.findData.size === 's') sku = sku.slice(0, -2) + '-S';
+      const cartWithProducts = await addProductOnCart(version, sku);
+      console.log(cartWithProducts?.lineItems);
     } catch (e) {
       if (e instanceof Error) console.log(e.message);
     }

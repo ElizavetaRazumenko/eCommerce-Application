@@ -84,7 +84,7 @@ export const getCurrentAnonimousCart = async () => {
 export const addProductOnCart = async (version: number, sku: string) => {
   if (localStorage.getItem('idCarts')) {
     const id = localStorage.getItem('idCarts')!.slice(1, -1);
-    const customer = await apiRoot
+    const cart = await apiRoot
       .carts()
       .withId({
         ID: id,
@@ -101,7 +101,7 @@ export const addProductOnCart = async (version: number, sku: string) => {
         },
       })
       .execute();
-    return customer;
+    return cart.body;
   }
 };
 
