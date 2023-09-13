@@ -53,7 +53,7 @@ const AboutUsPage = () => {
 
         <div className={s.profile}>
           <div className={s.description}>
-            <p>The first member of our team is Uladimir.</p>
+            <p>The first member of our team is Uladzimir.</p>
             <p>
               Uladzimir was born and grew up in Minsk. Graduated from the Belarusian State Economic
               University. After some time he worked in a bank. Later he became interested in
@@ -61,7 +61,7 @@ const AboutUsPage = () => {
               development at RSSchool.
             </p>
             <a href='https://github.com/uladek'>
-              <p>Uladimir's Github</p>
+              <p>Uladzimir's Github</p>
               <div className={s.github_icon}></div>
             </a>
           </div>
