@@ -120,6 +120,7 @@ export const addPizzaToCart = async (key: string, size: string) => {
     if (size === 's') sku = sku.slice(0, -2) + '-S';
     const cartWithProducts = await addProductOnCart(version, sku);
     const items: LineItem[] = cartWithProducts!.lineItems;
+    localStorage.setItem('CartItems', JSON.stringify(items));
     console.log(cartWithProducts?.lineItems);
   } catch (e) {
     if (e instanceof Error) console.log(e.message);
@@ -137,6 +138,7 @@ export const addProductsToCart = async (key: string) => {
     let sku = product?.masterVariant.sku as string;
     const cartWithProducts = await addProductOnCart(version, sku);
     const items: LineItem[] = cartWithProducts!.lineItems;
+    localStorage.setItem('CartItems', JSON.stringify(items));
     console.log(cartWithProducts?.lineItems);
   } catch (e) {
     if (e instanceof Error) console.log(e.message);

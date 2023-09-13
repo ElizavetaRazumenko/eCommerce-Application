@@ -1,4 +1,5 @@
-import { useRef } from 'react';
+import { LineItem } from '@commercetools/platform-sdk';
+import { useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import s from './sauce.module.scss';
@@ -8,12 +9,20 @@ import { addProductsToCart } from '../../../../../shared/cartSession';
 import { SauceTypeCatalog } from '../../../../../types/types';
 
 const Sauce = (props: SauceTypeCatalog) => {
-  const sauceRef = useRef<HTMLButtonElement>(null);
+  const [onCart, setOnCart] = useState(false);
   const key = infoProducts.sauces.find((el) => el.name === props.name)?.key;
+  const cartItemsString = localStorage.getItem('CartItems');
+  if (cartItemsString && key) {
+    const cartItems = JSON.parse(cartItemsString) as LineItem[];
+    console.log(cartItems);
+    // const currentItemOnCart = cartItems.find((el) => el.productKey === key)!.productKey;
+    // if (currentItemOnCart) setOnCart(true);
+  }
+
   const addToCart = async () => {
-    if (!sauceRef.current!.classList.contains(s.disabled)) {
+    if (!onCart) {
       await addProductsToCart(key!);
-      sauceRef.current!.classList.add(s.disabled);
+      setOnCart(true);
     }
   };
   const mainIngredientsStartIndex = props.description.indexOf('Main ingredients') + 18;
@@ -31,7 +40,10 @@ const Sauce = (props: SauceTypeCatalog) => {
           {props.description.slice(mainIngredientsStartIndex)}
         </h4>
         <div className={s.sauce_price}>{props.price}</div>
-        <button className={s.btn_add_sauce} onClick={addToCart} ref={sauceRef}>
+        <button
+          className={onCart ? `${s.btn_add_sauce} ${s.disabled}` : s.btn_add_sauce}
+          onClick={addToCart}
+        >
           Add to cart
         </button>
       </div>
