@@ -96,3 +96,12 @@
         background: $grey-hover;
     }
 }
+
+.disabled {
+    cursor: auto;
+    color: #818080;
+    &:hover {
+        background: $main-grey;
+        color: #818080; 
+       }
+}

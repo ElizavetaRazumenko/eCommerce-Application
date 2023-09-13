@@ -1,15 +1,12 @@
-import { createApiBuilderFromCtpClient } from '@commercetools/platform-sdk';
+import { LineItem, createApiBuilderFromCtpClient } from '@commercetools/platform-sdk';
 
 import {
   ClientBuilder,
-  type AuthMiddlewareOptions,
   type HttpMiddlewareOptions,
-  PasswordAuthMiddlewareOptions,
-  TokenCache,
-  TokenStore,
-  TokenCacheOptions,
   AnonymousAuthMiddlewareOptions,
 } from '@commercetools/sdk-client-v2';
+
+import { getProduct } from './index';
 
 const fetch = require('node-fetch');
 const projectKey = 'ecommece-application';
@@ -108,4 +105,40 @@ export const addProductOnCart = async (version: number, sku: string) => {
 export const getAnonymousCarts = async () => {
   const customer = await apiRoot.me().carts().get().execute();
   return customer;
+};
+
+export const addPizzaToCart = async (key: string, size: string) => {
+  try {
+    if (!localStorage.getItem('idCarts')) {
+      await createAnonymousCarts();
+    }
+    const cart = await getCurrentAnonimousCart();
+    const version = cart!.body.version;
+    const product = await getProduct(key);
+    let sku = product?.masterVariant.sku as string;
+    if (size === 'm') sku = sku.slice(0, -2) + '-M';
+    if (size === 's') sku = sku.slice(0, -2) + '-S';
+    const cartWithProducts = await addProductOnCart(version, sku);
+    const items: LineItem[] = cartWithProducts!.lineItems;
+    console.log(cartWithProducts?.lineItems);
+  } catch (e) {
+    if (e instanceof Error) console.log(e.message);
+  }
+};
+
+export const addProductsToCart = async (key: string) => {
+  try {
+    if (!localStorage.getItem('idCarts')) {
+      await createAnonymousCarts();
+    }
+    const cart = await getCurrentAnonimousCart();
+    const version = cart!.body.version;
+    const product = await getProduct(key);
+    let sku = product?.masterVariant.sku as string;
+    const cartWithProducts = await addProductOnCart(version, sku);
+    const items: LineItem[] = cartWithProducts!.lineItems;
+    console.log(cartWithProducts?.lineItems);
+  } catch (e) {
+    if (e instanceof Error) console.log(e.message);
+  }
 };

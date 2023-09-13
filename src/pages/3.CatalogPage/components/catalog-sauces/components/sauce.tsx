@@ -1,12 +1,21 @@
+import { useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import s from './sauce.module.scss';
 
 import infoProducts from '../../../../../entities/product';
+import { addProductsToCart } from '../../../../../shared/cartSession';
 import { SauceTypeCatalog } from '../../../../../types/types';
 
 const Sauce = (props: SauceTypeCatalog) => {
+  const sauceRef = useRef<HTMLButtonElement>(null);
   const key = infoProducts.sauces.find((el) => el.name === props.name)?.key;
+  const addToCart = async () => {
+    if (!sauceRef.current!.classList.contains(s.disabled)) {
+      await addProductsToCart(key!);
+      sauceRef.current!.classList.add(s.disabled);
+    }
+  };
   const mainIngredientsStartIndex = props.description.indexOf('Main ingredients') + 18;
   return (
     <div className={s.item_sauce}>
@@ -22,7 +31,9 @@ const Sauce = (props: SauceTypeCatalog) => {
           {props.description.slice(mainIngredientsStartIndex)}
         </h4>
         <div className={s.sauce_price}>{props.price}</div>
-        <button className={s.btn_add_sauce}>Add to cart</button>
+        <button className={s.btn_add_sauce} onClick={addToCart} ref={sauceRef}>
+          Add to cart
+        </button>
       </div>
     </div>
   );

@@ -61,6 +61,14 @@
     }
 }
 
+.disabled {
+    cursor: auto;
+    background-image: url('../../../../../assets/png/cartNav.png');
+    &:hover {
+        background-image: url('../../../../../assets/png/cartNav.png');
+    }
+}
+
 .price_wrapper {
     display: flex;
     align-items: center;

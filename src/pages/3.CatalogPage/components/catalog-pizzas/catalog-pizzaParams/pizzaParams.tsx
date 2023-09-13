@@ -1,29 +1,18 @@
+import { LineItem } from '@commercetools/platform-sdk';
+
+import { useRef } from 'react';
+
 import s from './pizzaParams.module.scss';
 
-import {
-  createAnonymousCarts,
-  getCurrentAnonimousCart,
-  addProductOnCart,
-} from '../../../../../shared/cartSession';
-import { getProduct } from '../../../../../shared/index';
+import { addPizzaToCart } from '../../../../../shared/cartSession';
 import { PizzaParamsCatalogType } from '../../../../../types/types';
 
 const PizzaParams = (props: PizzaParamsCatalogType) => {
+  const cartRef = useRef<HTMLDivElement>(null);
   const addToCart = async () => {
-    try {
-      if (!localStorage.getItem('idCarts')) {
-        await createAnonymousCarts();
-      }
-      const cart = await getCurrentAnonimousCart();
-      const version = cart!.body.version;
-      const product = await getProduct(props.findData.key!);
-      let sku = product?.masterVariant.sku as string;
-      if (props.findData.size === 'm') sku = sku.slice(0, -2) + '-M';
-      if (props.findData.size === 's') sku = sku.slice(0, -2) + '-S';
-      const cartWithProducts = await addProductOnCart(version, sku);
-      console.log(cartWithProducts?.lineItems);
-    } catch (e) {
-      if (e instanceof Error) console.log(e.message);
+    if (!cartRef.current!.classList.contains(s.disabled)) {
+      await addPizzaToCart(props.findData.key!, props.findData.size);
+      cartRef.current!.classList.add(s.disabled);
     }
   };
 
@@ -42,7 +31,7 @@ const PizzaParams = (props: PizzaParamsCatalogType) => {
         >
           {props.price}
         </div>
-        <div className={s.shopping_cart} onClick={addToCart}></div>
+        <div className={s.shopping_cart} onClick={addToCart} ref={cartRef}></div>
       </div>
     </div>
   );
