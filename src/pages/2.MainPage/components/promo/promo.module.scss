@@ -1,0 +1,54 @@
+@import '../../../../globalVariables.scss';
+
+
+
+// .section_promo{
+//     position: relative;
+//  padding-bottom: 200px;
+// }
+
+.title_promo {
+    color: $color-parsley;
+    font-size: 1rem;
+}
+
+.promo_input{
+    display: flex;
+    flex-direction: row;
+    max-width: 200px;
+
+    & input  {
+        max-width: 100px;
+        border: .1px solid $color-parsley;
+        color: $color-parsley;
+        font-size: .8rem;
+        padding: auto 5px;
+
+
+        &::placeholder {
+            border: none;
+        }
+    }
+}
+
+
+.valid_promo{
+    font-size: .8rem;
+    color: $color-parsley;
+}
+.invalid_promo{
+    font-size: .8rem;
+    color: $color-red;  
+}
+
+.btn_promo{
+    height: 30px;
+    font-size: .6rem;
+    border-radius: 20px;
+    background-color: $color-parsley;
+    margin: 0 10px;
+    border: none;
+    width: 100px;
+    font-weight: 700;
+
+}
