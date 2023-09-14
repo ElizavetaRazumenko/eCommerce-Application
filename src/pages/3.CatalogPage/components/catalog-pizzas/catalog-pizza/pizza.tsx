@@ -1,4 +1,5 @@
 import React from 'react';
+import { useInView } from 'react-intersection-observer';
 import { NavLink } from 'react-router-dom';
 
 import s from './pizza.module.scss';
@@ -9,6 +10,9 @@ import { PizzaCatalogType } from '../../../../../types/types';
 import PizzaParams from '../catalog-pizzaParams/pizzaParams';
 
 const Pizza = (props: PizzaCatalogType) => {
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
   const key = infoProducts.pizzas.find((el) => el.name === props.name)?.key;
   const arrayPizzaParams = [
     {
@@ -33,40 +37,44 @@ const Pizza = (props: PizzaCatalogType) => {
   const mainIngredientsStartIndex = props.description.indexOf('Main ingredients');
 
   return (
-    <div className={s.pizza_item}>
-      <div className={s.pizza_content}>
-        <img src={props.link[0].url} className={s.pizza_img} alt='pizza' />
-        <h3 className={s.pizza_name}>{props.name}</h3>
-        <div className={s.pizza_ingredients}>
-          {props.description.slice(mainIngredientsStartIndex)}
-        </div>
-        <div className={s.size_links}>
-          <NavLink to={`/details/${key?.toLowerCase()}/l`} className={s.size_link}>
-            L
-          </NavLink>
-          <NavLink to={`/details/${key?.toLowerCase()}/m`} className={s.size_link}>
-            M
-          </NavLink>
-          <NavLink to={`/details/${key?.toLowerCase()}/s`} className={s.size_link}>
-            S
-          </NavLink>
-        </div>
-      </div>
-      <div className={s.pizza_params}>
-        {arrayPizzaParams.map((pizza, index) => (
-          <PizzaParams
-            size={pizza.size}
-            length={pizza.length}
-            price={pizza.price}
-            key={index + 1}
-            discount={pizza.discount}
-            findData={{
-              key,
-              size: index === 0 ? 'l' : index === 1 ? 'm' : 's',
-            }}
-          />
-        ))}
-      </div>
+    <div className={s.pizza_item} ref={ref}>
+      {inView && (
+        <>
+          <div className={s.pizza_content}>
+            <img src={props.link[0].url} className={s.pizza_img} alt='pizza' />
+            <h3 className={s.pizza_name}>{props.name}</h3>
+            <div className={s.pizza_ingredients}>
+              {props.description.slice(mainIngredientsStartIndex)}
+            </div>
+            <div className={s.size_links}>
+              <NavLink to={`/details/${key?.toLowerCase()}/l`} className={s.size_link}>
+                L
+              </NavLink>
+              <NavLink to={`/details/${key?.toLowerCase()}/m`} className={s.size_link}>
+                M
+              </NavLink>
+              <NavLink to={`/details/${key?.toLowerCase()}/s`} className={s.size_link}>
+                S
+              </NavLink>
+            </div>
+          </div>
+          <div className={s.pizza_params}>
+            {arrayPizzaParams.map((pizza, index) => (
+              <PizzaParams
+                size={pizza.size}
+                length={pizza.length}
+                price={pizza.price}
+                key={index + 1}
+                discount={pizza.discount}
+                findData={{
+                  key,
+                  size: index === 0 ? 'l' : index === 1 ? 'm' : 's',
+                }}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 };
