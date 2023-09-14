@@ -4,6 +4,7 @@
 
 .item_drink {
     height: 285px;
+    width: 85px;
     padding: 0 auto;
 
     @media (max-width: 465px) {
@@ -56,6 +57,7 @@
 }
 
 .drink_price {
+    margin-top: 15px;
     color: $main-light;
     text-align: center;
 }

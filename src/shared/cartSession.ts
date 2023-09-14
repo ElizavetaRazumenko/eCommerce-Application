@@ -8,6 +8,9 @@ import {
 
 import { getProduct } from './index';
 
+import { productIdOnCart, productOnCart } from '../entities/product';
+import { KeyObject } from '../types/types';
+
 const fetch = require('node-fetch');
 const projectKey = 'ecommece-application';
 const scopes = [
@@ -120,8 +123,12 @@ export const addPizzaToCart = async (key: string, size: string) => {
     if (size === 's') sku = sku.slice(0, -2) + '-S';
     const cartWithProducts = await addProductOnCart(version, sku);
     const items: LineItem[] = cartWithProducts!.lineItems;
+    items.forEach((el) => {
+      const key = el.variant.sku as KeyObject;
+      productIdOnCart[key] = el.id;
+      productOnCart[key] = true;
+    });
     localStorage.setItem('CartItems', JSON.stringify(items));
-    console.log(cartWithProducts?.lineItems);
   } catch (e) {
     if (e instanceof Error) console.log(e.message);
   }
@@ -138,9 +145,42 @@ export const addProductsToCart = async (key: string) => {
     let sku = product?.masterVariant.sku as string;
     const cartWithProducts = await addProductOnCart(version, sku);
     const items: LineItem[] = cartWithProducts!.lineItems;
+    items.forEach((el) => {
+      const key = el.variant.sku as KeyObject;
+      productIdOnCart[key] = el.id;
+      productOnCart[key] = true;
+    });
     localStorage.setItem('CartItems', JSON.stringify(items));
-    console.log(cartWithProducts?.lineItems);
   } catch (e) {
     if (e instanceof Error) console.log(e.message);
   }
+};
+
+export const removeProductOnCart = async (lineItemId: string) => {
+  const cart = await getCurrentAnonimousCart();
+  const version = cart!.body.version;
+  const id = localStorage.getItem('idCarts')!.slice(1, -1);
+  const product = await apiRoot
+    .carts()
+    .withId({ ID: id })
+    .post({
+      body: {
+        version: version,
+        actions: [
+          {
+            action: 'removeLineItem',
+            lineItemId: lineItemId,
+          },
+        ],
+      },
+    })
+    .execute();
+  const updateCart = await getCurrentAnonimousCart();
+  const items: LineItem[] = updateCart!.body.lineItems;
+  items.forEach((el) => {
+    const key = el.variant.sku as KeyObject;
+    productOnCart[key] = false;
+  });
+  localStorage.setItem('CartItems', JSON.stringify(updateCart!.body.lineItems));
+  return product;
 };

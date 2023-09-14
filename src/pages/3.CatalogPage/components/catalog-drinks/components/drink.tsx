@@ -1,23 +1,42 @@
+
 import { useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import s from './drink.module.scss';
 
-import infoProducts from '../../../../../entities/product';
-import { addProductsToCart } from '../../../../../shared/cartSession';
-import { DrinkTypeCatalog } from '../../../../../types/types';
+import infoProducts, { productIdOnCart } from '../../../../../entities/product';
+import { addProductsToCart, removeProductOnCart } from '../../../../../shared/cartSession';
+import { DrinkTypeCatalog, KeyObject } from '../../../../../types/types';
 
 const Drink = (props: DrinkTypeCatalog) => {
+
   const drinkRef = useRef<HTMLButtonElement>(null);
   const { ref, inView } = useInView({
     threshold: 0,
   });
+
+  const [onCart, setOnCart] = useState(props.onCart);
+  const [buttonMessage, setButtonMessage] = useState(props.onCart ? 'Remove' : 'Add to cart');
+  const [waiting, setWaiting] = useState('none');
+
   const key = infoProducts.drinks.find((el) => el.name === props.name)?.key;
   const addToCart = async () => {
-    if (!drinkRef.current!.classList.contains(s.disabled)) {
+    if (!onCart) {
+      setWaiting('waiting');
+      setButtonMessage('');
       await addProductsToCart(key!);
-      drinkRef.current!.classList.add(s.disabled);
+      setWaiting('none');
+      setButtonMessage('Remove');
+      setOnCart(true);
+    } else {
+      setWaiting('waiting');
+      setButtonMessage('');
+      setOnCart(false);
+      await removeProductOnCart(productIdOnCart[props.sku as KeyObject]);
+      setButtonMessage('Add to cart');
+      setWaiting('none');
     }
   };
   return (
@@ -38,6 +57,7 @@ const Drink = (props: DrinkTypeCatalog) => {
           <div className={s.drink_price}>{props.price}</div>
         </>
       )}
+
     </div>
   );
 };

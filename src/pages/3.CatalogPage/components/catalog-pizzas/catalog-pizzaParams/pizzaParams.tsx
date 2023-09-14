@@ -1,18 +1,29 @@
-import { LineItem } from '@commercetools/platform-sdk';
-
-import { useRef } from 'react';
+import { useState } from 'react';
 
 import s from './pizzaParams.module.scss';
 
-import { addPizzaToCart } from '../../../../../shared/cartSession';
-import { PizzaParamsCatalogType } from '../../../../../types/types';
+import { productIdOnCart } from '../../../../../entities/product';
+import { addPizzaToCart, removeProductOnCart } from '../../../../../shared/cartSession';
+import { KeyObject, PizzaParamsCatalogType } from '../../../../../types/types';
 
 const PizzaParams = (props: PizzaParamsCatalogType) => {
-  const cartRef = useRef<HTMLDivElement>(null);
+  const [onCart, setOnCart] = useState(props.onCart);
+  const [waiting, setWaiting] = useState('none');
   const addToCart = async () => {
-    if (!cartRef.current!.classList.contains(s.disabled)) {
+    if (!onCart) {
+      setWaiting('waiting');
       await addPizzaToCart(props.findData.key!, props.findData.size);
-      cartRef.current!.classList.add(s.disabled);
+      setWaiting('none');
+      setOnCart(true);
+    }
+  };
+
+  const deleteFromCart = async () => {
+    if (onCart) {
+      setWaiting('waiting');
+      setOnCart(false);
+      await removeProductOnCart(productIdOnCart[props.sku as KeyObject]);
+      setWaiting('none');
     }
   };
 
@@ -31,7 +42,16 @@ const PizzaParams = (props: PizzaParamsCatalogType) => {
         >
           {props.price}
         </div>
-        <div className={s.shopping_cart} onClick={addToCart} ref={cartRef}></div>
+        <div
+          className={onCart ? `${s.shopping_cart} ${s.disabled}` : s.shopping_cart}
+          onClick={addToCart}
+        >
+          <div className={s[waiting]}></div>
+        </div>
+        <div
+          className={onCart ? s.delete : `${s.delete} ${s.hidden}`}
+          onClick={deleteFromCart}
+        ></div>
       </div>
     </div>
   );

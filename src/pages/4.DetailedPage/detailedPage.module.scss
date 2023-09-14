@@ -24,6 +24,7 @@
 }
 
 .button {
+   position: relative;
    box-sizing: border-box;
    padding: 10px 20px;
    margin-top: 10px;
@@ -180,6 +181,20 @@
 .prices_wrapper {
    width: 100%;
    display: flex;
+}
+
+.waiting {
+   position: absolute;
+   top:50%;
+   left:50%;
+   transform: translate(-50%, -50%);
+   background-color: $main-grey;
+   border-radius: 50%;
+   width: 25px;
+   height: 25px;
+   background-image: url('../../assets/png/clock.png');
+   background-size: contain;
+   background-repeat: no-repeat;
 }
 
 .hidden {

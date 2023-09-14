@@ -28,6 +28,7 @@ export type PizzaCatalogType = {
   cost: string[];
   description: string;
   discounts: string[];
+  code: string;
 };
 
 export type SauceType = {
@@ -46,6 +47,8 @@ export type SauceTypeCatalog = {
   name: string;
   price: string;
   description: string;
+  onCart: boolean;
+  sku: string;
 };
 
 export type DrinkType = {
@@ -64,6 +67,8 @@ export type DrinkTypeCatalog = {
   price: string;
   name: string;
   description: string;
+  onCart: boolean;
+  sku: string;
 };
 
 export type stateTypeMain = {
@@ -163,6 +168,8 @@ export type PizzaParamsCatalogType = {
     key: string | undefined;
     size: string;
   };
+  onCart: boolean;
+  sku: string;
 };
 
 //                                                      LOGIN / REGISTER PAGE
@@ -783,3 +790,64 @@ export type requestType = {
   }[];
   total: number;
 };
+
+export type KeyObject =
+  | 'PS-1-1-1-L'
+  | 'PS-1-1-1-M'
+  | 'PS-1-1-1-S'
+  | 'PS-1-1-2-L'
+  | 'PS-1-1-2-M'
+  | 'PS-1-1-2-S'
+  | 'PS-1-1-3-L'
+  | 'PS-1-1-3-M'
+  | 'PS-1-1-3-S'
+  | 'PS-1-1-4-L'
+  | 'PS-1-1-4-M'
+  | 'PS-1-1-4-S'
+  | 'PS-1-1-5-L'
+  | 'PS-1-1-5-M'
+  | 'PS-1-1-5-S'
+  | 'PS-1-1-6-L'
+  | 'PS-1-1-6-M'
+  | 'PS-1-1-6-S'
+  | 'PS-1-1-7-L'
+  | 'PS-1-1-7-M'
+  | 'PS-1-1-7-S'
+  | 'PS-1-1-8-L'
+  | 'PS-1-1-8-M'
+  | 'PS-1-1-8-S'
+  | 'PS-1-1-9-L'
+  | 'PS-1-1-9-M'
+  | 'PS-1-1-9-S'
+  | 'PS-1-1-10-L'
+  | 'PS-1-1-10-M'
+  | 'PS-1-1-10-S'
+  | 'PS-1-1-11-L'
+  | 'PS-1-1-11-M'
+  | 'PS-1-1-11-S'
+  | 'PS-1-1-12-L'
+  | 'PS-1-1-12-M'
+  | 'PS-1-1-12-S'
+  | 'PS-1-1-13-L'
+  | 'PS-1-1-13-M'
+  | 'PS-1-1-13-S'
+  | 'PS-1-1-14-L'
+  | 'PS-1-1-14-M'
+  | 'PS-1-1-14-S'
+  | 'PS-1-1-15-L'
+  | 'PS-1-1-15-M'
+  | 'PS-1-1-15-S'
+  | 'PS-1-2-1-'
+  | 'PS-1-2-2-'
+  | 'PS-1-2-3-'
+  | 'PS-1-2-4-'
+  | 'PS-1-2-5-'
+  | 'PS-1-2-6-'
+  | 'PS-1-2-7-'
+  | 'PS-1-2-8-'
+  | 'DR-1-1-'
+  | 'DR-1-2-'
+  | 'DR-1-3-'
+  | 'DR-1-4-'
+  | 'DR-1-5-'
+  | 'DR-1-6-';

@@ -1,34 +1,46 @@
+
 import { LineItem } from '@commercetools/platform-sdk';
 
 import { useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
+
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import s from './sauce.module.scss';
 
-import infoProducts from '../../../../../entities/product';
-import { addProductsToCart } from '../../../../../shared/cartSession';
-import { SauceTypeCatalog } from '../../../../../types/types';
+import infoProducts, { productIdOnCart } from '../../../../../entities/product';
+import { addProductsToCart, removeProductOnCart } from '../../../../../shared/cartSession';
+import { KeyObject, SauceTypeCatalog } from '../../../../../types/types';
 
 const Sauce = (props: SauceTypeCatalog) => {
+
   const [onCart, setOnCart] = useState(false);
   const { ref, inView } = useInView({
     threshold: 0,
   });
-  const key = infoProducts.sauces.find((el) => el.name === props.name)?.key;
-  const cartItemsString = localStorage.getItem('CartItems');
-  if (cartItemsString && key) {
-    const cartItems = JSON.parse(cartItemsString) as LineItem[];
-    console.log(cartItems);
-    // const currentItemOnCart = cartItems.find((el) => el.productKey === key)!.productKey;
-    // if (currentItemOnCart) setOnCart(true);
-  }
 
+  const [onCart, setOnCart] = useState(props.onCart);
+  const [buttonMessage, setButtonMessage] = useState(props.onCart ? 'Remove' : 'Add to cart');
+  const [waiting, setWaiting] = useState('none');
+
+  const key = infoProducts.sauces.find((el) => el.name === props.name)?.key;
   const addToCart = async () => {
     if (!onCart) {
+      setWaiting('waiting');
+      setButtonMessage('');
       await addProductsToCart(key!);
+      setWaiting('none');
+      setButtonMessage('Remove');
       setOnCart(true);
+    } else {
+      setWaiting('waiting');
+      setButtonMessage('');
+      setOnCart(false);
+      await removeProductOnCart(productIdOnCart[props.sku as KeyObject]);
+      setButtonMessage('Add to cart');
+      setWaiting('none');
     }
   };
   const mainIngredientsStartIndex = props.description.indexOf('Main ingredients') + 18;
@@ -48,15 +60,14 @@ const Sauce = (props: SauceTypeCatalog) => {
               {props.description.slice(mainIngredientsStartIndex)}
             </h4>
             <div className={s.sauce_price}>{props.price}</div>
-            <button
-              className={onCart ? `${s.btn_add_sauce} ${s.disabled}` : s.btn_add_sauce}
-              onClick={addToCart}
-            >
-              Add to cart
-            </button>
+            <button className={s.btn_add_sauce} onClick={addToCart}>
+          {buttonMessage}
+          <div className={s[waiting]}></div>
+        </button>
           </div>
         </>
       )}
+
     </div>
   );
 };

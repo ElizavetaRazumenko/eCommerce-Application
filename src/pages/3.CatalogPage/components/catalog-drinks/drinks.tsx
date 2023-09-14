@@ -1,8 +1,8 @@
 import Drink from './components/drink';
 import s from './drinks.module.scss';
 
-import infoProducts from '../../../../entities/product';
-import { CatalogDrinksProps } from '../../../../types/types';
+import infoProducts, { productOnCart } from '../../../../entities/product';
+import { CatalogDrinksProps, KeyObject } from '../../../../types/types';
 
 const CatalogDrinks = (props: CatalogDrinksProps) => {
   const drinksItems = props.products.filter((el) =>
@@ -17,6 +17,8 @@ const CatalogDrinks = (props: CatalogDrinksProps) => {
         name={drink.name['en-US']}
         price={drinkCost}
         description={drink.description['en-US']}
+        onCart={productOnCart[(drink.key + '-') as KeyObject]}
+        sku={drink.key + '-'}
       />
     );
   });
