@@ -9,10 +9,13 @@ import { SauceTypeCatalog } from '../../../../../types/types';
 
 const Sauce = (props: SauceTypeCatalog) => {
   const [onCart, setOnCart] = useState(props.onCart);
+  const [waiting, setWaiting] = useState('none');
   const key = infoProducts.sauces.find((el) => el.name === props.name)?.key;
   const addToCart = async () => {
     if (!onCart) {
+      setWaiting('waiting');
       await addProductsToCart(key!);
+      setWaiting('none');
       setOnCart(true);
     }
   };
@@ -36,6 +39,7 @@ const Sauce = (props: SauceTypeCatalog) => {
           onClick={addToCart}
         >
           Add to cart
+          <div className={s[waiting]}></div>
         </button>
       </div>
     </div>

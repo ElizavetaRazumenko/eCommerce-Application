@@ -9,10 +9,13 @@ import { DrinkTypeCatalog } from '../../../../../types/types';
 
 const Drink = (props: DrinkTypeCatalog) => {
   const [onCart, setOnCart] = useState(props.onCart);
+  const [waiting, setWaiting] = useState('none');
   const key = infoProducts.drinks.find((el) => el.name === props.name)?.key;
   const addToCart = async () => {
     if (!onCart) {
+      setWaiting('waiting');
       await addProductsToCart(key!);
+      setWaiting('none');
       setOnCart(true);
     }
   };
@@ -31,6 +34,7 @@ const Drink = (props: DrinkTypeCatalog) => {
         onClick={addToCart}
       >
         Add to cart
+        <div className={s[waiting]}></div>
       </button>
       <div className={s.drink_price}>{props.price}</div>
     </div>

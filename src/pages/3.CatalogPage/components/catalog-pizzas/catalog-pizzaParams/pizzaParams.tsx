@@ -7,9 +7,12 @@ import { PizzaParamsCatalogType } from '../../../../../types/types';
 
 const PizzaParams = (props: PizzaParamsCatalogType) => {
   const [onCart, setOnCart] = useState(props.onCart);
+  const [waiting, setWaiting] = useState('none');
   const addToCart = async () => {
     if (!onCart) {
+      setWaiting('waiting');
       await addPizzaToCart(props.findData.key!, props.findData.size);
+      setWaiting('none');
       setOnCart(true);
     }
   };
@@ -32,7 +35,9 @@ const PizzaParams = (props: PizzaParamsCatalogType) => {
         <div
           className={onCart ? `${s.shopping_cart} ${s.disabled}` : s.shopping_cart}
           onClick={addToCart}
-        ></div>
+        >
+          <div className={s[waiting]}></div>
+        </div>
       </div>
     </div>
   );
