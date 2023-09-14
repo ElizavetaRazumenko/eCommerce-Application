@@ -41,7 +41,7 @@ const App = () => {
   useEffect(() => {
     products();
   }, []);
-
+  console.log('Попадаем в App');
   const cartItemsString = localStorage.getItem('CartItems');
   if (cartItemsString) {
     const cartItems = JSON.parse(cartItemsString) as LineItem[];

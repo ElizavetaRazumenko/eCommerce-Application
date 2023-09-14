@@ -12,6 +12,7 @@ const Sauce = (props: SauceTypeCatalog) => {
   const [buttonMessage, setButtonMessage] = useState(props.onCart ? 'Remove' : 'Add to cart');
   const [waiting, setWaiting] = useState('none');
   const key = infoProducts.sauces.find((el) => el.name === props.name)?.key;
+  console.log('А теперь в соусы');
   const addToCart = async () => {
     if (!onCart) {
       setWaiting('waiting');

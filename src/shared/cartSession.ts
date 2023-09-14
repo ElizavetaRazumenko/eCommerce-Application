@@ -8,7 +8,7 @@ import {
 
 import { getProduct } from './index';
 
-import { productIdOnCart } from '../entities/product';
+import { productIdOnCart, productOnCart } from '../entities/product';
 import { KeyObject } from '../types/types';
 
 const fetch = require('node-fetch');
@@ -126,6 +126,7 @@ export const addPizzaToCart = async (key: string, size: string) => {
     items.forEach((el) => {
       const key = el.variant.sku as KeyObject;
       productIdOnCart[key] = el.id;
+      productOnCart[key] = true;
     });
     localStorage.setItem('CartItems', JSON.stringify(items));
   } catch (e) {
@@ -147,6 +148,7 @@ export const addProductsToCart = async (key: string) => {
     items.forEach((el) => {
       const key = el.variant.sku as KeyObject;
       productIdOnCart[key] = el.id;
+      productOnCart[key] = true;
     });
     localStorage.setItem('CartItems', JSON.stringify(items));
   } catch (e) {
@@ -174,6 +176,11 @@ export const removeProductOnCart = async (lineItemId: string) => {
     })
     .execute();
   const updateCart = await getCurrentAnonimousCart();
+  const items: LineItem[] = updateCart!.body.lineItems;
+  items.forEach((el) => {
+    const key = el.variant.sku as KeyObject;
+    productOnCart[key] = false;
+  });
   localStorage.setItem('CartItems', JSON.stringify(updateCart!.body.lineItems));
   return product;
 };
