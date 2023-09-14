@@ -127,7 +127,6 @@ export const addPizzaToCart = async (key: string, size: string) => {
       const key = el.variant.sku as KeyObject;
       productIdOnCart[key] = el.id;
     });
-    console.log(`ID: ${items[items.length - 1].id}`);
     localStorage.setItem('CartItems', JSON.stringify(items));
   } catch (e) {
     if (e instanceof Error) console.log(e.message);
@@ -156,7 +155,6 @@ export const addProductsToCart = async (key: string) => {
 };
 
 export const removeProductOnCart = async (lineItemId: string) => {
-  console.log(`ID fo remove: ${lineItemId}`);
   const cart = await getCurrentAnonimousCart();
   const version = cart!.body.version;
   const id = localStorage.getItem('idCarts')!.slice(1, -1);

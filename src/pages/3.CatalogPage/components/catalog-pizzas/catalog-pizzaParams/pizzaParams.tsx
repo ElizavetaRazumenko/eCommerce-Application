@@ -21,9 +21,9 @@ const PizzaParams = (props: PizzaParamsCatalogType) => {
   const deleteFromCart = async () => {
     if (onCart) {
       setWaiting('waiting');
+      setOnCart(false);
       await removeProductOnCart(productIdOnCart[props.sku as KeyObject]);
       setWaiting('none');
-      setOnCart(false);
     }
   };
 

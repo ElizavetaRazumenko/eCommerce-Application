@@ -48,6 +48,7 @@ export type SauceTypeCatalog = {
   price: string;
   description: string;
   onCart: boolean;
+  sku: string;
 };
 
 export type DrinkType = {
@@ -67,6 +68,7 @@ export type DrinkTypeCatalog = {
   name: string;
   description: string;
   onCart: boolean;
+  sku: string;
 };
 
 export type stateTypeMain = {

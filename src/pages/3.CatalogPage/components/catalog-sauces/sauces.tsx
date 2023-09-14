@@ -19,6 +19,7 @@ const CatalogSauces = (props: CatalogSaucesProps) => {
         price={sauceCost}
         description={sauce.description['en-US']}
         onCart={productOnCart[(sauce.key + '-') as KeyObject]}
+        sku={sauce.key + '-'}
       />
     );
   });

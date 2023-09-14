@@ -3,20 +3,30 @@ import { NavLink } from 'react-router-dom';
 
 import s from './drink.module.scss';
 
-import infoProducts from '../../../../../entities/product';
-import { addProductsToCart } from '../../../../../shared/cartSession';
-import { DrinkTypeCatalog } from '../../../../../types/types';
+import infoProducts, { productIdOnCart } from '../../../../../entities/product';
+import { addProductsToCart, removeProductOnCart } from '../../../../../shared/cartSession';
+import { DrinkTypeCatalog, KeyObject } from '../../../../../types/types';
 
 const Drink = (props: DrinkTypeCatalog) => {
   const [onCart, setOnCart] = useState(props.onCart);
+  const [buttonMessage, setButtonMessage] = useState(props.onCart ? 'Remove' : 'Add to cart');
   const [waiting, setWaiting] = useState('none');
   const key = infoProducts.drinks.find((el) => el.name === props.name)?.key;
   const addToCart = async () => {
     if (!onCart) {
       setWaiting('waiting');
+      setButtonMessage('');
       await addProductsToCart(key!);
       setWaiting('none');
+      setButtonMessage('Remove');
       setOnCart(true);
+    } else {
+      setWaiting('waiting');
+      setButtonMessage('');
+      setOnCart(false);
+      await removeProductOnCart(productIdOnCart[props.sku as KeyObject]);
+      setButtonMessage('Add to cart');
+      setWaiting('none');
     }
   };
   return (
@@ -29,11 +39,8 @@ const Drink = (props: DrinkTypeCatalog) => {
       </div>
       <p className={s.name}>{props.name}</p>
       <p className={s.description}>{props.description}</p>
-      <button
-        className={onCart ? `${s.btn_add_drink} ${s.disabled}` : s.btn_add_drink}
-        onClick={addToCart}
-      >
-        Add to cart
+      <button className={s.btn_add_drink} onClick={addToCart}>
+        {buttonMessage}
         <div className={s[waiting]}></div>
       </button>
       <div className={s.drink_price}>{props.price}</div>

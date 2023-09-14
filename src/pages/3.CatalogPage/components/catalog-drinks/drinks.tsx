@@ -18,6 +18,7 @@ const CatalogDrinks = (props: CatalogDrinksProps) => {
         price={drinkCost}
         description={drink.description['en-US']}
         onCart={productOnCart[(drink.key + '-') as KeyObject]}
+        sku={drink.key + '-'}
       />
     );
   });
