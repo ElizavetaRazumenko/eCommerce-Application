@@ -1,6 +1,4 @@
-import { LineItem } from '@commercetools/platform-sdk';
-
-import { useRef } from 'react';
+import { useState } from 'react';
 
 import s from './pizzaParams.module.scss';
 
@@ -8,11 +6,11 @@ import { addPizzaToCart } from '../../../../../shared/cartSession';
 import { PizzaParamsCatalogType } from '../../../../../types/types';
 
 const PizzaParams = (props: PizzaParamsCatalogType) => {
-  const cartRef = useRef<HTMLDivElement>(null);
+  const [onCart, setOnCart] = useState(props.onCart);
   const addToCart = async () => {
-    if (!cartRef.current!.classList.contains(s.disabled)) {
+    if (!onCart) {
       await addPizzaToCart(props.findData.key!, props.findData.size);
-      cartRef.current!.classList.add(s.disabled);
+      setOnCart(true);
     }
   };
 
@@ -31,7 +29,10 @@ const PizzaParams = (props: PizzaParamsCatalogType) => {
         >
           {props.price}
         </div>
-        <div className={s.shopping_cart} onClick={addToCart} ref={cartRef}></div>
+        <div
+          className={onCart ? `${s.shopping_cart} ${s.disabled}` : s.shopping_cart}
+          onClick={addToCart}
+        ></div>
       </div>
     </div>
   );

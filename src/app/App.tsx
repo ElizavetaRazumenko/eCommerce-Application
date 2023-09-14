@@ -46,8 +46,8 @@ const App = () => {
   if (cartItemsString) {
     const cartItems = JSON.parse(cartItemsString) as LineItem[];
     cartItems.forEach((el) => {
-      if (el.productKey) {
-        const key = el.productKey as KeyObject;
+      if (el.variant.sku) {
+        const key = el.variant.sku as KeyObject;
         productOnCart[key] = true;
       }
     });

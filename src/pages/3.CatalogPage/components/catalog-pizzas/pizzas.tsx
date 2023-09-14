@@ -41,6 +41,7 @@ const CatalogPizzas = (props: CatalogPizzasProps) => {
         cost={pizzasCost}
         description={pizza.description['en-US']}
         discounts={discountInfo}
+        code={pizza.key}
       />
     );
   });

@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom';
 
 import s from './pizza.module.scss';
 
-import infoProducts from '../../../../../entities/product';
-import { PizzaCatalogType } from '../../../../../types/types';
+import infoProducts, { productOnCart } from '../../../../../entities/product';
+import { KeyObject, PizzaCatalogType } from '../../../../../types/types';
 
 import PizzaParams from '../catalog-pizzaParams/pizzaParams';
 
@@ -20,18 +20,21 @@ const Pizza = (props: PizzaCatalogType) => {
       length: '45cm',
       price: props.cost[0],
       discount: props.discounts[0] || '',
+      onCart: productOnCart[(props.code + '-L') as KeyObject],
     },
     {
       size: 'M',
       length: '30cm',
       price: props.cost[1],
       discount: props.discounts[1] || '',
+      onCart: productOnCart[(props.code + '-M') as KeyObject],
     },
     {
       size: 'S',
       length: '25cm',
       price: props.cost[2],
       discount: props.discounts[2] || '',
+      onCart: productOnCart[(props.code + '-S') as KeyObject],
     },
   ];
   const mainIngredientsStartIndex = props.description.indexOf('Main ingredients');
@@ -70,6 +73,7 @@ const Pizza = (props: PizzaCatalogType) => {
                   key,
                   size: index === 0 ? 'l' : index === 1 ? 'm' : 's',
                 }}
+                onCart={pizza.onCart}
               />
             ))}
           </div>

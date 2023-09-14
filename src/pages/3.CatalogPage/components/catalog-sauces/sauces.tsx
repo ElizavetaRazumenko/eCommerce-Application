@@ -1,5 +1,3 @@
-import { LineItem } from '@commercetools/platform-sdk';
-
 import Sauce from './components/sauce';
 
 import s from './sauces.module.scss';
@@ -20,7 +18,7 @@ const CatalogSauces = (props: CatalogSaucesProps) => {
         name={sauce.name['en-US']}
         price={sauceCost}
         description={sauce.description['en-US']}
-        onCart={productOnCart[sauce.key as KeyObject]}
+        onCart={productOnCart[(sauce.key + '-') as KeyObject]}
       />
     );
   });
