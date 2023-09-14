@@ -9,7 +9,6 @@ const Sauce = (props: SauceType) => {
       <div className={s.sauce_info}>
         <h4 className={s.sauce_title}>{props.name}</h4>
         <div className={s.sauce_price}>0,60$</div>
-        <button className={s.btn_add_sauce}>Add to cart</button>
       </div>
     </div>
   );

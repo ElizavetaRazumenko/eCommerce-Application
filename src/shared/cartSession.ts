@@ -142,3 +142,25 @@ export const addProductsToCart = async (key: string) => {
     if (e instanceof Error) console.log(e.message);
   }
 };
+
+export const rempveProductOnCart = async (lineItemId: string) => {
+  const cart = await getCurrentAnonimousCart();
+  const version = cart!.body.version;
+  const id = localStorage.getItem('idCarts')!.slice(1, -1);
+  const product = await apiRoot
+    .carts()
+    .withId({ ID: id })
+    .post({
+      body: {
+        version: version,
+        actions: [
+          {
+            action: 'removeLineItem',
+            lineItemId: lineItemId,
+          },
+        ],
+      },
+    })
+    .execute();
+  return product;
+};

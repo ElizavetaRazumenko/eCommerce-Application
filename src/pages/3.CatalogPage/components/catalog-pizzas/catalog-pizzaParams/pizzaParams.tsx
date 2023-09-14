@@ -38,6 +38,10 @@ const PizzaParams = (props: PizzaParamsCatalogType) => {
         >
           <div className={s[waiting]}></div>
         </div>
+        <div
+          className={onCart ? s.delete : `${s.delete} ${s.hidden}`}
+          onClick={() => console.log(1)}
+        ></div>
       </div>
     </div>
   );
