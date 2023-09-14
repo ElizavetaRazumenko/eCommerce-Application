@@ -1,10 +1,11 @@
+import { LineItem } from '@commercetools/platform-sdk';
 import React, { useEffect, useState } from 'react';
 
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import s from './App.module.scss';
 
-import { startProductObject } from '../entities/product';
+import { productOnCart, startProductObject } from '../entities/product';
 import LoginPage from '../pages/1.LoginPage/login/login';
 import RegisterPage from '../pages/1.LoginPage/register/register';
 import Main from '../pages/2.MainPage/main';
@@ -27,7 +28,7 @@ import ErrorPage from '../pages/7.ErrorPage/error';
 import AboutUsPage from '../pages/8.AboutUsPage/aboutUs';
 import Layout from '../pages/globalComponents/layout/layout';
 import { getProducts } from '../shared';
-import { ProductsType } from '../types/types';
+import { KeyObject, ProductsType } from '../types/types';
 
 const App = () => {
   const [productsData, setProducts] = useState<ProductsType>(startProductObject);
@@ -40,6 +41,18 @@ const App = () => {
   useEffect(() => {
     products();
   }, []);
+
+  const cartItemsString = localStorage.getItem('CartItems');
+  if (cartItemsString) {
+    const cartItems = JSON.parse(cartItemsString) as LineItem[];
+    cartItems.forEach((el) => {
+      if (el.productKey) {
+        const key = el.productKey as KeyObject;
+        productOnCart[key] = true;
+      }
+    });
+  }
+
   const [userState, setUserState] = useState<string>(
     localStorage.getItem('userState') === 'Logout' ? 'Logout' : 'Login',
   );

@@ -9,16 +9,8 @@ import { addProductsToCart } from '../../../../../shared/cartSession';
 import { SauceTypeCatalog } from '../../../../../types/types';
 
 const Sauce = (props: SauceTypeCatalog) => {
-  const [onCart, setOnCart] = useState(false);
+  const [onCart, setOnCart] = useState(props.onCart);
   const key = infoProducts.sauces.find((el) => el.name === props.name)?.key;
-  const cartItemsString = localStorage.getItem('CartItems');
-  if (cartItemsString && key) {
-    const cartItems = JSON.parse(cartItemsString) as LineItem[];
-    console.log(cartItems);
-    // const currentItemOnCart = cartItems.find((el) => el.productKey === key)!.productKey;
-    // if (currentItemOnCart) setOnCart(true);
-  }
-
   const addToCart = async () => {
     if (!onCart) {
       await addProductsToCart(key!);

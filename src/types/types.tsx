@@ -46,6 +46,7 @@ export type SauceTypeCatalog = {
   name: string;
   price: string;
   description: string;
+  onCart: boolean;
 };
 
 export type DrinkType = {
@@ -783,3 +784,34 @@ export type requestType = {
   }[];
   total: number;
 };
+
+export type KeyObject =
+  | 'PS-1-1-1'
+  | 'PS-1-1-2'
+  | 'PS-1-1-3'
+  | 'PS-1-1-4'
+  | 'PS-1-1-5'
+  | 'PS-1-1-6'
+  | 'PS-1-1-7'
+  | 'PS-1-1-8'
+  | 'PS-1-1-9'
+  | 'PS-1-1-10'
+  | 'PS-1-1-11'
+  | 'PS-1-1-12'
+  | 'PS-1-1-13'
+  | 'PS-1-1-14'
+  | 'PS-1-1-15'
+  | 'PS-1-2-1'
+  | 'PS-1-2-2'
+  | 'PS-1-2-3'
+  | 'PS-1-2-4'
+  | 'PS-1-2-5'
+  | 'PS-1-2-6'
+  | 'PS-1-2-7'
+  | 'PS-1-2-8'
+  | 'DR-1-1'
+  | 'DR-1-2'
+  | 'DR-1-3'
+  | 'DR-1-4'
+  | 'DR-1-5'
+  | 'DR-1-6';
