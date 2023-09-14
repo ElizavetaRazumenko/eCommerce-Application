@@ -150,13 +150,14 @@ export const addProductsToCart = async (key: string) => {
       productIdOnCart[key] = el.id;
       productOnCart[key] = true;
     });
+    console.log(productOnCart);
     localStorage.setItem('CartItems', JSON.stringify(items));
   } catch (e) {
     if (e instanceof Error) console.log(e.message);
   }
 };
 
-export const removeProductOnCart = async (lineItemId: string) => {
+export const removeProductOnCart = async (lineItemId: string, sku: string) => {
   const cart = await getCurrentAnonimousCart();
   const version = cart!.body.version;
   const id = localStorage.getItem('idCarts')!.slice(1, -1);
@@ -176,11 +177,8 @@ export const removeProductOnCart = async (lineItemId: string) => {
     })
     .execute();
   const updateCart = await getCurrentAnonimousCart();
-  const items: LineItem[] = updateCart!.body.lineItems;
-  items.forEach((el) => {
-    const key = el.variant.sku as KeyObject;
-    productOnCart[key] = false;
-  });
+  productOnCart[sku as KeyObject] = false;
+  console.log(productOnCart);
   localStorage.setItem('CartItems', JSON.stringify(updateCart!.body.lineItems));
   return product;
 };

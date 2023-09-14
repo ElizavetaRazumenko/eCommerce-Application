@@ -31,7 +31,7 @@ const Sauce = (props: SauceTypeCatalog) => {
       setWaiting('waiting');
       setButtonMessage('');
       setOnCart(false);
-      await removeProductOnCart(productIdOnCart[props.sku as KeyObject]);
+      await removeProductOnCart(productIdOnCart[props.sku as KeyObject], props.sku);
       setButtonMessage('Add to cart');
       setWaiting('none');
     }

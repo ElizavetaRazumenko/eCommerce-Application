@@ -41,7 +41,6 @@ const App = () => {
   useEffect(() => {
     products();
   }, []);
-  console.log('Попадаем в App');
   const cartItemsString = localStorage.getItem('CartItems');
   if (cartItemsString) {
     const cartItems = JSON.parse(cartItemsString) as LineItem[];
@@ -50,7 +49,6 @@ const App = () => {
         const key = el.variant.sku as KeyObject;
         productOnCart[key] = true;
         productIdOnCart[key] = el.id;
-        console.log(`Строим в апе данные ${productOnCart['PS-1-2-1-']}`);
       }
     });
   }

@@ -60,7 +60,7 @@ const DetailedPage = () => {
       setWaiting('waiting');
       setButtonMessage('');
       setOnCart(false);
-      await removeProductOnCart(productIdOnCart[keySKU as KeyObject]);
+      await removeProductOnCart(productIdOnCart[keySKU as KeyObject], keySKU);
       setButtonMessage('Add to cart');
       setWaiting('none');
     }

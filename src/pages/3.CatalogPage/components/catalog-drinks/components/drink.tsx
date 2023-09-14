@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { NavLink } from 'react-router-dom';
@@ -10,7 +9,6 @@ import { addProductsToCart, removeProductOnCart } from '../../../../../shared/ca
 import { DrinkTypeCatalog, KeyObject } from '../../../../../types/types';
 
 const Drink = (props: DrinkTypeCatalog) => {
-  const drinkRef = useRef<HTMLButtonElement>(null);
   const { ref, inView } = useInView({
     threshold: 0,
   });
@@ -32,7 +30,7 @@ const Drink = (props: DrinkTypeCatalog) => {
       setWaiting('waiting');
       setButtonMessage('');
       setOnCart(false);
-      await removeProductOnCart(productIdOnCart[props.sku as KeyObject]);
+      await removeProductOnCart(productIdOnCart[props.sku as KeyObject], props.sku);
       setButtonMessage('Add to cart');
       setWaiting('none');
     }
@@ -49,8 +47,9 @@ const Drink = (props: DrinkTypeCatalog) => {
           </div>
           <p className={s.name}>{props.name}</p>
           <p className={s.description}>{props.description}</p>
-          <button className={s.btn_add_drink} onClick={addToCart} ref={drinkRef}>
-            Add to cart
+          <button className={s.btn_add_drink} onClick={addToCart}>
+            {buttonMessage}
+            <div className={s[waiting]}></div>
           </button>
           <div className={s.drink_price}>{props.price}</div>
         </>
