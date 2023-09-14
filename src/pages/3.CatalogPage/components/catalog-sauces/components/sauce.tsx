@@ -1,4 +1,5 @@
 import { LineItem } from '@commercetools/platform-sdk';
+
 import { useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
