@@ -1,11 +1,6 @@
-
-import { LineItem } from '@commercetools/platform-sdk';
-
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-
-import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import s from './sauce.module.scss';
@@ -15,8 +10,6 @@ import { addProductsToCart, removeProductOnCart } from '../../../../../shared/ca
 import { KeyObject, SauceTypeCatalog } from '../../../../../types/types';
 
 const Sauce = (props: SauceTypeCatalog) => {
-
-  const [onCart, setOnCart] = useState(false);
   const { ref, inView } = useInView({
     threshold: 0,
   });
@@ -61,13 +54,12 @@ const Sauce = (props: SauceTypeCatalog) => {
             </h4>
             <div className={s.sauce_price}>{props.price}</div>
             <button className={s.btn_add_sauce} onClick={addToCart}>
-          {buttonMessage}
-          <div className={s[waiting]}></div>
-        </button>
+              {buttonMessage}
+              <div className={s[waiting]}></div>
+            </button>
           </div>
         </>
       )}
-
     </div>
   );
 };

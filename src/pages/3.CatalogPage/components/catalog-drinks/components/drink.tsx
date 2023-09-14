@@ -1,7 +1,6 @@
-
 import { useRef } from 'react';
-import { useInView } from 'react-intersection-observer';
 import { useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 import { NavLink } from 'react-router-dom';
 
 import s from './drink.module.scss';
@@ -11,7 +10,6 @@ import { addProductsToCart, removeProductOnCart } from '../../../../../shared/ca
 import { DrinkTypeCatalog, KeyObject } from '../../../../../types/types';
 
 const Drink = (props: DrinkTypeCatalog) => {
-
   const drinkRef = useRef<HTMLButtonElement>(null);
   const { ref, inView } = useInView({
     threshold: 0,
@@ -57,7 +55,6 @@ const Drink = (props: DrinkTypeCatalog) => {
           <div className={s.drink_price}>{props.price}</div>
         </>
       )}
-
     </div>
   );
 };
