@@ -21,6 +21,7 @@ const Pizza = (props: PizzaCatalogType) => {
       price: props.cost[0],
       discount: props.discounts[0] || '',
       onCart: productOnCart[(props.code + '-L') as KeyObject],
+      sku: props.code + '-L',
     },
     {
       size: 'M',
@@ -28,6 +29,7 @@ const Pizza = (props: PizzaCatalogType) => {
       price: props.cost[1],
       discount: props.discounts[1] || '',
       onCart: productOnCart[(props.code + '-M') as KeyObject],
+      sku: props.code + '-M',
     },
     {
       size: 'S',
@@ -35,6 +37,7 @@ const Pizza = (props: PizzaCatalogType) => {
       price: props.cost[2],
       discount: props.discounts[2] || '',
       onCart: productOnCart[(props.code + '-S') as KeyObject],
+      sku: props.code + '-S',
     },
   ];
   const mainIngredientsStartIndex = props.description.indexOf('Main ingredients');
@@ -74,6 +77,7 @@ const Pizza = (props: PizzaCatalogType) => {
                   size: index === 0 ? 'l' : index === 1 ? 'm' : 's',
                 }}
                 onCart={pizza.onCart}
+                sku={pizza.sku}
               />
             ))}
           </div>

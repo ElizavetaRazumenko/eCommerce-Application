@@ -167,6 +167,7 @@ export type PizzaParamsCatalogType = {
     size: string;
   };
   onCart: boolean;
+  sku: string;
 };
 
 //                                                      LOGIN / REGISTER PAGE

@@ -8,6 +8,9 @@ import {
 
 import { getProduct } from './index';
 
+import { productIdOnCart } from '../entities/product';
+import { KeyObject } from '../types/types';
+
 const fetch = require('node-fetch');
 const projectKey = 'ecommece-application';
 const scopes = [
@@ -120,6 +123,11 @@ export const addPizzaToCart = async (key: string, size: string) => {
     if (size === 's') sku = sku.slice(0, -2) + '-S';
     const cartWithProducts = await addProductOnCart(version, sku);
     const items: LineItem[] = cartWithProducts!.lineItems;
+    items.forEach((el) => {
+      const key = el.variant.sku as KeyObject;
+      productIdOnCart[key] = el.id;
+    });
+    console.log(`ID: ${items[items.length - 1].id}`);
     localStorage.setItem('CartItems', JSON.stringify(items));
   } catch (e) {
     if (e instanceof Error) console.log(e.message);
@@ -137,13 +145,18 @@ export const addProductsToCart = async (key: string) => {
     let sku = product?.masterVariant.sku as string;
     const cartWithProducts = await addProductOnCart(version, sku);
     const items: LineItem[] = cartWithProducts!.lineItems;
+    items.forEach((el) => {
+      const key = el.variant.sku as KeyObject;
+      productIdOnCart[key] = el.id;
+    });
     localStorage.setItem('CartItems', JSON.stringify(items));
   } catch (e) {
     if (e instanceof Error) console.log(e.message);
   }
 };
 
-export const rempveProductOnCart = async (lineItemId: string) => {
+export const removeProductOnCart = async (lineItemId: string) => {
+  console.log(`ID fo remove: ${lineItemId}`);
   const cart = await getCurrentAnonimousCart();
   const version = cart!.body.version;
   const id = localStorage.getItem('idCarts')!.slice(1, -1);
@@ -162,5 +175,7 @@ export const rempveProductOnCart = async (lineItemId: string) => {
       },
     })
     .execute();
+  const updateCart = await getCurrentAnonimousCart();
+  localStorage.setItem('CartItems', JSON.stringify(updateCart!.body.lineItems));
   return product;
 };

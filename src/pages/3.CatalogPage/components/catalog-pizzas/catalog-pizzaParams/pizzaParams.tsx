@@ -2,8 +2,9 @@ import { useState } from 'react';
 
 import s from './pizzaParams.module.scss';
 
-import { addPizzaToCart } from '../../../../../shared/cartSession';
-import { PizzaParamsCatalogType } from '../../../../../types/types';
+import { productIdOnCart } from '../../../../../entities/product';
+import { addPizzaToCart, removeProductOnCart } from '../../../../../shared/cartSession';
+import { KeyObject, PizzaParamsCatalogType } from '../../../../../types/types';
 
 const PizzaParams = (props: PizzaParamsCatalogType) => {
   const [onCart, setOnCart] = useState(props.onCart);
@@ -14,6 +15,15 @@ const PizzaParams = (props: PizzaParamsCatalogType) => {
       await addPizzaToCart(props.findData.key!, props.findData.size);
       setWaiting('none');
       setOnCart(true);
+    }
+  };
+
+  const deleteFromCart = async () => {
+    if (onCart) {
+      setWaiting('waiting');
+      await removeProductOnCart(productIdOnCart[props.sku as KeyObject]);
+      setWaiting('none');
+      setOnCart(false);
     }
   };
 
@@ -40,7 +50,7 @@ const PizzaParams = (props: PizzaParamsCatalogType) => {
         </div>
         <div
           className={onCart ? s.delete : `${s.delete} ${s.hidden}`}
-          onClick={() => console.log(1)}
+          onClick={deleteFromCart}
         ></div>
       </div>
     </div>

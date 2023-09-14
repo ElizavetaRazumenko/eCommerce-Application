@@ -5,7 +5,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import s from './App.module.scss';
 
-import { productOnCart, startProductObject } from '../entities/product';
+import { productOnCart, startProductObject, productIdOnCart } from '../entities/product';
 import LoginPage from '../pages/1.LoginPage/login/login';
 import RegisterPage from '../pages/1.LoginPage/register/register';
 import Main from '../pages/2.MainPage/main';
@@ -49,6 +49,7 @@ const App = () => {
       if (el.variant.sku) {
         const key = el.variant.sku as KeyObject;
         productOnCart[key] = true;
+        productIdOnCart[key] = el.id;
       }
     });
   }
