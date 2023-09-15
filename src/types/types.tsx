@@ -851,3 +851,14 @@ export type KeyObject =
   | 'DR-1-4-'
   | 'DR-1-5-'
   | 'DR-1-6-';
+
+//                                CART PAGE
+
+export type pizzaCartProps = {
+  image: string;
+  name: string;
+  size: string;
+  price: string;
+  quantity: number;
+  discount: string;
+};
