@@ -12,7 +12,6 @@ const DrinksSauceItem = (props: {
   const getPrice = (value: number) => {
     return value / 100;
   };
-
   const productItems = cartItems.filter((el) => !keysPizza.includes(el.productKey!));
   return (
     <>

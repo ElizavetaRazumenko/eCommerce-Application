@@ -1,12 +1,17 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
-import { addPizzaToCart, removeOneProductOnCart } from '../../../../../shared/cartSession';
+import {
+  addPizzaToCart,
+  removeOneProductOnCart,
+  removeProductOnCart,
+} from '../../../../../shared/cartSession';
 
 import { PizzaCartProps } from '../../../../../types/types';
 import s from '../pizzas.module.scss';
 
 const PizzaItem = (props: PizzaCartProps) => {
   const [quantity, setQuantity] = useState(props.quantity);
+  const elementRef = useRef<HTMLDivElement>(null);
   const increaseQuantity = async () => {
     setQuantity(quantity + 1);
     const cart = await addPizzaToCart(props.keyRequest, props.size[0].toLowerCase());
@@ -22,8 +27,12 @@ const PizzaItem = (props: PizzaCartProps) => {
       props.setTotalPrice((cart!.totalPrice.centAmount / 100).toFixed(2));
     }
   };
+  const removeItem = async () => {
+    await removeProductOnCart(props.idRequets, `${props.keyRequest}-${props.size[0]}`);
+    elementRef.current!.classList.add(s.hidden);
+  };
   return (
-    <div className={s.pizza_wrapper}>
+    <div className={s.pizza_wrapper} ref={elementRef}>
       <img src={props.image} alt='pizza' className={s.image} />
       <div className={s.info}>
         <p className={s.name}>{props.name}</p>
@@ -47,7 +56,9 @@ const PizzaItem = (props: PizzaCartProps) => {
             {`${(props.discount * +quantity).toFixed(2)}$`}
           </p>
         </div>
-        <button className={s.btn}>Remove</button>
+        <button className={s.btn} onClick={removeItem}>
+          Remove
+        </button>
       </div>
     </div>
   );
