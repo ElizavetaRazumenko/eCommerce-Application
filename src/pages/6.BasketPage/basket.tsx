@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Cart, LineItem } from '@commercetools/platform-sdk';
 import { useEffect, useState } from 'react';
 
@@ -16,9 +17,10 @@ const BasketPage = (props: CartPropsType) => {
     const cartResponse = await getCurrentAnonimousCart();
     const cart = cartResponse!.body;
     localStorage.setItem('Cart', JSON.stringify(cart));
-    const price = cart.totalPrice.centAmount / 100;
-    console.log(price);
-    setTotalPrice(price.toFixed(2));
+    setTotalPrice((cart.totalPrice.centAmount / 100).toFixed(2));
+    cartItems.forEach((item) => {
+      keysPizza.includes(item.productKey!) ? pizzasItems.push(item) : noPizzasItems.push(item);
+    });
   };
   useEffect(() => {
     getCartsInfo();
@@ -33,9 +35,6 @@ const BasketPage = (props: CartPropsType) => {
   const [totalPrice, setTotalPrice] = useState('');
   const pizzasItems: LineItem[] = [];
   const noPizzasItems: LineItem[] = [];
-  cartItems.forEach((item) => {
-    keysPizza.includes(item.productKey!) ? pizzasItems.push(item) : noPizzasItems.push(item);
-  });
   return (
     <>
       <PopUp isOpen={isOpenPopUp} setIsOpen={setisOpenPopUp} />
@@ -44,10 +43,10 @@ const BasketPage = (props: CartPropsType) => {
           <p className={s.header_message}>Added products</p>
           <div className={s.products}>
             <div className={s.pizzas}>
-              <Pizza />
+              <Pizza pizzas={pizzasItems} />
             </div>
             <div className={s.sauces_drinks}>
-              <DrinksSauceItem />
+              <DrinksSauceItem products={noPizzasItems} />
             </div>
           </div>
           <div className={s.info_utils}>

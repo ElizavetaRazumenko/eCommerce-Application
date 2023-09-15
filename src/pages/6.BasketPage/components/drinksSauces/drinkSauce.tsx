@@ -1,3 +1,4 @@
+import { LineItem } from '@commercetools/platform-sdk';
 import { useState } from 'react';
 
 import s from './drinkSauce.module.scss';
@@ -5,7 +6,7 @@ import s from './drinkSauce.module.scss';
 import DrinkURL from '../../../../assets/drinks/cola.png';
 import SauceURL from '../../../../assets/sauces/barbecue.png';
 
-const DrinksSauceItem = () => {
+const DrinksSauceItem = (props: { products: LineItem[] }) => {
   const [quantity, setQuantity] = useState(1);
   const increaseQuantity = () => {
     setQuantity(quantity + 1);

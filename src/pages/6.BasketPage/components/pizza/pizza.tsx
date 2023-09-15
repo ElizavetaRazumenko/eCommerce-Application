@@ -1,10 +1,11 @@
+import { LineItem } from '@commercetools/platform-sdk';
 import { useState } from 'react';
 
 import s from './pizza.module.scss';
 
 import pizzaUrl from '../../../../assets/pizzas/broccoli.png';
 
-const Pizza = () => {
+const Pizza = (props: { pizzas: LineItem[] }) => {
   const [quantity, setQuantity] = useState(1);
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
