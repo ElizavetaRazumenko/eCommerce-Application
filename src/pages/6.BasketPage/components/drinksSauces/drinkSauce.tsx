@@ -1,55 +1,31 @@
-import { LineItem } from '@commercetools/platform-sdk';
-import { useState } from 'react';
+import { Cart } from '@commercetools/platform-sdk';
 
-import s from './drinkSauce.module.scss';
+import ProductItem from './components/productItem';
 
-import DrinkURL from '../../../../assets/drinks/cola.png';
-import SauceURL from '../../../../assets/sauces/barbecue.png';
+import { keysPizza } from '../../../../entities/product';
 
 const DrinksSauceItem = () => {
-  const [quantity, setQuantity] = useState(1);
-  const increaseQuantity = () => {
-    setQuantity(quantity + 1);
+  const cart = JSON.parse(localStorage.getItem('Cart')!) as Cart;
+  const cartItems = cart.lineItems;
+  const getPrice = (value: number) => {
+    return `${(value / 100).toFixed(2)}$`;
   };
-  const reduceQuantity = () => {
-    quantity > 0 ? setQuantity(quantity - 1) : setQuantity(0);
-  };
+
+  const productItems = cartItems.filter((el) => !keysPizza.includes(el.productKey!));
   return (
     <>
-      <div className={s.wrapper}>
-        <div className={s.img_wrapper}>
-          <img src={SauceURL} alt='pizza' className={s.image} />
-        </div>
-        <div className={s.info}>
-          <p className={s.name}>Pepperoni</p>
-          <div className={s.count_wrapper}>
-            <p className={s.params}>{`Quantity: ${quantity}`}</p>
-            <div className={s.change_count_wrappper}>
-              <div className={s.up} onClick={increaseQuantity}></div>
-              <div className={s.down} onClick={reduceQuantity}></div>
-            </div>
+      {productItems.map((product) => {
+        return (
+          <div>
+            <ProductItem
+              image={product.variant.images![0].url}
+              name={product.name['en-US']}
+              quantity={1}
+              price={getPrice(product.price.value.centAmount)}
+            />
           </div>
-          <p className={s.params}>Total cost: 55.00$</p>
-          <button className={s.btn}>Remove</button>
-        </div>
-      </div>
-      <div className={s.wrapper}>
-        <div className={s.img_wrapper}>
-          <img src={DrinkURL} alt='pizza' className={s.image} />
-        </div>
-        <div className={s.info}>
-          <p className={s.name}>Pepperoni</p>
-          <div className={s.count_wrapper}>
-            <p className={s.params}>{`Quantity: ${quantity}`}</p>
-            <div className={s.change_count_wrappper}>
-              <div className={s.up} onClick={increaseQuantity}></div>
-              <div className={s.down} onClick={reduceQuantity}></div>
-            </div>
-          </div>
-          <p className={s.params}>Total cost: 55.00$</p>
-          <button className={s.btn}>Remove</button>
-        </div>
-      </div>
+        );
+      })}
     </>
   );
 };

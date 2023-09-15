@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import { pizzaCartProps } from '../../../../../types/types';
+import { PizzaCartProps } from '../../../../../types/types';
 import s from '../pizzas.module.scss';
 
-const PizzaItem = (props: pizzaCartProps) => {
+const PizzaItem = (props: PizzaCartProps) => {
   const [quantity, setQuantity] = useState(1);
   const increaseQuantity = () => {
     setQuantity(quantity + 1);

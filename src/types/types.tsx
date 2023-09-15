@@ -854,11 +854,18 @@ export type KeyObject =
 
 //                                CART PAGE
 
-export type pizzaCartProps = {
+export type PizzaCartProps = {
   image: string;
   name: string;
   size: string;
   price: string;
   quantity: number;
   discount: string;
+};
+
+export type ProductCartProps = {
+  image: string;
+  name: string;
+  price: string;
+  quantity: number;
 };

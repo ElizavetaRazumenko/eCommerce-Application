@@ -1,5 +1,4 @@
-import { Cart, DiscountedPrice, LineItem } from '@commercetools/platform-sdk';
-import { useState } from 'react';
+import { Cart, DiscountedPrice } from '@commercetools/platform-sdk';
 
 import PizzaItem from './components/pizzaItem';
 
