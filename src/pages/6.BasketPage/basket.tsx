@@ -1,6 +1,5 @@
-import { Cart, ClientResponse, LineItem } from '@commercetools/platform-sdk';
+import { Cart, LineItem } from '@commercetools/platform-sdk';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import s from './basket.module.scss';
 import DrinksSauceItem from './components/drinksSauces/drinkSauce';
@@ -9,48 +8,39 @@ import PopUp from './components/popUp/popUp';
 
 import { keysPizza } from '../../entities/product';
 
+import { getCurrentAnonimousCart } from '../../shared/cartSession';
 import { CartPropsType } from '../../types/types';
 
 const BasketPage = (props: CartPropsType) => {
+  const getCartsInfo = async () => {
+    const cartResponse = await getCurrentAnonimousCart();
+    const cart = cartResponse!.body;
+    localStorage.setItem('Cart', JSON.stringify(cart));
+    const price = cart.totalPrice.centAmount / 100;
+    console.log(price);
+    setTotalPrice(price.toFixed(2));
+  };
   useEffect(() => {
-    if (localStorage.getItem('Cart')) {
-      const cart = JSON.parse(localStorage.getItem('Cart')!) as Cart;
-      setTotalPrice(cart.totalPrice.centAmount / 100);
-    }
+    getCartsInfo();
   }, []);
   const [isOpenPopUp, setisOpenPopUp] = useState(false);
   const openPopUp = () => {
     setisOpenPopUp(true);
   };
-
   const cartString = localStorage.getItem('Cart');
-  const [isEmptyCart] = useState(cartString ? false : true);
-  const [totalPrice, setTotalPrice] = useState(0);
-  let cartItems: LineItem[] = [];
+  const cart = JSON.parse(cartString!) as Cart;
+  const cartItems = cart.lineItems as LineItem[];
+  const [totalPrice, setTotalPrice] = useState('');
   const pizzasItems: LineItem[] = [];
   const noPizzasItems: LineItem[] = [];
-  if (cartString) {
-    const cart = JSON.parse(cartString) as Cart;
-    cartItems = cart.lineItems as LineItem[];
-    cartItems.forEach((item) => {
-      keysPizza.includes(item.productKey!) ? pizzasItems.push(item) : noPizzasItems.push(item);
-    });
-  }
+  cartItems.forEach((item) => {
+    keysPizza.includes(item.productKey!) ? pizzasItems.push(item) : noPizzasItems.push(item);
+  });
   return (
     <>
       <PopUp isOpen={isOpenPopUp} setIsOpen={setisOpenPopUp} />
       <div className={s.basket_wrapper}>
-        <div className={isEmptyCart ? s.empty_cart_wrapper : s.hidden}>
-          <p className={s.message}>
-            Your cart is currently empty! We suggest going to the catalog page to place an order.
-          </p>
-          <div className={s.button_wrapper}>
-            <Link to='/catalog' className={s.button}>
-              To catalog
-            </Link>
-          </div>
-        </div>
-        <div className={isEmptyCart ? s.hidden : s.full_cart_wrapper}>
+        <div className={s.full_cart_wrapper}>
           <p className={s.header_message}>Added products</p>
           <div className={s.products}>
             <div className={s.pizzas}>

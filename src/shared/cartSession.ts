@@ -128,6 +128,7 @@ export const addPizzaToCart = async (key: string, size: string) => {
       productIdOnCart[key] = el.id;
       productOnCart[key] = true;
     });
+    localStorage.setItem('CartIsEmpty', 'false');
     localStorage.setItem('Cart', JSON.stringify(cart!.body));
     localStorage.setItem('CartItems', JSON.stringify(items));
   } catch (e) {
@@ -151,6 +152,7 @@ export const addProductsToCart = async (key: string) => {
       productIdOnCart[key] = el.id;
       productOnCart[key] = true;
     });
+    localStorage.setItem('CartIsEmpty', 'false');
     localStorage.setItem('Cart', JSON.stringify(cart!.body));
     localStorage.setItem('CartItems', JSON.stringify(items));
   } catch (e) {
@@ -179,6 +181,7 @@ export const removeProductOnCart = async (lineItemId: string, sku: string) => {
     .execute();
   const updateCart = await getCurrentAnonimousCart();
   productOnCart[sku as KeyObject] = false;
+  if (updateCart!.body.lineItems.length === 0) localStorage.setItem('CartIsEmpty', 'true');
   localStorage.setItem('Cart', JSON.stringify(cart!.body));
   localStorage.setItem('CartItems', JSON.stringify(updateCart!.body.lineItems));
   return product;

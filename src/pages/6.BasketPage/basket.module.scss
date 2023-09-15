@@ -6,26 +6,6 @@
    display: flex;
    flex-direction: column;
    justify-content: space-between;
-
-
-    .message {
-        text-align: center;
-        color: $main-light;
-        font-size: 2rem;
-        font-weight: 700;
-
-        @media (max-width: 860px) {
-            font-size: 1.5rem;
-         }  
-
-         @media (max-width: 520px) {
-            font-size: 1.2rem;
-         }  
-         
-         @media (max-width: 390px) {
-            font-size: 1rem;
-         } 
-    }
 }
 
 .full_cart_wrapper {
@@ -36,10 +16,6 @@
    align-items: center;
 }
 
-.empty_cart_wrapper {
-   display: block;
-}
-
 .header_message,
 .total_cost,
 .promo_text {
@@ -48,15 +24,6 @@
    font-weight: 700;
 }
 
-
-.button_wrapper {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   margin: 25px 0 25px 0;
- }
-
- .button,
  .button_delete {
   cursor: pointer;
   text-decoration: none;
