@@ -2,14 +2,12 @@
 
 
 
-// .section_promo{
-//     position: relative;
-//  padding-bottom: 200px;
-// }
+.section_promo{
+ padding-bottom: 100px;
+}
 
 .title_promo {
     color: $color-parsley;
-    font-size: 1rem;
 }
 
 .promo_input{
@@ -18,17 +16,33 @@
     max-width: 200px;
 
     & input  {
+        margin:20px 10px;
+
+        height: 30px;
+        border-radius: 20px;
         max-width: 100px;
         border: .1px solid $color-parsley;
         color: $color-parsley;
         font-size: .8rem;
         padding: auto 5px;
 
-
         &::placeholder {
             border: none;
         }
     }
+}
+
+.btn_apply{
+    height: 30px;
+    font-size: .6rem;
+    border-radius: 20px;
+    background-color: $color-parsley;
+    border: none;
+    width: 100px;
+    font-weight: 700;
+    margin: 20px auto;
+
+
 }
 
 
@@ -41,14 +55,34 @@
     color: $color-red;  
 }
 
-.btn_promo{
-    height: 30px;
-    font-size: .6rem;
-    border-radius: 20px;
-    background-color: $color-parsley;
-    margin: 0 10px;
-    border: none;
-    width: 100px;
-    font-weight: 700;
 
-}
+.btn_select_promo {
+    width: 120px;
+    height: 90px;
+    background-color: $color-promo;
+    border: none;
+    margin:  10px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .promo_description{
+    color: $white;
+    max-width: 100%;
+    height: 36px;
+    margin-top: -30px;
+    margin-bottom: auto;
+    font-size: .8rem;
+    font-weight: 100;
+
+  }
+
+  .promo_number{
+    color: $color-parsley;
+    margin-bottom: -40px;
+    margin-top: 10px;
+    font-size: 1.2rem;
+    align-items: end;
+    font-weight: 900;
+
+  }
