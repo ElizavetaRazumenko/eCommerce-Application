@@ -1,15 +1,25 @@
 import { useState } from 'react';
 
+import { addPizzaToCart, removeOneProductOnCart } from '../../../../../shared/cartSession';
+
 import { PizzaCartProps } from '../../../../../types/types';
 import s from '../pizzas.module.scss';
 
 const PizzaItem = (props: PizzaCartProps) => {
-  const [quantity, setQuantity] = useState(1);
-  const increaseQuantity = () => {
-    setQuantity(quantity + 1);
+  const [quantity, setQuantity] = useState(`${props.quantity}`);
+  const increaseQuantity = async () => {
+    const sum = quantity;
+    setQuantity('-');
+    await addPizzaToCart(props.keyRequest, props.size[0].toLowerCase());
+    setQuantity(`${+sum + 1}`);
   };
-  const reduceQuantity = () => {
-    quantity > 0 ? setQuantity(quantity - 1) : setQuantity(0);
+  const reduceQuantity = async () => {
+    if (+quantity > 1) {
+      const sum = quantity;
+      setQuantity('-');
+      await removeOneProductOnCart(props.idRequets, `${props.keyRequest}-${props.size[0]}`);
+      setQuantity(`${+sum - 1}`);
+    }
   };
   return (
     <div className={s.pizza_wrapper}>

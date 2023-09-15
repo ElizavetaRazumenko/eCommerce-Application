@@ -186,3 +186,31 @@ export const removeProductOnCart = async (lineItemId: string, sku: string) => {
   localStorage.setItem('CartItems', JSON.stringify(updateCart!.body.lineItems));
   return product;
 };
+
+export const removeOneProductOnCart = async (lineItemId: string, sku: string) => {
+  const cart = await getCurrentAnonimousCart();
+  const version = cart!.body.version;
+  const id = localStorage.getItem('idCarts')!.slice(1, -1);
+  const product = await apiRoot
+    .carts()
+    .withId({ ID: id })
+    .post({
+      body: {
+        version: version,
+        actions: [
+          {
+            action: 'removeLineItem',
+            lineItemId: lineItemId,
+            quantity: 1,
+          },
+        ],
+      },
+    })
+    .execute();
+  const updateCart = await getCurrentAnonimousCart();
+  productOnCart[sku as KeyObject] = false;
+  if (updateCart!.body.lineItems.length === 0) localStorage.setItem('CartIsEmpty', 'true');
+  localStorage.setItem('Cart', JSON.stringify(cart!.body));
+  localStorage.setItem('CartItems', JSON.stringify(updateCart!.body.lineItems));
+  return product;
+};

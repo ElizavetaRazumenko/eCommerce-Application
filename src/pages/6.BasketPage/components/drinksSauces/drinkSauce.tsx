@@ -14,16 +14,17 @@ const DrinksSauceItem = () => {
   const productItems = cartItems.filter((el) => !keysPizza.includes(el.productKey!));
   return (
     <>
-      {productItems.map((product) => {
+      {productItems.map((product, index) => {
         return (
-          <div>
-            <ProductItem
-              image={product.variant.images![0].url}
-              name={product.name['en-US']}
-              quantity={1}
-              price={getPrice(product.price.value.centAmount)}
-            />
-          </div>
+          <ProductItem
+            key={product.id}
+            image={product.variant.images![0].url}
+            name={product.name['en-US']}
+            quantity={product.quantity}
+            price={getPrice(product.price.value.centAmount)}
+            keyRequest={product.productKey!}
+            idRequets={product.id}
+          />
         );
       })}
     </>

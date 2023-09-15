@@ -1,15 +1,25 @@
 import { useState } from 'react';
 
+import { addProductsToCart, removeOneProductOnCart } from '../../../../../shared/cartSession';
+
 import { ProductCartProps } from '../../../../../types/types';
 
 import s from '../drinkSauce.module.scss';
 const ProductItem = (props: ProductCartProps) => {
-  const [quantity, setQuantity] = useState(1);
-  const increaseQuantity = () => {
-    setQuantity(quantity + 1);
+  const [quantity, setQuantity] = useState(`${props.quantity}`);
+  const increaseQuantity = async () => {
+    const sum = quantity;
+    setQuantity('-');
+    await addProductsToCart(props.keyRequest);
+    setQuantity(`${+sum + 1}`);
   };
-  const reduceQuantity = () => {
-    quantity > 0 ? setQuantity(quantity - 1) : setQuantity(0);
+  const reduceQuantity = async () => {
+    if (+quantity > 1) {
+      const sum = quantity;
+      setQuantity('-');
+      await removeOneProductOnCart(props.idRequets, `${props.keyRequest}-`);
+      setQuantity(`${+sum - 1}`);
+    }
   };
   return (
     <div className={s.wrapper}>
@@ -17,7 +27,7 @@ const ProductItem = (props: ProductCartProps) => {
         <img src={props.image} alt='pizza' className={s.image} />
       </div>
       <div className={s.info}>
-        <p className={s.name}>Pepperoni</p>
+        <p className={s.name}>{props.name}</p>
         <div className={s.count_wrapper}>
           <p className={s.params}>{`Quantity: ${quantity}`}</p>
           <div className={s.change_count_wrappper}>

@@ -28,20 +28,21 @@ const Pizza = () => {
     <>
       {pizzaItems.map((pizza) => {
         return (
-          <div>
-            <PizzaItem
-              image={pizza.variant.images![0].url}
-              name={pizza.name['en-US']}
-              size={setSize(pizza.variant.sku!)}
-              quantity={1}
-              price={getPrice(pizza.price.value.centAmount)}
-              discount={
-                isDiskountPrice(pizza.price.discounted)
-                  ? defineDiskountPrice(pizza.price.discounted)
-                  : ''
-              }
-            />
-          </div>
+          <PizzaItem
+            key={pizza.id}
+            image={pizza.variant.images![0].url}
+            name={pizza.name['en-US']}
+            size={setSize(pizza.variant.sku!)}
+            quantity={pizza.quantity}
+            price={getPrice(pizza.price.value.centAmount)}
+            discount={
+              isDiskountPrice(pizza.price.discounted)
+                ? defineDiskountPrice(pizza.price.discounted)
+                : ''
+            }
+            keyRequest={pizza.productKey!}
+            idRequets={pizza.id}
+          />
         );
       })}
     </>

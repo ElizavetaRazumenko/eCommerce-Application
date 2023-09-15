@@ -44,7 +44,7 @@ const BasketPage = (props: CartPropsType) => {
             </form>
             <p className={s.total_cost}>{`Total cost: ${totalPrice}$`}</p>
             <div className={s.button_delete} onClick={openPopUp}>
-              Empty cart
+              Clear cart
             </div>
           </div>
         </div>

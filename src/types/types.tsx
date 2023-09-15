@@ -861,6 +861,8 @@ export type PizzaCartProps = {
   price: string;
   quantity: number;
   discount: string;
+  keyRequest: string;
+  idRequets: string;
 };
 
 export type ProductCartProps = {
@@ -868,4 +870,6 @@ export type ProductCartProps = {
   name: string;
   price: string;
   quantity: number;
+  keyRequest: string;
+  idRequets: string;
 };
