@@ -32,7 +32,10 @@ const ProductItem = (props: ProductCartProps) => {
           <p className={s.params}>{`Quantity: ${quantity}`}</p>
           <div className={s.change_count_wrappper}>
             <div className={s.up} onClick={increaseQuantity}></div>
-            <div className={s.down} onClick={reduceQuantity}></div>
+            <div
+              className={+quantity === 1 ? `${s.down} ${s.block}` : s.down}
+              onClick={reduceQuantity}
+            ></div>
           </div>
         </div>
         <p className={s.params}>{`Total cost: ${props.price}`}</p>

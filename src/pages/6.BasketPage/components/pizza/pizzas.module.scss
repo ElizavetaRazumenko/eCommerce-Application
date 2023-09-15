@@ -93,6 +93,14 @@
         background-color: rgba($main-grey, .8);
     }
   }
+  
+  .block {
+    cursor: auto;
+    background-color: rgba($main-grey, .3);
+    &:hover {
+        background-color: rgba($main-grey, .3);
+    }
+  }
 
   .up {
     border-top-left-radius: 5px;
