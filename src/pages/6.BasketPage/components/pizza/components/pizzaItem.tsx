@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import {
   addPizzaToCart,
   removeOneProductOnCart,
-  removeProductOnCart,
+  removeProductOnCartForCart,
 } from '../../../../../shared/cartSession';
 
 import { PizzaCartProps } from '../../../../../types/types';
@@ -28,8 +28,12 @@ const PizzaItem = (props: PizzaCartProps) => {
     }
   };
   const removeItem = async () => {
-    await removeProductOnCart(props.idRequets, `${props.keyRequest}-${props.size[0]}`);
+    const cart = await removeProductOnCartForCart(
+      props.idRequets,
+      `${props.keyRequest}-${props.size[0]}`,
+    );
     elementRef.current!.classList.add(s.hidden);
+    props.setTotalPrice((cart!.totalPrice.centAmount / 100).toFixed(2));
   };
   return (
     <div className={s.pizza_wrapper} ref={elementRef}>

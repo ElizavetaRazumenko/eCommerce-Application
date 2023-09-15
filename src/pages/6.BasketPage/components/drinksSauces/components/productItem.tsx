@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import {
   addProductsToCart,
   removeOneProductOnCart,
-  removeProductOnCart,
+  removeProductOnCartForCart,
 } from '../../../../../shared/cartSession';
 
 import { ProductCartProps } from '../../../../../types/types';
@@ -25,8 +25,9 @@ const ProductItem = (props: ProductCartProps) => {
     }
   };
   const removeItem = async () => {
-    await removeProductOnCart(props.idRequets, `${props.keyRequest}-`);
+    const cart = await removeProductOnCartForCart(props.idRequets, `${props.keyRequest}-`);
     elementRef.current!.classList.add(s.hidden);
+    props.setTotalPrice((cart!.totalPrice.centAmount / 100).toFixed(2));
   };
   return (
     <div className={s.wrapper} ref={elementRef}>
