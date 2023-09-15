@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { NavLink } from 'react-router-dom';
 
@@ -42,12 +42,34 @@ const Pizza = (props: PizzaCatalogType) => {
   ];
   const mainIngredientsStartIndex = props.description.indexOf('Main ingredients');
 
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (inView) {
+      setLoading(true);
+    }
+  }, [inView]);
+
   return (
-    <div className={s.pizza_item} ref={ref}>
+    <div className={s.pizza_item} ref={ref} style={{ position: 'relative' }}>
+      {isLoading && (
+        <div className={s.indicator} style={{ position: 'absolute', bottom: 0, left: 0 }}>
+          <div className={s.indicator_loader}></div>
+        </div>
+      )}
       {inView && (
         <>
           <div className={s.pizza_content}>
-            <img src={props.link[0].url} className={s.pizza_img} alt='pizza' />
+            <img
+              src={props.link[0].url}
+              className={s.pizza_img}
+              alt='pizza'
+              onLoad={() => {
+                setTimeout(() => {
+                  setLoading(false);
+                }, 1000);
+              }}
+            />
             <h3 className={s.pizza_name}>{props.name}</h3>
             <div className={s.pizza_ingredients}>
               {props.description.slice(mainIngredientsStartIndex)}

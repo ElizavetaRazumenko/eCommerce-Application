@@ -124,3 +124,35 @@
 .none {
     display: none;
 }
+
+// indicator sauce
+.indicator {
+    position: absolute;
+    display: flex;
+    border-radius: 50%;
+    left: 70px;
+    bottom: 5px;
+    width: 35px; 
+    height: 35px; 
+    background-color: none;
+    justify-content: center;
+    align-items: center;
+  
+  }
+  
+  .indicator_loader {
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    animation: spin 4s;
+    border: 3px solid $ligth-green;
+    border-top: 3px solid $color-parsley; 
+    border-bottom: 3px solid $color-promo;
+    
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(720deg); }
+  }
+  
