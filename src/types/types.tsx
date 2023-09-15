@@ -858,18 +858,20 @@ export type PizzaCartProps = {
   image: string;
   name: string;
   size: string;
-  price: string;
+  price: number;
   quantity: number;
-  discount: string;
+  discount: number;
   keyRequest: string;
   idRequets: string;
+  setTotalPrice: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export type ProductCartProps = {
   image: string;
   name: string;
-  price: string;
+  price: number;
   quantity: number;
   keyRequest: string;
   idRequets: string;
+  setTotalPrice: React.Dispatch<React.SetStateAction<string>>;
 };

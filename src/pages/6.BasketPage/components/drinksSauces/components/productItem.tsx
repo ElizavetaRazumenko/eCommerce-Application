@@ -6,19 +6,17 @@ import { ProductCartProps } from '../../../../../types/types';
 
 import s from '../drinkSauce.module.scss';
 const ProductItem = (props: ProductCartProps) => {
-  const [quantity, setQuantity] = useState(`${props.quantity}`);
+  const [quantity, setQuantity] = useState(props.quantity);
   const increaseQuantity = async () => {
-    const sum = quantity;
-    setQuantity('-');
-    await addProductsToCart(props.keyRequest);
-    setQuantity(`${+sum + 1}`);
+    setQuantity(quantity + 1);
+    const cart = await addProductsToCart(props.keyRequest);
+    props.setTotalPrice((cart!.totalPrice.centAmount / 100).toFixed(2));
   };
   const reduceQuantity = async () => {
-    if (+quantity > 1) {
-      const sum = quantity;
-      setQuantity('-');
-      await removeOneProductOnCart(props.idRequets, `${props.keyRequest}-`);
-      setQuantity(`${+sum - 1}`);
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+      const cart = await removeOneProductOnCart(props.idRequets, `${props.keyRequest}-`);
+      props.setTotalPrice((cart!.totalPrice.centAmount / 100).toFixed(2));
     }
   };
   return (
@@ -38,7 +36,7 @@ const ProductItem = (props: ProductCartProps) => {
             ></div>
           </div>
         </div>
-        <p className={s.params}>{`Total cost: ${props.price}`}</p>
+        <p className={s.params}>{`Total cost: ${(props.price * +quantity).toFixed(2)}$`}</p>
         <button className={s.btn}>Remove</button>
       </div>
     </div>

@@ -6,19 +6,20 @@ import { PizzaCartProps } from '../../../../../types/types';
 import s from '../pizzas.module.scss';
 
 const PizzaItem = (props: PizzaCartProps) => {
-  const [quantity, setQuantity] = useState(`${props.quantity}`);
+  const [quantity, setQuantity] = useState(props.quantity);
   const increaseQuantity = async () => {
-    const sum = quantity;
-    setQuantity('-');
-    await addPizzaToCart(props.keyRequest, props.size[0].toLowerCase());
-    setQuantity(`${+sum + 1}`);
+    setQuantity(quantity + 1);
+    const cart = await addPizzaToCart(props.keyRequest, props.size[0].toLowerCase());
+    props.setTotalPrice((cart!.totalPrice.centAmount / 100).toFixed(2));
   };
   const reduceQuantity = async () => {
-    if (+quantity > 1) {
-      const sum = quantity;
-      setQuantity('-');
-      await removeOneProductOnCart(props.idRequets, `${props.keyRequest}-${props.size[0]}`);
-      setQuantity(`${+sum - 1}`);
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+      const cart = await removeOneProductOnCart(
+        props.idRequets,
+        `${props.keyRequest}-${props.size[0]}`,
+      );
+      props.setTotalPrice((cart!.totalPrice.centAmount / 100).toFixed(2));
     }
   };
   return (
@@ -39,11 +40,11 @@ const PizzaItem = (props: PizzaCartProps) => {
         </div>
         <p className={s.params}>Total cost:</p>
         <div className={s.price_wrapper}>
-          <p className={props.discount !== '' ? `${s.params} ${s.non_discount}` : s.params}>
-            {props.price}
+          <p className={props.discount !== 0 ? `${s.params} ${s.non_discount}` : s.params}>
+            {`${(props.price * +quantity).toFixed(2)}$`}
           </p>
-          <p className={props.discount !== '' ? `${s.params} ${s.discount}` : s.hidden}>
-            {props.discount}
+          <p className={props.discount !== 0 ? `${s.params} ${s.discount}` : s.hidden}>
+            {`${(props.discount * +quantity).toFixed(2)}$`}
           </p>
         </div>
         <button className={s.btn}>Remove</button>

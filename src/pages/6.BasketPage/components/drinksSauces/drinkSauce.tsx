@@ -4,11 +4,13 @@ import ProductItem from './components/productItem';
 
 import { keysPizza } from '../../../../entities/product';
 
-const DrinksSauceItem = () => {
+const DrinksSauceItem = (props: {
+  setTotalPrice: React.Dispatch<React.SetStateAction<string>>;
+}) => {
   const cart = JSON.parse(localStorage.getItem('Cart')!) as Cart;
   const cartItems = cart.lineItems;
   const getPrice = (value: number) => {
-    return `${(value / 100).toFixed(2)}$`;
+    return value / 100;
   };
 
   const productItems = cartItems.filter((el) => !keysPizza.includes(el.productKey!));
@@ -24,6 +26,7 @@ const DrinksSauceItem = () => {
             price={getPrice(product.price.value.centAmount)}
             keyRequest={product.productKey!}
             idRequets={product.id}
+            setTotalPrice={props.setTotalPrice}
           />
         );
       })}

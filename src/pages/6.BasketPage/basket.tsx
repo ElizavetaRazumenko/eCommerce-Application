@@ -32,10 +32,10 @@ const BasketPage = (props: CartPropsType) => {
           <p className={s.header_message}>Added products</p>
           <div className={s.products}>
             <div className={s.pizzas}>
-              <Pizza />
+              <Pizza setTotalPrice={setTotalPrice} />
             </div>
             <div className={s.sauces_drinks}>
-              <DrinksSauceItem />
+              <DrinksSauceItem setTotalPrice={setTotalPrice} />
             </div>
           </div>
           <div className={s.info_utils}>

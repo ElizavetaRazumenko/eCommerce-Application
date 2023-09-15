@@ -4,7 +4,7 @@ import PizzaItem from './components/pizzaItem';
 
 import { keysPizza } from '../../../../entities/product';
 
-const Pizza = () => {
+const Pizza = (props: { setTotalPrice: React.Dispatch<React.SetStateAction<string>> }) => {
   const cart = JSON.parse(localStorage.getItem('Cart')!) as Cart;
   const cartItems = cart.lineItems;
 
@@ -12,12 +12,12 @@ const Pizza = () => {
     return `${sku.slice(-1)}-size`;
   };
   const getPrice = (value: number) => {
-    return `${(value / 100).toFixed(2)}$`;
+    return value / 100;
   };
   const defineDiskountPrice = (params: DiscountedPrice | undefined) => {
     if (params) {
-      return `${(params!.value.centAmount / 100).toFixed(2)}$`;
-    } else return '';
+      return params!.value.centAmount / 100;
+    } else return 0;
   };
 
   const isDiskountPrice = (params: DiscountedPrice | undefined) => {
@@ -38,10 +38,11 @@ const Pizza = () => {
             discount={
               isDiskountPrice(pizza.price.discounted)
                 ? defineDiskountPrice(pizza.price.discounted)
-                : ''
+                : 0
             }
             keyRequest={pizza.productKey!}
             idRequets={pizza.id}
+            setTotalPrice={props.setTotalPrice}
           />
         );
       })}
