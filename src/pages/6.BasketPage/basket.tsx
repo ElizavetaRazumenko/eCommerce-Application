@@ -13,14 +13,19 @@ import { getCurrentAnonimousCart } from '../../shared/cartSession';
 import { CartPropsType } from '../../types/types';
 
 const BasketPage = (props: CartPropsType) => {
+  const cartString = localStorage.getItem('Cart');
+  const cart = JSON.parse(cartString!) as Cart;
+  const cartItems = cart.lineItems as LineItem[];
+  const [totalPrice, setTotalPrice] = useState('');
+  const [pizzasItems, setPizzasItems] = useState<LineItem[]>([]);
+  const [noPizzasItems, setNoPizzasItems] = useState<LineItem[]>([]);
   const getCartsInfo = async () => {
     const cartResponse = await getCurrentAnonimousCart();
     const cart = cartResponse!.body;
     localStorage.setItem('Cart', JSON.stringify(cart));
     setTotalPrice((cart.totalPrice.centAmount / 100).toFixed(2));
-    cartItems.forEach((item) => {
-      keysPizza.includes(item.productKey!) ? pizzasItems.push(item) : noPizzasItems.push(item);
-    });
+    // setPizzasItems(cartItems.filter((el) => keysPizza.includes(el.productKey!)) || []);
+    // setNoPizzasItems(cartItems.filter((el) => !keysPizza.includes(el.productKey!)) || []);
   };
   useEffect(() => {
     getCartsInfo();
@@ -29,12 +34,6 @@ const BasketPage = (props: CartPropsType) => {
   const openPopUp = () => {
     setisOpenPopUp(true);
   };
-  const cartString = localStorage.getItem('Cart');
-  const cart = JSON.parse(cartString!) as Cart;
-  const cartItems = cart.lineItems as LineItem[];
-  const [totalPrice, setTotalPrice] = useState('');
-  const pizzasItems: LineItem[] = [];
-  const noPizzasItems: LineItem[] = [];
   return (
     <>
       <PopUp isOpen={isOpenPopUp} setIsOpen={setisOpenPopUp} />
