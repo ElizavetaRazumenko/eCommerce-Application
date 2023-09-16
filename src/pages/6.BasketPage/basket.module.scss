@@ -109,22 +109,24 @@
   color: $main-light;
    font-weight: 700;
    font-style: normal;
-   width: 150px;
+   width: 170px;
    height: 40px;
  }
  .add_promo_btn {
   cursor: pointer;
   box-sizing: border-box;
-  padding: 5px 10px;
-    background-color: $background_to;
+  padding: 5px 15px;
+    background-color: $main-light;
     margin-left: 15px;
-    color: $ligth-green;
+    color: $main-grey;
     font-weight: 700;
     font-size: .8rem;
     border-radius: 8px;
     transition: .5s;
+    border: none;
     &:hover {
-      background-color: $main-grey;
+      background-color: $white;
+      color: $main-dark-color;
     }
  }
 

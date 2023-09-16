@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import s from './nav.module.scss';
 
+import { cartLength } from '../../../../../shared/cartSession';
+
 import { HeaderPropsType } from '../../../../../types/types';
 
 const Nav = (props: HeaderPropsType) => {
+  const [cartProductCount] = useState<number>(cartLength);
   const [isOpen, setIsOpen] = useState(false);
   const toggleBurgerMenu = () => {
     if (isOpen) {
@@ -72,7 +75,7 @@ const Nav = (props: HeaderPropsType) => {
               <div className={s.cart_wrapper}>
                 <div className={s.cart_img}></div>
                 <div className={s.product_amount_wrap}>
-                  <span className={s.product_amount}>1</span>
+                  <span className={s.product_amount}>{cartProductCount}</span>
                 </div>
               </div>
             </NavLink>

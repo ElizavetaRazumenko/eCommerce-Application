@@ -110,6 +110,8 @@ export const getAnonymousCarts = async () => {
   return customer;
 };
 
+export let cartLength = JSON.parse(localStorage.getItem('CartItems') || '').length || 0;
+
 export const addPizzaToCart = async (key: string, size: string) => {
   try {
     if (!localStorage.getItem('idCarts')) {
@@ -129,6 +131,7 @@ export const addPizzaToCart = async (key: string, size: string) => {
       productOnCart[key] = true;
     });
     cart = await getCurrentAnonimousCart();
+    cartLength = cart!.body.lineItems.length;
     localStorage.setItem('CartIsEmpty', 'false');
     localStorage.setItem('Cart', JSON.stringify(cart!.body));
     localStorage.setItem('CartItems', JSON.stringify(items));
@@ -155,6 +158,7 @@ export const addProductsToCart = async (key: string) => {
       productOnCart[key] = true;
     });
     cart = await getCurrentAnonimousCart();
+    cartLength = cart!.body.lineItems.length;
     localStorage.setItem('CartIsEmpty', 'false');
     localStorage.setItem('Cart', JSON.stringify(cart!.body));
     localStorage.setItem('CartItems', JSON.stringify(items));
@@ -184,6 +188,7 @@ export const removeProductOnCart = async (lineItemId: string, sku: string) => {
     })
     .execute();
   const updateCart = await getCurrentAnonimousCart();
+  cartLength = updateCart!.body.lineItems.length;
   productOnCart[sku as KeyObject] = false;
   if (updateCart!.body.lineItems.length === 0) localStorage.setItem('CartIsEmpty', 'true');
   localStorage.setItem('Cart', JSON.stringify(cart!.body));
@@ -212,6 +217,7 @@ export const removeOneProductOnCart = async (lineItemId: string, sku: string) =>
     })
     .execute();
   const updateCart = await getCurrentAnonimousCart();
+  cartLength = updateCart!.body.lineItems.length;
   productOnCart[sku as KeyObject] = false;
   if (updateCart!.body.lineItems.length === 0) localStorage.setItem('CartIsEmpty', 'true');
   localStorage.setItem('Cart', JSON.stringify(cart!.body));
@@ -239,6 +245,7 @@ export const removeProductOnCartForCart = async (lineItemId: string, sku: string
     })
     .execute();
   const updateCart = await getCurrentAnonimousCart();
+  cartLength = updateCart!.body.lineItems.length;
   productOnCart[sku as KeyObject] = false;
   if (updateCart!.body.lineItems.length === 0) localStorage.setItem('CartIsEmpty', 'true');
   localStorage.setItem('Cart', JSON.stringify(cart!.body));
@@ -259,6 +266,7 @@ export const requestForClearCart = async () => {
       },
     })
     .execute();
+  cartLength = 0;
   localStorage.setItem('CartIsEmpty', 'true');
   localStorage.removeItem('Cart');
   localStorage.removeItem('idCarts');

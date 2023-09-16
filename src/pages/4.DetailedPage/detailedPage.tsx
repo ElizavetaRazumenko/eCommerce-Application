@@ -54,7 +54,7 @@ const DetailedPage = () => {
         await addPizzaToCart(key!.toUpperCase(), size!);
       }
       setWaiting('none');
-      setButtonMessage('Remove');
+      setButtonMessage('Add to cart');
       setOnCart(true);
     }
   };
