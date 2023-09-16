@@ -31,7 +31,6 @@ const ProductItem = (props: ProductCartProps) => {
     elementRef.current!.classList.add(s.hidden);
     props.setTotalPrice((cart!.totalPrice.centAmount / 100).toFixed(2));
     if (cart.lineItems.length === 0) {
-      localStorage.setItem('CartIsEmpty', 'true');
       navigate('/catalog');
     }
   };

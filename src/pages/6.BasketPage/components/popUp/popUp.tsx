@@ -1,11 +1,18 @@
+import { useNavigate } from 'react-router';
+
 import s from './popUp.module.scss';
+
+import { requestForClearCart } from '../../../../shared/cartSession';
 
 const PopUp = (props: {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const clearCart = () => {
+  const navigate = useNavigate();
+  const clearCart = async () => {
+    await requestForClearCart();
     props.setIsOpen(false);
+    navigate('/catalog');
   };
   const closePopUp = () => {
     props.setIsOpen(false);

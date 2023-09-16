@@ -245,3 +245,22 @@ export const removeProductOnCartForCart = async (lineItemId: string, sku: string
   localStorage.setItem('CartItems', JSON.stringify(updateCart!.body.lineItems));
   return updateCart!.body;
 };
+
+export const requestForClearCart = async () => {
+  const cart = await getCurrentAnonimousCart();
+  const version = cart!.body.version;
+  const id = localStorage.getItem('idCarts')!.slice(1, -1);
+  await apiRoot
+    .carts()
+    .withId({ ID: id })
+    .delete({
+      queryArgs: {
+        version: version,
+      },
+    })
+    .execute();
+  localStorage.setItem('CartIsEmpty', 'true');
+  localStorage.removeItem('Cart');
+  localStorage.removeItem('idCarts');
+  localStorage.removeItem('CartItems');
+};
