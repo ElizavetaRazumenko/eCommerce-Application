@@ -56,24 +56,6 @@ const SectionPromo = () => {
           </button>
         ))}
       </div>
-      <div className={s.promo_input}>
-        <input
-          type='text'
-          placeholder='Your promo'
-          value={promoCode}
-          onChange={handlePromoCodeChange}
-        />
-        <button onClick={applyPromoCode} className={s.btn_apply}>
-          Apply
-        </button>
-      </div>
-      {isValidPromo ? (
-        <p className={s.valid_promo}>
-          Applied Promo: {selectedPromoCode?.code} - {selectedPromoCode?.description}
-        </p>
-      ) : (
-        <p className={s.invalid_promo}>Invalid promo code. Please try again.</p>
-      )}
     </section>
   );
 };
