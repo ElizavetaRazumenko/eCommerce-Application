@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-
 import { NavLink } from 'react-router-dom';
 
 import s from './sauce.module.scss';
@@ -16,32 +15,51 @@ const Sauce = (props: SauceTypeCatalog) => {
 
   const [onCart, setOnCart] = useState(props.onCart);
   const [buttonMessage, setButtonMessage] = useState(props.onCart ? 'Remove' : 'Add to cart');
-  const [waiting, setWaiting] = useState('none');
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (inView) {
+      setLoading(true);
+    }
+  }, [inView]);
 
   const key = infoProducts.sauces.find((el) => el.name === props.name)?.key;
+
   const addToCart = async () => {
     if (!onCart) {
-      setWaiting('waiting');
       setButtonMessage('');
       await addProductsToCart(key!);
-      setWaiting('none');
       setButtonMessage('Remove');
       setOnCart(true);
     } else {
-      setWaiting('waiting');
       setButtonMessage('');
       setOnCart(false);
       await removeProductOnCart(productIdOnCart[props.sku as KeyObject], props.sku);
       setButtonMessage('Add to cart');
-      setWaiting('none');
     }
   };
+
   const mainIngredientsStartIndex = props.description.indexOf('Main ingredients') + 18;
+
   return (
     <div className={s.item_sauce} ref={ref}>
+      {isLoading && (
+        <div className={s.indicator}>
+          <div className={s.indicator_loader}></div>
+        </div>
+      )}
       {inView && (
         <>
-          <img src={props.link[0].url} className={s.sauce_img} alt='souce' />
+          <img
+            src={props.link[0].url}
+            className={s.sauce_img}
+            alt='sauce'
+            onLoad={() => {
+              setTimeout(() => {
+                setLoading(false);
+              }, 1000);
+            }}
+          />
           <div className={s.hover_link}>
             <NavLink to={`/details/${key?.toLowerCase()}`} className={s.details_link}>
               details
@@ -55,7 +73,6 @@ const Sauce = (props: SauceTypeCatalog) => {
             <div className={s.sauce_price}>{props.price}</div>
             <button className={s.btn_add_sauce} onClick={addToCart}>
               {buttonMessage}
-              <div className={s[waiting]}></div>
             </button>
           </div>
         </>
