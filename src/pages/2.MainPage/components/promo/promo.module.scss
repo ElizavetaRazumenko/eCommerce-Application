@@ -4,18 +4,21 @@
 
 .section_promo {
  padding-bottom: 100px;
+ @media (max-width: 670px) {
+  padding-top: 50px;
+   }
 }
 
 .title_promo {
      color: $color-parsley;
     margin-bottom: 30px;
+     @media (max-width: 566px) {
+      font-size: 1rem;
+       }
 }
 
 .promo_list  {
     display: flex;
-    @media (max-width: 670px) {
-        flex-direction: column;
-       }
 }
 
 .promocode {
@@ -27,7 +30,7 @@
     width: 170px;
     height: max-content;
     @media (max-width: 670px) {
-        margin-right: 0;
+        margin-right: 10px;
         margin-bottom: 20px;
        }
 }
