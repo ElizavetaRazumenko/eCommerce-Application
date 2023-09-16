@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router';
 
 import {
   addPizzaToCart,
@@ -10,6 +11,7 @@ import { PizzaCartProps } from '../../../../../types/types';
 import s from '../pizzas.module.scss';
 
 const PizzaItem = (props: PizzaCartProps) => {
+  const navigate = useNavigate();
   const [quantity, setQuantity] = useState(props.quantity);
   const elementRef = useRef<HTMLDivElement>(null);
   const increaseQuantity = async () => {
@@ -34,6 +36,10 @@ const PizzaItem = (props: PizzaCartProps) => {
     );
     elementRef.current!.classList.add(s.hidden);
     props.setTotalPrice((cart!.totalPrice.centAmount / 100).toFixed(2));
+    if (cart.lineItems.length === 0) {
+      localStorage.setItem('CartIsEmpty', 'true');
+      navigate('/catalog');
+    }
   };
   return (
     <div className={s.pizza_wrapper} ref={elementRef}>

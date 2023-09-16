@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router';
 
 import {
   addProductsToCart,
@@ -10,6 +11,7 @@ import { ProductCartProps } from '../../../../../types/types';
 
 import s from '../drinkSauce.module.scss';
 const ProductItem = (props: ProductCartProps) => {
+  const navigate = useNavigate();
   const elementRef = useRef<HTMLDivElement>(null);
   const [quantity, setQuantity] = useState(props.quantity);
   const increaseQuantity = async () => {
@@ -28,6 +30,10 @@ const ProductItem = (props: ProductCartProps) => {
     const cart = await removeProductOnCartForCart(props.idRequets, `${props.keyRequest}-`);
     elementRef.current!.classList.add(s.hidden);
     props.setTotalPrice((cart!.totalPrice.centAmount / 100).toFixed(2));
+    if (cart.lineItems.length === 0) {
+      localStorage.setItem('CartIsEmpty', 'true');
+      navigate('/catalog');
+    }
   };
   return (
     <div className={s.wrapper} ref={elementRef}>
