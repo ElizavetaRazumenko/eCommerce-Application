@@ -6,7 +6,7 @@
     padding: 15px 20px;
     background-color: $main-light;
     border-radius: 20px;
-    width: 330px;
+    width: max-content;
     display: flex;
     justify-content: space-between;
     margin: 25px 0;
@@ -93,6 +93,14 @@
         background-color: rgba($main-grey, .8);
     }
   }
+  
+  .block {
+    cursor: auto;
+    background-color: rgba($main-grey, .3);
+    &:hover {
+        background-color: rgba($main-grey, .3);
+    }
+  }
 
   .up {
     border-top-left-radius: 5px;
@@ -104,4 +112,8 @@
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     background-image: url('../../../../assets/png/downArrowWhite.png');
+  }
+
+  .hidden {
+    display: none;
   }

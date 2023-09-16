@@ -851,3 +851,27 @@ export type KeyObject =
   | 'DR-1-4-'
   | 'DR-1-5-'
   | 'DR-1-6-';
+
+//                                CART PAGE
+
+export type PizzaCartProps = {
+  image: string;
+  name: string;
+  size: string;
+  price: number;
+  quantity: number;
+  discount: number;
+  keyRequest: string;
+  idRequets: string;
+  setTotalPrice: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export type ProductCartProps = {
+  image: string;
+  name: string;
+  price: number;
+  quantity: number;
+  keyRequest: string;
+  idRequets: string;
+  setTotalPrice: React.Dispatch<React.SetStateAction<string>>;
+};

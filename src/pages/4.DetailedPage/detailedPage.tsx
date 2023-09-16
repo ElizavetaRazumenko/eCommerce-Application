@@ -42,9 +42,9 @@ const DetailedPage = () => {
   const keySKU = getSKU(key!.toUpperCase());
   const [onCart, setOnCart] = useState(productOnCart[keySKU as KeyObject]);
   const [waiting, setWaiting] = useState('hidden');
-  const [buttonMessage, setButtonMessage] = useState(onCart ? 'Remove' : 'Add to cart');
+  const [buttonMessage, setButtonMessage] = useState('Add to cart');
 
-  const toCart = async () => {
+  const addToCart = async () => {
     if (!onCart) {
       setWaiting('waiting');
       setButtonMessage('');
@@ -56,11 +56,15 @@ const DetailedPage = () => {
       setWaiting('none');
       setButtonMessage('Remove');
       setOnCart(true);
-    } else {
+    }
+  };
+
+  const removeFromCart = async () => {
+    if (onCart) {
       setWaiting('waiting');
       setButtonMessage('');
       setOnCart(false);
-      await removeProductOnCart(productIdOnCart[keySKU as KeyObject]);
+      await removeProductOnCart(productIdOnCart[keySKU as KeyObject], keySKU);
       setButtonMessage('Add to cart');
       setWaiting('none');
     }
@@ -186,9 +190,15 @@ const DetailedPage = () => {
               {productDiscountPrice}
             </p>
           </div>
-          <div className={s.button} onClick={toCart}>
-            <span>{buttonMessage}</span>
-            <div className={s[waiting]}></div>
+          <div className={s.button_wrapper}>
+            <div
+              className={onCart ? `${s.button} ${s.button_block}` : s.button}
+              onClick={addToCart}
+            >
+              <span>{buttonMessage}</span>
+              <div className={s[waiting]}></div>
+            </div>
+            <div className={onCart ? s.button_delete : s.hidden} onClick={removeFromCart}></div>
           </div>
         </div>
       </div>

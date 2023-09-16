@@ -23,7 +23,7 @@ import CatalogNavToSauces from '../pages/3.CatalogPage/categotiesRoutes/Food/Sau
 import CatalogPageLayout from '../pages/3.CatalogPage/Layout/catalogLayuot';
 import DetailedPage from '../pages/4.DetailedPage/detailedPage';
 import ProfilePage from '../pages/5.UserProfile/profile';
-import BasketPage from '../pages/6.BasketPage/basket';
+import BasketRouter from '../pages/6.BasketPage/basketRouter/basketRouter';
 import ErrorPage from '../pages/7.ErrorPage/error';
 import AboutUsPage from '../pages/8.AboutUsPage/aboutUs';
 import Layout from '../pages/globalComponents/layout/layout';
@@ -41,7 +41,6 @@ const App = () => {
   useEffect(() => {
     products();
   }, []);
-  console.log('Попадаем в App');
   const cartItemsString = localStorage.getItem('CartItems');
   if (cartItemsString) {
     const cartItems = JSON.parse(cartItemsString) as LineItem[];
@@ -50,7 +49,6 @@ const App = () => {
         const key = el.variant.sku as KeyObject;
         productOnCart[key] = true;
         productIdOnCart[key] = el.id;
-        console.log(`Строим в апе данные ${productOnCart['PS-1-2-1-']}`);
       }
     });
   }
@@ -178,7 +176,7 @@ const App = () => {
             <Route path='details/:key' element={<DetailedPage />} />
             <Route path='details/:key/:size' element={<DetailedPage />} />
             <Route path='/profile' element={profileRedirection()} />
-            <Route path='/cart' element={<BasketPage userState={userState} />} />
+            <Route path='/cart' element={<BasketRouter userState={userState} />} />
             <Route path='/about-us' element={<AboutUsPage />} />
             <Route path='*' element={<ErrorPage />} />
           </Route>

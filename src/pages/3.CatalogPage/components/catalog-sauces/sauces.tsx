@@ -11,8 +11,6 @@ const CatalogSauces = (props: CatalogSaucesProps) => {
   );
   const sauceArray = saucesItems.map((sauce) => {
     let sauceCost = (sauce.masterVariant.prices[0].value.centAmount / 100).toFixed(2) + '$';
-    console.log('строим соусы');
-    console.log(`Имея данные: ${productOnCart['PS-1-2-1-']}`);
     return (
       <Sauce
         key={sauce.key}

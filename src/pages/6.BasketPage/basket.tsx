@@ -1,14 +1,25 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from 'react';
 
 import s from './basket.module.scss';
 import DrinksSauceItem from './components/drinksSauces/drinkSauce';
-import Pizza from './components/pizza/pizza';
+import Pizza from './components/pizza/pizzas';
 import PopUp from './components/popUp/popUp';
 
+import { getCurrentAnonimousCart } from '../../shared/cartSession';
 import { CartPropsType } from '../../types/types';
 
 const BasketPage = (props: CartPropsType) => {
+  const [totalPrice, setTotalPrice] = useState('');
+  const getCartsInfo = async () => {
+    const cartResponse = await getCurrentAnonimousCart();
+    const cart = cartResponse!.body;
+    localStorage.setItem('Cart', JSON.stringify(cart));
+    setTotalPrice((cart.totalPrice.centAmount / 100).toFixed(2));
+  };
+  useEffect(() => {
+    getCartsInfo();
+  }, []);
   const [isOpenPopUp, setisOpenPopUp] = useState(false);
   const openPopUp = () => {
     setisOpenPopUp(true);
@@ -17,33 +28,23 @@ const BasketPage = (props: CartPropsType) => {
     <>
       <PopUp isOpen={isOpenPopUp} setIsOpen={setisOpenPopUp} />
       <div className={s.basket_wrapper}>
-        <div className={s.hidden}>
-          <p className={s.message}>
-            Your cart is currently empty! We suggest going to the catalog page to place an order.
-          </p>
-          <div className={s.button_wrapper}>
-            <Link to='/catalog' className={s.button}>
-              To catalog
-            </Link>
-          </div>
-        </div>
         <div className={s.full_cart_wrapper}>
           <p className={s.header_message}>Added products</p>
           <div className={s.products}>
             <div className={s.pizzas}>
-              <Pizza />
+              <Pizza setTotalPrice={setTotalPrice} />
             </div>
             <div className={s.sauces_drinks}>
-              <DrinksSauceItem />
+              <DrinksSauceItem setTotalPrice={setTotalPrice} />
             </div>
           </div>
           <div className={s.info_utils}>
             <form>
               <input type='text' className={s.promo_input} placeholder='Promocode' />
             </form>
-            <p className={s.total_cost}>Total cost: 65.00$</p>
+            <p className={s.total_cost}>{`Total cost: ${totalPrice}$`}</p>
             <div className={s.button_delete} onClick={openPopUp}>
-              Empty cart
+              Clear cart
             </div>
           </div>
         </div>

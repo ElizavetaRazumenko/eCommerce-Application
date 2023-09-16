@@ -115,7 +115,7 @@ export const addPizzaToCart = async (key: string, size: string) => {
     if (!localStorage.getItem('idCarts')) {
       await createAnonymousCarts();
     }
-    const cart = await getCurrentAnonimousCart();
+    let cart = await getCurrentAnonimousCart();
     const version = cart!.body.version;
     const product = await getProduct(key);
     let sku = product?.masterVariant.sku as string;
@@ -128,7 +128,11 @@ export const addPizzaToCart = async (key: string, size: string) => {
       productIdOnCart[key] = el.id;
       productOnCart[key] = true;
     });
+    cart = await getCurrentAnonimousCart();
+    localStorage.setItem('CartIsEmpty', 'false');
+    localStorage.setItem('Cart', JSON.stringify(cart!.body));
     localStorage.setItem('CartItems', JSON.stringify(items));
+    return cart!.body;
   } catch (e) {
     if (e instanceof Error) console.log(e.message);
   }
@@ -139,7 +143,7 @@ export const addProductsToCart = async (key: string) => {
     if (!localStorage.getItem('idCarts')) {
       await createAnonymousCarts();
     }
-    const cart = await getCurrentAnonimousCart();
+    let cart = await getCurrentAnonimousCart();
     const version = cart!.body.version;
     const product = await getProduct(key);
     let sku = product?.masterVariant.sku as string;
@@ -150,13 +154,17 @@ export const addProductsToCart = async (key: string) => {
       productIdOnCart[key] = el.id;
       productOnCart[key] = true;
     });
+    cart = await getCurrentAnonimousCart();
+    localStorage.setItem('CartIsEmpty', 'false');
+    localStorage.setItem('Cart', JSON.stringify(cart!.body));
     localStorage.setItem('CartItems', JSON.stringify(items));
+    return cart!.body;
   } catch (e) {
     if (e instanceof Error) console.log(e.message);
   }
 };
 
-export const removeProductOnCart = async (lineItemId: string) => {
+export const removeProductOnCart = async (lineItemId: string, sku: string) => {
   const cart = await getCurrentAnonimousCart();
   const version = cart!.body.version;
   const id = localStorage.getItem('idCarts')!.slice(1, -1);
@@ -176,11 +184,83 @@ export const removeProductOnCart = async (lineItemId: string) => {
     })
     .execute();
   const updateCart = await getCurrentAnonimousCart();
-  const items: LineItem[] = updateCart!.body.lineItems;
-  items.forEach((el) => {
-    const key = el.variant.sku as KeyObject;
-    productOnCart[key] = false;
-  });
+  productOnCart[sku as KeyObject] = false;
+  if (updateCart!.body.lineItems.length === 0) localStorage.setItem('CartIsEmpty', 'true');
+  localStorage.setItem('Cart', JSON.stringify(cart!.body));
   localStorage.setItem('CartItems', JSON.stringify(updateCart!.body.lineItems));
   return product;
+};
+
+export const removeOneProductOnCart = async (lineItemId: string, sku: string) => {
+  const cart = await getCurrentAnonimousCart();
+  const version = cart!.body.version;
+  const id = localStorage.getItem('idCarts')!.slice(1, -1);
+  await apiRoot
+    .carts()
+    .withId({ ID: id })
+    .post({
+      body: {
+        version: version,
+        actions: [
+          {
+            action: 'removeLineItem',
+            lineItemId: lineItemId,
+            quantity: 1,
+          },
+        ],
+      },
+    })
+    .execute();
+  const updateCart = await getCurrentAnonimousCart();
+  productOnCart[sku as KeyObject] = false;
+  if (updateCart!.body.lineItems.length === 0) localStorage.setItem('CartIsEmpty', 'true');
+  localStorage.setItem('Cart', JSON.stringify(cart!.body));
+  localStorage.setItem('CartItems', JSON.stringify(updateCart!.body.lineItems));
+  return updateCart!.body;
+};
+
+export const removeProductOnCartForCart = async (lineItemId: string, sku: string) => {
+  const cart = await getCurrentAnonimousCart();
+  const version = cart!.body.version;
+  const id = localStorage.getItem('idCarts')!.slice(1, -1);
+  await apiRoot
+    .carts()
+    .withId({ ID: id })
+    .post({
+      body: {
+        version: version,
+        actions: [
+          {
+            action: 'removeLineItem',
+            lineItemId: lineItemId,
+          },
+        ],
+      },
+    })
+    .execute();
+  const updateCart = await getCurrentAnonimousCart();
+  productOnCart[sku as KeyObject] = false;
+  if (updateCart!.body.lineItems.length === 0) localStorage.setItem('CartIsEmpty', 'true');
+  localStorage.setItem('Cart', JSON.stringify(cart!.body));
+  localStorage.setItem('CartItems', JSON.stringify(updateCart!.body.lineItems));
+  return updateCart!.body;
+};
+
+export const requestForClearCart = async () => {
+  const cart = await getCurrentAnonimousCart();
+  const version = cart!.body.version;
+  const id = localStorage.getItem('idCarts')!.slice(1, -1);
+  await apiRoot
+    .carts()
+    .withId({ ID: id })
+    .delete({
+      queryArgs: {
+        version: version,
+      },
+    })
+    .execute();
+  localStorage.setItem('CartIsEmpty', 'true');
+  localStorage.removeItem('Cart');
+  localStorage.removeItem('idCarts');
+  localStorage.removeItem('CartItems');
 };

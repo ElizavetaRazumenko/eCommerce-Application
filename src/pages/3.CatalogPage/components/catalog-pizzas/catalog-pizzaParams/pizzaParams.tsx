@@ -22,7 +22,7 @@ const PizzaParams = (props: PizzaParamsCatalogType) => {
     if (onCart) {
       setWaiting('waiting');
       setOnCart(false);
-      await removeProductOnCart(productIdOnCart[props.sku as KeyObject]);
+      await removeProductOnCart(productIdOnCart[props.sku as KeyObject], props.sku);
       setWaiting('none');
     }
   };
