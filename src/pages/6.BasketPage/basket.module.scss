@@ -109,8 +109,23 @@
   color: $main-light;
    font-weight: 700;
    font-style: normal;
-   width: 190px;
+   width: 150px;
    height: 40px;
+ }
+ .add_promo_btn {
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 5px 10px;
+    background-color: $background_to;
+    margin-left: 15px;
+    color: $ligth-green;
+    font-weight: 700;
+    font-size: .8rem;
+    border-radius: 8px;
+    transition: .5s;
+    &:hover {
+      background-color: $main-grey;
+    }
  }
 
  .button_delete {

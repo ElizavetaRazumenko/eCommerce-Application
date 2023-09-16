@@ -40,7 +40,8 @@ const BasketPage = (props: CartPropsType) => {
           </div>
           <div className={s.info_utils}>
             <form>
-              <input type='text' className={s.promo_input} placeholder='Promocode' />
+              <input type='text' className={s.promo_input} placeholder='Promo code' />
+              <button className={s.add_promo_btn}>Apply</button>
             </form>
             <p className={s.total_cost}>{`Total cost: ${totalPrice}$`}</p>
             <div className={s.button_delete} onClick={openPopUp}>
