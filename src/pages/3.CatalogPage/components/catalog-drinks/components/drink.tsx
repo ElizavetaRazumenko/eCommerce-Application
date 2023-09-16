@@ -1,5 +1,4 @@
-
-import { useRef, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { NavLink } from 'react-router-dom';
 
@@ -17,24 +16,29 @@ const Drink = (props: DrinkTypeCatalog) => {
   const [onCart, setOnCart] = useState(props.onCart);
   const [buttonMessage, setButtonMessage] = useState(props.onCart ? 'Remove' : 'Add to cart');
   const [isLoading, setLoading] = useState(true);
+  const [waiting, setWaiting] = useState('none');
 
   const key = infoProducts.drinks.find((el) => el.name === props.name)?.key;
 
   const addToCart = async () => {
     if (!onCart) {
+      setWaiting('waiting');
       setLoading(true);
       setButtonMessage('');
       await addProductsToCart(key!);
       setLoading(false);
+      setWaiting('none');
       setButtonMessage('Remove');
       setOnCart(true);
     } else {
+      setWaiting('waiting');
       setLoading(true);
       setButtonMessage('');
       setOnCart(false);
       await removeProductOnCart(productIdOnCart[props.sku as KeyObject], props.sku);
       setButtonMessage('Add to cart');
       setLoading(false);
+      setWaiting('none');
     }
   };
 

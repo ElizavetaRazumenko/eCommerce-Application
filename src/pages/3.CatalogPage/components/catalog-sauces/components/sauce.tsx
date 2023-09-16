@@ -16,6 +16,7 @@ const Sauce = (props: SauceTypeCatalog) => {
   const [onCart, setOnCart] = useState(props.onCart);
   const [buttonMessage, setButtonMessage] = useState(props.onCart ? 'Remove' : 'Add to cart');
   const [isLoading, setLoading] = useState(true);
+  const [waiting, setWaiting] = useState('none');
 
   useEffect(() => {
     if (inView) {
@@ -27,14 +28,18 @@ const Sauce = (props: SauceTypeCatalog) => {
 
   const addToCart = async () => {
     if (!onCart) {
+      setWaiting('waiting');
       setButtonMessage('');
       await addProductsToCart(key!);
       setButtonMessage('Remove');
+      setWaiting('none');
       setOnCart(true);
     } else {
+      setWaiting('waiting');
       setButtonMessage('');
       setOnCart(false);
       await removeProductOnCart(productIdOnCart[props.sku as KeyObject], props.sku);
+      setWaiting('none');
       setButtonMessage('Add to cart');
     }
   };
@@ -73,6 +78,7 @@ const Sauce = (props: SauceTypeCatalog) => {
             <div className={s.sauce_price}>{props.price}</div>
             <button className={s.btn_add_sauce} onClick={addToCart}>
               {buttonMessage}
+              <div className={s[waiting]}></div>
             </button>
           </div>
         </>
