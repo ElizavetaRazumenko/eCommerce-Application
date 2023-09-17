@@ -29,6 +29,12 @@ const BasketPage = (props: CartPropsType) => {
     if (promoCodes.includes(inputRef.current!.value)) {
       const cart = await submitPromoCode(inputRef.current!.value);
       const updatePromoPrice = (cart.totalPrice.centAmount / 100).toFixed(2);
+      setInputValue('');
+      if (updatePromoPrice === discountPrice) {
+        setErrorMessage(
+          'The promo code has already been activated or does not affect the items in the cart',
+        );
+      }
       setDiskountPrice(updatePromoPrice);
     }
   };

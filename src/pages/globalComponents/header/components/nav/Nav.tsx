@@ -15,6 +15,7 @@ const Nav = (props: HeaderPropsType) => {
     }
   };
   useEffect(() => {
+    onStorage();
     window.addEventListener('storage', onStorage);
     return () => window.removeEventListener('storage', onStorage);
   }, []);
