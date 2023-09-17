@@ -6,9 +6,7 @@ import s from './nav.module.scss';
 import { HeaderPropsType } from '../../../../../types/types';
 
 const Nav = (props: HeaderPropsType) => {
-  const [cartProductCount, setCartProductCount] = useState<number>(
-    JSON.parse(localStorage.getItem('CartItems') || '').length,
-  );
+  const [cartProductCount, setCartProductCount] = useState<number>(''.length);
   const onStorage = () => {
     setCartProductCount(JSON.parse(localStorage.getItem('CartItems') || '').length);
   };

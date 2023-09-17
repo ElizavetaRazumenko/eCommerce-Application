@@ -6,7 +6,7 @@ import DrinksSauceItem from './components/drinksSauces/drinkSauce';
 import Pizza from './components/pizza/pizzas';
 import PopUp from './components/popUp/popUp';
 
-import { getCurrentAnonimousCart } from '../../shared/cartSession';
+import { getCurrentAnonimousCart, submitPromoCode } from '../../shared/cartSession';
 import { CartPropsType } from '../../types/types';
 
 const BasketPage = (props: CartPropsType) => {
@@ -22,8 +22,11 @@ const BasketPage = (props: CartPropsType) => {
       setErrorMessage('Invalid promotional code');
     }
   };
-  const submitPromo = (e: React.FormEvent<HTMLFormElement>) => {
+  const submitPromo = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (promoCodes.includes(inputRef.current!.value)) {
+      const cart = await submitPromoCode(inputRef.current!.value);
+    }
   };
   const [totalPrice, setTotalPrice] = useState('');
   const getCartsInfo = async () => {

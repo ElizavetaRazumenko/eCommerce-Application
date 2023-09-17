@@ -264,3 +264,27 @@ export const requestForClearCart = async () => {
   localStorage.removeItem('idCarts');
   localStorage.removeItem('CartItems');
 };
+
+export const submitPromoCode = async (code: string) => {
+  const id = localStorage.getItem('idCarts')!.slice(1, -1);
+  const cart = await getCurrentAnonimousCart();
+  const version = cart!.body.version;
+  const updateCart = await apiRoot
+    .carts()
+    .withId({ ID: id })
+    .post({
+      body: {
+        version: version,
+        actions: [
+          {
+            action: 'addDiscountCode',
+            code: code,
+          },
+        ],
+      },
+    })
+    .execute();
+  localStorage.setItem('Cart', JSON.stringify(updateCart!.body));
+  localStorage.setItem('CartItems', JSON.stringify(updateCart!.body.lineItems));
+  return updateCart!.body;
+};
