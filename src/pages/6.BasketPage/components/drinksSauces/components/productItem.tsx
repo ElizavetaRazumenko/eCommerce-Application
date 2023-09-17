@@ -17,19 +17,40 @@ const ProductItem = (props: ProductCartProps) => {
   const increaseQuantity = async () => {
     setQuantity(quantity + 1);
     const cart = await addProductsToCart(props.keyRequest);
-    props.setTotalPrice((cart!.totalPrice.centAmount / 100).toFixed(2));
+    let price = 0;
+    cart!.lineItems.forEach((el) => {
+      price += el.price.value.centAmount * el.quantity;
+    });
+    props.setTotalPrice((price / 100).toFixed(2));
+    if (cart!.discountCodes.length) {
+      props.setDiscountPrice((cart!.totalPrice.centAmount / 100).toFixed(2));
+    }
   };
   const reduceQuantity = async () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
       const cart = await removeOneProductOnCart(props.idRequets, `${props.keyRequest}-`);
-      props.setTotalPrice((cart!.totalPrice.centAmount / 100).toFixed(2));
+      let price = 0;
+      cart!.lineItems.forEach((el) => {
+        price += el.price.value.centAmount * el.quantity;
+      });
+      props.setTotalPrice((price / 100).toFixed(2));
+      if (cart!.discountCodes.length) {
+        props.setDiscountPrice((cart!.totalPrice.centAmount / 100).toFixed(2));
+      }
     }
   };
   const removeItem = async () => {
     const cart = await removeProductOnCartForCart(props.idRequets, `${props.keyRequest}-`);
     elementRef.current!.classList.add(s.hidden);
-    props.setTotalPrice((cart!.totalPrice.centAmount / 100).toFixed(2));
+    let price = 0;
+    cart!.lineItems.forEach((el) => {
+      price += el.price.value.centAmount * el.quantity;
+    });
+    props.setTotalPrice((price / 100).toFixed(2));
+    if (cart!.discountCodes.length) {
+      props.setDiscountPrice((cart!.totalPrice.centAmount / 100).toFixed(2));
+    }
     if (cart.lineItems.length === 0) {
       navigate('/catalog');
     }

@@ -71,12 +71,27 @@
    flex-direction: column;
  }
 
- .total_cost {
+ .price_wrapper {
+  display: flex;
+  align-items: center;
+ }
+
+ .total_cost,
+ .undiscount,
+ .discount {
+   font-weight: 700;
    width: max-content;
-   padding: 10px 15px;
-   background-color: rgba($main-light, .2);
-   border-radius: 20px;
+   margin-right: 10px;
    font-size: 1.2rem;
+ }
+
+ .undiscount {
+  color: $main-light;
+  text-decoration: line-through;
+ }
+
+ .discount {
+  color: $color-red;
  }
 
  .price_wrapper {

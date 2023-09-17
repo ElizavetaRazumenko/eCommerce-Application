@@ -10,7 +10,7 @@ const SectionPromo = () => {
 
   return (
     <section className={s.section_promo}>
-      <h2 className={s.title_promo}>Use promo codes to get 10-15% discount:</h2>
+      <h2 className={s.title_promo}>Use promo codes to get 15% discount:</h2>
       <div className={s.promo_list}>
         {promoCodes.map((promo, index) => (
           <div key={index} className={s.promocode}>

@@ -864,6 +864,7 @@ export type PizzaCartProps = {
   keyRequest: string;
   idRequets: string;
   setTotalPrice: React.Dispatch<React.SetStateAction<string>>;
+  setDiscountPrice: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export type ProductCartProps = {
@@ -874,4 +875,5 @@ export type ProductCartProps = {
   keyRequest: string;
   idRequets: string;
   setTotalPrice: React.Dispatch<React.SetStateAction<string>>;
+  setDiscountPrice: React.Dispatch<React.SetStateAction<string>>;
 };

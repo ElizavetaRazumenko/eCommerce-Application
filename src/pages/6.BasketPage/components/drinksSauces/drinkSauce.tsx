@@ -6,6 +6,7 @@ import { keysPizza } from '../../../../entities/product';
 
 const DrinksSauceItem = (props: {
   setTotalPrice: React.Dispatch<React.SetStateAction<string>>;
+  setDiscountPrice: React.Dispatch<React.SetStateAction<string>>;
 }) => {
   const cart = JSON.parse(localStorage.getItem('Cart')!) as Cart;
   const cartItems = cart.lineItems;
@@ -26,6 +27,7 @@ const DrinksSauceItem = (props: {
             keyRequest={product.productKey!}
             idRequets={product.id}
             setTotalPrice={props.setTotalPrice}
+            setDiscountPrice={props.setDiscountPrice}
           />
         );
       })}

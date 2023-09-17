@@ -11,6 +11,8 @@ import { CartPropsType } from '../../types/types';
 
 const BasketPage = (props: CartPropsType) => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const [totalPrice, setTotalPrice] = useState('');
+  const [discountPrice, setDiskountPrice] = useState('');
   const [inputValue, setInputValue] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
   const promoCodes = ['1111', '2222'];
@@ -26,14 +28,22 @@ const BasketPage = (props: CartPropsType) => {
     e.preventDefault();
     if (promoCodes.includes(inputRef.current!.value)) {
       const cart = await submitPromoCode(inputRef.current!.value);
+      const updatePromoPrice = (cart.totalPrice.centAmount / 100).toFixed(2);
+      setDiskountPrice(updatePromoPrice);
     }
   };
-  const [totalPrice, setTotalPrice] = useState('');
   const getCartsInfo = async () => {
     const cartResponse = await getCurrentAnonimousCart();
     const cart = cartResponse!.body;
     localStorage.setItem('Cart', JSON.stringify(cart));
-    setTotalPrice((cart.totalPrice.centAmount / 100).toFixed(2));
+    let price = 0;
+    cart.lineItems.forEach((el) => {
+      price += el.price.value.centAmount * el.quantity;
+    });
+    setTotalPrice((price / 100).toFixed(2));
+    if (cart.discountCodes.length) {
+      setDiskountPrice((cart.totalPrice.centAmount / 100).toFixed(2));
+    }
   };
   useEffect(() => {
     getCartsInfo();
@@ -50,10 +60,10 @@ const BasketPage = (props: CartPropsType) => {
           <p className={s.header_message}>Added products</p>
           <div className={s.products}>
             <div className={s.pizzas}>
-              <Pizza setTotalPrice={setTotalPrice} />
+              <Pizza setTotalPrice={setTotalPrice} setDiscountPrice={setDiskountPrice} />
             </div>
             <div className={s.sauces_drinks}>
-              <DrinksSauceItem setTotalPrice={setTotalPrice} />
+              <DrinksSauceItem setTotalPrice={setTotalPrice} setDiscountPrice={setDiskountPrice} />
             </div>
           </div>
           <div className={s.info_utils}>
@@ -71,7 +81,11 @@ const BasketPage = (props: CartPropsType) => {
               </form>
               <p className={s.error_message}>{errorMessage}</p>
             </div>
-            <p className={s.total_cost}>{`Total cost: ${totalPrice}$`}</p>
+            <div className={s.price_wrapper}>
+              <p className={s.total_cost}>{`Total cost:`}</p>
+              <p className={discountPrice ? s.undiscount : s.total_cost}>{`${totalPrice}$`}</p>
+              <p className={discountPrice ? s.discount : s.hidden}>{`${discountPrice}$`}</p>
+            </div>
             <div className={s.button_delete} onClick={openPopUp}>
               Clear cart
             </div>

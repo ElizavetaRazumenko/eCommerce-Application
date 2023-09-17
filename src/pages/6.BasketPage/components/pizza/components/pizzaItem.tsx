@@ -17,7 +17,14 @@ const PizzaItem = (props: PizzaCartProps) => {
   const increaseQuantity = async () => {
     setQuantity(quantity + 1);
     const cart = await addPizzaToCart(props.keyRequest, props.size[0].toLowerCase());
-    props.setTotalPrice((cart!.totalPrice.centAmount / 100).toFixed(2));
+    let price = 0;
+    cart!.lineItems.forEach((el) => {
+      price += el.price.value.centAmount * el.quantity;
+    });
+    props.setTotalPrice((price / 100).toFixed(2));
+    if (cart!.discountCodes.length) {
+      props.setDiscountPrice((cart!.totalPrice.centAmount / 100).toFixed(2));
+    }
   };
   const reduceQuantity = async () => {
     if (quantity > 1) {
@@ -26,7 +33,14 @@ const PizzaItem = (props: PizzaCartProps) => {
         props.idRequets,
         `${props.keyRequest}-${props.size[0]}`,
       );
-      props.setTotalPrice((cart!.totalPrice.centAmount / 100).toFixed(2));
+      let price = 0;
+      cart!.lineItems.forEach((el) => {
+        price += el.price.value.centAmount * el.quantity;
+      });
+      props.setTotalPrice((price / 100).toFixed(2));
+      if (cart!.discountCodes.length) {
+        props.setDiscountPrice((cart!.totalPrice.centAmount / 100).toFixed(2));
+      }
     }
   };
   const removeItem = async () => {
@@ -35,7 +49,14 @@ const PizzaItem = (props: PizzaCartProps) => {
       `${props.keyRequest}-${props.size[0]}`,
     );
     elementRef.current!.classList.add(s.hidden);
-    props.setTotalPrice((cart!.totalPrice.centAmount / 100).toFixed(2));
+    let price = 0;
+    cart!.lineItems.forEach((el) => {
+      price += el.price.value.centAmount * el.quantity;
+    });
+    props.setTotalPrice((price / 100).toFixed(2));
+    if (cart!.discountCodes.length) {
+      props.setDiscountPrice((cart!.totalPrice.centAmount / 100).toFixed(2));
+    }
     if (cart.lineItems.length === 0) {
       navigate('/catalog');
     }

@@ -4,7 +4,10 @@ import PizzaItem from './components/pizzaItem';
 
 import { keysPizza } from '../../../../entities/product';
 
-const Pizza = (props: { setTotalPrice: React.Dispatch<React.SetStateAction<string>> }) => {
+const Pizza = (props: {
+  setTotalPrice: React.Dispatch<React.SetStateAction<string>>;
+  setDiscountPrice: React.Dispatch<React.SetStateAction<string>>;
+}) => {
   const cart = JSON.parse(localStorage.getItem('Cart')!) as Cart;
   const cartItems = cart.lineItems;
 
@@ -43,6 +46,7 @@ const Pizza = (props: { setTotalPrice: React.Dispatch<React.SetStateAction<strin
             keyRequest={pizza.productKey!}
             idRequets={pizza.id}
             setTotalPrice={props.setTotalPrice}
+            setDiscountPrice={props.setDiscountPrice}
           />
         );
       })}
