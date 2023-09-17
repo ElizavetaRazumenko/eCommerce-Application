@@ -8,7 +8,11 @@ import { HeaderPropsType } from '../../../../../types/types';
 const Nav = (props: HeaderPropsType) => {
   const [cartProductCount, setCartProductCount] = useState<number>(''.length);
   const onStorage = () => {
-    setCartProductCount(JSON.parse(localStorage.getItem('CartItems') || '').length);
+    if (localStorage.getItem('CartItems')) {
+      setCartProductCount(JSON.parse(localStorage.getItem('CartItems')!).length);
+    } else {
+      setCartProductCount(0);
+    }
   };
   useEffect(() => {
     window.addEventListener('storage', onStorage);
@@ -80,7 +84,7 @@ const Nav = (props: HeaderPropsType) => {
               Cart
               <div className={s.cart_wrapper}>
                 <div className={s.cart_img}></div>
-                <div className={s.product_amount_wrap}>
+                <div className={cartProductCount === 0 ? s.hidden : s.product_amount_wrap}>
                   <span className={s.product_amount}>{cartProductCount}</span>
                 </div>
               </div>

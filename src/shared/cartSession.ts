@@ -132,6 +132,7 @@ export const addPizzaToCart = async (key: string, size: string) => {
     localStorage.setItem('CartIsEmpty', 'false');
     localStorage.setItem('Cart', JSON.stringify(cart!.body));
     localStorage.setItem('CartItems', JSON.stringify(items));
+    window.dispatchEvent(new Event('storage'));
     return cart!.body;
   } catch (e) {
     if (e instanceof Error) console.log(e.message);
@@ -158,6 +159,7 @@ export const addProductsToCart = async (key: string) => {
     localStorage.setItem('CartIsEmpty', 'false');
     localStorage.setItem('Cart', JSON.stringify(cart!.body));
     localStorage.setItem('CartItems', JSON.stringify(items));
+    window.dispatchEvent(new Event('storage'));
     return cart!.body;
   } catch (e) {
     if (e instanceof Error) console.log(e.message);
@@ -188,6 +190,7 @@ export const removeProductOnCart = async (lineItemId: string, sku: string) => {
   if (updateCart!.body.lineItems.length === 0) localStorage.setItem('CartIsEmpty', 'true');
   localStorage.setItem('Cart', JSON.stringify(cart!.body));
   localStorage.setItem('CartItems', JSON.stringify(updateCart!.body.lineItems));
+  window.dispatchEvent(new Event('storage'));
   return product;
 };
 
@@ -216,6 +219,7 @@ export const removeOneProductOnCart = async (lineItemId: string, sku: string) =>
   if (updateCart!.body.lineItems.length === 0) localStorage.setItem('CartIsEmpty', 'true');
   localStorage.setItem('Cart', JSON.stringify(cart!.body));
   localStorage.setItem('CartItems', JSON.stringify(updateCart!.body.lineItems));
+  window.dispatchEvent(new Event('storage'));
   return updateCart!.body;
 };
 
@@ -243,6 +247,7 @@ export const removeProductOnCartForCart = async (lineItemId: string, sku: string
   if (updateCart!.body.lineItems.length === 0) localStorage.setItem('CartIsEmpty', 'true');
   localStorage.setItem('Cart', JSON.stringify(cart!.body));
   localStorage.setItem('CartItems', JSON.stringify(updateCart!.body.lineItems));
+  window.dispatchEvent(new Event('storage'));
   return updateCart!.body;
 };
 
@@ -263,6 +268,7 @@ export const requestForClearCart = async () => {
   localStorage.removeItem('Cart');
   localStorage.removeItem('idCarts');
   localStorage.removeItem('CartItems');
+  window.dispatchEvent(new Event('storage'));
 };
 
 export const submitPromoCode = async (code: string) => {
