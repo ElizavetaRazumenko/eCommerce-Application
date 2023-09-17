@@ -3,12 +3,20 @@ import { NavLink } from 'react-router-dom';
 
 import s from './nav.module.scss';
 
-import { cartLength } from '../../../../../shared/cartSession';
-
 import { HeaderPropsType } from '../../../../../types/types';
 
 const Nav = (props: HeaderPropsType) => {
-  const [cartProductCount] = useState<number>(cartLength);
+  const [cartProductCount, setCartProductCount] = useState<number>(
+    JSON.parse(localStorage.getItem('CartItems') || '').length,
+  );
+  const onStorage = () => {
+    setCartProductCount(JSON.parse(localStorage.getItem('CartItems') || '').length);
+  };
+  useEffect(() => {
+    window.addEventListener('storage', onStorage);
+    return () => window.removeEventListener('storage', onStorage);
+  }, []);
+
   const [isOpen, setIsOpen] = useState(false);
   const toggleBurgerMenu = () => {
     if (isOpen) {

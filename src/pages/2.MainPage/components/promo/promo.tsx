@@ -4,13 +4,13 @@ import s from './promo.module.scss';
 
 const SectionPromo = () => {
   const promoCodes = [
-    { code: '246802', description: 'For purchases on even days' },
-    { code: '135791', description: 'For purchases on odd days' },
+    { code: '1111', description: 'For vegetarian pizzas:' },
+    { code: '2222', description: 'For all catalog products:' },
   ];
 
   return (
     <section className={s.section_promo}>
-      <h2 className={s.title_promo}>Use promo codes to get 10-20% discount:</h2>
+      <h2 className={s.title_promo}>Use promo codes to get 10-15% discount:</h2>
       <div className={s.promo_list}>
         {promoCodes.map((promo, index) => (
           <div key={index} className={s.promocode}>
