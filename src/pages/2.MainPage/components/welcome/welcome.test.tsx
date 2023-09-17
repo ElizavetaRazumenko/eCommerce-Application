@@ -1,14 +1,17 @@
 import { render, screen } from '@testing-library/react';
-
 import '@testing-library/jest-dom/extend-expect';
-
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
 import SectionWelcome from './welcome';
 
 describe('SectionWelcome Component', () => {
   it('renders the component with correct content', () => {
-    render(<SectionWelcome />);
+    render(
+      <BrowserRouter>
+        <SectionWelcome />
+      </BrowserRouter>,
+    );
     const titleElement = screen.getByText('Welcome to the Italian pizzeria!');
     expect(titleElement).toBeInTheDocument();
     const contentElement = screen.getByText(
