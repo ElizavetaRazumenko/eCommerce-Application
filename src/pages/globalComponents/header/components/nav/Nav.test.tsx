@@ -18,10 +18,10 @@ describe('Nav component', () => {
       </MemoryRouter>,
     );
     expect(screen.getByText('Main')).toBeInTheDocument();
+    expect(screen.getByText('About us')).toBeInTheDocument();
     expect(screen.getByText('Catalog')).toBeInTheDocument();
-    expect(screen.getByText('Details')).toBeInTheDocument();
     expect(screen.getByText('Profile')).toBeInTheDocument();
     expect(screen.getByText('Cart')).toBeInTheDocument();
-    expect(screen.getByText('Login')).toBeInTheDocument();
+    expect(screen.getByText('Login/Register')).toBeInTheDocument();
   });
 });
