@@ -264,6 +264,7 @@ export const requestForClearCart = async () => {
       },
     })
     .execute();
+  Object.keys(productOnCart).forEach((key) => (productOnCart[key as KeyObject] = false));
   localStorage.setItem('CartIsEmpty', 'true');
   localStorage.removeItem('Cart');
   localStorage.removeItem('idCarts');
