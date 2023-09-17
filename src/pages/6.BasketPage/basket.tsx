@@ -32,7 +32,7 @@ const BasketPage = (props: CartPropsType) => {
       setInputValue('');
       if (updatePromoPrice === discountPrice) {
         setErrorMessage(
-          'The promo code has already been activated or does not affect the items in the cart',
+          "The promo code has already been activated or doesn't affect the items in the cart",
         );
       }
       setDiskountPrice(updatePromoPrice);
