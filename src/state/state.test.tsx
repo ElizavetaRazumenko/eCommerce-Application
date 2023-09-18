@@ -247,6 +247,26 @@ describe('checkPostalCode function', () => {
   });
 });
 
+// describe('checkTextLocationField', () => {
+//   test('should not contain numbers', () => {
+//     const testField = {
+//       value: 'Milan123',
+//       isValid: true,
+//     } as FieldLocationType;
+//     checkTextLocationField(testField);
+//     expect(testField.isValid).toBe(false);
+//   });
+
+//   test('should not contain special characters', () => {
+//     const testField = {
+//       value: '@Mil#an!',
+//       isValid: true,
+//     } as FieldLocationType;
+//     const updatedField = { ...testField };
+//     checkTextLocationField(updatedField);
+//     expect(updatedField.isValid).toBe(false);
+//   });
+// });
 describe('checkTextLocationField', () => {
   test('should not contain numbers', () => {
     const testField = {
@@ -255,14 +275,30 @@ describe('checkTextLocationField', () => {
     } as FieldLocationType;
     checkTextLocationField(testField);
     expect(testField.isValid).toBe(false);
+    expect(testField.errorMessage).toBe('must not contain numbers');
   });
 
-  test('should not contain special characters', () => {
+  test('should not contain special characters for city', () => {
     const testField = {
-      value: '@Mil#an!',
+      value: '@Mil#an',
       isValid: true,
+      type: 'city',
     } as FieldLocationType;
-    checkTextLocationField(testField);
-    expect(testField.isValid).toBe(false);
+    const updatedField = { ...testField };
+    checkTextLocationField(updatedField);
+    expect(updatedField.isValid).toBe(false);
+    expect(updatedField.errorMessage).toBe('must not contain special characters');
+  });
+
+  test('should not allow leading or trailing spaces', () => {
+    const testField = {
+      value: ' StreetName ',
+      isValid: true,
+      type: 'street',
+    } as FieldLocationType;
+    const updatedField = { ...testField };
+    checkTextLocationField(updatedField);
+    expect(updatedField.isValid).toBe(false);
+    expect(updatedField.errorMessage).toBe('cannot start/end with a space');
   });
 });

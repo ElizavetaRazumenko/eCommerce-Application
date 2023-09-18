@@ -1,0 +1,54 @@
+@import '../../../../globalVariables.scss';
+
+.basket_wrapper {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+ 
+ 
+     .message {
+         text-align: center;
+         color: $main-light;
+         font-size: 2rem;
+         font-weight: 700;
+ 
+         @media (max-width: 860px) {
+             font-size: 1.5rem;
+          }  
+ 
+          @media (max-width: 520px) {
+             font-size: 1.2rem;
+          }  
+          
+          @media (max-width: 390px) {
+             font-size: 1rem;
+          } 
+     }
+ }
+
+ .button_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 25px 0 25px 0;
+  }
+ 
+  .button {
+   cursor: pointer;
+   text-decoration: none;
+   box-sizing: border-box;
+   padding: 5px 33px 10px;
+   border-radius: 20px;
+   text-align: center;
+   background-color: $main-light;
+   color: $main-grey;
+   font-size: 1.4rem;
+   font-weight: 700;
+   transition: .5s;
+ 
+   &:hover {
+     background-color: $white;
+   } 
+}

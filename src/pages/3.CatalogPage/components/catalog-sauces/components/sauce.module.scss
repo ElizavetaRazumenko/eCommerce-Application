@@ -78,10 +78,12 @@
 
 .sauce_description {
     margin: 0;
-    font-size: .7rem;
+    font-size: .6rem;
     text-align: center;
+    max-width: 120px;
 }
-.btn_add_sauce{
+.btn_add_sauce {
+    position: relative;
     font-weight: 700;
     background: $main-grey;
     color: $main-light;
@@ -96,3 +98,61 @@
         background: $grey-hover;
     }
 }
+
+.disabled {
+    cursor: auto;
+    color: #818080;
+    &:hover {
+        background: $main-grey;
+        color: #818080; 
+       }
+}
+
+.waiting {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    background-color: $main-grey;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    background-image: url('../../../../../assets/png/clock.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.none {
+    display: none;
+}
+
+// indicator sauce
+.indicator {
+    position: absolute;
+    display: flex;
+    border-radius: 50%;
+    left: 70px;
+    bottom: 5px;
+    width: 35px; 
+    height: 35px; 
+    background-color: none;
+    justify-content: center;
+    align-items: center;
+  
+  }
+  
+  .indicator_loader {
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    animation: spin 4s;
+    border: 3px solid $ligth-green;
+    border-top: 3px solid $main-grey; 
+    border-bottom: 3px solid $main-light;
+    
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(720deg); }
+  }
+  

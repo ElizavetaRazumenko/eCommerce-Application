@@ -58,7 +58,6 @@ const RegisterWindow = (props: RegisterPagePropsType) => {
         requestSettings.defaultShipping,
       );
       try {
-        console.log(`email: ${requestData.email}, password: ${requestData.password}`);
         await apiRoot
           .customers()
           .post({
@@ -66,6 +65,7 @@ const RegisterWindow = (props: RegisterPagePropsType) => {
           })
           .execute()
           .then(() => loginClient(requestData.email, requestData.password));
+        localStorage.setItem('CurrentEmail', requestData.email);
         setSuccessMessage('Registered ✔');
         setTimeout(registerTrek, 700);
       } catch (e) {

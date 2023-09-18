@@ -12,9 +12,12 @@ import infoProducts, {
   keysPizza,
   keysSauces,
   keysDrinks,
+  productIdOnCart,
+  productOnCart,
 } from '../../entities/product';
 import { getProduct } from '../../shared';
-import { ProductDetailsType, ProductItemType, ProductType } from '../../types/types';
+import { addPizzaToCart, addProductsToCart, removeProductOnCart } from '../../shared/cartSession';
+import { KeyObject, ProductDetailsType, ProductItemType, ProductType } from '../../types/types';
 
 const DetailedPage = () => {
   const [productName, setProductName] = useState<string>('');
@@ -27,6 +30,45 @@ const DetailedPage = () => {
   const [isDiscounted, setIsDiscounted] = useState<boolean>(false);
   const { key, size } = useParams();
   const navigate = useNavigate();
+
+  const getSKU = (key: string) => {
+    if (keysPizza.includes(key)) {
+      return `${key}-${size!.toUpperCase()}`;
+    } else {
+      return key + '-';
+    }
+  };
+
+  const keySKU = getSKU(key!.toUpperCase());
+  const [onCart, setOnCart] = useState(productOnCart[keySKU as KeyObject]);
+  const [waiting, setWaiting] = useState('hidden');
+  const [buttonMessage, setButtonMessage] = useState('Add to cart');
+
+  const addToCart = async () => {
+    if (!onCart) {
+      setWaiting('waiting');
+      setButtonMessage('');
+      if (!keysPizza.includes(key!.toUpperCase())) {
+        await addProductsToCart(key!.toUpperCase());
+      } else {
+        await addPizzaToCart(key!.toUpperCase(), size!);
+      }
+      setWaiting('none');
+      setButtonMessage('Add to cart');
+      setOnCart(true);
+    }
+  };
+
+  const removeFromCart = async () => {
+    if (onCart) {
+      setWaiting('waiting');
+      setButtonMessage('');
+      setOnCart(false);
+      await removeProductOnCart(productIdOnCart[keySKU as KeyObject], keySKU);
+      setButtonMessage('Add to cart');
+      setWaiting('none');
+    }
+  };
 
   const setPriceAndWeigth = (price: number, weigth: string) => {
     const priceSet = (price / 100).toFixed(2) + '$';
@@ -148,11 +190,16 @@ const DetailedPage = () => {
               {productDiscountPrice}
             </p>
           </div>
-          <NavLink to='/cart' className={s.nav_link}>
-            <div className={s.button}>
-              <span>Add to backet</span>
+          <div className={s.button_wrapper}>
+            <div
+              className={onCart ? `${s.button} ${s.button_block}` : s.button}
+              onClick={addToCart}
+            >
+              <span>{buttonMessage}</span>
+              <div className={s[waiting]}></div>
             </div>
-          </NavLink>
+            <div className={onCart ? s.button_delete : s.hidden} onClick={removeFromCart}></div>
+          </div>
         </div>
       </div>
     </div>

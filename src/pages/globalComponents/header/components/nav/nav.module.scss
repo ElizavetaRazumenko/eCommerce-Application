@@ -7,13 +7,13 @@
     display: flex;
     flex-direction: row;
     color: $main-light;
-    max-width: 410px;
+    max-width: 460px;
     gap: 18px;
     justify-content: space-between;
     transition: 2s;
 
     @media (max-width: 860px) {
-        gap: 15px;
+        gap: 10px;
     }
 
     @media (max-width: 720px) {
@@ -44,10 +44,7 @@
         position: fixed;
         transform: translateX(0%);
         transition: 2s;
-        background-image: url('../../../../../assets/png/slice.png');
-        background-size: 62%;
-        background-position: right 10px bottom 80px;
-        background-repeat: no-repeat;
+        background-image:none;
     }
 }
 
@@ -185,8 +182,8 @@ transition: .3s;
 .product_amount_wrap {
     box-sizing: border-box;
     display: flex;
-    width: 17px;
-    height: 17px;
+    width: 20px;
+    height: 20px;
     align-items: center;
     justify-content: center;
     background-color: white;

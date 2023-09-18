@@ -1,10 +1,32 @@
+import { useState } from 'react';
+
 import s from './pizzaParams.module.scss';
 
-import cartUrl from '../../../../../assets/png/cart.png';
-
-import { PizzaParamsCatalogType } from '../../../../../types/types';
+import { productIdOnCart } from '../../../../../entities/product';
+import { addPizzaToCart, removeProductOnCart } from '../../../../../shared/cartSession';
+import { KeyObject, PizzaParamsCatalogType } from '../../../../../types/types';
 
 const PizzaParams = (props: PizzaParamsCatalogType) => {
+  const [onCart, setOnCart] = useState(props.onCart);
+  const [waiting, setWaiting] = useState('none');
+  const addToCart = async () => {
+    if (!onCart) {
+      setWaiting('waiting');
+      await addPizzaToCart(props.findData.key!, props.findData.size);
+      setWaiting('none');
+      setOnCart(true);
+    }
+  };
+
+  const deleteFromCart = async () => {
+    if (onCart) {
+      setWaiting('waiting');
+      setOnCart(false);
+      await removeProductOnCart(productIdOnCart[props.sku as KeyObject], props.sku);
+      setWaiting('none');
+    }
+  };
+
   return (
     <div className={s.pizza_title}>
       <div className={s.size_wrapper}>
@@ -20,7 +42,16 @@ const PizzaParams = (props: PizzaParamsCatalogType) => {
         >
           {props.price}
         </div>
-        <img src={cartUrl} className={s.shopping_cart} alt='shopping cart' />
+        <div
+          className={onCart ? `${s.shopping_cart} ${s.disabled}` : s.shopping_cart}
+          onClick={addToCart}
+        >
+          <div className={s[waiting]}></div>
+        </div>
+        <div
+          className={onCart ? s.delete : `${s.delete} ${s.hidden}`}
+          onClick={deleteFromCart}
+        ></div>
       </div>
     </div>
   );

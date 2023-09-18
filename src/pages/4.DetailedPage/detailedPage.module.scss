@@ -24,13 +24,14 @@
 }
 
 .button {
+   position: relative;
    box-sizing: border-box;
    padding: 10px 20px;
    margin-top: 10px;
    margin-bottom: 50px;
    border-radius: 25px;
    font-size: 1rem;
-   width: max-content;
+   width: 125px;
    height: 38px;
    background-color: $main-light;
    cursor: pointer;
@@ -46,9 +47,20 @@
    }
 
    @media (max-width: 730px) {
+      width: 98px;
       font-size: .8rem;
       padding: 5px 15px;
       height: 25px;
+   }
+}
+
+.button_block {
+   cursor: auto;
+   background-color: $main-grey;
+   color: $grey-hover;
+   &:hover {
+      background-color: $main-grey;
+      color: $grey-hover;
    }
 }
 
@@ -180,6 +192,40 @@
 .prices_wrapper {
    width: 100%;
    display: flex;
+}
+
+.waiting {
+   position: absolute;
+   top:50%;
+   left:50%;
+   transform: translate(-50%, -50%);
+   background-color: $main-light;
+   border-radius: 50%;
+   width: 25px;
+   height: 25px;
+   background-image: url('../../assets/png/clock.png');
+   background-size: contain;
+   background-repeat: no-repeat;
+}
+
+.button_wrapper {
+   display: flex;
+}
+
+.button_delete {
+   cursor: pointer;
+   margin-left: 20px;
+    margin-top: 13px;
+    width: 30px;
+    height: 30px;
+    background-image: url('../../assets/png/urn.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    @media (max-width: 730px) {
+      margin-top: 10px;
+      width: 25px;
+      height: 25px;
+   }
 }
 
 .hidden {

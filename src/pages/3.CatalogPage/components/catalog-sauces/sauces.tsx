@@ -2,8 +2,8 @@ import Sauce from './components/sauce';
 
 import s from './sauces.module.scss';
 
-import infoProducts from '../../../../entities/product';
-import { CatalogSaucesProps } from '../../../../types/types';
+import infoProducts, { productOnCart } from '../../../../entities/product';
+import { CatalogSaucesProps, KeyObject } from '../../../../types/types';
 
 const CatalogSauces = (props: CatalogSaucesProps) => {
   const saucesItems = props.products.filter((el) =>
@@ -18,6 +18,8 @@ const CatalogSauces = (props: CatalogSaucesProps) => {
         name={sauce.name['en-US']}
         price={sauceCost}
         description={sauce.description['en-US']}
+        onCart={productOnCart[(sauce.key + '-') as KeyObject]}
+        sku={sauce.key + '-'}
       />
     );
   });

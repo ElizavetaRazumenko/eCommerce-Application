@@ -28,7 +28,6 @@ export const getRequestData = (isDefaultBilling: string, isDefaultShipping: stri
   };
   const userEmail = state.registerPage.fieldData.find((el) => el.plshldr === 'Email')!.value;
   const userPassword = state.registerPage.fieldData.find((el) => el.plshldr === 'Password')!.value;
-  console.log(`email: ${userEmail}, password: ${userPassword}`);
   const body: RequestBodyType = {
     email: userEmail,
     password: userPassword,
