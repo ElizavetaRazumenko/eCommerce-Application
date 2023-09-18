@@ -27,16 +27,18 @@ const Nav = (props: HeaderPropsType) => {
     props.setUserState('Login');
     localStorage.setItem('userState', 'Login');
     if (localStorage.getItem('CurrentEmail') && previousState === 'Logout') {
-      localStorage.setItem('UserCart', localStorage.getItem('Cart')!);
-      localStorage.setItem('UserCartItems', localStorage.getItem('CartItems')!);
-      localStorage.setItem('UserIdCarts', localStorage.getItem('idCarts')!);
-      localStorage.setItem('UserCartIsEmpty', localStorage.getItem('CartIsEmpty')!);
-      Object.keys(productOnCart).forEach((key) => (productOnCart[key as KeyObject] = false));
-      localStorage.removeItem('Cart');
-      localStorage.removeItem('CartItems');
-      localStorage.removeItem('idCarts');
-      localStorage.setItem('CartIsEmpty', 'true');
-      window.dispatchEvent(new Event('storage'));
+      if (localStorage.getItem('Cart')) {
+        localStorage.setItem('UserCart', localStorage.getItem('Cart')!);
+        localStorage.setItem('UserCartItems', localStorage.getItem('CartItems')!);
+        localStorage.setItem('UserIdCarts', localStorage.getItem('idCarts')!);
+        localStorage.setItem('UserCartIsEmpty', localStorage.getItem('CartIsEmpty')!);
+        Object.keys(productOnCart).forEach((key) => (productOnCart[key as KeyObject] = false));
+        localStorage.removeItem('Cart');
+        localStorage.removeItem('CartItems');
+        localStorage.removeItem('idCarts');
+        localStorage.setItem('CartIsEmpty', 'true');
+        window.dispatchEvent(new Event('storage'));
+      }
     }
   };
   const [isOpen, setIsOpen] = useState(false);
