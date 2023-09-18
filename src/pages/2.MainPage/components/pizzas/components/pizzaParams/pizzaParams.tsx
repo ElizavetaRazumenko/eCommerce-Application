@@ -1,6 +1,5 @@
 import s from './pizzaParams.module.scss';
 
-import cartUrl from '../../../../../../assets/png/cart.png';
 import { PizzaParamsType } from '../../../../../../types/types';
 
 const PizzaParams = (props: PizzaParamsType) => {
@@ -12,7 +11,6 @@ const PizzaParams = (props: PizzaParamsType) => {
       </div>
       <div className={s.price_wrapper}>
         <div className={s.span_price}>{props.price}</div>
-        <img src={cartUrl} className={s.shopping_cart} alt='shopping cart' />
       </div>
     </div>
   );

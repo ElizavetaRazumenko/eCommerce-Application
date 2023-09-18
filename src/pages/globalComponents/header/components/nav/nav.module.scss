@@ -1,22 +1,22 @@
 @import '../../../../../globalVariables.scss';
 
 .navigation_list {
-    left: 10px;
+    left:10px;
     margin: 0;
     height: 75px;
     display: flex;
     flex-direction: row;
     color: $main-light;
-    max-width: 400px;
-    gap: 30px;
+    max-width: 460px;
+    gap: 18px;
     justify-content: space-between;
     transition: 2s;
 
     @media (max-width: 860px) {
-        gap: 15px;
+        gap: 10px;
     }
 
-    @media (max-width: 645px) {
+    @media (max-width: 720px) {
         padding: 30px 0 0 10px;
         transform: translateX(300%);
         top: 20px;
@@ -38,16 +38,13 @@
 
 .burger_menu_open {
 
-    @media (max-width: 645px) {
+    @media (max-width: 720px) {
         visibility: visible;
         right: 10px;
         position: fixed;
         transform: translateX(0%);
         transition: 2s;
-        background-image: url('../../../../../assets/png/slice.png');
-        background-size: 62%;
-        background-position: right 10px bottom 80px;
-        background-repeat: no-repeat;
+        background-image:none;
     }
 }
 
@@ -59,11 +56,12 @@
     align-self: center;
     list-style: none;
 
-    @media (max-width: 645px) {
+    @media (max-width: 720px) {
         margin: 0 auto 0 20px;
     }
 
-    .link {
+    .link,
+    .link_cart {
         text-decoration: none;
         color: $main-light;
         padding-bottom: 5px;
@@ -83,6 +81,10 @@
 
 }
 
+.link_cart {
+    display: flex;
+}
+
 .no_active_link {
     border-bottom: 3px solid $color-parsley;
     pointer-events: none;
@@ -92,7 +94,7 @@
     display: none;
     position: fixed;
 
-    @media (max-width: 645px) {
+    @media (max-width: 720px) {
         display: flex; 
         right: 50px;
         top: 47px;
@@ -156,4 +158,37 @@ transition: .3s;
         bottom: -50%;
         opacity: 0;
         }
+}
+
+.hidden {
+    display: none;
+}
+
+.link_next {
+    margin-left: 0;
+}
+
+.cart_wrapper {
+    display: flex;
+}
+
+.cart_img {
+    background-image: url('../../../../../assets/png/cartNav.png');
+    width: 25px;
+    height: 25px;
+    background-size: contain;
+}
+
+.product_amount_wrap {
+    box-sizing: border-box;
+    display: flex;
+    width: 20px;
+    height: 20px;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 50%;
+    font-weight: 700;
+    color: $color-red;
+    align-self: flex-start;
 }

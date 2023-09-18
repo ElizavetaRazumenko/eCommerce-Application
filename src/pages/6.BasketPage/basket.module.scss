@@ -1,29 +1,174 @@
 @import '../../globalVariables.scss';
 
 .basket_wrapper {
-   position: relative;
+   width: 100%;
+   height: max-content;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+}
+
+.full_cart_wrapper {
    width: 100%;
    height: 100%;
-   padding: 50px;
-   left: 50%;
-   transform: translateX(-50%);
-
-    .welcome {
-        text-align: center;
-        color: $main-light;
-        font-size: 3rem;
-        font-weight: 700;
-
-        @media (max-width: 860px) {
-            font-size: 2rem;
-         }  
-
-         @media (max-width: 520px) {
-            font-size: 1.5rem;
-         }  
-         
-         @media (max-width: 390px) {
-            font-size: 1.2rem;
-         } 
-    }
+   display: flex;
+   flex-direction: column;
+   align-items: center;
 }
+
+.header_message,
+.total_cost,
+.promo_text {
+   color: $main-light;
+   font-size: 1.5rem;
+   font-weight: 700;
+}
+
+ .button_delete {
+  cursor: pointer;
+  text-decoration: none;
+  box-sizing: border-box;
+  padding: 5px 33px 10px;
+  border-radius: 20px;
+  text-align: center;
+  background-color: $main-light;
+  color: $main-grey;
+  font-size: 1.4rem;
+  font-weight: 700;
+  transition: .5s;
+
+  &:hover {
+    background-color: $white;
+  }  
+ 
+ @media (max-width: 390px) {
+    font-size: 1.2rem;
+ } 
+}
+
+ .hidden {
+   display: none;
+ }
+
+ .visible {
+  display: block;
+ }
+
+ .products {
+   display: flex;
+   justify-content: space-around;
+   align-self: normal;
+
+   @media (max-width: 860px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+ } 
+ }
+
+ .pizzas {
+   display: flex;
+   flex-direction: column;
+ }
+
+ .price_wrapper {
+  display: flex;
+  align-items: center;
+ }
+
+ .form_wrapper {
+  margin-top: 25px;
+ }
+
+ .total_cost,
+ .undiscount,
+ .discount {
+   font-weight: 700;
+   width: max-content;
+   margin-right: 10px;
+   font-size: 1.2rem;
+ }
+
+ .undiscount {
+  color: $main-light;
+  text-decoration: line-through;
+ }
+
+ .discount {
+  color: $color-red;
+ }
+
+ .price_wrapper {
+   display: flex;
+ }
+
+ .info_utils {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  @media (max-width: 860px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+ } 
+ }
+
+ .promo_wrapper {
+  display: flex;
+  align-items: center;
+ }
+
+ .promo_text {
+  font-size: 1.2rem;
+ }
+
+ .promo_input {
+  font-size: 1.2rem;
+  color: $main-light;
+   font-weight: 700;
+   font-style: normal;
+   width: 170px;
+   height: 40px;
+ }
+ .add_promo_btn {
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 5px 15px;
+    background-color: $main-light;
+    margin-left: 15px;
+    color: $main-grey;
+    font-weight: 700;
+    font-size: .8rem;
+    border-radius: 8px;
+    transition: .5s;
+    border: none;
+    &:hover {
+      background-color: $white;
+      color: $main-dark-color;
+    }
+ }
+
+ .button_delete {
+  height: max-content;
+  display: flex;
+   justify-content: center;
+   align-items: center;
+   box-sizing: border-box;
+  background-color: $main-light;
+  font-weight: 1.2rem;
+  color: $color-red;
+  padding: 10px 25px;
+  margin: 20px 0;
+
+  &:hover {
+  background-color: rgba($main-light, .3);
+  }
+ }
+
+ .error_message {
+  max-width: 250px;
+  min-height: 17px;
+  margin: 5px 0;
+  color: $color-red;
+  font-size: .8rem;
+ }

@@ -1,0 +1,166 @@
+@import './../../../../globalVariables.scss';
+
+
+.inputs_wrapper {
+  box-sizing: border-box;
+    width: 100%;
+    padding: 0 60px;
+    display: flex;
+    justify-content: space-between;
+    @media (max-width: 1000px) { 
+        padding: 0;  
+        flex-direction: column;  
+    }
+    
+}
+
+.sort_menu,
+.filter_menu {
+  width: 250px;
+  position: relative;
+}
+
+.sort_menu {
+  z-index: 3;
+  @media (max-width: 1000px) { 
+    margin-bottom: 25px;
+}
+  @media (max-width: 860px) { 
+    margin-bottom: 10px;
+}
+}
+
+.filter_menu {
+  z-index: 2;
+  @media (max-width: 1000px) { 
+    margin-top: 25px;
+  }
+}
+
+.div_sort,
+.div_filter {
+    box-sizing: border-box;
+    cursor: pointer;
+    height: 30px;
+    background-color: rgba($unactive-register-grey, .6);
+    color: $main-light;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px 5px 35px;
+    background-position: center left 10px;
+    background-size: 6%;
+    background-repeat: no-repeat;
+    font-size: 1rem;
+    transition: .2s;
+
+    .sort_arrow {
+        margin-top: 10px;
+        height: 20px;
+        width: 20px;
+        background-image: url('../../../../assets/png/sort-arrow.png'); 
+        background-repeat: no-repeat;
+        background-size: contain;
+        transition: .2s;
+    }
+}
+
+.div_sort.open,
+.div_filter.open {
+  color: $main-dark-color;
+  background-color: $white;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  .sort_arrow {
+    transform: rotate(180deg);
+}
+}
+
+.sort_menu_choise,
+.filter_menu_choise {
+  user-select: none;
+  border-bottom: 1px solid $main-grey;
+  box-sizing: border-box;
+  font-size: 1rem;
+  letter-spacing: .001px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 150px;
+  background-color: $white;
+  padding: 0 10px;
+  transition: .2s;
+
+  .sort_item {
+    cursor: pointer;
+    margin: 7px 0 0;
+    transition: color .2s;
+
+    &:hover{
+      color: $main-grey;
+    }
+
+    @media (max-width: 1000px) { 
+      font-size: 1rem;
+    }
+  }
+
+  .sort_item.selected {
+    font-weight: 700;
+    &:hover{
+      color: #000000;
+    }
+  }
+}
+
+.filter_menu_choise {
+  height: 120px;
+}
+
+.sort_menu_choise.hidden,
+.filter_menu_choise.hidden {
+  padding: 0;
+  height: 0;
+  overflow: hidden;
+  border-bottom: none;
+
+  .sort_item {
+    color: $background_from;
+  }
+}
+
+.div_sort {
+    width: 100%;
+    background-image: url('../../../../assets/png/sort.png');
+}
+
+.div_filter {
+    width: 250px;
+    padding: 0 10px 5px 40px;
+    background-size: 7%;
+    background-image: url('../../../../assets/png/filter.png');
+}
+
+.input_find {
+    box-sizing: border-box;
+    background-image: url('../../../../assets/png/find.png');
+    background-position: center left 10px;
+    background-size: 5%;
+    background-repeat: no-repeat;
+    height: 30px;
+    background-color: rgba($unactive-register-grey, .6);
+    color: $white;
+    width: 250px;
+    border-radius: 15px;
+    border: none;
+    padding-left: 40px;
+    font-size: 1rem;
+    
+    &::placeholder {
+        color: $main-light;
+    }
+
+}

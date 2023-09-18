@@ -1,0 +1,53 @@
+@import '../../../../globalVariables.scss';
+
+
+
+.section_promo {
+ padding-bottom: 100px;
+ @media (max-width: 670px) {
+  padding-top: 50px;
+   }
+}
+
+.title_promo {
+     color: $color-parsley;
+    margin-bottom: 30px;
+     @media (max-width: 566px) {
+      font-size: 1rem;
+       }
+}
+
+.promo_list  {
+    display: flex;
+}
+
+.promocode {
+    box-sizing: border-box;
+    padding: 10px 15px;
+    border-radius: 15px;
+    margin-right: 20px;
+    background-color: rgba($main-light, .2);
+    width: 170px;
+    height: max-content;
+    @media (max-width: 670px) {
+        margin-right: 10px;
+        margin-bottom: 20px;
+       }
+}
+
+  .promo_description{
+    color: $white;
+    max-width: 100%;
+    height: 36px;
+    font-size: .8rem;
+    font-weight: 700;
+
+  }
+
+  .promo_number{
+    color: $color-parsley;
+    font-size: 1.2rem;
+    align-items: end;
+    font-weight: 900;
+
+  }

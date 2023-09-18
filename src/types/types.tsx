@@ -1,3 +1,6 @@
+import { QueryParam } from '@commercetools/platform-sdk';
+import { Dispatch, SetStateAction } from 'react';
+
 import { To } from 'react-router-dom';
 export interface IFooterProps {
   className?: string;
@@ -10,6 +13,22 @@ export type PizzaType = {
   link: string;
   name: string;
   cost: string[];
+  mainIngredients?: string;
+};
+
+export type PizzaCatalogType = {
+  link: {
+    dimensions: {
+      h: number;
+      w: number;
+    };
+    url: string;
+  }[];
+  name: string;
+  cost: string[];
+  description: string;
+  discounts: string[];
+  code: string;
 };
 
 export type SauceType = {
@@ -17,9 +36,39 @@ export type SauceType = {
   name: string;
 };
 
+export type SauceTypeCatalog = {
+  link: {
+    dimensions: {
+      h: number;
+      w: number;
+    };
+    url: string;
+  }[];
+  name: string;
+  price: string;
+  description: string;
+  onCart: boolean;
+  sku: string;
+};
+
 export type DrinkType = {
   link: string;
   price: string;
+};
+
+export type DrinkTypeCatalog = {
+  link: {
+    dimensions: {
+      h: number;
+      w: number;
+    };
+    url: string;
+  }[];
+  price: string;
+  name: string;
+  description: string;
+  onCart: boolean;
+  sku: string;
 };
 
 export type stateTypeMain = {
@@ -48,6 +97,79 @@ export type PizzaParamsType = {
   size: string;
   length: string;
   price: string;
+};
+
+//......................................................PROFIL PAGE TYPE / INTERFACE
+
+export type Customer = {
+  addresses: CustomerAddressType[];
+  authenticationMode: string;
+  billingAddressIds: string[];
+  createdAt: string;
+  createdBy: {
+    clientId: string;
+    isPlatformClient: boolean;
+    anonymousId: string;
+  };
+  dateOfBirth: string;
+  defaultBillingAddressId: string;
+  defaultShippingAddressId: string;
+  email: string;
+  firstName: string;
+  id: string;
+  isEmailVerified: boolean;
+  lastMessageSequenceNumber: number;
+  lastModifiedAt: string;
+  lastModifiedBy: {
+    clientId: string;
+    isPlatformClient: boolean;
+  };
+  lastName: string;
+  password: string;
+  shippingAddressIds: string[];
+  stores: string[];
+  version: number;
+  versionModifiedAt: string;
+};
+
+export type HideModalType = {
+  onHideModal: () => void;
+  customerData: CustomerDataType;
+  setNewAddress?: Dispatch<SetStateAction<AddressType[]>>;
+  setNewAddress2?: Dispatch<SetStateAction<AddressType[]>>;
+};
+export type CustomerDataType = {
+  addresses: CustomerAddressType[];
+  defaultBillingAddressId: string | null;
+  shippingAddressIds: string[];
+  firstName: string | null;
+  lastName: string | null;
+  email: string | null;
+  dateBirth: string | null;
+  id: string | null;
+  version: number | null;
+};
+
+export type CustomerAddressType = {
+  city: string;
+  country: string;
+  id: string;
+  key: string;
+  postalCode: string;
+  streetName: string;
+};
+
+export type PizzaParamsCatalogType = {
+  size: string;
+  length: string;
+  price: string;
+  discount: string;
+  findData: {
+    key: string | undefined;
+    size: string;
+  };
+  onCart: boolean;
+  sku: string;
 };
 
 //                                                      LOGIN / REGISTER PAGE
@@ -208,9 +330,550 @@ export type AddressType = {
 };
 
 export type CustomerAddressesType = AddressType[] | null;
+
+//                                                                   CATALOG PAGE
+
+export type requestCatalogParamsType = {
+  fuzzy?: boolean;
+  fuzzyLevel?: number;
+  markMatchingVariants?: boolean;
+  filter?: string | string[];
+  'filter.facets'?: string | string[];
+  'filter.query'?: string | string[];
+  facet?: string | string[];
+  sort?: string | string[];
+  limit?: number;
+  offset?: number;
+  withTotal?: boolean;
+  staged?: boolean;
+  priceCurrency?: string;
+  priceCountry?: string;
+  priceCustomerGroup?: string;
+  priceChannel?: string;
+  localeProjection?: string | string[];
+  storeProjection?: string;
+  expand?: string | string[];
+  [key: string]: QueryParam;
+};
+export type CatalogSaucesProps = {
+  products: ProductsType;
+};
+
+export type CatalogDrinksProps = CatalogSaucesProps;
+
+export type CatalogPizzasProps = {
+  products: ProductsType;
+  setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
+};
+
+export type CatalogPropsType = {
+  products: ProductsType;
+  setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
+};
+
+export type CatalogFoodType = {
+  products: ProductsType;
+  setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
+};
+
+export type CatalogFoodNamedType = {
+  products: ProductsType;
+  setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
+};
+
+export type CatalogDrinksType = {
+  products: ProductsType;
+  setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
+};
+
+export type CatalogLayuotPropsType = {
+  setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
+  currentCathegory: string;
+  setCurrentCathegory: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export type CatalogInputsPropsType = {
+  setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
+};
+
+export type CatalogNavPropsType = {
+  currentCathegory: string;
+  setCurrentCathegory: React.Dispatch<React.SetStateAction<string>>;
+  setProducts: React.Dispatch<React.SetStateAction<ProductsType>>;
+};
+
+//                                                                  DETAILS PAGE
+
+export type SetProductDetailsType = {
+  setProductName: React.Dispatch<React.SetStateAction<string>>;
+  setProductDescription: React.Dispatch<React.SetStateAction<string>>;
+  setProductPrice: React.Dispatch<React.SetStateAction<string>>;
+  setProductImg: React.Dispatch<React.SetStateAction<string[]>>;
+  setProductType: React.Dispatch<React.SetStateAction<'pizzas' | 'sauces' | 'drinks'>>;
+  setProductWeigth: React.Dispatch<React.SetStateAction<string>>;
+  setProductPFCK: React.Dispatch<React.SetStateAction<number[]>>;
+};
+
+export type ProductDetailsType = {
+  productName: string;
+  productDescription: string;
+  productPrice: string;
+  productImg: string[];
+  productType: 'pizzas' | 'sauces' | 'drinks';
+  productWeigth: string;
+  productPFCK: number[];
+};
+
+export type ProductItemType = {
+  name: string;
+  PFCK: number[];
+  key: string;
+};
+
+export type SliderPropsType = {
+  imagesURL: string[];
+  setProductImg: React.Dispatch<React.SetStateAction<string[]>>;
+  setIsOpenPopUp: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export type PopUpPropsType = {
+  isOpenPopUp: boolean;
+  setProductImg: React.Dispatch<React.SetStateAction<string[]>>;
+  setIsOpenPopUp: React.Dispatch<React.SetStateAction<boolean>>;
+  imgURL: string[];
+};
+
 //                                                                    ERROR PAGE
 
 export type ButtonRedirectType = {
   content: string;
   to: To;
+};
+
+//                                                      COMMERCE TOOLS
+
+export type ProductType = {
+  categories: {
+    typeId: string;
+    id: string;
+  }[];
+  categoryOrderHints: {};
+  createdAt: string;
+  description: {
+    'en-US': string;
+  };
+  hasStagedChanges: boolean;
+  id: string;
+  key: string;
+  lastModifiedAt: string;
+  masterVariant: {
+    assets?: [];
+    attributes?: [];
+    id: number;
+    images: {
+      dimensions: {
+        h: number;
+        w: number;
+      };
+      url: string;
+    }[];
+    key: string;
+    prices: {
+      country?: string;
+      discounted?: {
+        discount: {
+          id: string;
+          typeId: string;
+        };
+        value: {
+          centAmount: number;
+          currencyCode: string;
+          fractionDigits: number;
+          type: string;
+        };
+      };
+      id: string;
+      key: string;
+      value: {
+        centAmount: number;
+        currencyCode: string;
+        fractionDigits: number;
+        type: string;
+      };
+    }[];
+    sku: string;
+  };
+  metaDescription: {
+    'en-US': string;
+  };
+  metaTitle: {
+    'en-US': string;
+  };
+  name: {
+    'en-US': string;
+  };
+  priceMode: string;
+  productType: {
+    typeId: string;
+    id: string;
+  };
+  published: boolean;
+  searchKeywords: {};
+  slug: {
+    'en-US': string;
+  };
+  variants:
+    | {
+        assets: [];
+        attributes: [];
+        id: number;
+        images: {
+          dimensions: {
+            h: number;
+            w: number;
+          };
+          url: string;
+        }[];
+        key: string;
+        prices: {
+          discounted?: {
+            discount: {
+              id: string;
+              typeId: string;
+            };
+            value: {
+              centAmount: number;
+              currencyCode: string;
+              fractionDigits: number;
+              type: string;
+            };
+          };
+          id: string;
+          key: string;
+          value: {
+            centAmount: number;
+            currencyCode: string;
+            fractionDigits: number;
+            type: string;
+          };
+        }[];
+        sku: string;
+      }[]
+    | [];
+  version: number;
+};
+
+export type ProductsType = {
+  categories: {
+    typeId: string;
+    id: string;
+  }[];
+  categoryOrderHints: {};
+  createdAt: string;
+  description: {
+    'en-US': string;
+  };
+  hasStagedChanges: boolean;
+  id: string;
+  key: string;
+  lastModifiedAt: string;
+  masterVariant: {
+    assets?: [];
+    attributes?: [];
+    id: number;
+    images: {
+      dimensions: {
+        h: number;
+        w: number;
+      };
+      url: string;
+    }[];
+    key: string;
+    prices: {
+      country?: string;
+      discounted?: {
+        discount: {
+          id: string;
+          typeId: string;
+        };
+        value: {
+          centAmount: number;
+          currencyCode: string;
+          fractionDigits: number;
+          type: string;
+        };
+      };
+      id: string;
+      key: string;
+      value: {
+        centAmount: number;
+        currencyCode: string;
+        fractionDigits: number;
+        type: string;
+      };
+    }[];
+    sku: string;
+  };
+  metaDescription: {
+    'en-US': string;
+  };
+  metaTitle: {
+    'en-US': string;
+  };
+  name: {
+    'en-US': string;
+  };
+  priceMode: string;
+  productType: {
+    typeId: string;
+    id: string;
+  };
+  published: boolean;
+  searchKeywords: {};
+  slug: {
+    'en-US': string;
+  };
+  variants:
+    | {
+        assets: [];
+        attributes: [];
+        id: number;
+        images: {
+          dimensions: {
+            h: number;
+            w: number;
+          };
+          url: string;
+        }[];
+        key: string;
+        prices: {
+          discounted?: {
+            discount: {
+              id: string;
+              typeId: string;
+            };
+            value: {
+              centAmount: number;
+              currencyCode: string;
+              fractionDigits: number;
+              type: string;
+            };
+          };
+          id: string;
+          key: string;
+          value: {
+            centAmount: number;
+            currencyCode: string;
+            fractionDigits: number;
+            type: string;
+          };
+        }[];
+        sku: string;
+      }[]
+    | [];
+  version: number;
+}[];
+
+export type requestType = {
+  count: number;
+  limit: number;
+  offset: number;
+  results: {
+    categories: {
+      typeId: string;
+      id: string;
+    }[];
+    categoryOrderHints: {};
+    createdAt: string;
+    description: {
+      'en-US': string;
+    };
+    hasStagedChanges: boolean;
+    id: string;
+    key: string;
+    lastModifiedAt: string;
+    masterVariant: {
+      assets?: [];
+      attributes?: [];
+      id: number;
+      images: {
+        dimensions: {
+          h: number;
+          w: number;
+        };
+        url: string;
+      }[];
+      key: string;
+      prices: {
+        country?: string;
+        discounted?: {
+          discount: {
+            id: string;
+            typeId: string;
+          };
+          value: {
+            centAmount: number;
+            currencyCode: string;
+            fractionDigits: number;
+            type: string;
+          };
+        };
+        id: string;
+        key: string;
+        value: {
+          centAmount: number;
+          currencyCode: string;
+          fractionDigits: number;
+          type: string;
+        };
+      }[];
+      sku: string;
+    };
+    metaDescription: {
+      'en-US': string;
+    };
+    metaTitle: {
+      'en-US': string;
+    };
+    name: {
+      'en-US': string;
+    };
+    priceMode: string;
+    productType: {
+      typeId: string;
+      id: string;
+    };
+    published: boolean;
+    searchKeywords: {};
+    slug: {
+      'en-US': string;
+    };
+    variants:
+      | {
+          assets: [];
+          attributes: [];
+          id: number;
+          images: {
+            dimensions: {
+              h: number;
+              w: number;
+            };
+            url: string;
+          }[];
+          key: string;
+          prices: {
+            discounted?: {
+              discount: {
+                id: string;
+                typeId: string;
+              };
+              value: {
+                centAmount: number;
+                currencyCode: string;
+                fractionDigits: number;
+                type: string;
+              };
+            };
+            id: string;
+            key: string;
+            value: {
+              centAmount: number;
+              currencyCode: string;
+              fractionDigits: number;
+              type: string;
+            };
+          }[];
+          sku: string;
+        }[]
+      | [];
+    version: number;
+  }[];
+  total: number;
+};
+
+export type KeyObject =
+  | 'PS-1-1-1-L'
+  | 'PS-1-1-1-M'
+  | 'PS-1-1-1-S'
+  | 'PS-1-1-2-L'
+  | 'PS-1-1-2-M'
+  | 'PS-1-1-2-S'
+  | 'PS-1-1-3-L'
+  | 'PS-1-1-3-M'
+  | 'PS-1-1-3-S'
+  | 'PS-1-1-4-L'
+  | 'PS-1-1-4-M'
+  | 'PS-1-1-4-S'
+  | 'PS-1-1-5-L'
+  | 'PS-1-1-5-M'
+  | 'PS-1-1-5-S'
+  | 'PS-1-1-6-L'
+  | 'PS-1-1-6-M'
+  | 'PS-1-1-6-S'
+  | 'PS-1-1-7-L'
+  | 'PS-1-1-7-M'
+  | 'PS-1-1-7-S'
+  | 'PS-1-1-8-L'
+  | 'PS-1-1-8-M'
+  | 'PS-1-1-8-S'
+  | 'PS-1-1-9-L'
+  | 'PS-1-1-9-M'
+  | 'PS-1-1-9-S'
+  | 'PS-1-1-10-L'
+  | 'PS-1-1-10-M'
+  | 'PS-1-1-10-S'
+  | 'PS-1-1-11-L'
+  | 'PS-1-1-11-M'
+  | 'PS-1-1-11-S'
+  | 'PS-1-1-12-L'
+  | 'PS-1-1-12-M'
+  | 'PS-1-1-12-S'
+  | 'PS-1-1-13-L'
+  | 'PS-1-1-13-M'
+  | 'PS-1-1-13-S'
+  | 'PS-1-1-14-L'
+  | 'PS-1-1-14-M'
+  | 'PS-1-1-14-S'
+  | 'PS-1-1-15-L'
+  | 'PS-1-1-15-M'
+  | 'PS-1-1-15-S'
+  | 'PS-1-2-1-'
+  | 'PS-1-2-2-'
+  | 'PS-1-2-3-'
+  | 'PS-1-2-4-'
+  | 'PS-1-2-5-'
+  | 'PS-1-2-6-'
+  | 'PS-1-2-7-'
+  | 'PS-1-2-8-'
+  | 'DR-1-1-'
+  | 'DR-1-2-'
+  | 'DR-1-3-'
+  | 'DR-1-4-'
+  | 'DR-1-5-'
+  | 'DR-1-6-';
+
+//                                CART PAGE
+
+export type PizzaCartProps = {
+  image: string;
+  name: string;
+  size: string;
+  price: number;
+  quantity: number;
+  discount: number;
+  keyRequest: string;
+  idRequets: string;
+  setTotalPrice: React.Dispatch<React.SetStateAction<string>>;
+  setDiscountPrice: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export type ProductCartProps = {
+  image: string;
+  name: string;
+  price: number;
+  quantity: number;
+  keyRequest: string;
+  idRequets: string;
+  setTotalPrice: React.Dispatch<React.SetStateAction<string>>;
+  setDiscountPrice: React.Dispatch<React.SetStateAction<string>>;
 };
