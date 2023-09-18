@@ -80,7 +80,8 @@
     "nyc": "^15.1.0",
     "prettier": "^3.0.0",
     "react-test-renderer": "^18.2.0",
-    "regenerator-runtime": "^0.14.0"
+    "regenerator-runtime": "^0.14.0",
+    "supertest": "^6.3.3"
   },
   "lint-staged": {
     "*.(ts|tsx|js|jsx)": [
