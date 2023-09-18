@@ -1,0 +1,35 @@
+@import '../../../../globalVariables.scss';
+@import '../../../globalComponents/header/components/nav/nav.module.scss';
+
+.toggler {
+    box-sizing: border-box;
+    width: 100%;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    height: 80px;
+    display: flex;
+    justify-content: space-around;
+    align-items: end;
+
+    .link {
+        text-align: center;
+        flex-grow: 1;
+        text-decoration: none;
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 5px;
+        transition: .5s;
+        padding-bottom: 10px;
+        color: $unactive-register-grey;
+        border-bottom: 2px solid $main-light;
+
+        &:hover {
+            color:$main-light;
+        }
+    }
+
+    .active_link {
+        color: $main-light;
+        border-bottom: 5px solid $main-light;
+    }
+}

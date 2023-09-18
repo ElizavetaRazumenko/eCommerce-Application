@@ -1,0 +1,18 @@
+{
+  "preset": "ts-jest",
+  "testEnvironment": "jsdom",
+  "transform": {
+    "^.+\\.jsx?$": "babel-jest",
+    "^.+\\.tsx?$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "\\.(png|jpg|jpeg|gif|svg)$": "<rootDir>/src/tests/__mocks__/imageMock",
+    "\\.(css|scss)$": "identity-obj-proxy"
+  },
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "src/**/*.{ts,tsx}",
+    "!src/**/*.test.{ts,tsx}"
+  ],
+  "coverageReporters": ["lcov", "text"]
+}

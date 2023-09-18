@@ -1,0 +1,65 @@
+
+@import './../../../../globalVariables.scss';
+
+// CATAKOG PIZZA
+
+.section_offer {
+    padding: 190px auto 100px;
+    margin: 50px auto  0;
+    background-image: url('../../../../assets/png/smoke.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    overflow: hidden;
+
+}
+
+.title_section {
+    font-size: 2.7rem;
+    letter-spacing: 1.8px;
+    color: $main-light;
+
+    @media (max-width: 670px) {
+      font-size: 2rem;
+    }
+
+    @media (max-width: 465px) {
+      font-size: 1.5rem;
+  }
+}
+
+.title_center {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.pizza_collection_catalog {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 50px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  grid-template-rows: repeat(5, auto);
+  gap: auto;
+  row-gap: 30px;
+  transition: 1s;
+  justify-items: center;
+  align-items: center;
+  grid-auto-flow: row dense;
+
+
+  @media (max-width: 1080px) {
+    grid-template-columns: repeat(2, 1fr);
+    
+  }
+  @media (max-width: 720px) {
+    grid-template-columns: repeat(1, 1fr);
+    padding-bottom: auto;
+   }
+  }
+
+
+.link {
+  text-decoration: none;
+}
+

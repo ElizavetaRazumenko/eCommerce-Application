@@ -1,0 +1,111 @@
+@import '../../../../globalVariables.scss';
+.wrapper {
+    box-sizing: border-box;
+    padding: 10px 25px;
+    background-color: $main-light;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin: 25px 0;
+}
+
+.img_wrapper {
+    margin-right: 20px;
+    width: 130px;
+    height: 130px;
+    display: flex;
+    justify-content: center;
+}
+.image {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.name {
+    margin-bottom: 5px;
+}
+
+.name,
+.size,
+.params {
+    margin-top: 0;
+    color: $main-grey;
+    font-weight: 700;
+    font-size: 1.6rem;
+}
+
+.size {
+    font-size: 1.2rem;
+}
+
+.params {
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.btn {
+    font-weight: 700;
+    background: $main-grey;
+    color: $main-light;
+    height: 30px;
+    width: 90px;
+    border-radius: 30px;
+    margin: 15px 0;
+    border: none;
+    cursor: pointer;
+    transition: .5s;
+    &:hover {
+        background: $grey-hover;
+    }
+}
+
+
+.count_wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .change_count_wrappper {
+    margin-left: 10px;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .up,
+  .down {
+    cursor: pointer;
+    background-color: $main-grey;
+    width: 15px;
+    height: 12px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: .5s;
+    &:hover {
+        background-color: rgba($main-grey, .8);
+    }
+  }
+
+  .block {
+    cursor: auto;
+    background-color: rgba($main-grey, .3);
+    &:hover {
+        background-color: rgba($main-grey, .3);
+    }
+  }
+
+  .up {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-image: url('../../../../assets/png/upArrowWhite.png');
+  }
+
+  .down {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-image: url('../../../../assets/png/downArrowWhite.png');
+  }
+
+  .hidden {
+    display: none;
+  }

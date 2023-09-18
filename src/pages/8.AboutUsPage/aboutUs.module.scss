@@ -1,0 +1,122 @@
+@import '../../globalVariables.scss';
+
+.wrapper {
+    box-sizing: border-box;
+    padding: 15px 25px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: max-content;
+}
+
+.header {
+    color: $main-light;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.content {
+    max-width: 900px;
+    color: $main-light;
+    font-size: 1.4rem;
+    @media (max-width: 960px) {
+        max-width: 700px;
+        font-size: 1.2rem;
+     } 
+}
+.description {
+    color: $main-light;
+}
+
+.profile {
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    @media (max-width: 830px) {
+        flex-direction: column;
+        align-items: center;
+     } 
+
+    .description {
+        max-width: 450px;
+    }
+    a {
+        text-decoration: none;
+        color: $main-light;
+        display: flex;
+        align-items: center;
+        transition: .5s;
+        .github_icon {
+            margin-left: 15px;
+            width: 25px;
+            height: 25px;
+            background-image: url('../../assets/png/git_logo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        &:hover {
+            color: $white;
+        }
+    }
+}
+
+.profile_liza {
+    @media (max-width: 830px) {
+        flex-direction: column-reverse;
+        align-items: center;
+     } 
+}
+
+.img_uladzimir,
+.img_elizaveta,
+.img_shaihali {
+    width: 450px;
+    height: 600px;
+    background-image: url('../../assets/png/uladzimir.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    @media (max-width: 960px) {
+        width: 230px;
+        height: 400px;
+     } 
+}
+
+.img_elizaveta {
+    background-image: url('../../assets/png/elizaveta.png');
+}
+
+.img_shaihali {
+    background-image: url('../../assets/png/shaihali.png');
+    margin-left: 110px;
+}
+
+.gratitude {
+    margin-top: 50px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-style: italic;
+    margin-bottom: 0;
+    @media (max-width: 960px) {
+        font-size: 1.2rem;
+     }
+}
+
+.link {
+    text-decoration: none;
+}
+
+.logo {
+    margin-bottom: 30px;
+    border-radius: 5px;
+    display: inline-block;
+    width: 80px;
+    height: 35px;
+    background-image: url('../../assets/png/rs_school.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}

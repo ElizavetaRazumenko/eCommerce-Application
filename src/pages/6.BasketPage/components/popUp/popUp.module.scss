@@ -1,0 +1,68 @@
+@import '../../../../globalVariables.scss';
+
+.modal {
+    position: fixed;
+    width: 100%;
+    max-width: 1280px;
+    height: 100%;
+}
+.wrapper {
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 10px 15px;
+    width: 250px;
+    height: 120px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px $main-grey;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    background-color: $main-light;
+}
+
+.text_warning {
+    text-align: center;
+    font-weight: 700;
+    color: $main-grey;
+    font-size: 1rem;
+}
+
+.buttons_wraper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button {
+    box-sizing: border-box;
+    padding: 2px 5px;
+    width: 60px;
+    cursor: pointer;
+    border: none;
+    background-color: $white;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: .9rem;
+    transition: .5s;
+    &:hover {
+        background-color: rgba($main-grey, .1);
+    }
+}
+
+.button_yes {
+    color: $color-red;
+    margin-right: 5px;
+}
+
+.button_no {
+    color: $ligth-green;
+    margin-left: 5px;
+}
+
+.hidden {
+    display: none;
+}

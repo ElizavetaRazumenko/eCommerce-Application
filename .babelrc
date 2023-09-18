@@ -1,0 +1,11 @@
+{
+  "env": {
+    "test": {
+      "plugins": ["babel-plugin-dynamic-import-node"]
+    }
+  },
+  "plugins": [
+    "transform-require-ignore",
+  ]
+}
+  

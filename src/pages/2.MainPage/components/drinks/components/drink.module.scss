@@ -1,0 +1,64 @@
+@import '../../../../../globalVariables.scss';
+
+
+
+.item_drink {
+    height: 285px;
+    width: 85px;
+    padding: 0 auto;
+
+    @media (max-width: 465px) {
+        height: 185px;
+    }
+}
+
+.drink_img {
+    display: flex;
+    justify-items: center;
+    margin: 0 auto;
+    height: 190px;
+    width: 55px;
+    cursor: pointer;
+    transition: .4s;
+
+    &:hover{
+        scale: 1.08;
+        transform: rotate(25deg);
+    }
+
+    @media (max-width: 465px) {
+        height: 110px;
+        width: 30px;
+    }
+}
+
+.btn_add_drink {
+    font-weight: 700;
+    width: 90px;
+    height: 30px;
+    border-radius: 12px;
+    background: $main-grey;
+    color: $main-light;
+    border: none;
+    cursor: pointer;
+    margin: 20px auto;
+    transition: .5s;
+
+    &:hover {
+     background: $main-light;
+     color: $main-grey; 
+    }
+
+    @media (max-width: 465px) {
+        width: 60px;
+        height: 20px;
+        font-size: .5rem;
+    }
+}
+
+.drink_price {
+    margin-top: 15px;
+    color: $main-light;
+    text-align: center;
+}
+

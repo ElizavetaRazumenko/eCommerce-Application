@@ -1,0 +1,51 @@
+@import '../../../../../../globalVariables.scss';
+
+
+.pizza_item {
+    border-radius: 15px;
+    color: $main-grey;
+    background: url('../../../../../../assets/png/plank2.png');
+    background-size: 200%;
+    background-repeat: no-repeat;
+    max-width: 303px;
+    background-position: center;
+    padding-bottom: 20px;
+
+    @media (max-width: 465px) {
+        font-size: 1rem;
+        width: 303px;
+
+    }
+}
+
+.pizza_img {
+    cursor: pointer;
+    margin: 14px;
+    width: 275px;
+    height: 275px;
+    transition: .5s;
+   
+    @media (max-width: 465px) {
+        width: 260px;
+        height: 260px;
+        margin: 5px;
+    }
+}
+
+.pizza_name {
+    margin: 10px 0 30px;
+    font-size: 1.8rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.pizza_ingredients{
+    margin-top: -20px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: .8rem;
+    height: 20px;
+    width: 90%;
+    padding: 0 10px;
+}
+
