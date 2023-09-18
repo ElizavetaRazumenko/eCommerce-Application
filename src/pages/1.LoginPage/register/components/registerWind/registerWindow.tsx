@@ -65,6 +65,7 @@ const RegisterWindow = (props: RegisterPagePropsType) => {
           })
           .execute()
           .then(() => loginClient(requestData.email, requestData.password));
+        localStorage.setItem('CurrentEmail', requestData.email);
         setSuccessMessage('Registered ✔');
         setTimeout(registerTrek, 700);
       } catch (e) {

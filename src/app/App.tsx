@@ -41,6 +41,7 @@ const App = () => {
   useEffect(() => {
     products();
   }, []);
+
   const cartItemsString = localStorage.getItem('CartItems');
   if (cartItemsString) {
     const cartItems = JSON.parse(cartItemsString) as LineItem[];
